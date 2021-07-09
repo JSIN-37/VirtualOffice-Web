@@ -1,0 +1,21 @@
+name: Publish Frontend to Website
+
+on: [push]
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: "build"
+          destination_repo: "JSIN-37/JSIN-37.github.io"
+          user_email: "virtualoffice.jsin38@gmail.com"
+          user_name: "virtualoffice-bot"
+          commit_message: "Published VO Web Frontend."
