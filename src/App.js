@@ -1,24 +1,66 @@
-import logo from "./logo.svg";
+import React from 'react';
 import "./App.css";
 import Button from "@material-ui/core/Button";
 import Switch from "@material-ui/core/Switch";
 
+
+import WorkerLogIn from './WorkerLogIn.js';
+import AllTeams from './AllTeams.js';
+import Division from './Divisions.js';
+import SetupOrg from './setupOrg.js';
+import SetUpEmail from './setUpEmail.js';
+import ResponsiveDrawer from './ResponsiveDrawer.js';
 function App() {
+
+
+  // return (
+  //   <>
+  //   <AllTeams/>
+  //   </>
+  // );
+
+  // return (
+  //   <>
+  //   <WorkerLogIn/>
+  //   </>
+  // );
+
+
+  //  return (
+  //   <>
+  //   <Division/>
+  //   </>
+  // );
+
+  
+
+  // return (
+  //   <>
+  //   <ResponsiveDrawer/>
+  //   </>
+  // );
+
+  
+  // return (
+  //      <>
+  //    <UserRoles/>
+  //    </>
+  // );
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <h1>We are using material UI!</h1>
-        <Button variant="contained" color="primary">
-          VirtualOffice!
-        </Button>
-        <Switch inputProps={{ "aria-label": "primary checkbox" }} />
-      </header>
-    </div>
+    <>
+    <SetUpEmail/>
+    </>
   );
+
+
+//   return (
+//     <>
+//     <SetupOrg/>
+//     </>
+//   );
 }
 
 export default App;
