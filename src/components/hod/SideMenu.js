@@ -11,23 +11,26 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import PropTypes from 'prop-types'
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import GroupWorkRoundedIcon from '@material-ui/icons/GroupWorkRounded';
 import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRounded';
+import EventIcon from '@material-ui/icons/Event';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import Box from '@material-ui/core/Box';
-import { BrowserRouter } from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom'
+
+// import logo from "../assets/logo.png";
 
 const drawerWidth = 280;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        overflow: 'hidden'
     },
     info: {
         display: 'flex',
@@ -105,6 +108,9 @@ export default function SideMenu() {
                     spacing={0}
                     align="center"
                     justify="center"
+                    style={{
+                        overflow: "hidden"
+                    }}
                 >
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
@@ -119,22 +125,20 @@ export default function SideMenu() {
                     </Grid>
                 </Grid>
                 <Divider />
-                <BrowserRouter initialEntries={['/drafts']} initialIndex={0}>
 
-                    <List>
-                        <ListItemLink to="/Home" primary="Home" icon={<HomeRoundedIcon />} />
-                        <ListItemLink to="/Division" primary="Division" icon={<GroupWorkRoundedIcon />} />
-                        <ListItemLink to="/Teams" primary="Teams" icon={<PeopleRoundedIcon />} />
-                        <ListItemLink to="/" primary="Tasks" icon={<PeopleRoundedIcon />} />
-                        <ListItemLink to="/" primary="Reports" icon={<SupervisorAccountRoundedIcon />} />
-                        <ListItemLink to="/" primary="Profile" icon={<PersonRoundedIcon />} />
-                        <ListItemLink to="/" primary="Settings" icon={<SettingsRoundedIcon />} />
-                        <ListItemLink to="/" primary="Log Out" icon={<PowerSettingsNewRoundedIcon />} />
-                    </List>
-                </BrowserRouter>
+                <List>
+                    <ListItemLink to="/dashboard" primary="Dashboard" icon={<DashboardIcon />} />
+                    <ListItemLink to="/division" primary="Division" icon={<GroupWorkRoundedIcon />} />
+                    <ListItemLink to="/teams" primary="Teams" icon={<PeopleRoundedIcon />} />
+                    <ListItemLink to="/tasks" primary="Tasks" icon={<AssessmentIcon />} />
+                    <ListItemLink to="/attendance" primary="Attendance" icon={<EventIcon />} />
+                    <ListItemLink to="/profile" primary="Profile" icon={<PersonRoundedIcon />} />
+                    <ListItemLink to="/settings" primary="Settings" icon={<SettingsRoundedIcon />} />
+                    <ListItemLink to="/logout" primary="Log Out" icon={<PowerSettingsNewRoundedIcon />} />
+                </List>
             </Drawer>
             <main className={classes.content}>
             </main>
-        </div>
+        </div >
     );
 }
