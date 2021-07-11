@@ -161,11 +161,7 @@ export default function SideMenu({ token, onLogout }) {
         <Divider />
 
         <List>
-          <ListItemLink
-            to="/dashboard"
-            primary="Dashboard"
-            icon={<DashboardIcon />}
-          />
+          <ListItemLink to="/" primary="Dashboard" icon={<DashboardIcon />} />
           <ListItemLink
             to="/division"
             primary="Division"

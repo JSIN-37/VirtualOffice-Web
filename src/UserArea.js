@@ -11,7 +11,7 @@ const UserArea = ({ token, setToken }) => {
       <Router>
         <SideMenu token={token} onLogout={setToken} />
         <Header />
-        <Route path="/" component={Dashboard} />
+        <Route path="/" exact component={Dashboard} />
         <Route path="/division" component={Division} />
       </Router>
     </>
