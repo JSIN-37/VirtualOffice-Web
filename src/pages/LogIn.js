@@ -14,157 +14,154 @@ import Link from "@material-ui/core/Link";
 import logo from "../resources/logo_big.png";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        Height: "100%",
-        display: "flex",
-    },
+  root: {
+    Height: "100%",
+    display: "flex",
+  },
 
-    card: {
-        borderRadius: 30,
-        maxWidth: 440,
-        textAlign: "center",
-        padding: "20px",
-        margin: "120px",
-        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-        overflow: "visible",
-    },
-    media: {
-        margin: "10px auto 0",
-        width: "30%",
-        height: 60,
-        position: "relative",
-        zIndex: 1000,
-    },
-    form: {
-        width: "100%", // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-        alignItems: "center",
-    },
-    button: {
-        margin: theme.spacing(1),
-    },
-    action: {
-        display: "flex",
-        justifyContent: "space-around",
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-    grid: {
-        flexGrow: 1,
-    },
+  card: {
+    borderRadius: 30,
+    maxWidth: 440,
+    textAlign: "center",
+    padding: "20px",
+    margin: "120px",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    overflow: "visible",
+  },
+  media: {
+    margin: "10px auto 0",
+    width: "30%",
+    height: 60,
+    position: "relative",
+    zIndex: 1000,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+    alignItems: "center",
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  action: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  grid: {
+    flexGrow: 1,
+  },
 }));
 
-export default function LogIn() {
-    const classes = useStyles();
-    const [email, setEmail] = useState(``);
-    const [password, setPassword] = useState(``);
+export default function LogIn({ onLogin }) {
+  const classes = useStyles();
+  const [email, setEmail] = useState(``);
+  const [password, setPassword] = useState(``);
 
-    // Log into the Moodle
-    const loginAttempt = async (email, password) => {
-        var axios = require("axios");
-        axios
-            .post("http://localhost:3030/api/v1/login", {
-                email: email,
-                password: password,
-            })
-            .then((res) => {
-                let data = res.data;
-                console.log(data);
-                // Token should be avail. if successful
-                if (data.token) {
-                    alert(data.token);
-                    alert(data.info.initialSetup);
-                } else {
-                    alert("login failure");
-                }
-            });
-    };
-    return (
-        <Grid
-            container
-            spacing={0}
-            align="center"
-            justify="center"
-            className={classes.root}
-        >
-            <Grid item>
-                <Card className={classes.card}>
-                    <CardMedia className={classes.media} image={logo} title="logo" />
-                    <CardContent>
-                        <Typography variant="h5" align="left">
-                            Sign In
-                        </Typography>
-                        <form className={classes.form} noValidate>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <TextField
-                                className={classes.textfield}
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <div className={classes.grid}>
-                                <Grid container spacing={3}>
-                                    <Grid item xs={6}>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    value="remember"
-                                                    color="primary"
-                                                    textAlign="left"
-                                                />
-                                            }
-                                            label="Remember me"
-                                            align="left"
-                                        />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Link href="#" variant="body2" align="right">
-                                            {"Forgot Password"}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    loginAttempt(email, password);
-                                }}
-                            >
-                                Sign In
-                            </Button>
-                        </form>
-                        <div className={classes.list}>
-                            <Typography align="center">Don't have an account?</Typography>
-                            <Button variant="outlined" color="primary" className={classes.button}>
-                                Request Access
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
-            </Grid>
-        </Grid>
-    );
+  const loginAttempt = async (email, password) => {
+    var axios = require("axios");
+    axios
+      .post("http://localhost:3030/api/v1/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        let data = res.data;
+        // console.log(data);
+        // Token should be avail. if successful
+        if (data.token) {
+          onLogin(data.token);
+          //   alert(data.info.initialSetup);
+        } else {
+          alert("Login failed!");
+        }
+      });
+  };
+  return (
+    <Grid
+      container
+      spacing={0}
+      align="center"
+      justify="center"
+      className={classes.root}
+    >
+      <Grid item>
+        <Card className={classes.card}>
+          <CardMedia className={classes.media} image={logo} title="logo" />
+          <CardContent>
+            <Typography variant="h5" align="left">
+              Sign In
+            </Typography>
+            <form className={classes.form} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <TextField
+                className={classes.textfield}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className={classes.grid}>
+                <Grid container spacing={3}>
+                  <Grid item xs={6}>
+                    <FormControlLabel
+                      control={<Checkbox value="remember" color="primary" />}
+                      label="Remember me"
+                      align="left"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Link href="#" variant="body2" align="right">
+                      {"Forgot Password"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </div>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={(e) => {
+                  e.preventDefault();
+                  loginAttempt(email, password);
+                }}
+              >
+                Sign In
+              </Button>
+            </form>
+            <div className={classes.list}>
+              <Typography align="center">Don't have an account?</Typography>
+              <Button
+                variant="outlined"
+                color="primary"
+                className={classes.button}
+              >
+                Request Access
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
+  );
 }
