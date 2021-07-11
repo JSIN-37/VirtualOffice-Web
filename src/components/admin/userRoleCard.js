@@ -5,8 +5,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { blue } from '@material-ui/core/colors';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
   root: {
@@ -33,20 +34,30 @@ function UserRoleCards() {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <p align="center">Director</p>
-      <small>Secondary Text</small>
+      <p align="left">Director</p>
 
-      <br/>
-      <br/>
+      <table >
+        <tr>
+            <td>Secondary Text</td>
+        </tr></table>
+        
 
+        
+    <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems= "flex-end"
+        justify="center"
+        justifyContent="flex-end"
+        style={{ minHeight: '20vh' }}
+      >
+          
     <Button variant="outlined" size="small"> 
-        <EditIcon style={{ color: blue[500] }}/>
+        <EditOutlinedIcon style={{ color: blue[500] }}/>
           Edit
     </Button>
-        
-        <p>
-
-        </p>
+      </Grid>
 
     </Card>
   );

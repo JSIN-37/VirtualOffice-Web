@@ -51,7 +51,7 @@
 
 
 .Text-field{
-  width:500px;
+  width:400px;
   height:50px;
   
 }
@@ -107,7 +107,7 @@
 }
 
 .forgot-pswd{
-  font-size: x-small;
+  font-size: small;
   color: blue;
   align-content: flex-end;
 }

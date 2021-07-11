@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import "../../App.css";
 
-import DivisionCard from './DivisionCard.js';
+import AllTeamsCard from './AllTeamsCard.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   
 
 
-function Division() {
+function AllTeams() {
   const classes = useStyles();
     return(
       
@@ -50,7 +50,7 @@ function Division() {
         
       >
          <h3>
-        Divisions
+        Teams
       </h3>
         </Grid>
 
@@ -68,22 +68,22 @@ function Division() {
               <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           <Grid item xs={4}>
-           <DivisionCard/>
+           <AllTeamsCard/>
 
             {/* <Paper className={classes.paper}>item</Paper> */}
           </Grid>
 
           <Grid item xs={4}>
-          <DivisionCard/>
+          <AllTeamsCard/>
           </Grid>
 
           <Grid item xs={4}>
-           <DivisionCard/>
+           <AllTeamsCard/>
           </Grid>
 
 
           <Grid item xs={4}>
-          <DivisionCard/>  
+          <AllTeamsCard/>  
           </Grid>
 
 
@@ -103,7 +103,7 @@ function Division() {
         style={{ minHeight: '20vh' }}
       >
       <Button variant="contained" color="primary" className="button-user-role">
-      + Add new Division
+      + Add new Team
       </Button>
         </Grid>
 
@@ -115,4 +115,4 @@ function Division() {
 }
 
 
-export default Division;
+export default AllTeams;

@@ -28,27 +28,23 @@ const useStyles = makeStyles({
 });
 
 
-function DivionCard() {
+function AllTeamCard() {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.root} variant="outlined">
-      <p align="center">Director’s Office</p>
+      <p align="center">Design Team </p>
 
       <table >
         <tr>
-            <td>Head of Division:</td>
+            <td>Division:</td>
             
-            <td>A.T Pathirana</td>
+            <td>General Administration</td>
         </tr>
         <tr>
-            <td>Teams:</td>
+            <td>Members:</td>
             <td>2</td>
-        </tr>
-        <tr>
-            <td>Emplpoyees:</td>
-            <td>23</td>
         </tr>
     </table>
     <br/>
@@ -76,4 +72,4 @@ function DivionCard() {
   );
 }
 
-export default DivionCard;
+export default AllTeamCard;
