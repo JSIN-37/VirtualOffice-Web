@@ -19,7 +19,7 @@ import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRo
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
 import Box from '@material-ui/core/Box';
-import { MemoryRouter } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom'
 
 const drawerWidth = 280;
@@ -119,19 +119,19 @@ export default function SideMenu() {
                     </Grid>
                 </Grid>
                 <Divider />
-                <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+                <BrowserRouter initialEntries={['/drafts']} initialIndex={0}>
 
                     <List>
                         <ListItemLink to="/Home" primary="Home" icon={<HomeRoundedIcon />} />
                         <ListItemLink to="/Division" primary="Division" icon={<GroupWorkRoundedIcon />} />
                         <ListItemLink to="/Teams" primary="Teams" icon={<PeopleRoundedIcon />} />
-                        <ListItemLink to="/Tasks" primary="Tasks" icon={<PeopleRoundedIcon />} />
-                        <ListItemLink to="/Reports" primary="Reports" icon={<SupervisorAccountRoundedIcon />} />
-                        <ListItemLink to="/profile" primary="Profile" icon={<PersonRoundedIcon />} />
-                        <ListItemLink to="/settings" primary="Settings" icon={<SettingsRoundedIcon />} />
-                        <ListItemLink to="/SignIn" primary="Log Out" icon={<PowerSettingsNewRoundedIcon />} />
+                        <ListItemLink to="/" primary="Tasks" icon={<PeopleRoundedIcon />} />
+                        <ListItemLink to="/" primary="Reports" icon={<SupervisorAccountRoundedIcon />} />
+                        <ListItemLink to="/" primary="Profile" icon={<PersonRoundedIcon />} />
+                        <ListItemLink to="/" primary="Settings" icon={<SettingsRoundedIcon />} />
+                        <ListItemLink to="/" primary="Log Out" icon={<PowerSettingsNewRoundedIcon />} />
                     </List>
-                </MemoryRouter>
+                </BrowserRouter>
             </Drawer>
             <main className={classes.content}>
             </main>
