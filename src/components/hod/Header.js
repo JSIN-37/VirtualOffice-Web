@@ -32,3 +32,13 @@ export default function Header() {
         </AppBar>
     )
 }
+
+// Routes thing
+//<nav className="navbar navbar-expand-lg navbar-light bg-light">
+// <ul className="navbar-nav mr-auto">
+// <li><Link to={'/'} className="nav-link"> Dashboard </Link></li>
+// <li><Link to={'/division'} className="nav-link"> Division </Link></li>
+// <li><Link to={'/teams'} className="nav-link"> Teams </Link></li>
+// </ul>
+// </nav>
+// <hr />

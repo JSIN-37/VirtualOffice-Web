@@ -6,16 +6,16 @@ import Division from "./pages/hod/Division";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const UserArea = ({ token, setToken }) => {
-  return (
-    <>
-      <Router>
-        <SideMenu token={token} onLogout={setToken} />
-        <Header />
-        <Route path="/" exact component={Dashboard} />
-        <Route path="/division" component={Division} />
-      </Router>
-    </>
-  );
+    return (
+        <>
+            <Router>
+                <SideMenu token={token} onLogout={setToken} />
+                <Header />
+                <Route path="/" exact component={Dashboard} />
+                <Route path="/division" component={Division} />
+            </Router>
+        </>
+    );
 };
 
 export default UserArea;
