@@ -20,6 +20,8 @@ import AddTeam from "./components/admin/AddTeam.js";
 import ViewTeam from "./components/admin/ViewTeam.js";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Organization from "./components/admin/Organization";
+import EditOrganization from "./components/admin/EditOrganization";
 
 const AdminArea = ({ token, setToken }) => {
   return (
@@ -52,6 +54,32 @@ const AdminArea = ({ token, setToken }) => {
       <Route exact path="/add-new-team">
         <AddTeam/>
       </Route>
+
+      <Route exact path="/divisions">
+        <Division/>
+      </Route>
+
+      <Route exact path="/organization">
+        <Organization/>
+      </Route>
+      
+
+      <Route exact path="/teams">
+        <AllTeams/>
+      </Route>
+
+      <Route exact path="/edit-organization-details">
+        <EditOrganization/>
+      </Route>
+
+      <Route exact path="/employees">
+        <Members/>
+      </Route>
+
+      <Route exact path="/invite-employees">
+        <InviteMembers/>
+      </Route>
+      
 
       
 

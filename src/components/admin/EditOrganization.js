@@ -19,6 +19,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import OfficeImage from "../../resources/man.jpg";
+import OrgImage from "../../resources/orgImage.jpg";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ResponsiveDrawer(props) {
+function EditOrganization(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -90,7 +91,7 @@ function ResponsiveDrawer(props) {
           { name: "Divisions", link: "/divisions" },
           { name: "Teams", link: "/teams" },
           { name: "User Roles & Permissions", link: "/user-roles" },
-          { name: "Employees", link: "/members" },
+          { name: "Members", link: "/members" },
           { name: "Profile", link: "/profile" },
           { name: "Settings", link: "/settings" },
           { name: "Log Out", link: "/" },
@@ -161,217 +162,94 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography variant="h6" noWrapn style={{ margin: 4 }}>
-          Add User Roles
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Organization Name"
+            placeholder="UCSC"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
         </Typography>
+        <br/>
+        
+        <Avatar>
+          <img src={OrgImage} className="VO-logo" alt="logo" />
+        </Avatar>
+        UCSC
+        <br/> 
+        <br/> 
+
         <form>
           <TextField
             className="Text-field"
             id="filled-full-width"
             style={{ margin: 4 }}
-            label="Role Name"
-            placeholder="Worker"
+            label="System Administrator"
+            placeholder="A L Silva"
             InputLabelProps={{
               shrink: true,
             }}
-            variant="filled"
+            variant="outlined"
           ></TextField>
-          <br />
-          <Checkbox
-            defaultChecked
-            style={{ margin: 4 }}
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-          />
-          <small>Default Role</small>
-          <br />
-          <TextField
+
+        <br/> 
+        <br/> 
+
+
+        <TextField
             className="Text-field"
             id="filled-full-width"
-            style={{ margin: 2 }}
-            label="Description"
-            placeholder="Description"
+            style={{ margin: 4 }}
+            label="Administrator Email "
+            placeholder="Email"
             InputLabelProps={{
               shrink: true,
             }}
-            variant="filled"
+            variant="outlined"
           ></TextField>
-          <br />
-          <br />
 
-          <h4>Permissions</h4>
+
+        <br/> 
+        <br/> 
+
+
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            placeholder="Email"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
         </form>
-        <table width="100%">
-          <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-          </tr>
+        <br/>
+        <br/>
+            
+        <Button variant="contained" color="primary" style={{ margin: 4 }}>
+        Save Changes
+        </Button>
 
-          <tr>
-            <td> Division Management </td>
-            <td> Employee Management </td>
-            <td> Task Management </td>
-            <td> </td>
-          </tr>
+        <Button variant="outlined" color="primary">
+        Cancel
+        </Button>
+        
 
-          <tr>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Create Divison"
-              />
-            </td>
-
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Mark Attendance"
-              />
-            </td>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Create a Task"
-              />
-            </td>
-            <td> </td>
-          </tr>
-
-          <tr>
-            <td>
-              {" "}
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Create Team"
-              />
-            </td>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Check Attendance"
-              />
-            </td>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Monitor Tasks"
-              />
-            </td>
-            <td> </td>
-          </tr>
-
-          <tr>
-            <td> </td>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Promote Employees"
-              />
-            </td>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Extended Deadline"
-              />
-            </td>
-            <td> </td>
-          </tr>
-
-          <tr>
-            <td> </td>
-            <td>
-              <FormControlLabel
-                control={
-                  <Switch
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Transfer Employees"
-              />
-            </td>
-            <td> </td>
-          </tr>
-
-          <tr>
-            <td> </td>
-            <td> </td>
-            <td align="right">
-              <Button variant="contained" color="primary">
-                Save Role
-              </Button>
-            </td>
-            <td>
-              <Button variant="outlined" color="primary">
-                Cancel
-              </Button>
-            </td>
-          </tr>
-        </table>
+       
       </main>
     </div>
   );
 }
 
-ResponsiveDrawer.propTypes = {
+EditOrganization.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -379,4 +257,4 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+export default EditOrganization;

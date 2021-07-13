@@ -27,6 +27,8 @@ import AnnouncementIcon from '@material-ui/icons/Announcement';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Grid from '@material-ui/core/Grid';
 
+import { Link } from "react-router-dom";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -172,6 +174,33 @@ function Members(props) {
            <TextField id="outlined-search" label="Search field" type="search" variant="outlined" />
             </Grid>
             </div>
+
+
+            
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems= "center"
+        justify="center"
+        justifyContent="center"
+        style={{ minHeight: '20vh' }}
+      >
+
+       <Button 
+          variant="contained" 
+          component={Link}
+          to="/invite-employees"
+          color="primary" 
+
+          style={{ margin: 4}}  
+       >
+        Invite Members
+        </Button>
+        </Grid>
+
+
+           
 
 
 

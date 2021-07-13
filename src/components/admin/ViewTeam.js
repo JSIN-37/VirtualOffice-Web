@@ -85,10 +85,19 @@ function ViewTeam(props) {
 
       <Divider/>
       <List>
-        {['Organization', 'Divisions', 'Teams', 'User Roles & Permissions','Members','Profile','Settings','Log Out'].map((text, index) => (
-          <ListItem button key={text}>
+        {[
+          { name: "Organization", link: "/organization" },
+          { name: "Divisions", link: "/divisions" },
+          { name: "Teams", link: "/teams" },
+          { name: "User Roles & Permissions", link: "/user-roles" },
+          { name: "Employees", link: "/members" },
+          { name: "Profile", link: "/profile" },
+          { name: "Settings", link: "/settings" },
+          { name: "Log Out", link: "/" },
+        ].map((text, index) => (
+          <ListItem button key={text.name} component={Link} to={text.link}>
             {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>
