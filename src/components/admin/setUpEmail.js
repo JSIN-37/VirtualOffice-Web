@@ -53,7 +53,9 @@ function SetUpEmail() {
         />
          <br/>
         <br/>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" type="button" onClick={(e)=>{e.preventDefault();
+        window.location.href="./setUpOrg";}}
+        >
         Continue
         </Button>
         </div>
