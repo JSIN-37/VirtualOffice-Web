@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import "./App.css";
 import Button from "@material-ui/core/Button";
@@ -134,5 +135,24 @@ function App() {
 
 
 }
+=======
+import React from "react";
+// import LogIn from "./pages/LogIn";
+// import UserArea from "./UserArea";
+import Route from './Routes'
+
+const App = () => {
+    return (
+        <Route />
+    );
+    // const [token, setToken] = React.useState("");
+    // if (token) {
+    //     return <UserArea token={token} setToken={setToken} />;
+    // } else {
+    //     return <LogIn onLogin={setToken} />;
+    // }
+
+};
+>>>>>>> adb0df8d45857616f7dd34ab2cb18ff3814c76d1
 
 export default App;

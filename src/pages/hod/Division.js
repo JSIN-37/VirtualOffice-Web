@@ -1,25 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Division extends Component {
-    render() {
-        return (
-            <div style={{ position: "absolute", left: "50%", top: "50%" }}>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-                <h2>This is the division component</h2>
-
-            </div>
-        );
-    }
+export default function Division() {
+    return (
+        <div>
+            <h2>Division</h2>
+            <p>This is the Division</p>
+        </div>
+    );
 }
-
-export default Division;
