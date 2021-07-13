@@ -19,6 +19,8 @@ import AddDivision from "./components/admin/AddDivision.js";
 import AddTeam from "./components/admin/AddTeam.js";
 import ViewTeam from "./components/admin/ViewTeam.js";
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 const AdminArea = ({ token, setToken }) => {
   return (
     //////////////// Start Imashi's routing example ///////////////////
@@ -36,7 +38,14 @@ const AdminArea = ({ token, setToken }) => {
     //   </Layout>
     // </Router>
     //////////////// End Imashi's routing example ///////////////////
-    <SetUpEmail />
+    <Router>
+      <Route exact path="/">
+        <SetUpEmail />
+      </Route>
+      <Route exact path="/setup-organization">
+        <SetupOrg />
+      </Route>
+    </Router>
     //   <ViewTeam/>
     //   <AllTeams/>
     //   <WorkerLogIn/>
