@@ -23,6 +23,7 @@ import OrgImage from "../../resources/orgImage.jpg";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
@@ -111,22 +112,18 @@ function Organization(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-            <Typography variant="h6" noWrapn >
-           Add User Roles
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
+      <AppBar
+                position="fixed"
+                color="primary"
+                className={classes.appbar}
+                elevation={0}>
+                <Toolbar>
+                    <DashboardIcon color="primary" className={classes.appbaricon} fontSize="large" />
+                    <Typography variant="h5" className={classes.title} color="primary">
+                        {/* Dashboard */}
+                    </Typography>
+                </Toolbar>
+        </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
