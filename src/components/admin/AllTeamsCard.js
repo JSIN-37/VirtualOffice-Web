@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { blue } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const useStyles = makeStyles({
   root: {

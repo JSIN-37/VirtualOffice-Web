@@ -34,6 +34,7 @@ import Paper from '@material-ui/core/Paper';
 import DivisionCard from './DivisionCard.js';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const drawerWidth = 240;
 
@@ -41,16 +42,24 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
+  apptitle: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    textDecoration: 'none'
+}
+,
+appspace: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    color: "#E3E6F5"
+},
+appbar: {
+    background: '#E3E6F5',
+},
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
     },
   },
   menuButton: {
@@ -149,26 +158,22 @@ function Division(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
+      
+<AppBar
                 position="fixed"
                 color="primary"
                 className={classes.appbar}
                 elevation={0}>
                 <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  className={classes.menuButton}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap>
-                  Responsive drawer
-                </Typography>
-              </Toolbar>
-        </AppBar>
+                    <Typography variant="h5" className={classes.appspace}>
+                        spacespacespaice
+                    </Typography>
+                    <DashboardIcon color="primary" className={classes.appbaricon} fontSize="large" />
+                    <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/">
+                        Dashboard
+                    </Typography>
+                </Toolbar>
+            </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
