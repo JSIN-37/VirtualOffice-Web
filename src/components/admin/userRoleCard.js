@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { blue } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
-
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -36,11 +35,11 @@ function UserRoleCards() {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <p align="left">Director</p>
+      <Typography align="left">Director</Typography>
 
       <table >
         <tr>
-            <td>Secondary Text</td>
+            <td><Typography>Secondary Text</Typography></td>
         </tr></table>
         
 

@@ -5,8 +5,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -22,12 +20,10 @@ import OfficeImage from "../../resources/man.jpg";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-
 import Box from '@material-ui/core/Box';
 import { Avatar } from "@material-ui/core";
 import { IconButton } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -213,7 +209,7 @@ function EditUserRoles(props) {
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
           />
-          <small>Default Role</small>
+          <Typography>Default Role</Typography>
           <br />
           <TextField
             className="Text-field"
@@ -239,9 +235,9 @@ function EditUserRoles(props) {
           </tr>
 
           <tr>
-            <td> Division Management </td>
-            <td> Employee Management </td>
-            <td> Task Management </td>
+            <td><Typography> Division Management </Typography></td>
+            <td> <Typography>Employee Management </Typography></td>
+            <td> <Typography>Task Management</Typography> </td>
             <td> </td>
           </tr>
 

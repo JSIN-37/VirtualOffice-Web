@@ -34,17 +34,18 @@ function AllTeamCard() {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <p align="center">Design Team </p>
+      <Typography align="center">Design Team </Typography>
+      
 
       <table >
         <tr>
-            <td>Division:</td>
+            <td><Typography >Division:</Typography></td>
             
-            <td>General Administration</td>
+            <td><Typography >General Administration</Typography></td>
         </tr>
         <tr>
-            <td>Members:</td>
-            <td>2</td>
+            <td><Typography >Members:</Typography></td>
+            <td><Typography>2</Typography></td>
         </tr>
     </table>
     <br/>
@@ -60,7 +61,8 @@ function AllTeamCard() {
           
     <Button variant="outlined" size="small"> 
         <EditOutlinedIcon style={{ color: blue[500] }}/>
-          Edit
+        <Typography >Edit</Typography>
+          
     </Button>
       </Grid>
         

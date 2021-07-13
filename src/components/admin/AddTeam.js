@@ -5,8 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -208,7 +206,10 @@ function AddTeam(props) {
                     <td>
                     </td>
                     <td>
+                    <Typography>
                     Team Members
+                    </Typography>
+                    
                     </td>
 
 
@@ -228,7 +229,11 @@ function AddTeam(props) {
                     />
                     </td>
                     <td>
-                    <AddCircleOutlineIcon/> Add Employee
+                    <AddCircleOutlineIcon/> 
+                    <Typography>
+                    Add Employee
+                    </Typography>
+                    
                                   
                         
                         
@@ -252,7 +257,12 @@ function AddTeam(props) {
                     </td>
 
                     <td>
-                    <AccountCircleIcon/> K.P. Hewagamge
+                    <AccountCircleIcon/> 
+                    <Typography>
+                    K.P. Hewagamge
+                    </Typography>
+                    
+                   
                         
                     </td>
 

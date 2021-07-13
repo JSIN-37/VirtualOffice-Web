@@ -6,8 +6,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -28,17 +26,12 @@ import { IconButton } from "@material-ui/core";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-
-
 import AllTeamsCard from './AllTeamsCard.js';
-
 import { Link } from "react-router-dom";
-
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Avatar } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
-
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
