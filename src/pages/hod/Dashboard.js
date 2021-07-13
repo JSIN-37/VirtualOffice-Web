@@ -7,6 +7,7 @@ import TodoCard from "../../components/hod/TodoCard";
 import DoingCard from "../../components/hod/DoingCard";
 import DashPieChart from "../../components/hod/DashPieChart";
 import DashBarChart from "../../components/hod/DashBarChart";
+import CoworkersCard from "../../components/hod/CoworkersCard";
 import TimeStamps from "../../components/hod/TimeStamps";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,18 +31,24 @@ export default function Dashboard() {
   const classes = useStyles();
 
   const [todos, setTodos] = useState([]);
-  const [doings, setDoings] = useState([]);
-
   useEffect(() => {
     fetch(`${window.backendURL}/interim/todos`)
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);
 
+  const [doings, setDoings] = useState([]);
   useEffect(() => {
     fetch(`${window.backendURL}/interim/doing`)
       .then((res) => res.json())
       .then((data) => setDoings(data));
+  }, []);
+
+  const [emps, setEmps] = useState([]);
+  useEffect(() => {
+    fetch(`${window.backendURL}/interim/emps`)
+      .then((res) => res.json())
+      .then((data) => setEmps(data));
   }, []);
 
   return (
@@ -91,6 +98,11 @@ export default function Dashboard() {
               My Coworkers
             </Typography>
             <br />
+            {emps.map((emp) => (
+              <Grid item xs={12} md={12} key={emp.id}>
+                <CoworkersCard emp={emp} />
+              </Grid>
+            ))}
           </Card>
           <br />
         </Grid>
