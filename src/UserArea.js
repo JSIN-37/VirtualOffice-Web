@@ -1,21 +1,28 @@
-// import React from "react";
-import SideMenu from "./components/hod/SideMenu";
-import Header from "./components/hod/Header";
+import Layout from "./components/hod/Layout";
 import Dashboard from "./pages/hod/Dashboard";
 import Division from "./pages/hod/Division";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Teams from "./pages/Teams";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const UserArea = ({ token, setToken }) => {
-    return (
-        <>
-            <Router>
-                <SideMenu token={token} onLogout={setToken} />
-                <Header />
-                <Route path="/" exact component={Dashboard} />
-                <Route path="/division" component={Division} />
-            </Router>
-        </>
-    );
+  return (
+    <Router>
+      <Layout>
+        <Switch>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route path="/division">
+            <Division />
+          </Route>
+          <Route path="/teams">
+            <Teams />
+          </Route>
+        </Switch>
+      </Layout>
+    </Router>
+  );
 };
 
 export default UserArea;
