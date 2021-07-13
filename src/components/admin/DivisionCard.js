@@ -50,23 +50,27 @@ function DivionCard() {
             <td>Emplpoyees:</td>
             <td>23</td>
         </tr>
+        <tr>
+            <td></td>
+            <td>
+            <Grid
+              container
+              spacing={0}
+              alignItems= "flex-end"
+              justifyContent="flex-end"
+              style={{ minHeight: '10vh' }}
+            >
+                
+          <Button variant="outlined" size="small" > 
+              <EditOutlinedIcon style={{ color: blue[500] }} />
+                Edit
+          </Button>
+            </Grid>
+              
+            </td>
+        </tr>
     </table>
-    <br/>
-    <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "flex-end"
-        justify="center"
-        justifyContent="flex-end"
-        style={{ minHeight: '20vh' }}
-      >
-          
-    <Button variant="outlined" size="small"> 
-        <EditOutlinedIcon style={{ color: blue[500] }}/>
-          Edit
-    </Button>
-      </Grid>
+    
         
         <p>
 

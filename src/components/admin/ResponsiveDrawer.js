@@ -24,6 +24,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 
 import { Link } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
+
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+
+import { IconButton } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -74,11 +80,37 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
 
-      <List>
-        <ListItem>
-          <img src={OfficeImage} className="VO-logo" alt="logo" />
-        </ListItem>
-      </List>
+      <Box  m={1} 
+              alignItems= "center"
+              justify="center"
+              justifyContent="center">
+
+            <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+              </Grid>
+              <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+              <Typography color="initial" >
+                  A.T. Pathirana
+              </Typography>
+              <Typography color="initial" >
+                  Head of Division
+              </Typography>
+              </Grid>
+          </Box>
 
       <Divider />
       <List>
@@ -87,7 +119,7 @@ function ResponsiveDrawer(props) {
           { name: "Divisions", link: "/divisions" },
           { name: "Teams", link: "/teams" },
           { name: "User Roles & Permissions", link: "/user-roles" },
-          { name: "Members", link: "/members" },
+          { name: "Employees", link: "/employees" },
           { name: "Profile", link: "/profile" },
           { name: "Settings", link: "/settings" },
           { name: "Log Out", link: "/" },
@@ -107,22 +139,26 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-            <Typography variant="h6" noWrapn >
-           Add User Roles
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
+      <AppBar
+                position="fixed"
+                color="primary"
+                className={classes.appbar}
+                elevation={0}>
+                <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  className={classes.menuButton}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" noWrap>
+                  Responsive drawer
+                </Typography>
+              </Toolbar>
+        </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

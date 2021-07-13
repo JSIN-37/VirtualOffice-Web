@@ -19,23 +19,20 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import OfficeImage from "../../resources/man.jpg";
+import OrgImage from "../../resources/orgImage.jpg";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import EmailIcon from "@material-ui/icons/Email";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Grid from "@material-ui/core/Grid";
-
-import Box from '@material-ui/core/Box';
-import { Avatar } from "@material-ui/core";
 import { IconButton } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
-// My stuff
-import MemberCard from "./MemberCard";
-import axios from "axios";
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import { Avatar } from "@material-ui/core";
+
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const drawerWidth = 240;
 
@@ -72,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Members(props) {
+function EditOrganization(props) {
+  const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -81,26 +79,10 @@ function Members(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const [members, setMembers] = React.useState([]);
-
-  React.useEffect(() => {
-    const config = {
-      headers: { Authorization: `Bearer ${window.token}` },
-    };
-    axios
-      .get(`${window.backendURL}/admin/users`, config)
-      .then((res) => {
-        const data = res.data;
-        setMembers(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+
       <Box  m={1} 
               alignItems= "center"
               justify="center"
@@ -114,8 +96,11 @@ function Members(props) {
                     justify="center"
                     justifyContent="center"
               >
+
               <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+
               </Grid>
+
               <Grid
                     container
                     spacing={0}
@@ -133,6 +118,9 @@ function Members(props) {
               </Grid>
           </Box>
 
+
+
+
       <Divider />
       <List>
         {[
@@ -140,7 +128,7 @@ function Members(props) {
           { name: "Divisions", link: "/divisions" },
           { name: "Teams", link: "/teams" },
           { name: "User Roles & Permissions", link: "/user-roles" },
-          { name: "Employees", link: "/employees" },
+          { name: "Employees", link: "/members" },
           { name: "Profile", link: "/profile" },
           { name: "Settings", link: "/settings" },
           { name: "Log Out", link: "/" },
@@ -154,7 +142,8 @@ function Members(props) {
     </div>
   );
 
-  const container = document.body;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
@@ -179,6 +168,7 @@ function Members(props) {
                 </Typography>
               </Toolbar>
         </AppBar>
+
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -212,69 +202,112 @@ function Members(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography
-          variant="h6"
-          noWrapn
-          style={{ margin: 4 }}
-          style={{ minHeight: "10vh" }}
-        >
-          Employees
-        </Typography>
-
-        <div>
-          <MenuIcon /> <EmailIcon /> <AnnouncementIcon /> <DeleteIcon />
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="flex-end"
-            justify="center"
-            justifyContent="flex-end"
-            style={{ minHeight: "0vh" }}
-          >
-            <TextField
-              id="outlined-search"
-              label="Search field"
-              type="search"
-              variant="outlined"
-            />
-          </Grid>
-        </div>
-        {members.map((member) => (
-          <MemberCard
-            key={member.id}
-            id={member.id}
-            email={member.email}
-            first_name={member.first_name}
-            last_name={member.last_name}
-            contact_number={member.contact_number}
-            members={members}
-            setMembers={setMembers}
-          />
-        )
-        )}
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="flex-start"
-          justify="center"
-          justifyContent="flex-start"
-          style={{ minHeight: "20vh" }}
-        >
-          <Button
-            variant="contained"
-            component={Link}
-            to="/invite-employees"
-            color="primary"
+        <Typography variant="h6" noWrapn style={{ margin: 4 }}>
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
             style={{ margin: 4 }}
-          >
-            Invite Members
-          </Button>
-        </Grid>
+            label="Organization Name"
+            placeholder="UCSC"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+        </Typography>
+        <br/>
+        <div>
+        <Avatar>
+          <img src={OrgImage} className="VO-logo" alt="logo" />
+        </Avatar>
+        UCSC
+        <Typography>Profile Picture</Typography>
+         <Button variant="contained"
+                        size="small" 
+                        style={{ margin: 4}}
+
+                        >Choose File</Button>
+
+        </div>
+        <br/> 
+        <br/> 
+
+        <form>
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="System Administrator"
+            placeholder="A L Silva"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+        <br/> 
+        <br/> 
+
+
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Administrator Email "
+            placeholder="Email"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+
+        <br/> 
+        <br/> 
+
+
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            placeholder="Password"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+            
+
+           
+            
+          ></TextField>
+        </form>
+        <br/>
+        <br/>
+            
+        <Button variant="contained" color="primary" style={{ margin: 4 }}>
+        Save Changes
+        </Button>
+
+        <Button variant="outlined" color="primary">
+        Cancel
+        </Button>
+        
+
+       
       </main>
     </div>
   );
 }
 
-export default Members;
+EditOrganization.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+export default EditOrganization;

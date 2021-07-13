@@ -6,12 +6,14 @@ import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import OfficeImage from "../../resources/logo_big.png";
 import Grid from "@material-ui/core/Grid";
+import { Typography } from "@material-ui/core";
 import { sizing } from "@material-ui/system";
 
 import { Link } from "react-router-dom";
 
 function SetUpEmail() {
   return (
+    
     <Grid
       container
       spacing={0}
@@ -24,6 +26,7 @@ function SetUpEmail() {
         <Card
           style={{
             width: "30rem",
+            borderRadius:'2rem',
             textAlign: "center",
             justifyContent: "center",
             alignContent: "center",
@@ -33,10 +36,10 @@ function SetUpEmail() {
           }}
         >
           <img src={OfficeImage} className="VO-logo" alt="logo" />
-          <p>
+          <Typography >
             Enter an email. <br />
             This will be used to set up your organization
-          </p>
+          </Typography>
           <div>
             <TextField
               className="Text-field"

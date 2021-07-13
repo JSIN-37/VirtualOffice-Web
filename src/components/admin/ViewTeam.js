@@ -26,6 +26,7 @@ import Grid from '@material-ui/core/Grid';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -85,10 +86,19 @@ function ViewTeam(props) {
 
       <Divider/>
       <List>
-        {['Organization', 'Divisions', 'Teams', 'User Roles & Permissions','Members','Profile','Settings','Log Out'].map((text, index) => (
-          <ListItem button key={text}>
+        {[
+          { name: "Organization", link: "/organization" },
+          { name: "Divisions", link: "/divisions" },
+          { name: "Teams", link: "/teams" },
+          { name: "User Roles & Permissions", link: "/user-roles" },
+          { name: "Employees", link: "/employees" },
+          { name: "Profile", link: "/profile" },
+          { name: "Settings", link: "/settings" },
+          { name: "Log Out", link: "/" },
+        ].map((text, index) => (
+          <ListItem button key={text.name} component={Link} to={text.link}>
             {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>

@@ -9,6 +9,7 @@ import { spacing } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
 
 import { Link } from "react-router-dom";
+import { Typography } from '@material-ui/core';
 
 
 function SetupOrg() {
@@ -22,9 +23,11 @@ function SetupOrg() {
     style={{ minHeight: '100vh' }}
     >
   
-    <Grid item xs={3}>
-      <Card style={{ width: '30rem',
-            height:'37rem',
+    <Grid item xs={6}>
+      <Card             
+            style={{ width: '40rem',
+            borderRadius:'2rem',
+            height:'40rem',
             justifyContent: 'center',
             alignContent: 'center',
             padding: '30px',
@@ -92,7 +95,10 @@ function SetupOrg() {
         <br/>
         <br/>
           <form style={{ margin: 2}}>
-          Logo   
+          <Typography>
+          Logo
+          </Typography>
+             
 
           <Button 
           size="small"
@@ -118,11 +124,11 @@ function SetupOrg() {
 
       <br/>
       <br/>
-        <small style={{ margin: 2}}>
+        <Typography style={{ margin: 2}}>
         As Admin you will be reponsible for the personal data of 
         people in your organization as well as the data 
         managemnet requests they submit to you. <br/>Learn more.
-        </small>
+        </Typography>
       {/*Hyperlink the LEARN MORE AND TERMS AND SERVICES */}
       <br/>
       <Checkbox
@@ -139,17 +145,18 @@ function SetupOrg() {
         container
         spacing={0}
         direction="column"
-        alignItems= "flex-end"
+        alignItems= "center"
         justify="center"
-        justifyContent="flex-end"
+        justifyContent="center"
         style={{ minHeight: '20vh' }}
       >
 
        <Button 
           variant="contained" 
           component={Link}
-          to="/user-roles"
+          to="/organization"
           color="primary" 
+
           style={{ margin: 4}}  
        >
         Set up Organization

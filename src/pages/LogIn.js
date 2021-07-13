@@ -72,7 +72,8 @@ export default function LogIn({ onLogin, onAdmin }) {
         // console.log(data);
         // Token should be avail. if successful
         if (data.token) {
-          if (data.info.isAdmin){
+          window.token = data.token;
+          if (data.info.isAdmin) {
             onAdmin(true);
           }
           onLogin(data.token);

@@ -1,174 +1,133 @@
-import React from 'react';
+import React from "react";
 import "../../App.css";
 import Button from "@material-ui/core/Button";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
-import OfficeImage from '../../resources/logo_big.png';
-import Grid from '@material-ui/core/Grid';
-import { sizing } from '@material-ui/system';
-import ClearIcon from '@material-ui/icons/Clear';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import TextField from "@material-ui/core/TextField";
+import OfficeImage from "../../resources/logo_big.png";
+import Grid from "@material-ui/core/Grid";
+import { sizing } from "@material-ui/system";
+import ClearIcon from "@material-ui/icons/Clear";
 
-
-
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function InviteMembers() {
+  const [name, setName] = React.useState(``);
+  const [email, setEmail] = React.useState(``);
 
-    return(
-<Grid
-    container
-    spacing={0}
-    direction="column"
-    alignItems="center"
-    justify="center"
-    style={{ minHeight: '100vh' }}
+  let history = useHistory();
+
+  const sendInvite = () => {
+    axios
+      .post(`${window.backendURL}/admin/user`, {
+        first_name: name,
+        email: email,
+      })
+      .then((res) => {
+        let data = res.data;
+        if (data.success) {
+          alert("Employee was invited to join!");
+          history.push("/employees");
+        } else {
+          alert("Inviting failed!");
+        }
+      });
+  };
+
+  return (
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: "100vh" }}
     >
-  
-    <Grid item xs={6}>
-      <Card style={{ width: '40rem',
-            textAlign: 'center',
-            justifyContent: 'center',
-            alignContent: 'center',
-            padding: '20px',
-            border:'1',
-            borderColor: 'text.primary'
-    }}
-      >
-        <img src={OfficeImage} className="VO-logo" alt="logo" />
-        <p align="left">Invite Members</p>
+      <Grid item xs={6}>
+        <Card
+          style={{
+            width: "40rem",
+            textAlign: "center",
+            justifyContent: "center",
+            alignContent: "center",
+            padding: "20px",
+            border: "1",
+            borderColor: "text.primary",
+          }}
+        >
+          <img src={OfficeImage} className="VO-logo" alt="logo" />
+          <p align="left">Invite Members</p>
 
+          <table width="100%">
+            <tr>
+              <th>Name</th>
 
-        <table width="100%">
+              <th>Email Address</th>
 
-        <tr>
-            <th>
-              Name
-            </th>
+              <th></th>
+            </tr>
 
-            <th>
-              Email Address
-            </th>
-
-            <th>
-
-            </th>
-
-          </tr>
-
-          <tr>
-            <td>
-              <TextField
-                id="Text" 
-                placeholder="D G Perera"
-                variant="outlined"
+            <tr>
+              <td>
+                <TextField
+                  id="Text"
+                  placeholder="John Doe"
+                  variant="outlined"
+                  onChange={(e) => setName(e.target.value)}
                 />
-            </td>
-            
+              </td>
 
-            <td>
-            <TextField
-                id="Text"
-                placeholder="E mail"
-                variant="outlined"
-              />
-
-            </td>
-            
-            <td>
-            <ClearIcon/>
-            </td>
-
-
-          </tr>
-
-          <tr>
-          <td>
-              <TextField
-                id="Text"
-                placeholder="D G Perera"
-                variant="outlined"
+              <td>
+                <TextField
+                  id="Text"
+                  placeholder="E mail"
+                  variant="outlined"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-            </td>
-            
+              </td>
 
-            <td>
-            <TextField
-                id="Text"
-                placeholder="E mail"
-                variant="outlined"
-              />
+              <td>
+                <ClearIcon />
+              </td>
+            </tr>
+          </table>
 
-            </td>
-            
-            <td>
-            <ClearIcon/>
-            </td>
-          </tr>
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="flex-start"
+            justify="center"
+            justifyContent="flex-start"
+            style={{ minHeight: "8vh" }}
+          >
+            <Button color="primary">Add New</Button>
+          </Grid>
 
-
-          <tr>
-          <td>
-              <TextField
-                id="Text"
-                placeholder="D G Perera"
-                variant="outlined"
-                />
-            </td>
-            
-
-            <td>
-            <TextField
-                id="Text"
-                placeholder="E mail"
-                variant="outlined"
-              />
-
-            </td>
-            
-            <td>
-            <ClearIcon/>
-            </td>
-          </tr>
-
-        </table>
-
-        <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "flex-start"
-        justify="center"
-        justifyContent="flex-start"
-        style={{ minHeight: '8vh' }}
-      >
-          
-          <Button color="primary">Add New</Button>
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="flex-end"
+            justify="center"
+            justifyContent="flex-end"
+            style={{ minHeight: "8vh" }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={(e) => {
+                sendInvite();
+              }}
+            >
+              Send Invitation
+            </Button>
+          </Grid>
+        </Card>
       </Grid>
-
-
-        <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "flex-end"
-        justify="center"
-        justifyContent="flex-end"
-        style={{ minHeight: '8vh' }}
-      >
-          <Button variant="contained" color="primary">
-            Send Invitation
-          </Button>
-      </Grid>
-        
-      </Card>
-    </Grid>      
-   </Grid>
-
-
-
-    );
-
-
+    </Grid>
+  );
 }
 
 export default InviteMembers;
