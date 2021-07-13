@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
+import TeamHeader from '../components/TeamHeader'
 import TeamCard from '../components/TeamCard'
 
+
 export default function Teams() {
+
     const [teams, setTeams] = useState([])
 
     useEffect(() => {
@@ -22,6 +25,7 @@ export default function Teams() {
 
     return (
         <Grid container spacing={4}>
+            <TeamHeader />
             {teams.map(team => (
                 <Grid item xs={12} sm={6} md={4} key={team.id}>
                     <TeamCard team={team} handleDelete={handleDelete} />
@@ -30,18 +34,3 @@ export default function Teams() {
         </Grid>
     );
 }
-
-// <Grid container spacing={1}>
-//                 <Grid item xs={12} sm={6} md={4}>
-//                     <Card elevation={0}>1
-//                     </Card>
-//                 </Grid>
-//                 <Grid item xs={12} sm={6} md={4}>
-//                     <Card elevation={0}>1
-//                     </Card>
-//                 </Grid>
-//                 <Grid item xs={12} sm={6} md={4}>
-//                     <Card elevation={0}>1
-//                     </Card>
-//                 </Grid>
-//             </Grid>

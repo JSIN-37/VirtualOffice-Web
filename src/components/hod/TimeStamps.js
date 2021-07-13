@@ -25,16 +25,16 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-function createData(activity, date, time) {
-    return { activity, date, time };
+function createData(id, activity, date, time) {
+    return { id, activity, date, time };
 }
 
 const rows = [
-    createData('End Break', '30/06/2021', '1.30 PM'),
-    createData('Start Break', '30/06/2021', '1.30 PM'),
-    createData('Start Work', '30/06/2021', '9.00 AM'),
-    createData('End Work', '29/06/2021', '5.30 PM'),
-    createData('End Break', '29/06/2021', '2.30 PM'),
+    createData('1', 'End Break', '30/06/2021', '1.30 PM'),
+    createData('2', 'Start Break', '30/06/2021', '1.30 PM'),
+    createData('3', 'Start Work', '30/06/2021', '9.00 AM'),
+    createData('4', 'End Work', '29/06/2021', '5.30 PM'),
+    createData('5', 'End Break', '29/06/2021', '2.30 PM'),
 ];
 
 const useStyles = makeStyles({
@@ -60,7 +60,7 @@ export default function TimeStamps() {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <StyledTableRow key={row.activity}>
+                                <StyledTableRow key={row.id}>
                                     <StyledTableCell component="th" scope="row" style={{ paddingLeft: '70px' }} >{row.activity}</StyledTableCell>
                                     <StyledTableCell align="left">{row.date}</StyledTableCell>
                                     <StyledTableCell align="left">{row.time}</StyledTableCell>

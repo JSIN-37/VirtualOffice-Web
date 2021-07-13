@@ -5,7 +5,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-import { Typography, AppBar, Toolbar } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -60,14 +60,6 @@ const useStyles = makeStyles((theme) => {
         },
         active: {
             background: '#f2f2f2'
-        },
-        title: {
-            padding: theme.spacing(2),//16px
-            fontWeight: 500
-        },
-        appbar: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            background: '#E3E6F5'
         },
         bottomPush: {
             position: 'fixed',
@@ -139,18 +131,6 @@ export default function Layout({ children }) {
     ]
     return (
         <div className={classes.root}>
-            <AppBar
-                position="fixed"
-                color="primary"
-                className={classes.appbar}
-                elevation={0}>
-                <Toolbar>
-                    <DashboardIcon color="primary" className={classes.appbaricon} fontSize="large" />
-                    <Typography variant="h5" className={classes.title} color="primary">
-                        Dashboard
-                    </Typography>
-                </Toolbar>
-            </AppBar>
             <Drawer
                 className={classes.drawer}
                 variant="permanent"
