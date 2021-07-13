@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LogIn({ onLogin }) {
+export default function LogIn({ onLogin, onAdmin }) {
   const classes = useStyles();
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
@@ -72,6 +72,9 @@ export default function LogIn({ onLogin }) {
         // console.log(data);
         // Token should be avail. if successful
         if (data.token) {
+          if (data.info.isAdmin){
+            onAdmin(true);
+          }
           onLogin(data.token);
           //   alert(data.info.initialSetup);
         } else {
