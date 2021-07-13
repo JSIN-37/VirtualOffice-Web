@@ -91,7 +91,7 @@ function ViewTeam(props) {
           { name: "Divisions", link: "/divisions" },
           { name: "Teams", link: "/teams" },
           { name: "User Roles & Permissions", link: "/user-roles" },
-          { name: "Employees", link: "/members" },
+          { name: "Employees", link: "/employees" },
           { name: "Profile", link: "/profile" },
           { name: "Settings", link: "/settings" },
           { name: "Log Out", link: "/" },

@@ -22,6 +22,7 @@ import ViewTeam from "./components/admin/ViewTeam.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Organization from "./components/admin/Organization";
 import EditOrganization from "./components/admin/EditOrganization";
+import { Profiler } from "react";
 
 const AdminArea = ({ token, setToken }) => {
   return (
@@ -80,6 +81,9 @@ const AdminArea = ({ token, setToken }) => {
         <InviteMembers/>
       </Route>
       
+      <Route exact path="/profile">
+        <Profiler/>
+      </Route>
 
       
 

@@ -128,7 +128,7 @@ function EditOrganization(props) {
           { name: "Divisions", link: "/divisions" },
           { name: "Teams", link: "/teams" },
           { name: "User Roles & Permissions", link: "/user-roles" },
-          { name: "Members", link: "/members" },
+          { name: "Employees", link: "/members" },
           { name: "Profile", link: "/profile" },
           { name: "Settings", link: "/settings" },
           { name: "Log Out", link: "/" },

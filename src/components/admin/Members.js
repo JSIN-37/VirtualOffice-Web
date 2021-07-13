@@ -27,6 +27,10 @@ import AnnouncementIcon from "@material-ui/icons/Announcement";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Grid from "@material-ui/core/Grid";
 
+import Box from '@material-ui/core/Box';
+import { Avatar } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+
 import { Link } from "react-router-dom";
 
 // My stuff
@@ -97,28 +101,53 @@ function Members(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <Box  m={1} 
+              alignItems= "center"
+              justify="center"
+              justifyContent="center">
 
-      <List>
-        <ListItem>
-          <img src={OfficeImage} className="VO-logo" alt="logo" />
-        </ListItem>
-      </List>
+            <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+              </Grid>
+              <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+              <Typography color="initial" >
+                  A.T. Pathirana
+              </Typography>
+              <Typography color="initial" >
+                  Head of Division
+              </Typography>
+              </Grid>
+          </Box>
 
       <Divider />
       <List>
         {[
-          "Organization",
-          "Divisions",
-          "Teams",
-          "User Roles & Permissions",
-          "Members",
-          "Profile",
-          "Settings",
-          "Log Out",
+          { name: "Organization", link: "/organization" },
+          { name: "Divisions", link: "/divisions" },
+          { name: "Teams", link: "/teams" },
+          { name: "User Roles & Permissions", link: "/user-roles" },
+          { name: "Employees", link: "/employees" },
+          { name: "Profile", link: "/profile" },
+          { name: "Settings", link: "/settings" },
+          { name: "Log Out", link: "/" },
         ].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem button key={text.name} component={Link} to={text.link}>
             {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>
@@ -130,23 +159,26 @@ function Members(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-            <Typography variant="h6" noWrapn >
-           Add User Roles
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-
+      <AppBar
+                position="fixed"
+                color="primary"
+                className={classes.appbar}
+                elevation={0}>
+                <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  className={classes.menuButton}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" noWrap>
+                  Responsive drawer
+                </Typography>
+              </Toolbar>
+        </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -219,14 +251,15 @@ function Members(props) {
             members={members}
             setMembers={setMembers}
           />
-        ))}
+        )
+        )}
         <Grid
           container
           spacing={0}
           direction="column"
-          alignItems="center"
+          alignItems="flex-start"
           justify="center"
-          justifyContent="center"
+          justifyContent="flex-start"
           style={{ minHeight: "20vh" }}
         >
           <Button
