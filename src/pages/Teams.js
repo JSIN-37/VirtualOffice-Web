@@ -6,13 +6,13 @@ export default function Teams() {
     const [teams, setTeams] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:8000/teams')
+        fetch(`${window.backendURL}/interim/teams`)
             .then(res => res.json())
             .then(data => setTeams(data))
     }, [])
 
     const handleDelete = async (id) => {
-        await fetch('http://localhost:8000/teams/' + id, {
+        await fetch(`${window.backendURL}/interim/teams/` + id, {
             method: 'DELETE'
         })
 

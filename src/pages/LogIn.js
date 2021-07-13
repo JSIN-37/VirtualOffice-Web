@@ -63,7 +63,7 @@ export default function LogIn({ onLogin, onAdmin }) {
   const loginAttempt = async (email, password) => {
     var axios = require("axios");
     axios
-      .post("http://localhost:3030/api/v1/login", {
+      .post(`${window.backendURL}/login`, {
         email: email,
         password: password,
       })
