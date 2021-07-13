@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import { Card, Button, Typography } from '@material-ui/core'
 import StatusCard from '../../components/StatusCard'
+import CoworkersCard from '../../components/hod/CoworkersCard'
 import TodoCard from '../../components/hod/TodoCard'
 import DoingCard from '../../components/hod/DoingCard'
 import DashPieChart from '../../components/hod/DashPieChart'
@@ -31,18 +32,25 @@ export default function Dashboard() {
     const classes = useStyles();
 
     const [todos, setTodos] = useState([])
-    const [doings, setDoings] = useState([])
-
     useEffect(() => {
         fetch('http://localhost:8001/todos')
             .then(res => res.json())
             .then(data => setTodos(data))
     }, [])
 
+    const [doings, setDoings] = useState([])
     useEffect(() => {
         fetch('http://localhost:8002/doing')
             .then(res => res.json())
             .then(data => setDoings(data))
+    }, [])
+
+
+    const [emps, setEmps] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:8003/emps')
+            .then(res => res.json())
+            .then(data => setEmps(data))
     }, [])
 
     return (
@@ -81,7 +89,11 @@ export default function Dashboard() {
                 <Grid item xs={12} md={5}>
                     <Card variant="outlined" elevation={1} className={classes.card}>
                         <Typography variant="h5" className={classes.title}>My Coworkers</Typography><br />
-
+                        {emps.map(emp => (
+                            <Grid item xs={12} md={12} key={emp.id}>
+                                <CoworkersCard emp={emp} />
+                            </Grid>
+                        ))}
                     </Card>
                     <br />
                 </Grid>
