@@ -10,11 +10,16 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => {
     return {
+        title: {
+            color: '#3F51B4',
+        },
         info: {
             textAlign: 'left',
+            fontWeight: '400'
         },
         data: {
             textAlign: 'right',
+            fontWeight: '400'
         }
     }
 })
@@ -24,24 +29,24 @@ export default function TeamCard({ team, handleDelete }) {
     return (
         <div>
             <Card variant="outlined" elevation={1} style={{ borderRadius: '10px' }}>
-                <CardHeader style={{ paddingLeft: '25px' }}
+                <CardHeader style={{ paddingLeft: '25px' }} classes={{ title: classes.title }}
                     title={team.name}
                 />
                 <CardContent style={{ paddingTop: '0' }}>
                     <Grid container style={{ padding: 8 }}>
                         <Grid item xs={6}>
-                            <Typography variant="h6" color="primary" className={classes.info}>
+                            <Typography variant="h6" className={classes.info}>
                                 Team Leader:
                             </Typography>
-                            <Typography variant="h6" color="primary" className={classes.info}>
+                            <Typography variant="h6" className={classes.info}>
                                 Division:
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="h6" color="primary" pb={1} className={classes.data}>
+                            <Typography variant="h6" pb={1} className={classes.data}>
                                 {team.leader}
                             </Typography>
-                            <Typography variant="h6" color="primary" pb={1} className={classes.data}>
+                            <Typography variant="h6" pb={1} className={classes.data}>
                                 {team.division}
                             </Typography>
                         </Grid>
