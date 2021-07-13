@@ -6,7 +6,7 @@ import AdminArea from "./AdminArea.js"
 window.backendURL = "http://localhost:3030/api/v1";
 
 const App = () => {
-  return <AdminArea/>
+  return <Route/>
 };
 
 export default App;
