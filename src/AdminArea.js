@@ -23,43 +23,45 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const AdminArea = ({ token, setToken }) => {
   return (
-    //////////////// Start Imashi's routing example ///////////////////
-    // <Router>
-    //   <Layout>
-    //     <Switch>
-    //       <Route exact path="/">
-    //         <Dashboard />
-    //       </Route>
-    //       <Route path="/division">
-    //         <Division />
-    //       </Route>
-    //       <Route path="/teams"></Route>
-    //     </Switch>
-    //   </Layout>
-    // </Router>
-    //////////////// End Imashi's routing example ///////////////////
+   
     <Router>
       <Route exact path="/">
         <SetUpEmail />
       </Route>
+
       <Route exact path="/setup-organization">
         <SetupOrg />
       </Route>
+
+      <Route exact path="/user-roles">
+        <UserRoles />
+      </Route>
+
+      <Route exact path="/add-role">
+        <ResponsiveDrawer/>
+      </Route>
+
+      <Route exact path="/edit-role">
+        <EditUserRoles/>
+      </Route>
+
+      <Route exact path="/add-new-division">
+        <AddDivision/>
+      </Route>
+
+      <Route exact path="/add-new-team">
+        <AddTeam/>
+      </Route>
+
+      
+
+      
+
+
+
     </Router>
-    //   <ViewTeam/>
-    //   <AllTeams/>
-    //   <WorkerLogIn/>
-    //   <Division/>
-    //   < EditUserRoles/>
-    //   <ResponsiveDrawer/>
-    //    <UserRoles/>
-    //   <InviteMembers/>
-    //   <SetupOrg/>
-    //   <SetUpProfile/>
-    //   <MemberDesignation/>
-    //   <Members/>
-    //   <AddTeam/>
-    //   <AddDivision/>
+
+
   );
 };
 

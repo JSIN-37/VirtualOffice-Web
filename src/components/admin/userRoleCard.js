@@ -9,6 +9,8 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { blue } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -53,7 +55,9 @@ function UserRoleCards() {
         style={{ minHeight: '20vh' }}
       >
           
-    <Button variant="outlined" size="small"> 
+    <Button variant="outlined" size="small" className="button-edit-role" 
+            component={Link}
+            to="/edit-role"> 
         <EditOutlinedIcon style={{ color: blue[500] }}/>
           Edit
     </Button>

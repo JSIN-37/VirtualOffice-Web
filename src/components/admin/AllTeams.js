@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import "../../App.css";
 
 import AllTeamsCard from './AllTeamsCard.js';
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -102,7 +103,9 @@ function AllTeams() {
         justifyContent="flex-end"
         style={{ minHeight: '20vh' }}
       >
-      <Button variant="contained" color="primary" className="button-user-role">
+      <Button variant="contained" color="primary" className="button-user-role" component={Link}
+              to="/add-new-team">
+      
       + Add new Team
       </Button>
         </Grid>

@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import "../../App.css";
 
 import UserRoleCards from './userRoleCard.js';
+import { Link } from "react-router-dom";
 
 
 
@@ -98,8 +99,13 @@ const classes = useStyles();
       justifyContent="flex-end"
       style={{ minHeight: '20vh' }}
     >
-    <Button variant="contained" color="primary" className="button-user-role">
-    + Add new Division
+    <Button variant="contained" 
+            color="primary" 
+            className="button-add-user" 
+            component={Link}
+            to="/add-role"
+      >
+    + Add New Role
     </Button>
       </Grid>
 

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import "../../App.css";
 
 import DivisionCard from './DivisionCard.js';
-
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -102,7 +102,8 @@ function Division() {
         justifyContent="flex-end"
         style={{ minHeight: '20vh' }}
       >
-      <Button variant="contained" color="primary" className="button-user-role">
+      <Button variant="contained" color="primary" className="button-user-role" component={Link}
+              to="/add-new-division">
       + Add new Division
       </Button>
         </Grid>

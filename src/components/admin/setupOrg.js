@@ -8,6 +8,8 @@ import OfficeImage from '../../resources/logo_big.png';
 import { spacing } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
 
+import { Link } from "react-router-dom";
+
 
 function SetupOrg() {
   return (
@@ -142,11 +144,16 @@ function SetupOrg() {
         justifyContent="flex-end"
         style={{ minHeight: '20vh' }}
       >
-        <a href='/setUpOrg'>
-       <Button variant="contained" color="primary" style={{ margin: 4}}  >
+
+       <Button 
+          variant="contained" 
+          component={Link}
+          to="/user-roles"
+          color="primary" 
+          style={{ margin: 4}}  
+       >
         Set up Organization
         </Button>
-        </a>
         </Grid>
 
       </Card>
