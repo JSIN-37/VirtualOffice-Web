@@ -11,6 +11,7 @@ function Routes() {
     const [admin, setAdmin] = React.useState(false);
     if (token) {
         if (admin){
+            
             // add in your code here
             // return(<AdminArea/>);
             alert('janadhis stuff');
