@@ -20,7 +20,7 @@ function WorkerLogin() {
     style={{ minHeight: '50vh' }}
     >
   
-    <Grid item xs={3}>
+    <Grid item xs={6}>
       <Card style={{ width: '30rem',
             textAlign: 'center',
             justifyContent: 'center',

@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import { sizing } from '@material-ui/system';
 
 
-
 function SetUpEmail() {
   return (
     <Grid
@@ -21,7 +20,7 @@ function SetUpEmail() {
     style={{ minHeight: '100vh' }}
     >
   
-    <Grid item xs={3}>
+    <Grid item xs={6}>
       <Card style={{ width: '30rem',
             textAlign: 'center',
             justifyContent: 'center',
@@ -60,6 +59,7 @@ function SetUpEmail() {
         </div>
 
 
+        
       </Card>
     </Grid>      
    </Grid>

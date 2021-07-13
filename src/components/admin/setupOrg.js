@@ -142,10 +142,11 @@ function SetupOrg() {
         justifyContent="flex-end"
         style={{ minHeight: '20vh' }}
       >
-
+        <a href='/setUpOrg'>
        <Button variant="contained" color="primary" style={{ margin: 4}}  >
         Set up Organization
         </Button>
+        </a>
         </Grid>
 
       </Card>
