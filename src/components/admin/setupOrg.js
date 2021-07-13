@@ -24,7 +24,9 @@ function SetupOrg() {
     >
   
     <Grid item xs={6}>
-      <Card style={{ width: '30rem',
+      <Card             
+            style={{ width: '40rem',
+            borderRadius:'2rem',
             height:'40rem',
             justifyContent: 'center',
             alignContent: 'center',
@@ -93,7 +95,10 @@ function SetupOrg() {
         <br/>
         <br/>
           <form style={{ margin: 2}}>
-          Logo   
+          <Typography>
+          Logo
+          </Typography>
+             
 
           <Button 
           size="small"

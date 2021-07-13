@@ -26,6 +26,7 @@ function SetUpEmail() {
         <Card
           style={{
             width: "30rem",
+            borderRadius:'2rem',
             textAlign: "center",
             justifyContent: "center",
             alignContent: "center",

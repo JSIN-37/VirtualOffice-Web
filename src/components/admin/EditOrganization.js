@@ -23,9 +23,16 @@ import OrgImage from "../../resources/orgImage.jpg";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
+import { IconButton } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
+
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import { Avatar } from "@material-ui/core";
+
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const drawerWidth = 240;
 
@@ -76,13 +83,43 @@ function EditOrganization(props) {
     <div>
       <div className={classes.toolbar} />
 
-      <List>
-        <ListItem>
-          <Avatar>
-          <img src={OfficeImage} className="VO-logo" alt="logo" />
-          </Avatar>
-        </ListItem>
-      </List>
+      <Box  m={1} 
+              alignItems= "center"
+              justify="center"
+              justifyContent="center">
+
+            <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+
+              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+
+              </Grid>
+
+              <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+              <Typography color="initial" >
+                  A.T. Pathirana
+              </Typography>
+              <Typography color="initial" >
+                  Head of Division
+              </Typography>
+              </Grid>
+          </Box>
+
+
+
 
       <Divider />
       <List>
@@ -111,22 +148,26 @@ function EditOrganization(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-            <Typography variant="h6" noWrapn >
-           Add User Roles
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
+      <AppBar
+                position="fixed"
+                color="primary"
+                className={classes.appbar}
+                elevation={0}>
+                <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  className={classes.menuButton}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" noWrap>
+                  Responsive drawer
+                </Typography>
+              </Toolbar>
+        </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -175,11 +216,19 @@ function EditOrganization(props) {
           ></TextField>
         </Typography>
         <br/>
-        
+        <div>
         <Avatar>
           <img src={OrgImage} className="VO-logo" alt="logo" />
         </Avatar>
         UCSC
+        <Typography>Profile Picture</Typography>
+         <Button variant="contained"
+                        size="small" 
+                        style={{ margin: 4}}
+
+                        >Choose File</Button>
+
+        </div>
         <br/> 
         <br/> 
 
@@ -221,7 +270,7 @@ function EditOrganization(props) {
             className="Text-field"
             id="filled-full-width"
             style={{ margin: 4 }}
-            placeholder="Email"
+            placeholder="Password"
             label="Password"
             type="password"
             autoComplete="current-password"
@@ -229,6 +278,10 @@ function EditOrganization(props) {
               shrink: true,
             }}
             variant="outlined"
+            
+
+           
+            
           ></TextField>
         </form>
         <br/>
