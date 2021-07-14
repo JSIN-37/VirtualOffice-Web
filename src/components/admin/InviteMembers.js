@@ -8,9 +8,9 @@ import OfficeImage from "../../resources/logo_big.png";
 import Grid from "@material-ui/core/Grid";
 import { sizing } from "@material-ui/system";
 import ClearIcon from "@material-ui/icons/Clear";
-
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 function InviteMembers() {
   const [name, setName] = React.useState(``);
@@ -57,13 +57,14 @@ function InviteMembers() {
           }}
         >
           <img src={OfficeImage} className="VO-logo" alt="logo" />
-          <p align="left">Invite Members</p>
+          <Typography align="left">Invite Members</Typography>
+         
 
           <table width="100%">
             <tr>
-              <th>Name</th>
+              <th><Typography>Name</Typography></th>
 
-              <th>Email Address</th>
+              <th><Typography>Email Address</Typography></th>
 
               <th></th>
             </tr>

@@ -7,9 +7,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import OfficeImage from '../../resources/logo_big.png';
 import { spacing } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
-
 import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 
 function SetupOrg() {

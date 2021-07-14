@@ -5,7 +5,6 @@ import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import OfficeImage from '../../resources/logo_big.png';
 import Grid from '@material-ui/core/Grid';
-
 import Typography from '@material-ui/core/Typography';
 
 
@@ -42,9 +41,9 @@ function WorkerLogin() {
         justifyContent="flex-start"
         style={{ minHeight: '10vh' }}
       >
-      <h3>
+      <Typography>
       Sign In
-      </h3>
+      </Typography>
         </Grid>
 
        <TextField

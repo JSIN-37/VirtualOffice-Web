@@ -34,21 +34,21 @@ function DivionCard() {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <p align="center">Director’s Office</p>
+      <Typography align="center">Director’s Office</Typography>
 
       <table >
         <tr>
-            <td>Head of Division:</td>
+            <td><Typography>Head of Division:</Typography></td>
             
-            <td>A.T Pathirana</td>
+            <td><Typography>A.T Pathirana</Typography></td>
         </tr>
         <tr>
-            <td>Teams:</td>
-            <td>2</td>
+            <td><Typography>Teams:</Typography></td>
+            <td><Typography>2</Typography></td>
         </tr>
         <tr>
-            <td>Emplpoyees:</td>
-            <td>23</td>
+            <td><Typography>Emplpoyees:</Typography></td>
+            <td><Typography>23</Typography></td>
         </tr>
         <tr>
             <td></td>
@@ -63,7 +63,7 @@ function DivionCard() {
                 
           <Button variant="outlined" size="small" > 
               <EditOutlinedIcon style={{ color: blue[500] }} />
-                Edit
+              <Typography>Edit</Typography>
           </Button>
             </Grid>
               

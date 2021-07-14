@@ -5,8 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -27,6 +25,10 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import { Link } from "react-router-dom";
+import { Box } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const drawerWidth = 240;
 
@@ -34,16 +36,24 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  apptitle: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    textDecoration: 'none'
+}
+,
+appspace: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    color: "#E3E6F5"
+},
+appbar: {
+    background: '#E3E6F5',
+},
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
     },
   },
   menuButton: {
@@ -76,12 +86,40 @@ function ViewTeam(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-    
-      <List>
-        <ListItem>
-        <img src={OfficeImage} className="VO-logo" alt="logo" />
-        </ListItem>
-      </List>
+      <Box  m={1} 
+              alignItems= "center"
+              justify="center"
+              justifyContent="center">
+
+            <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+
+              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+
+              </Grid>
+
+              <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems= "center"
+                    justify="center"
+                    justifyContent="center"
+              >
+              <Typography color="initial" >
+                  A.T. Pathirana
+              </Typography>
+              <Typography color="initial" >
+                  Head of Division
+              </Typography>
+              </Grid>
+          </Box>
 
 
       <Divider/>
@@ -113,22 +151,24 @@ function ViewTeam(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-            <Typography variant="h6" noWrapn >
-           Add User Roles
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
+      <AppBar
+                position="fixed"
+                color="primary"
+                className={classes.appbar}
+                elevation={0}>
+                <Toolbar>
+                    <Typography variant="h5" className={classes.appspace}>
+                        spacespacespaice
+                    </Typography>
+                    <DashboardIcon color="primary" className={classes.appbaricon} fontSize="large" />
+                    <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/">
+                        Dashboard
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+
+
+
       
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -171,21 +211,25 @@ function ViewTeam(props) {
             <table  width="100%" >
 
                 <tr>
-                    <td>
+                    <td><Typography>
                         Team Leader
+                        </Typography>
                     </td>
                     <td>
+                    <Typography>
                     Members
+                    </Typography>
                     </td>
 
 
                 </tr>
                 <tr>
                     <td>
-                    <AccountCircleIcon/> K.P. Hewagamge
+                    <AccountCircleIcon/> 
+                    <Typography>K.P. Hewagamge</Typography>
                     </td>
                     <td>
-                    <AddCircleOutlineIcon/> Add Member
+                    <AddCircleOutlineIcon/> <Typography>Add Member</Typography>
                                   
                         
                         
@@ -195,12 +239,16 @@ function ViewTeam(props) {
 
                 <tr>
                     <td>
+                    <Typography>
                         Description
+                    </Typography>
 
                     </td>
 
                     <td>
-                    <AccountCircleIcon/> K.P. Hewagamge
+                    <AccountCircleIcon/> 
+                    <Typography>K.P. Hewagamge
+                    </Typography>
                         
                     </td>
 
@@ -213,17 +261,14 @@ function ViewTeam(props) {
 
                 <tr>
                     <td>
+                      <Typography>
                     Projects/Task
+                    </Typography>
                     <br/>
                     <AddIcon/>
                     </td>
                     <td> </td>
                 </tr>
-
-
-
-
-                
 
             </table>
             <Grid

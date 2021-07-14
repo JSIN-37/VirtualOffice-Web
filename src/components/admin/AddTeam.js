@@ -5,8 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -28,6 +26,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import { Avatar } from "@material-ui/core";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 import { IconButton } from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -42,12 +41,21 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
   },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
+  apptitle: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    textDecoration: 'none'
+}
+,
+appspace: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    color: "#E3E6F5"
+},
+appbar: {
+    background: '#E3E6F5',
+},
+  
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -149,20 +157,15 @@ function AddTeam(props) {
                 className={classes.appbar}
                 elevation={0}>
                 <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  className={classes.menuButton}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap>
-                  Responsive drawer
-                </Typography>
-              </Toolbar>
-        </AppBar>
+                    <Typography variant="h5" className={classes.appspace}>
+                        spacespacespaice
+                    </Typography>
+                    <DashboardIcon color="primary" className={classes.appbaricon} fontSize="large" />
+                    <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/">
+                        Dashboard
+                    </Typography>
+                </Toolbar>
+            </AppBar>
       
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -208,7 +211,10 @@ function AddTeam(props) {
                     <td>
                     </td>
                     <td>
+                    <Typography>
                     Team Members
+                    </Typography>
+                    
                     </td>
 
 
@@ -228,7 +234,11 @@ function AddTeam(props) {
                     />
                     </td>
                     <td>
-                    <AddCircleOutlineIcon/> Add Employee
+                    <AddCircleOutlineIcon/> 
+                    <Typography>
+                    Add Employee
+                    </Typography>
+                    
                                   
                         
                         
@@ -252,7 +262,12 @@ function AddTeam(props) {
                     </td>
 
                     <td>
-                    <AccountCircleIcon/> K.P. Hewagamge
+                    <AccountCircleIcon/> 
+                    <Typography>
+                    K.P. Hewagamge
+                    </Typography>
+                    
+                   
                         
                     </td>
 
