@@ -61,6 +61,7 @@ export default function DivisionHeader() {
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>
                         <Tab label="Active Attendees" className={classes.tab} component={Link} to="/attendees" />
                         <Tab label="Absentees" className={classes.tab} component={Link} to="/absentees" />
+                        <Tab label="Reports" className={classes.tab} component={Link} to="/attendancereports" />
                     </Tabs>
                 </Toolbar>
             </AppBar>

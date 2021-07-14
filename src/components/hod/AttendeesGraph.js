@@ -24,7 +24,7 @@ const state = {
     ]
 }
 
-export default function DashBarChart() {
+export default function DashPieChart() {
 
     return (
         <Container style={{ paddingTop: '6px', paddingBottom: '6px' }}>

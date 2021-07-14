@@ -6,8 +6,12 @@ import AddTeam from "./pages/hod/AddTeam";
 import ViewTeam from "./pages/hod/ViewTeam";
 import EditTeam from "./pages/hod/EditTeam";
 import Attendance from "./pages/hod/Attendance";
+import Attendees from "./pages/hod/Attendees";
+import Absentees from "./pages/hod/Absentees";
+import AttendanceReports from "./pages/hod/AttendanceReports";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
+
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -36,6 +40,15 @@ const UserArea = ({ token, setToken }) => {
                     </Route>
                     <Route path="/attendance">
                         <Attendance />
+                    </Route>
+                    <Route path="/attendees">
+                        <Attendees />
+                    </Route>
+                    <Route path="/absentees">
+                        <Absentees />
+                    </Route>
+                    <Route path="/attendancereports">
+                        <AttendanceReports />
                     </Route>
                     <Route path="/profile">
                         <Profile />

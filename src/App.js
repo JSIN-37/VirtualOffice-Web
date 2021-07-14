@@ -2,10 +2,10 @@ import React from "react";
 
 import Route from "./Routes";
 
-window.backendURL = "http://localhost:3030/api/v1";
+window.backendURL = "https://localhost:3030/api/v1";
 
 const App = () => {
-  return <Route />;
+    return <Route />;
 };
 
 export default App;
