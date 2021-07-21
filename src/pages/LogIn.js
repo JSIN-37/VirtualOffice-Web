@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LogIn({ onLogin, onAdmin }) {
+export default function LogIn({ appD, onLogin }) {
   const classes = useStyles();
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
@@ -69,15 +69,17 @@ export default function LogIn({ onLogin, onAdmin }) {
       })
       .then((res) => {
         let data = res.data;
-        // console.log(data);
         // Token should be avail. if successful
         if (data.token) {
-          window.token = data.token;
-          if (data.info.isAdmin) {
-            onAdmin(true);
+          // Make a copy of appD
+          let tmpAppD = appD;
+          tmpAppD.token = data.token;
+          if (data.isAdmin) {
+            tmpAppD.isAdmin = true;
+            console.log("true man");
           }
-          onLogin(data.token);
-          //   alert(data.info.initialSetup);
+          // Flush appD
+          onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
         } else {
           alert("Login failed!");
         }
