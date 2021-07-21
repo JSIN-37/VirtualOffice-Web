@@ -85,12 +85,6 @@ const AdminArea = ({ token, setToken }) => {
         <Profiler/>
       </Route>
 
-      
-
-      
-
-
-
     </Router>
 
 

@@ -14,7 +14,7 @@ import DashboardHeader from '../../components/hod/DashboardHeader'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
-    },
+    }, 
     card: {
         padding: theme.spacing(2),
         paddingTop: theme.spacing(2),
