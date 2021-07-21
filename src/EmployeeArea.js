@@ -12,6 +12,7 @@ import AttendanceReports from "./pages/hod/AttendanceReports";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import LogIn from "./pages/LogIn";
+import LogOut from "./pages/LogOut";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -21,41 +22,44 @@ const EmployeeArea = ({ appD, setAppD }) => {
       <Router basename="/employee">
         <Layout>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Dashboard />
             </Route>
-            <Route path="/division">
+            <Route exact path="/division">
               <Division />
             </Route>
-            <Route path="/teams">
+            <Route exact path="/teams">
               <Teams />
             </Route>
-            <Route path="/addteam">
+            <Route exact path="/addteam">
               <AddTeam />
             </Route>
-            <Route path="/viewteam">
+            <Route exact path="/viewteam">
               <ViewTeam />
             </Route>
-            <Route path="/editteam">
+            <Route exact path="/editteam">
               <EditTeam />
             </Route>
-            <Route path="/attendance">
+            <Route exact path="/attendance">
               <Attendance />
             </Route>
-            <Route path="/attendees">
+            <Route exact path="/attendees">
               <Attendees />
             </Route>
-            <Route path="/absentees">
+            <Route exact path="/absentees">
               <Absentees />
             </Route>
-            <Route path="/attendancereports">
+            <Route exact path="/attendancereports">
               <AttendanceReports />
             </Route>
-            <Route path="/profile">
+            <Route exact path="/profile">
               <Profile />
             </Route>
-            <Route path="/settings">
+            <Route exact path="/settings">
               <Settings />
+            </Route>
+            <Route exact path="/logout">
+              <LogOut appD={appD} setAppD={setAppD} />
             </Route>
           </Switch>
         </Layout>

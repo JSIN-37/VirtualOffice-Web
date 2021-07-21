@@ -76,8 +76,12 @@ export default function LogIn({ appD, onLogin }) {
           tmpAppD.token = data.token;
           if (data.isAdmin) {
             tmpAppD.isAdmin = true;
-            console.log("true man");
           }
+          let tmpCreds = {
+            token: `${data.token}`,
+            isAdmin: tmpAppD.isAdmin,
+          };
+          localStorage.setItem("credentials", JSON.stringify(tmpCreds));
           // Flush appD
           onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
         } else {

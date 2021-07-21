@@ -114,7 +114,7 @@ export default function Dashboard() {
             <Grid container spacing={3}>
                 <Grid item xs={12} md={7}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} md={6} alignItems="stretch">
+                        <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
                                 <Typography variant="h5" className={classes.title}>
                                     Tasks in Progress
