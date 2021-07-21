@@ -25,6 +25,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 import Box from '@material-ui/core/Box';
+import { useState } from "react";
 import { Avatar } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import { IconButton } from "@material-ui/core";
@@ -76,6 +77,25 @@ appbar: {
 function AddTeam(props) {
   const { window } = props;
   const classes = useStyles();
+  const [teamname, setTeamname] = useState(``);
+  const [description, setDescription] = useState(``);
+  const [teamleader, setTeamleader] = useState(``);
+
+  const setTeam = async (teamname, description, teamleader) => { //add choose file and check box to post
+    var axios = require("axios");
+    axios
+      .post(`${window.backendURL}/add-new-team`, {
+        teamname: teamname,
+        description: description,
+        teamleader: teamleader,
+  })
+};
+
+
+
+
+
+
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -231,6 +251,7 @@ function AddTeam(props) {
                       shrink: true,
                     }}
                     variant="outlined"
+                    onChange={(e) => setTeamname(e.target.value)}
                     />
                     </td>
                     <td>
@@ -238,10 +259,7 @@ function AddTeam(props) {
                     <Typography>
                     Add Employee
                     </Typography>
-                    
-                                  
-                        
-                        
+     
                     </td>
                 </tr>
                 
@@ -257,6 +275,7 @@ function AddTeam(props) {
                       shrink: true,
                     }}
                     variant="outlined"
+                    onChange={(e) => setDescription(e.target.value)}
                     />
 
                     </td>
@@ -288,6 +307,7 @@ function AddTeam(props) {
                       shrink: true,
                     }}
                     variant="outlined"
+                    onChange={(e) => setTeamleader(e.target.value)}
                     />
                     </td>
                     <td> </td>
@@ -316,7 +336,12 @@ function AddTeam(props) {
                     >
                       
                      <div>
-                    <Button variant="contained" color="primary" style={{ margin: 4}}  >
+                    <Button variant="contained" color="primary" style={{ margin: 4}} 
+                      onClick={(e) => {
+                        // e.preventDefault();
+                        setTeam(teamname, description, teamleader);
+                      }}
+                    >
                       Save Role
                     </Button>
 

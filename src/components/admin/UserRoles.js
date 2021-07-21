@@ -90,7 +90,7 @@ appbar: {
   },
 }));
 
-function AllTeams(props) {
+function UserRoles(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -302,7 +302,7 @@ function AllTeams(props) {
   );
 }
 
-AllTeams.propTypes = {
+UserRoles.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -310,4 +310,4 @@ AllTeams.propTypes = {
   window: PropTypes.func,
 };
 
-export default AllTeams;;
+export default UserRoles;;

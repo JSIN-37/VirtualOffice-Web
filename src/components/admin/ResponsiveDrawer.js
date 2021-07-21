@@ -26,6 +26,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { IconButton } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -79,6 +80,20 @@ appbar: {
 function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
+  const [rolename, roleName] = useState(``);
+  const [description, setDescription] = useState(``);
+
+  const setUerRole = async (rolename, description) => { //add choose file and check box to post
+    var axios = require("axios");
+    axios
+      .post(`${window.backendURL}/add-user-role`, {
+        rolename: rolename,
+        description: description,
+  })
+};
+
+
+
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -212,6 +227,7 @@ function ResponsiveDrawer(props) {
               shrink: true,
             }}
             variant="filled"
+            onChange={(e) => setUerRole(e.target.value)}
           ></TextField>
           <br />
           <Checkbox
@@ -232,6 +248,7 @@ function ResponsiveDrawer(props) {
               shrink: true,
             }}
             variant="filled"
+            onChange={(e) => setDescription(e.target.value)}
           ></TextField>
           <br />
           <br />
@@ -393,7 +410,12 @@ function ResponsiveDrawer(props) {
             <td> </td>
             <td> </td>
             <td align="right">
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" 
+              onClick={(e) => {
+                // e.preventDefault();
+                setUerRole(rolename, description);
+              }}
+              >
                 Save Role
               </Button>
             </td>

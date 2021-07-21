@@ -10,9 +10,73 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import { useState } from "react";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    Height: "100%",
+    display: "flex",
+  },
+
+  card: {
+    borderRadius: 30,
+    maxWidth: 440,
+    textAlign: "center",
+    padding: "20px",
+    margin: "120px",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    overflow: "visible",
+  },
+  media: {
+    margin: "10px auto 0",
+    width: "30%",
+    height: 60,
+    position: "relative",
+    zIndex: 1000,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+    alignItems: "center",
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  action: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  grid: {
+    flexGrow: 1,
+  },
+}));
 
 
 function SetupOrg() {
+
+  const classes = useStyles();
+  const [fname, setFname] = useState(``);
+  const [lname, setLname] = useState(``);
+  const [orgname, setOrgname] = useState(``);
+  const [country, setCountry] = useState(``);
+
+  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
+    var axios = require("axios");
+    axios
+      .post(`${window.backendURL}/setup-organization`, {
+        fname: fname,
+        lname: lname,
+        orgname:orgname,
+        country: country,
+  })
+};
+
+
+  
   return (
     <Grid
     container
@@ -65,6 +129,7 @@ function SetupOrg() {
             shrink: true,
           }}
           variant="outlined"
+          onChange={(e) => setFname(e.target.value)}
         />
         
         <TextField
@@ -77,6 +142,7 @@ function SetupOrg() {
             shrink: true,
           }}
           variant="outlined"
+          onChange={(e) => setLname(e.target.value)}
         />
         </Grid>
         </Grid>
@@ -91,6 +157,7 @@ function SetupOrg() {
             shrink: true,
           }}
           variant="outlined"
+          onChange={(e) => setOrgname(e.target.value)}
         />
         <br/>
         <br/>
@@ -120,6 +187,7 @@ function SetupOrg() {
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={(e) => setCountry(e.target.value)}
           />
 
       <br/>
@@ -156,8 +224,12 @@ function SetupOrg() {
           component={Link}
           to="/organization"
           color="primary" 
-
           style={{ margin: 4}}  
+          onClick={(e) => {
+            // e.preventDefault();
+            setUpOrgAttempt(fname, lname, orgname, country);
+          }}
+          
        >
         Set up Organization
         </Button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
+import { useState } from "react";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -71,8 +72,20 @@ appbar: {
 }));
 
 function AddDivision(props) {
-  const { window } = props;
   const classes = useStyles();
+  const [divisonname, setDivisonname] = useState(``);
+  const [hod, setHod] = useState(``);
+
+  const setDivision = async (divisonname, hod) => { //add choose file and check box to post
+    var axios = require("axios");
+    axios
+      .post(`${window.backendURL}/add-new-division`, {
+        divisonname: divisonname,
+        hod: hod,
+  })
+};
+
+  const { window } = props;
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -215,6 +228,9 @@ function AddDivision(props) {
                       shrink: true,
                     }}
                     variant="outlined"
+                    onChange={(e) => setDivisonname(e.target.value)}
+
+                    
                     />
                     <br/>
 
@@ -228,6 +244,7 @@ function AddDivision(props) {
                       shrink: true,
                     }}
                     variant="outlined"
+                    onChange={(e) => setHod(e.target.value)}
                   />
                     </td>
                     <td> </td>
@@ -247,7 +264,12 @@ function AddDivision(props) {
                     >
                       
                      <div>
-                    <Button variant="contained" color="primary" style={{ margin: 4}}  >
+                    <Button variant="contained" color="primary" style={{ margin: 4}}  
+                    onClick={(e) => {
+                      // e.preventDefault();
+                      setDivision(divisonname, hod);
+                    }}
+                    >
                       Save Role
                     </Button>
 
