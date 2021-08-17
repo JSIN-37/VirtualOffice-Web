@@ -63,7 +63,7 @@ export default function LogIn({ appD, onLogin }) {
   const loginAttempt = async (email, password) => {
     var axios = require("axios");
     axios
-      .post(`${window.backendURL}/login`, {
+      .post(`${window.backendURL}/user/login`, {
         email: email,
         password: password,
       })
