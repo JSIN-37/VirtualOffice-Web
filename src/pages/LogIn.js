@@ -76,7 +76,7 @@ export default function LogIn({ appD, onLogin }) {
     const loginAttempt = async (email, password) => {
         var axios = require("axios");
         axios
-            .post(`${window.backendURL}/login`, {
+            .post(`${window.backendURL}/user/login`, {
                 email: email,
                 password: password,
             })
@@ -145,15 +145,15 @@ export default function LogIn({ appD, onLogin }) {
                             />
                             <div className={classes.grid}>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={6} className={classes.gridRemember}>
+                                    <Grid item xs={6}>
                                         <FormControlLabel
                                             control={<Checkbox value="remember" color="primary" />}
                                             label="Remember me"
                                             align="left"
                                         />
                                     </Grid>
-                                    <Grid item xs={6} className={classes.gridForgot}>
-                                        <Link href="#" variant="body1" align="right">
+                                    <Grid item xs={6}>
+                                        <Link href="#" variant="body2" align="right">
                                             {"Forgot Password"}
                                         </Link>
                                     </Grid>
