@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     }
     ,
     appspace: {
-        padding: theme.spacing(2),//16px
+        padding: theme.spacing(1, 2),//16px
         fontWeight: 500,
         color: "#E3E6F5"
     },

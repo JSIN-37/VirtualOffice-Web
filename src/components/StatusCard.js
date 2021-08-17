@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => {
     }
 })
 
-
-
 export default function StatusCard() {
     const classes = useStyles()
     return (
@@ -28,31 +26,29 @@ export default function StatusCard() {
                 <CardContent>
                     <Grid container align="center" justify="center" alignItems="center">
                         <Grid item xs={3} >
-                            <Button disabled variant="contained" size="large" color="primary">Start work</Button>
+                            <Button disabled variant="contained" color="primary">Start work</Button>
                         </Grid>
                         <Grid item xs={3}>
-                            <Button variant="contained" size="large" color="primary">Stop Work</Button>
+                            <Button variant="contained" color="primary">Stop Work</Button>
                         </Grid>
                         <Grid item xs={3}>
-                            <Button variant="contained" size="large" className={classes.breakBtn}>Start Break</Button>
+                            <Button variant="contained" className={classes.breakBtn}>Start Break</Button>
                         </Grid>
                         <Grid item xs={3}>
-                            <Button disabled variant="contained" size="large" className={classes.breakBtn}>Stop Break</Button>
+                            <Button disabled variant="contained" className={classes.breakBtn}>Stop Break</Button>
                         </Grid>
 
                         <Grid item xs={2}><br />
-                            <Typography variant="h6" size="large" color="initial" pr={2}>I am</Typography>
+                            <Typography variant="body1" color="initial" pr={2}>I am</Typography>
                         </Grid>
                         <Grid item xs={10}><br />
                             <RadioGroup row>
-                                <FormControlLabel variant="h6" size="large" value="available" control={<Radio value="available" />} label={<Typography variant="h6" size="large" color="initial" pr={2}>Available</Typography>} />
-                                <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="h6" size="large" color="initial" pr={2}>Busy</Typography>} />
-                                <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="h6" size="large" color="initial" pr={2}>On Break</Typography>} />
+                                <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
+                                <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
+                                <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
                             </RadioGroup>
                         </Grid>
                     </Grid>
-
-
                 </CardContent>
             </Card>
         </div>

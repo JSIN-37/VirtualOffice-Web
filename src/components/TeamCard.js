@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => {
     return {
         title: {
             color: '#3F51B4',
+            fontSize: "20px",
         },
         info: {
             textAlign: 'left',
@@ -35,18 +36,18 @@ export default function TeamCard({ team, handleDelete }) {
                 <CardContent style={{ paddingTop: '0' }}>
                     <Grid container style={{ padding: 8 }}>
                         <Grid item xs={6}>
-                            <Typography variant="h6" className={classes.info}>
+                            <Typography variant="body1" className={classes.info}>
                                 Team Leader:
                             </Typography>
-                            <Typography variant="h6" className={classes.info}>
+                            <Typography variant="body1" className={classes.info}>
                                 Division:
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="h6" pb={1} className={classes.data}>
+                            <Typography variant="body1" pb={1} className={classes.data}>
                                 {team.leader}
                             </Typography>
-                            <Typography variant="h6" pb={1} className={classes.data}>
+                            <Typography variant="body1" pb={1} className={classes.data}>
                                 {team.division}
                             </Typography>
                         </Grid>

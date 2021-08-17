@@ -6,15 +6,15 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => {
     return {
         large: {
-            width: theme.spacing(7),
-            height: theme.spacing(7),
+            width: theme.spacing(6),
+            height: theme.spacing(6),
         },
         todoPaper: {
             // display: 'flex'
         },
         content: {
             padding: ' 0 0 5px 10px',
-            fontSize: '18px',
+            fontSize: '16px',
             FontWeight: '600',
         },
         status: {

@@ -12,6 +12,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Link from "@material-ui/core/Link";
 import logo from "../resources/logo_big.png";
+// import Alerts from "../components/Alerts"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -99,6 +100,7 @@ export default function LogIn({ appD, onLogin }) {
                     onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
                 } else {
                     alert("Login failed!");
+                    // <Alerts type={"error"} title={"Login Failed"} message={"Incorrect username/ password. Please try again"} />
                 }
             });
     };
@@ -145,15 +147,15 @@ export default function LogIn({ appD, onLogin }) {
                             />
                             <div className={classes.grid}>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={6} className={classes.gridRemember}>
                                         <FormControlLabel
                                             control={<Checkbox value="remember" color="primary" />}
                                             label="Remember me"
                                             align="left"
                                         />
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <Link href="#" variant="body2" align="right">
+                                    <Grid item xs={6} className={classes.gridForgot}>
+                                        <Link href="#" variant="body1" align="right">
                                             {"Forgot Password"}
                                         </Link>
                                     </Grid>

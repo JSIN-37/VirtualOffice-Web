@@ -53,7 +53,7 @@ export default function TimeStamps() {
                     <Table classactivity={classes.table} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell style={{ fontSize: '18px', paddingLeft: '70px' }} align="left">Activity</StyledTableCell>
+                                <StyledTableCell style={{ fontSize: '18px', paddingLeft: '40px' }} align="left">Activity</StyledTableCell>
                                 <StyledTableCell style={{ fontSize: '18px' }} align="left">Date</StyledTableCell>
                                 <StyledTableCell style={{ fontSize: '18px' }} align="left">Time</StyledTableCell>
                             </TableRow>
@@ -61,7 +61,7 @@ export default function TimeStamps() {
                         <TableBody>
                             {rows.map((row) => (
                                 <StyledTableRow key={row.id}>
-                                    <StyledTableCell component="th" scope="row" style={{ paddingLeft: '70px' }} >{row.activity}</StyledTableCell>
+                                    <StyledTableCell component="th" scope="row" style={{ paddingLeft: '40px' }} >{row.activity}</StyledTableCell>
                                     <StyledTableCell align="left">{row.date}</StyledTableCell>
                                     <StyledTableCell align="left">{row.time}</StyledTableCell>
                                 </StyledTableRow>

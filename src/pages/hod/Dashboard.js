@@ -14,7 +14,7 @@ import DashboardHeader from '../../components/hod/DashboardHeader'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
-    }, 
+    },
     card: {
         padding: theme.spacing(2),
         paddingTop: theme.spacing(2),
@@ -63,7 +63,7 @@ export default function Dashboard() {
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h5" className={classes.title}>
+                                <Typography variant="h6" className={classes.title}>
                                     Upcoming Tasks
                                 </Typography>
                                 <br />
@@ -82,7 +82,7 @@ export default function Dashboard() {
                             <Card variant="outlined" elevation={1} className={classes.card}>
                                 <Grid container spacing={3}>
                                     <Grid item xs={12} md={5}>
-                                        <Typography variant="h5" className={classes.title}>
+                                        <Typography variant="h6" className={classes.title}>
                                             Work Progress
                                         </Typography>
                                         <br />
@@ -97,7 +97,7 @@ export default function Dashboard() {
                 </Grid>
                 <Grid item xs={12} md={5}>
                     <Card variant="outlined" elevation={1} className={classes.card}>
-                        <Typography variant="h5" className={classes.title}>
+                        <Typography variant="h6" className={classes.title}>
                             My Coworkers
                         </Typography>
                         <br />
@@ -116,7 +116,7 @@ export default function Dashboard() {
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h5" className={classes.title}>
+                                <Typography variant="h6" className={classes.title}>
                                     Tasks in Progress
                                 </Typography>
                                 <br />
@@ -133,7 +133,7 @@ export default function Dashboard() {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h5" className={classes.title}>
+                                <Typography variant="h6" className={classes.title}>
                                     My Performance this Week
                                 </Typography>
                                 <br />
@@ -146,7 +146,7 @@ export default function Dashboard() {
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={12}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h5" className={classes.title}>
+                                <Typography variant="h6" className={classes.title}>
                                     My Timestamps
                                 </Typography>
                                 <br />
