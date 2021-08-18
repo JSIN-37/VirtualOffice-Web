@@ -23,13 +23,20 @@ const state = {
 export default function DashPieChart() {
 
     return (
-        <Container style={{ paddingTop: '6px', paddingBottom: '6px' }}>
+        <Container>
             <Doughnut
                 data={state}
                 options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false
+                            display: true
+                        },
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
                         },
                         datalabels: {
                             formatter: function (value, context) {

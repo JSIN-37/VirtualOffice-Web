@@ -13,13 +13,20 @@ const useStyles = makeStyles((theme) => {
             // display: 'flex'
         },
         content: {
-            padding: ' 0 0 5px 10px',
+            marginBottom: "auto",
+            paddingLeft: '10px',
             fontSize: '16px',
             FontWeight: '600',
         },
         status: {
             padding: '0 0 5px 10px',
             color: '#6B6C7E'
+        },
+        coworkers: {
+            display: "flex",
+            flexDirection: "column",
+            textAlign: 'left',
+            verticalAlign: "center"
         }
     }
 })
@@ -32,7 +39,7 @@ export default function CoworkersCard({ emp }) {
                 <Grid Item xs={2}>
                     <Avatar alt="Remy Sharp" src={emp.image} className={classes.large} />
                 </Grid>
-                <Grid Item xs={10} style={{ textAlign: 'left', verticalAlign: "center", display: 'flex-end' }}>
+                <Grid Item xs={10} className={classes.coworkers}>
                     <Typography className={classes.content}>{emp.name} </Typography>
                     <Typography className={classes.status}> {emp.status}</Typography>
                 </Grid>

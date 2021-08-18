@@ -25,12 +25,13 @@ const state = {
 }
 
 export default function DashBarChart() {
-
     return (
         <Container style={{ paddingTop: '6px', paddingBottom: '6px' }}>
             <Bar
                 data={state}
                 options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
                             display: true
@@ -41,8 +42,12 @@ export default function DashBarChart() {
                             stacked: true,
                         },
                         y: {
-                            stacked: true
-                        }
+                            stacked: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                        },
+
                     }
                 }}
             />

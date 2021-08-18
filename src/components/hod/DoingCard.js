@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => {
     return {
         todoPaper: {
             display: 'flex',
-            background: '#E3E6F5'
+            background: '#E3E6F5',
+            marginBottom: "12px"
         },
         content: {
             padding: '10px'
@@ -20,11 +21,10 @@ export default function DoingCard({ doing }) {
     return (
         <Container>
             <Card elevation={0} md={12} spacing={2} className={classes.todoPaper}>
-                <Typography variant="body1" pb={1} className={classes.content}>
+                <Typography variant="body2" pb={1} className={classes.content}>
                     {doing.task}
                 </Typography>
             </Card>
-            <br />
         </Container>
     )
 }

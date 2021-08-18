@@ -14,10 +14,12 @@ import DashboardHeader from '../../components/hod/DashboardHeader'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
+        boxSizing: "border-box"
     },
     card: {
         padding: theme.spacing(2),
         paddingTop: theme.spacing(2),
+        marginBottom: "15px",
         textAlign: "center",
         color: theme.palette.text.secondary,
     },
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#000000",
         textAlign: "left",
         paddingLeft: "20px",
+        paddingBottom: "10px",
     }
 }));
 
@@ -54,19 +57,18 @@ export default function Dashboard() {
 
     return (
         <div className={classes.root}>
-
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
                 <DashboardHeader />
                 <Grid item xs={12} md={7}>
-                    <StatusCard />
-                    <br />
+                    <Card variant="outlined" elevation={1} className={classes.card}>
+                        <StatusCard />
+                    </Card>
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
                                 <Typography variant="h6" className={classes.title}>
                                     Upcoming Tasks
                                 </Typography>
-                                <br />
                                 {todos.map((todo) => (
                                     <Grid item xs={12} md={12} key={todo.id}>
                                         <TodoCard todo={todo} />
@@ -76,50 +78,22 @@ export default function Dashboard() {
                                     View More{" "}
                                 </Button>
                             </Card>
-                            <br />
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Grid container spacing={3}>
-                                    <Grid item xs={12} md={5}>
-                                        <Typography variant="h6" className={classes.title}>
-                                            Work Progress
-                                        </Typography>
-                                        <br />
-                                    </Grid>
-                                    <Grid item xs={12} md={7}>
-                                        <DashPieChart />
-                                    </Grid>
-                                </Grid>
+                                <Typography variant="h6" className={classes.title}>
+                                    Work Progress
+                                </Typography>
+                                <DashPieChart />
                             </Card>
                         </Grid>
                     </Grid>
-                </Grid>
-                <Grid item xs={12} md={5}>
-                    <Card variant="outlined" elevation={1} className={classes.card}>
-                        <Typography variant="h6" className={classes.title}>
-                            My Coworkers
-                        </Typography>
-                        <br />
-                        {emps.map((emp) => (
-                            <Grid item xs={12} md={12} key={emp.id}>
-                                <CoworkersCard emp={emp} />
-                            </Grid>
-                        ))}
-                    </Card>
-                    <br />
-                </Grid>
-            </Grid>
-
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={7}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
                                 <Typography variant="h6" className={classes.title}>
                                     Tasks in Progress
                                 </Typography>
-                                <br />
                                 {doings.map((doing) => (
                                     <Grid item xs={12} md={12} key={doing.id}>
                                         <DoingCard doing={doing} />
@@ -129,33 +103,36 @@ export default function Dashboard() {
                                     View More{" "}
                                 </Button>
                             </Card>
-                            <br />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Card variant="outlined" elevation={1} className={classes.card}>
+                            <Card variant="outlined" elevation={1} className={classes.card} >
                                 <Typography variant="h6" className={classes.title}>
                                     My Performance this Week
                                 </Typography>
-                                <br />
                                 <DashBarChart />
                             </Card>
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={5}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} md={12}>
-                            <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h6" className={classes.title}>
-                                    My Timestamps
-                                </Typography>
-                                <br />
-                                <TimeStamps />
-                            </Card>
-                        </Grid>
-                    </Grid>
+                    <Card variant="outlined" elevation={1} className={classes.card}>
+                        <Typography variant="h6" className={classes.title}>
+                            My Coworkers
+                        </Typography>
+                        {emps.map((emp) => (
+                            <Grid item xs={12} md={12} key={emp.id}>
+                                <CoworkersCard emp={emp} />
+                            </Grid>
+                        ))}
+                    </Card>
+                    <Card variant="outlined" elevation={1} className={classes.card}>
+                        <Typography variant="h6" className={classes.title}>
+                            My Timestamps
+                        </Typography>
+                        <TimeStamps />
+                    </Card>
                 </Grid>
             </Grid>
-        </div>
+        </div >
     );
 }

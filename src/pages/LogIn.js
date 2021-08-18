@@ -12,7 +12,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Link from "@material-ui/core/Link";
 import logo from "../resources/logo_big.png";
-// import Alerts from "../components/Alerts"
+// import Alerts from "../components/Alerts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,6 +73,7 @@ export default function LogIn({ appD, onLogin }) {
     const classes = useStyles();
     const [email, setEmail] = useState(``);
     const [password, setPassword] = useState(``);
+    let LoginFailed = '';
 
     const loginAttempt = async (email, password) => {
         var axios = require("axios");
@@ -99,8 +100,14 @@ export default function LogIn({ appD, onLogin }) {
                     // Flush appD
                     onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
                 } else {
-                    alert("Login failed!");
-                    // <Alerts type={"error"} title={"Login Failed"} message={"Incorrect username/ password. Please try again"} />
+                    alert('you bitch pretending to learn electron lol');
+                    // LoginFailed = <Alerts type={"error"} title={"Login Failed"} message={"Incorrect username/ password. Please try again"} />
+                }
+            })
+            .catch((err) => {
+                let res = err.response;
+                if (res) {
+                    console.log(res);
                 }
             });
     };
@@ -133,7 +140,6 @@ export default function LogIn({ appD, onLogin }) {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <TextField
-                                className={classes.textfield}
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -186,7 +192,10 @@ export default function LogIn({ appD, onLogin }) {
                         </div>
                     </CardContent>
                 </Card>
+                {LoginFailed}
             </Grid>
         </Grid>
     );
 }
+
+//https://stackoverflow.com/questions/40477245/is-it-possible-to-use-if-else-statement-in-react-render-function

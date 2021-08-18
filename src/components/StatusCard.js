@@ -1,5 +1,3 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import { Button, Typography, Grid, Radio, RadioGroup } from '@material-ui/core';
 import { makeStyles, FormControlLabel } from "@material-ui/core";
 
@@ -21,36 +19,30 @@ const useStyles = makeStyles((theme) => {
 export default function StatusCard() {
     const classes = useStyles()
     return (
-        <div>
-            <Card variant="outlined" elevation={1}>
-                <CardContent>
-                    <Grid container align="center" justify="center" alignItems="center">
-                        <Grid item xs={3} >
-                            <Button disabled variant="contained" color="primary">Start work</Button>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Button variant="contained" color="primary">Stop Work</Button>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Button variant="contained" className={classes.breakBtn}>Start Break</Button>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Button disabled variant="contained" className={classes.breakBtn}>Stop Break</Button>
-                        </Grid>
+        <Grid container align="center" justify="center" alignItems="center">
+            <Grid item xs={3} >
+                <Button disabled variant="contained" color="primary">Start work</Button>
+            </Grid>
+            <Grid item xs={3}>
+                <Button variant="contained" color="primary">Stop Work</Button>
+            </Grid>
+            <Grid item xs={3}>
+                <Button variant="contained" className={classes.breakBtn}>Start Break</Button>
+            </Grid>
+            <Grid item xs={3}>
+                <Button disabled variant="contained" className={classes.breakBtn}>Stop Break</Button>
+            </Grid>
 
-                        <Grid item xs={2}><br />
-                            <Typography variant="body1" color="initial" pr={2}>I am</Typography>
-                        </Grid>
-                        <Grid item xs={10}><br />
-                            <RadioGroup row>
-                                <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
-                                <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
-                                <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
-                            </RadioGroup>
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card>
-        </div>
+            <Grid item xs={2}><br />
+                <Typography variant="body1" color="initial" pr={2}>I am</Typography>
+            </Grid>
+            <Grid item xs={10}><br />
+                <RadioGroup row>
+                    <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
+                    <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
+                    <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
+                </RadioGroup>
+            </Grid>
+        </Grid>
     )
 }

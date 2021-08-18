@@ -1,29 +1,45 @@
-import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid'
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+
+const useStyles = makeStyles({
+    table: {
+        maxWidth: 700
+    },
+    tableRow: {
+        height: 35
+    },
+    tableCell: {
+        padding: "0px 0 0 40px"
+    }
+});
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+        height: 35,
+        '&:nth-of-type(odd)': {
+            backgroundColor: '#f9f9f9',
+        },
+    }
+}))(TableRow);
 
 const StyledTableCell = withStyles((theme) => ({
+    root: {
+        padding: "0px 20px"
+    },
     head: {
         backgroundColor: '#f4f4f4'
     },
     body: {
-        fontSize: 16,
+        fontSize: 14,
     },
 }))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: '#f9f9f9',
-        },
-    },
-}))(TableRow);
 
 function createData(id, activity, date, time) {
     return { id, activity, date, time };
@@ -37,30 +53,24 @@ const rows = [
     createData('5', 'End Break', '29/06/2021', '2.30 PM'),
 ];
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 700,
-    },
-});
-
-export default function TimeStamps() {
+export default function BasicTable() {
     const classes = useStyles();
 
     return (
         <Grid>
             <Grid item style={{ padding: '0 18px 18px' }}>
-                <TableContainer >
-                    <Table classactivity={classes.table} aria-label="customized table">
+                <TableContainer>
+                    <Table className={classes.table} aria-label="simple table">
                         <TableHead>
-                            <TableRow>
-                                <StyledTableCell style={{ fontSize: '18px', paddingLeft: '40px' }} align="left">Activity</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Date</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Time</StyledTableCell>
+                            <TableRow className={classes.tableRow}>
+                                <TableCell className={classes.tableCell} align="left">Activity</TableCell>
+                                <TableCell className={classes.tableCell} align="left">Data</TableCell>
+                                <TableCell className={classes.tableCell} align="left">Time</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <StyledTableRow key={row.id}>
+                                <StyledTableRow key={row.name}>
                                     <StyledTableCell component="th" scope="row" style={{ paddingLeft: '40px' }} >{row.activity}</StyledTableCell>
                                     <StyledTableCell align="left">{row.date}</StyledTableCell>
                                     <StyledTableCell align="left">{row.time}</StyledTableCell>
