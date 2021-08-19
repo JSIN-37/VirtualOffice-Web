@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import img1 from '../resources/logo.png';
+
 const useStyles = makeStyles((theme) => ({
     '@global': {
         ul: {
@@ -43,31 +45,31 @@ const useStyles = makeStyles((theme) => ({
 const tiers = [
     {
         title: 'Attendance Tracking',
-        img: "../resources/logo.png",
+        img: img1,
         alt: "attendance tracking",
         description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
         title: 'Task Management',
-        img: "../resources/logo.png",
+        img: img1,
         alt: "task management",
         description: "The users can log their activities categorized as tasks to be done, tasks in progress, and completed tasks."
     },
     {
         title: 'File Management',
-        img: "../resources/logo.png",
+        img: img1,
         alt: "file management",
         description: "Connecting an employee’s preferred cloud storage service and managing office documents can be done through VirtualOffice. "
     },
     {
         title: 'Document Authentication',
-        img: "../resources/logo.png",
+        img: img1,
         alt: "document authentication",
         description: "VirtualOffice enable the employees to have a method to simply deal with signing documents, hosting them on their storage service, and managing permissions to them"
     },
     {
         title: 'eReception',
-        img: "../resources/logo.png",
+        img: img1,
         alt: "eReception",
         description: [
             '50 users included',
@@ -78,7 +80,7 @@ const tiers = [
     },
     {
         title: 'Admin Panel',
-        img: "../resources/logo.png",
+        img: img1,
         alt: "admin panel",
         description: "System administration; setting up and managing all the configuration aspects of the system. This includes user, role, organizational policy, and hierarchy management."
     },
