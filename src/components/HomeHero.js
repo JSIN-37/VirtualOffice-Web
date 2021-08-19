@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomeHero() {
     const classes = useStyles();
     return (
-        <Grid container justify="center" alignItems="center" className={classes.container}>
+        <Grid container justifyContent="center" alignItems="center" className={classes.container}>
             <Grid item xs={12} sm={12} md={11}>
                 <Paper elevation={0} className={classes.HeroSection} style={{ backgroundImage: { heroimg } }}>
                     <div className={classes.overlay} />

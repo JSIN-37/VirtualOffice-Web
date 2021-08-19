@@ -5,60 +5,60 @@ import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import OfficeImage from '../../resources/logo_big.png';
-import { spacing } from '@material-ui/system';
+// import { spacing } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
-import DashboardIcon from "@material-ui/icons/Dashboard";
+// import DashboardIcon from "@material-ui/icons/Dashboard";
 import { useState } from "react";
-import { makeStyles } from "@material-ui/core";
+// import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    Height: "100%",
-    display: "flex",
-  },
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     Height: "100%",
+//     display: "flex",
+//   },
 
-  card: {
-    borderRadius: 30,
-    maxWidth: 440,
-    textAlign: "center",
-    padding: "20px",
-    margin: "120px",
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-    overflow: "visible",
-  },
-  media: {
-    margin: "10px auto 0",
-    width: "30%",
-    height: 60,
-    position: "relative",
-    zIndex: 1000,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    alignItems: "center",
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-  action: {
-    display: "flex",
-    justifyContent: "space-around",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  grid: {
-    flexGrow: 1,
-  },
-}));
+//   card: {
+//     borderRadius: 30,
+//     maxWidth: 440,
+//     textAlign: "center",
+//     padding: "20px",
+//     margin: "120px",
+//     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+//     overflow: "visible",
+//   },
+//   media: {
+//     margin: "10px auto 0",
+//     width: "30%",
+//     height: 60,
+//     position: "relative",
+//     zIndex: 1000,
+//   },
+//   form: {
+//     width: "100%", // Fix IE 11 issue.
+//     marginTop: theme.spacing(1),
+//     alignItems: "center",
+//   },
+//   button: {
+//     margin: theme.spacing(1),
+//   },
+//   action: {
+//     display: "flex",
+//     justifyContent: "space-around",
+//   },
+//   submit: {
+//     margin: theme.spacing(3, 0, 2),
+//   },
+//   grid: {
+//     flexGrow: 1,
+//   },
+// }));
 
 
 function SetupOrg() {
 
-  const classes = useStyles();
+  // const classes = useStyles();
   const [fname, setFname] = useState(``);
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);

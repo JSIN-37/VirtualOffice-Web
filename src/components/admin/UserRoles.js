@@ -8,32 +8,32 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+// import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
-import MenuIcon from "@material-ui/icons/Menu";
+// import MailIcon from "@material-ui/icons/Mail";
+// import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import OfficeImage from "../../resources/man.jpg";
-import OrgImage from "../../resources/orgImage.jpg";
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import TextField from "@material-ui/core/TextField";
+// import Checkbox from "@material-ui/core/Checkbox";
+// import OfficeImage from "../../resources/man.jpg";
+// import OrgImage from "../../resources/orgImage.jpg";
+// import Switch from "@material-ui/core/Switch";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import { IconButton } from "@material-ui/core";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+// import { IconButton } from "@material-ui/core";
+// import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
 import UserRoleCards from './userRoleCard.js';
 import { Link } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Avatar } from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+// import Paper from '@material-ui/core/Paper';
+// import Visibility from '@material-ui/icons/Visibility';
+// import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const drawerWidth = 240;
@@ -67,7 +67,7 @@ appspace: {
 appbar: {
     background: '#E3E6F5',
 },
-  drawer: {
+  drawerx: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
@@ -188,7 +188,7 @@ function UserRoles(props) {
 
 
 
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawerx} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
