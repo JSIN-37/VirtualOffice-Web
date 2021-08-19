@@ -100,7 +100,7 @@ export default function LogIn({ appD, onLogin }) {
                     // Flush appD
                     onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
                 } else {
-                    alert('you bitch pretending to learn electron lol');
+                    alert('Login Failed!');
                     // LoginFailed = <Alerts type={"error"} title={"Login Failed"} message={"Incorrect username/ password. Please try again"} />
                 }
             })
