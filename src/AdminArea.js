@@ -18,7 +18,7 @@ import Members from "./components/admin/Members.js";
 import AddDivision from "./components/admin/AddDivision.js";
 import AddTeam from "./components/admin/AddTeam.js";
 // import ViewTeam from "./components/admin/ViewTeam.js";
-import LogIn from "./pages/LogIn";
+import LogIn from "./pages/LogInAdmin";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Organization from "./components/admin/Organization";
