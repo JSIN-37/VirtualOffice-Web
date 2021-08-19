@@ -7,7 +7,8 @@ import HomeFooter from "./components/HomeFooter"
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
+        backgroundColor: "#FFFFFF"
     }
 }));
 

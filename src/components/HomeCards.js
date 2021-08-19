@@ -9,7 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import logo from "../resources/logo_big.png";
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -41,17 +40,20 @@ const useStyles = makeStyles((theme) => ({
 const tiers = [
     {
         title: 'Attendance Tracking',
-        pic: { logo },
+        img: require("../resources/logo.png"),
+        alt: "attendance-tracking",
         description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support']
     },
     {
         title: 'Task Management',
-        pic: { logo },
+        img: require("../resources/logo.png"),
+        alt: "attendance-tracking",
         description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support']
     },
     {
         title: 'File Management',
-        pic: { logo },
+        img: require("../resources/logo.png"),
+        alt: "attendance-tracking",
         description: [
             '20 users included',
             '10 GB of storage',
@@ -61,7 +63,8 @@ const tiers = [
     },
     {
         title: 'Document Authentication',
-        pic: { logo },
+        img: require("../resources/logo.png"),
+        alt: "attendance-tracking",
         description: [
             '50 users included',
             '30 GB of storage',
@@ -71,7 +74,8 @@ const tiers = [
     },
     {
         title: 'eReception',
-        pic: { logo },
+        img: require("../resources/logo.png"),
+        alt: "attendance-tracking",
         description: [
             '50 users included',
             '30 GB of storage',
@@ -81,7 +85,8 @@ const tiers = [
     },
     {
         title: 'Admin Panel',
-        pic: { logo },
+        img: require("../resources/logo.png"),
+        alt: "attendance-tracking",
         description: [
             '50 users included',
             '30 GB of storage',
@@ -120,7 +125,7 @@ export default function HomeCards() {
                                 />
                                 <CardContent>
                                     <div className={classes.cardImage}>
-                                        <img src="{tier.pic}" alt="logo" className={classes.logo} />
+                                        <img src={require("../resources/logo.png")} alt={tier.alt} className={classes.logo} />
                                     </div>
                                     <ul>
                                         {tier.description.map((line) => (

@@ -4,21 +4,21 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import heroimg from "../resources/hero-img.png";
+import heroimg from '../resources/hero-img.png';
 
 const useStyles = makeStyles((theme) => ({
     HeroSection: {
         position: 'relative',
         color: "#364695",
-        backgroundImage: { heroimg },
-        backgroundSize: '290px',
+        backgroundImage: `url(${heroimg})`,
+        backgroundSize: '570px',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right',
         margin: "auto",
         backgroundColor: 'transparent',
     },
     container: {
-        backgroundColor: '#E7E9F6',
+        backgroundColor: '#F9F9F9',
     },
     overlay: {
         position: 'absolute',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     button: {
-        marginRight: "20px"
+        marginRight: "20px",
     }
 }));
 
@@ -62,7 +62,7 @@ export default function HomeHero() {
                                 <Button disableElevation variant="contained" color="primary" className={classes.button}>
                                     Sign Up
                                 </Button>
-                                <Button variant="outlined" color="primary" className={classes.button}>
+                                <Button style={{ texttransform: "none" }} variant="outlined" color="primary" className={classes.button}>
                                     Download for Free
                                 </Button>
                             </div>

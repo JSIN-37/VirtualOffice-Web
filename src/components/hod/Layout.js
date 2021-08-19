@@ -81,11 +81,11 @@ export default function Layout({ children }) {
     const classes = useStyles()
     const history = useHistory()
     const location = useLocation()
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(2)
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+        setValue(newValue)
+    }
 
     const menuItems = [
         {
@@ -162,7 +162,7 @@ export default function Layout({ children }) {
                     ))}
                 </List>
                 <div className={classes.bottomPush}>
-                    <img src={logo} alt="Logo" className={classes.logo} />;
+                    <img src={logo} alt="Logo" className={classes.logo} />
                 </div>
             </Drawer>
             <div className={classes.page}>

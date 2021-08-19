@@ -8,6 +8,7 @@ import logo from "../resources/logo_small.png";
 const useStyles = makeStyles((theme) => ({
     appBar: {
         borderBottom: `1px solid ${theme.palette.divider}`,
+        backgroundColor: 'transparent',
         flexGrow: 0,
     },
     logo: {
