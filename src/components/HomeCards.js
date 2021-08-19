@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 10,
         boxShadow: "0 8px 20px -12px rgba(0,0,0,0.3)",
     },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
     cardHeader: {
         backgroundColor: '#E3E6F5',
         fontWeight: '400'
@@ -34,48 +37,38 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'baseline',
         marginBottom: theme.spacing(2),
-    }
+    },
 }));
 
 const tiers = [
     {
         title: 'Attendance Tracking',
-        img: require("../resources/logo.png"),
-        alt: "attendance-tracking",
-        description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support']
+        img: "../resources/logo.png",
+        alt: "attendance tracking",
+        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
         title: 'Task Management',
-        img: require("../resources/logo.png"),
-        alt: "attendance-tracking",
-        description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support']
+        img: "../resources/logo.png",
+        alt: "task management",
+        description: "The users can log their activities categorized as tasks to be done, tasks in progress, and completed tasks."
     },
     {
         title: 'File Management',
-        img: require("../resources/logo.png"),
-        alt: "attendance-tracking",
-        description: [
-            '20 users included',
-            '10 GB of storage',
-            'Help center access',
-            'Priority email support',
-        ]
+        img: "../resources/logo.png",
+        alt: "file management",
+        description: "Connecting an employee’s preferred cloud storage service and managing office documents can be done through VirtualOffice. "
     },
     {
         title: 'Document Authentication',
-        img: require("../resources/logo.png"),
-        alt: "attendance-tracking",
-        description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Phone & email support',
-        ]
+        img: "../resources/logo.png",
+        alt: "document authentication",
+        description: "VirtualOffice enable the employees to have a method to simply deal with signing documents, hosting them on their storage service, and managing permissions to them"
     },
     {
         title: 'eReception',
-        img: require("../resources/logo.png"),
-        alt: "attendance-tracking",
+        img: "../resources/logo.png",
+        alt: "eReception",
         description: [
             '50 users included',
             '30 GB of storage',
@@ -85,14 +78,9 @@ const tiers = [
     },
     {
         title: 'Admin Panel',
-        img: require("../resources/logo.png"),
-        alt: "attendance-tracking",
-        description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Phone & email support',
-        ]
+        img: "../resources/logo.png",
+        alt: "admin panel",
+        description: "System administration; setting up and managing all the configuration aspects of the system. This includes user, role, organizational policy, and hierarchy management."
     },
 ];
 
@@ -123,23 +111,16 @@ export default function HomeCards() {
                                     titleTypographyProps={{ variant: 'h6', align: 'center' }}
                                     className={classes.cardHeader}
                                 />
-                                <CardContent>
-                                    <div className={classes.cardImage}>
-                                        <img src={require("../resources/logo.png")} alt={tier.alt} className={classes.logo} />
-                                    </div>
-                                    <ul>
-                                        {tier.description.map((line) => (
-                                            <Typography component="li" variant="subtitle1" align="center" key={line}>
-                                                {line}
-                                            </Typography>
-                                        ))}
-                                    </ul>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={tier.img}
+                                    title={tier.alt}
+                                />
+                                <CardContent >
+                                    <Typography component="p" variant="body1" align="justify" style={{ padding: "10px" }}>
+                                        {tier.description}
+                                    </Typography>
                                 </CardContent>
-                                <CardActions>
-                                    <Button fullWidth variant={tier.buttonVariant} color="primary">
-                                        {tier.buttonText}
-                                    </Button>
-                                </CardActions>
                             </Card>
                         </Grid>
                     ))}
