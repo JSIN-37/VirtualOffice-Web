@@ -1,23 +1,30 @@
 {
   "files": {
-    "main.css": "./static/css/main.5d441a6e.chunk.css",
-    "main.js": "./static/js/main.efd03137.chunk.js",
-    "main.js.map": "./static/js/main.efd03137.chunk.js.map",
+    "main.css": "./static/css/main.f441179d.chunk.css",
+    "main.js": "./static/js/main.75cb0885.chunk.js",
+    "main.js.map": "./static/js/main.75cb0885.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.98d8d2e1.js",
     "runtime-main.js.map": "./static/js/runtime-main.98d8d2e1.js.map",
-    "static/js/2.28a7febf.chunk.js": "./static/js/2.28a7febf.chunk.js",
-    "static/js/2.28a7febf.chunk.js.map": "./static/js/2.28a7febf.chunk.js.map",
+    "static/js/2.6981702e.chunk.js": "./static/js/2.6981702e.chunk.js",
+    "static/js/2.6981702e.chunk.js.map": "./static/js/2.6981702e.chunk.js.map",
     "index.html": "./index.html",
-    "static/css/main.5d441a6e.chunk.css.map": "./static/css/main.5d441a6e.chunk.css.map",
-    "static/js/2.28a7febf.chunk.js.LICENSE.txt": "./static/js/2.28a7febf.chunk.js.LICENSE.txt",
+    "static/css/main.f441179d.chunk.css.map": "./static/css/main.f441179d.chunk.css.map",
+    "static/js/2.6981702e.chunk.js.LICENSE.txt": "./static/js/2.6981702e.chunk.js.LICENSE.txt",
+    "static/media/admin.9feb919e.svg": "./static/media/admin.9feb919e.svg",
+    "static/media/attendance.4811e78d.svg": "./static/media/attendance.4811e78d.svg",
+    "static/media/doc.5bbd855d.svg": "./static/media/doc.5bbd855d.svg",
+    "static/media/file-mgmt.f2fa5df4.svg": "./static/media/file-mgmt.f2fa5df4.svg",
+    "static/media/hero-img.2ed3faaa.png": "./static/media/hero-img.2ed3faaa.png",
     "static/media/logo_big.7c2cbae2.png": "./static/media/logo_big.7c2cbae2.png",
-    "static/media/man.4482c988.jpg": "./static/media/man.4482c988.jpg",
-    "static/media/orgImage.ca11931b.jpg": "./static/media/orgImage.ca11931b.jpg"
+    "static/media/logo_small.67aef8ef.png": "./static/media/logo_small.67aef8ef.png",
+    "static/media/mobile.fe0071a9.svg": "./static/media/mobile.fe0071a9.svg",
+    "static/media/orgImage.ca11931b.jpg": "./static/media/orgImage.ca11931b.jpg",
+    "static/media/task-mgmt.dd1dcb04.svg": "./static/media/task-mgmt.dd1dcb04.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.98d8d2e1.js",
-    "static/js/2.28a7febf.chunk.js",
-    "static/css/main.5d441a6e.chunk.css",
-    "static/js/main.efd03137.chunk.js"
+    "static/js/2.6981702e.chunk.js",
+    "static/css/main.f441179d.chunk.css",
+    "static/js/main.75cb0885.chunk.js"
   ]
 }
