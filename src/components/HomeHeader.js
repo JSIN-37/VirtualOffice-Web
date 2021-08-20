@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     toolbarNav: {
         flexGrow: 1,
         paddingLeft: theme.spacing(2),
-        textDecoration: "none"
+        textDecoration: "none",
+        color: "#ffffff"
     },
     toolbarLink: {
         padding: theme.spacing(1),
@@ -38,7 +39,7 @@ export default function Header(props) {
             <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
                     <img src={logo} alt="logo" className={classes.logo} />
-                    <Typography className={classes.toolbarNav} component={RouterLink} to="/"> About</Typography>
+                    <Typography className={classes.toolbarNav} component={RouterLink} to="/"> .</Typography>
                     <Typography className={classes.toolbarLink} component={RouterLink} to="/admin"> Admin Login</Typography>
                     <Typography className={classes.toolbarLink} component={RouterLink} to="/employee"> Employee Login</Typography>
                 </Toolbar>

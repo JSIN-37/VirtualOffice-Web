@@ -52,11 +52,11 @@ export default function HomeHero() {
                     <Grid container>
                         <Grid item md={6}>
                             <div className={classes.HeroSectionContent}>
-                                <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                                <Typography component="h1" variant="h2" color="inherit" gutterBottom>
                                     VirtualOffice
                                 </Typography>
                                 <Typography style={{ fontSize: "18px" }} color="inherit" paragraph>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                    A specialized system that facilitates the level of collaboration analogous to an office environment is a timely requirement for many organizations. VirtualOffice is focusing on the telecommuting of the administrative staff and the non-academic staff of the university. The primary users of the system are desk workers, their managers, and the public to a certain extent. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
                                 </Typography>
                                 <br />
                                 <Button disableElevation variant="contained" color="primary" className={classes.button}>

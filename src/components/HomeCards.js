@@ -8,8 +8,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import img1 from '../resources/logo.png';
+import attendance from '../resources/attendance.svg';
+import task from '../resources/task-mgmt.svg';
+import fileMgmt from '../resources/file-mgmt.svg';
+import doc from '../resources/doc.svg';
+import mobile from '../resources/mobile.svg';
+import admin from '../resources/admin.svg';
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -25,10 +29,14 @@ const useStyles = makeStyles((theme) => ({
     card: {
         borderRadius: 10,
         boxShadow: "0 8px 20px -12px rgba(0,0,0,0.3)",
+        minHeight: "250px",
+
     },
     media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+        margin: "10px auto 0",
+        width: "50%",
+        height: 200,
+        position: "relative",
     },
     cardHeader: {
         backgroundColor: '#E3E6F5',
@@ -45,44 +53,39 @@ const useStyles = makeStyles((theme) => ({
 const tiers = [
     {
         title: 'Attendance Tracking',
-        img: img1,
+        img: attendance,
         alt: "attendance tracking",
         description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
         title: 'Task Management',
-        img: img1,
+        img: task,
         alt: "task management",
-        description: "The users can log their activities categorized as tasks to be done, tasks in progress, and completed tasks."
+        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
         title: 'File Management',
-        img: img1,
+        img: fileMgmt,
         alt: "file management",
-        description: "Connecting an employee’s preferred cloud storage service and managing office documents can be done through VirtualOffice. "
+        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
         title: 'Document Authentication',
-        img: img1,
+        img: doc,
         alt: "document authentication",
-        description: "VirtualOffice enable the employees to have a method to simply deal with signing documents, hosting them on their storage service, and managing permissions to them"
+        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
-        title: 'eReception',
-        img: img1,
-        alt: "eReception",
-        description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Phone & email support',
-        ]
+        title: 'Mobile app',
+        img: mobile,
+        alt: "mobile app",
+        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
     {
         title: 'Admin Panel',
-        img: img1,
+        img: admin,
         alt: "admin panel",
-        description: "System administration; setting up and managing all the configuration aspects of the system. This includes user, role, organizational policy, and hierarchy management."
+        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
     },
 ];
 
@@ -93,12 +96,12 @@ export default function HomeCards() {
         <React.Fragment>
             <CssBaseline />
             {/* Hero unit */}
-            <Container maxWidth="sm" component="main" className={classes.heroContent}>
-                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Container maxWidth="md" component="main" className={classes.heroContent}>
+                <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
                     Features
                 </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" component="p">
-                    Quickly build an effective pricing table for your potential customers with this layout.
+                    VirtualOffice comes with the following features to enable an effective management in your organization.
                     It&apos;s built with default Material-UI components with little customization.
                 </Typography>
             </Container>
