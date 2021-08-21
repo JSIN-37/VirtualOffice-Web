@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         background: '#E3E6F5',
+        height: 58,
     }
 }));
 
@@ -36,11 +37,11 @@ export default function DivisionHeader() {
                 className={classes.appbar}
                 elevation={0}>
                 <Toolbar>
-                    <Typography variant="h5" className={classes.appspace}>
-                        spacespacespaice
+                    <Typography variant="h6" className={classes.appspace}>
+                        spacespacespaicespa
                     </Typography>
-                    <GroupWorkRoundedIcon color="primary" className={classes.appbaricon} fontSize="large" />
-                    <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/division">
+                    <GroupWorkRoundedIcon color="primary" className={classes.appbaricon} fontSize="medium" />
+                    <Typography variant="h6" className={classes.apptitle} color="primary" component={Link} to="/division">
                         Division
                     </Typography>
                 </Toolbar>
