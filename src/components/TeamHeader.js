@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         background: '#E3E6F5',
+        height: 58,
     },
     tab: {
         color: '#3F51B4',
@@ -51,11 +52,11 @@ export default function TeamHeader() {
                 className={classes.appbar}
                 elevation={0}>
                 <Toolbar>
-                    <Typography variant="h5" className={classes.appspace}>
-                        spacespacespaice
+                    <Typography variant="h6" className={classes.appspace}>
+                        spacespacespaicespa
                     </Typography>
-                    <PeopleRoundedIcon color="primary" className={classes.appbaricon} fontSize="large" />
-                    <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/teams">
+                    <PeopleRoundedIcon color="primary" className={classes.appbaricon} fontSize="medium" />
+                    <Typography variant="h6" className={classes.apptitle} color="primary" component={Link} to="/teams">
                         Teams
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>

@@ -13,6 +13,7 @@ const useStyles = makeStyles({
         width: 370,
         marginTop: 10,
         marginBottom: 10,
+        backgroundColor: "#f9f9f9"
     }
 })
 
@@ -55,7 +56,7 @@ export default function Create() {
                 <TextField className={classes.field}
                     onChange={(e) => setName(e.target.value)}
                     label="Team Name"
-                    variant="filled"
+                    variant="outlined"
                     color="primary"
                     fullWidth
                     required
@@ -64,7 +65,7 @@ export default function Create() {
                 <TextField className={classes.field}
                     onChange={(e) => setDescription(e.target.value)}
                     label="Description"
-                    variant="filled"
+                    variant="outlined"
                     color="primary"
                     multiline
                     rows={4}
@@ -72,7 +73,7 @@ export default function Create() {
                     required
                     error={descriptionError}
                 />
-                <FormControl variant="filled" className={classes.field}>
+                <FormControl variant="outlined" className={classes.field}>
                     <InputLabel id="demo-simple-select-filled-label">Division</InputLabel>
                     <Select
                         labelId="demo-simple-select-filled-label"
@@ -87,7 +88,7 @@ export default function Create() {
                 <TextField className={classes.field}
                     onChange={(e) => setLeader(e.target.value)}
                     label="Leader"
-                    variant="filled"
+                    variant="outlined"
                     color="primary"
                     fullWidth
                     required

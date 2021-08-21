@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => {
 
 export default function TeamCard({ team, handleDelete }) {
     const classes = useStyles()
+
     return (
         <div>
             <Card variant="outlined" elevation={1} style={{ borderRadius: '10px' }}>

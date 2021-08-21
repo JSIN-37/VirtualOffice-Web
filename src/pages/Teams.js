@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 import TeamHeader from '../components/TeamHeader'
 import TeamCard from '../components/TeamCard'
-
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
 export default function Teams() {
-
     const [teams, setTeams] = useState([])
-
     useEffect(() => {
         fetch(`${window.backendURL}/interim/teams`)
             .then(res => res.json())
@@ -31,6 +30,7 @@ export default function Teams() {
                     <TeamCard team={team} handleDelete={handleDelete} />
                 </Grid>
             ))}
+            <Button variant="contained" color="primary" startIcon={<AddRoundedIcon />}> Add Team </Button>
         </Grid>
-    );
+    )
 }
