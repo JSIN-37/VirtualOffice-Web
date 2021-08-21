@@ -1,36 +1,34 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
-import { Bar } from 'react-chartjs-2';
-
-const arbitraryStackKey = "stack1";
+import { Line } from 'react-chartjs-2';
 
 const state = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-
+    labels: ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13rd", "14th", "15th", "16th", "17th", "18th", "19th", "20th",],
     datasets: [
-        // These two will be in the same stack.
         {
-            stack: arbitraryStackKey,
-            label: 'Work Hours',
-            data: [8.5, 7.2, 6.8, 8, 7],
-            backgroundColor: '#855CF8'
+            label: "Present",
+            data: [33, 53, 85, 41, 44, 65],
+            fill: false,
+            borderColor: "rgba(75,192,192,1)"
         },
         {
-            stack: arbitraryStackKey,
-            label: 'Break Hours',
-            data: [0.5, 1.8, 1.2, 1, 2],
-            backgroundColor: '#CBBAFC'
+            label: "Absent",
+            data: [33, 25, 35, 51, 54, 76],
+            fill: false,
+            borderColor: "#742774"
         }
     ]
-}
+};
 
 export default function DashPieChart() {
 
     return (
         <Container style={{ paddingTop: '6px', paddingBottom: '6px' }}>
-            <Bar
+            <Line
                 data={state}
                 options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
                             display: true
@@ -41,7 +39,10 @@ export default function DashPieChart() {
                             stacked: true,
                         },
                         y: {
-                            stacked: true
+                            stacked: true,
+                            ticks: {
+                                stepSize: 1
+                            },
                         }
                     }
                 }}

@@ -8,22 +8,37 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-        backgroundColor: '#f4f4f4'
+const useStyles = makeStyles({
+    table: {
+        minWidth: 1100
     },
-    body: {
+    tableRow: {
+        height: 40
+    },
+    tableCell: {
+        padding: "10px",
+        backgroundColor: '#f4f4f4',
         fontSize: 16,
-    },
-}))(TableCell);
+    }
+});
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-        '&:nth-of-type(odd)': {
+        height: 40,
+        '&:nth-of-type(even)': {
             backgroundColor: '#f9f9f9',
         },
-    },
+    }
 }))(TableRow);
+
+const StyledTableCell = withStyles((theme) => ({
+    root: {
+        padding: "0px 18px"
+    },
+    body: {
+        fontSize: 15,
+    },
+}))(TableCell);
 
 function createData(id, name, date, startTime, endTime, totalHours, breakHours, netHours, status) {
     return { id, name, date, startTime, endTime, totalHours, breakHours, netHours, status };
@@ -41,12 +56,6 @@ const rows = [
     createData('10', 'W. P. De Silva', '11/06/2021', '10.00 AM', '5.00 PM', '8', '1', '6', 'Available'),
 ];
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 1000,
-    },
-});
-
 export default function AttendeesTable() {
     const classes = useStyles();
 
@@ -57,14 +66,14 @@ export default function AttendeesTable() {
                     <Table classactivity={classes.table} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell style={{ fontSize: '18px', paddingLeft: '30px' }} align="left">Name</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Date</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Start Time</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">End Time</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Total Hours</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Break Hours</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Net Hours</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Status</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Name</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Date</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Start Time</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">End Time</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Total Hours</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Break Hours</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Net Hours</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Status</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

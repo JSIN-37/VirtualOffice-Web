@@ -7,9 +7,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import EventIcon from "@material-ui/icons/Event";
 import { Link } from "react-router-dom";
 
+const drawerWidth = 280;
+
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
+        width: `calc(100% - ${drawerWidth}px)`,
     },
     apptitle: {
         padding: theme.spacing(2),//16px
@@ -24,11 +26,12 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         background: '#E3E6F5',
+        height: 58,
     },
     tab: {
         color: '#3F51B4',
         textTransform: 'none',
-        fontSize: '16px'
+        fontSize: '16px',
     },
     indicator: {
         backgroundColor: '#3F51B4'
@@ -44,18 +47,18 @@ export default function DivisionHeader() {
         setValue(val)
     }
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
             <AppBar
                 position="fixed"
                 color="primary"
                 className={classes.appbar}
                 elevation={0}>
                 <Toolbar>
-                    <Typography variant="h5" className={classes.appspace}>
-                        spacespacespaice
+                    <Typography variant="h6" className={classes.appspace}>
+                        spacespacespaicespa
                     </Typography>
-                    <EventIcon color="primary" className={classes.appbaricon} fontSize="large" />
-                    <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/attendance">
+                    <EventIcon color="primary" className={classes.appbaricon} fontSize="medium" />
+                    <Typography variant="h6" className={classes.apptitle} color="primary" component={Link} to="/attendance">
                         Attendance
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>

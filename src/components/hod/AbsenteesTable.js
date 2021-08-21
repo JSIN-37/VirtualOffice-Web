@@ -8,22 +8,37 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-        backgroundColor: '#f4f4f4'
+const useStyles = makeStyles({
+    table: {
+        minWidth: 1100
     },
-    body: {
+    tableRow: {
+        height: 40
+    },
+    tableCell: {
+        padding: "10px",
+        backgroundColor: '#f4f4f4',
         fontSize: 16,
-    },
-}))(TableCell);
+    }
+});
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-        '&:nth-of-type(odd)': {
+        height: 40,
+        '&:nth-of-type(even)': {
             backgroundColor: '#f9f9f9',
         },
-    },
+    }
 }))(TableRow);
+
+const StyledTableCell = withStyles((theme) => ({
+    root: {
+        padding: "0px 18px"
+    },
+    body: {
+        fontSize: 15,
+    },
+}))(TableCell);
 
 function createData(id, name, date, leaveType) {
     return { id, name, date, leaveType };
@@ -32,12 +47,6 @@ function createData(id, name, date, leaveType) {
 const rows = [
     createData('1', 'S.S. Dias', '12/06/2021', 'Medical Leave'),
 ];
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 1000,
-    },
-});
 
 export default function AbsenteesTable() {
     const classes = useStyles();
@@ -49,9 +58,9 @@ export default function AbsenteesTable() {
                     <Table classactivity={classes.table} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell style={{ fontSize: '18px', paddingLeft: '30px' }} align="left">Name</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Date</StyledTableCell>
-                                <StyledTableCell style={{ fontSize: '18px' }} align="left">Leave Type</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Name</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Date</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="left">Leave Type</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
