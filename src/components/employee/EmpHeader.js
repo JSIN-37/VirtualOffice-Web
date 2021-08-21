@@ -69,7 +69,6 @@ export default function EmpHeader({ children }) {
                 </Toolbar>
             </AppBar>
             <div>
-
                 <div className={classes.page}>
                     <div className={classes.toolbar}>
                     </div>
@@ -77,6 +76,5 @@ export default function EmpHeader({ children }) {
                 </div>
             </div>
         </div >
-
     )
 }

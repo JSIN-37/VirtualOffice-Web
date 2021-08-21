@@ -1,15 +1,14 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import DivisionHeader from '../../components/hod/DivisionHeader'
+import Container from '@material-ui/core/Grid'
+import DivisionHeader from '../../components/DivisionHeader'
+import DivisionDetails from '../../components/DivisionDetails'
+
 
 export default function Division() {
     return (
-        <Grid container spacing={4}>
+        <Container spacing={2}>
             <DivisionHeader />
-            <Grid item xs={12} sm={6} md={4} >
-                <p>divsion here</p>
-            </Grid>
-
-        </Grid>
+            <DivisionDetails />
+        </Container>
     );
 }

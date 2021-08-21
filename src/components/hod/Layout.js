@@ -20,6 +20,7 @@ import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
 import { useHistory, useLocation } from "react-router";
 import logo from '../../resources/logo.png';
+import user from "../../resources/user.svg";
 // import { Link as useLocation } from "react-router-dom";
 // import { Link as useHistory } from "react-router-dom";
 
@@ -138,7 +139,7 @@ export default function Layout({ children }) {
                 classes={{ paper: classes.drawerPaper }}>
                 <div>
                     <Box component="span" m={1} className={classes.infoBox}>
-                        <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.bigAvatar} />
+                        <Avatar alt="A Pathirana" src={user} className={classes.bigAvatar} />
                         <Typography color="initial" className={classes.info}>
                             A.T. Pathirana
                         </Typography>

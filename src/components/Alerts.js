@@ -21,7 +21,7 @@ export default function Alerts(props) {
 
     return (
         <div className={classes.root}>
-            <Alert variant="outlined" severity={type}>
+            <Alert severity={type} style={{ textAlign: "center" }}>
                 <AlertTitle>{title}</AlertTitle>
                 {message}
             </Alert>
