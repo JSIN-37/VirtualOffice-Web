@@ -6,6 +6,10 @@ import Tab from '@material-ui/core/Tab';
 import { makeStyles } from "@material-ui/core/styles";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import { Link } from "react-router-dom";
+import Teams from "../pages/Teams";
+import AddTeam from "../pages/AddTeam";
+import ViewTeam from "../pages/ViewTeam";
+import EditTeam from "../pages/EditTeam";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,11 +43,14 @@ const useStyles = makeStyles((theme) => ({
 export default function TeamHeader() {
     const classes = useStyles();
 
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
-        console.warn(val);
-        setValue(val)
-    }
+        setValue(val);
+    };
+
+    const TabPanel = ({ children, index, value }) => {
+        return <>{value === index && <>{children}</>}</>;
+    };
     return (
         <Grid container spacing={4}>
             <AppBar
@@ -60,12 +67,25 @@ export default function TeamHeader() {
                         Teams
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>
-                        <Tab label="Add Team" className={classes.tab} component={Link} to="/addteam" />
-                        <Tab label="View Team" className={classes.tab} component={Link} to="/viewteam" />
-                        <Tab label="Edit Team" className={classes.tab} component={Link} to="/editteam" />
+                        <Tab label="Overview" className={classes.tab} />
+                        <Tab label="Add Team" className={classes.tab} />
+                        <Tab label="View Team" className={classes.tab} />
+                        <Tab label="Edit Team" className={classes.tab} />
                     </Tabs>
                 </Toolbar>
             </AppBar>
+            <TabPanel value={value} index={0}>
+                <Teams />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <AddTeam />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <ViewTeam />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <EditTeam />
+            </TabPanel>
         </Grid>
     );
 }

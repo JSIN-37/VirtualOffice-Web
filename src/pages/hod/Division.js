@@ -6,7 +6,7 @@ import DivisionDetails from '../../components/DivisionDetails'
 
 export default function Division() {
     return (
-        <Container spacing={2}>
+        <Container>
             <DivisionHeader />
             <DivisionDetails />
         </Container>

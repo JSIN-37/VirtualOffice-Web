@@ -15,7 +15,7 @@ import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import EventIcon from "@material-ui/icons/Event";
-import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
 import { useHistory, useLocation } from "react-router";
@@ -116,13 +116,8 @@ export default function Layout({ children }) {
         },
         {
             text: 'Profile',
-            icon: <PersonRoundedIcon color="primary" />,
+            icon: <AccountCircleIcon color="primary" />,
             path: '/profile'
-        },
-        {
-            text: 'Settings',
-            icon: <SettingsRoundedIcon color="primary" />,
-            path: '/settings'
         },
         {
             text: 'Log out',

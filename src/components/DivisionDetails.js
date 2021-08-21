@@ -72,12 +72,14 @@ export default function DivisionDetails() {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={2}>
+            <Grid container>
                 <Grid item md={5} lg={5} >
-                    <Typography variant="body1" className={classes.heading} align="left" >Division <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading} align="left" >Division  </Typography>
+                    <hr className={classes.hr} />
                     <Typography variant="body2">General Adinistration </Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Head of Division <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Head of Division  </Typography>
+                    <hr className={classes.hr} />
                     <Grid container>
                         <Grid item xs={2}>
                             <Avatar alt="Remy Sharp" src={user} className={classes.bigAvatar} />
@@ -87,7 +89,8 @@ export default function DivisionDetails() {
                         </Grid>
                     </Grid>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Teams <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Teams  </Typography>
+                    <hr className={classes.hr} />
                     <Container className={classes.teams}>
                         <Paper elevation={0} className={classes.team}>
                             <AddBoxRoundedIcon className={classes.icon} color="primary" />
@@ -103,7 +106,8 @@ export default function DivisionDetails() {
                         </Paper>
                     </Container>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Projects/ Tasks <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Projects/ Tasks  </Typography>
+                    <hr className={classes.hr} />
                     <Container className={classes.tasks}>
                         <Paper elevation={0} className={classes.task}>
                             <AddBoxRoundedIcon className={classes.icon} color="primary" />
@@ -121,7 +125,8 @@ export default function DivisionDetails() {
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}></Grid>
                 <Grid item md={5} lg={5}>
-                    <Typography variant="body1" className={classes.heading}>Current Employees<hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Current Employees </Typography>
+                    <hr className={classes.hr} />
                     <div style={{ width: 400, marginBottom: "10px" }}>
                         <Autocomplete
                             freeSolo
@@ -135,7 +140,7 @@ export default function DivisionDetails() {
                                     variant="outlined"
                                     InputProps={{
                                         ...params.InputProps, type: 'search', startAdornment: (
-                                            <InputAdornment>
+                                            <InputAdornment position="start">
                                                 <IconButton>
                                                     <SearchIcon />
                                                 </IconButton>
@@ -147,7 +152,7 @@ export default function DivisionDetails() {
                         />
                     </div>
                     <Container className={classes.tasks}>
-                        <Grid container>
+                        <Grid container >
                             <Grid item xs={2}>
                                 <Avatar alt="Remy Sharp" src={user} className={classes.smallAvatar} />
                             </Grid>
