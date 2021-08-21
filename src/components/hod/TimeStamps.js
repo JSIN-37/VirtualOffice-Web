@@ -53,7 +53,7 @@ const rows = [
     createData('5', 'End Break', '29/06/2021', '2.30 PM'),
 ];
 
-export default function BasicTable() {
+export default function TimeStamp() {
     const classes = useStyles();
 
     return (
@@ -70,7 +70,7 @@ export default function BasicTable() {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <StyledTableRow key={row.name}>
+                                <StyledTableRow key={row.id}>
                                     <StyledTableCell component="th" scope="row" style={{ paddingLeft: '40px' }} >{row.activity}</StyledTableCell>
                                     <StyledTableCell align="left">{row.date}</StyledTableCell>
                                     <StyledTableCell align="left">{row.time}</StyledTableCell>

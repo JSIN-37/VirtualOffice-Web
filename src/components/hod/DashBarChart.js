@@ -5,7 +5,7 @@ import { Bar } from 'react-chartjs-2';
 const arbitraryStackKey = "stack1";
 
 const state = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
 
     datasets: [
         // These two will be in the same stack.

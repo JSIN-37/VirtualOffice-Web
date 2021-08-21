@@ -35,11 +35,11 @@ export default function CoworkersCard({ emp }) {
     const classes = useStyles()
     return (
         <Card elevation={0} md={12} className={classes.todoPaper}>
-            <Grid container style={{ paddingTop: '10px', }} align="center" justify="center" alignItems="center">
-                <Grid Item xs={2}>
+            <Grid container style={{ paddingTop: '10px', }} align="center" justifyContent="center" alignItems="center">
+                <Grid item xs={2}>
                     <Avatar alt="Remy Sharp" src={emp.image} className={classes.large} />
                 </Grid>
-                <Grid Item xs={10} className={classes.coworkers}>
+                <Grid item xs={10} className={classes.coworkers}>
                     <Typography className={classes.content}>{emp.name} </Typography>
                     <Typography className={classes.status}> {emp.status}</Typography>
                 </Grid>
