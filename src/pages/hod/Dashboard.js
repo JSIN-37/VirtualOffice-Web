@@ -10,6 +10,7 @@ import DashBarChart from "../../components/hod/DashBarChart";
 import CoworkersCard from "../../components/hod/CoworkersCard";
 import TimeStamps from "../../components/hod/TimeStamps";
 import DashboardHeader from '../../components/hod/DashboardHeader'
+import useFetch from "../../useFetch"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,13 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
     const classes = useStyles();
-
-    const [todos, setTodos] = useState([]);
-    useEffect(() => {
-        fetch(`${window.backendURL}/interim/todos`)
-            .then((res) => res.json())
-            .then((data) => setTodos(data));
-    }, []);
+    const { data: todos } = useFetch(`${window.backendURL}/interim/todos`)
 
     const [doings, setDoings] = useState([]);
     useEffect(() => {
