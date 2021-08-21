@@ -1,23 +1,18 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react";
 
-const useFetch = (url) => {
-    const [data, setData] = useState(null)
+const useFetch = (url, setData) => {
+  useEffect(() => {
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Could not fetch data for that resource");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setData(data); // Set the data by using given hookI
+      });
+  }, [url, setData]);
+};
 
-    useEffect(() => {
-        fetch(url)
-            .then(res => {
-                if (!res.ok) {
-                    throw Error("Could not fetch data for that resource")
-                }
-                return res.json()
-            })
-            .then(data => {
-                setData(data)
-
-            })
-    }, [url])
-
-    return { data }
-}
-
-export default useFetch
+export default useFetch;

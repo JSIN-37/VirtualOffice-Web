@@ -71,11 +71,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LogIn({ appD, onLogin }) {
   const classes = useStyles();
-  const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
   const [loginError, setLoginError] = useState(false);
 
-  const loginAttempt = async (email, password) => {
+  const loginAttempt = async (password) => {
     var axios = require("axios");
     axios
       .post(`${window.backendURL}/admin/login`, {
@@ -172,7 +171,7 @@ export default function LogIn({ appD, onLogin }) {
                 className={classes.submit}
                 onClick={(e) => {
                   e.preventDefault();
-                  loginAttempt(email, password);
+                  loginAttempt(password);
                 }}
               >
                 Sign In
