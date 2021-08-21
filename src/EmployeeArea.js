@@ -10,7 +10,6 @@ import Attendance from "./pages/hod/Attendance";
 // import Absentees from "./pages/hod/Absentees";
 // import AttendanceReports from "./pages/hod/AttendanceReports";
 import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
 import LogIn from "./pages/LogIn";
 import LogOut from "./pages/LogOut";
 
@@ -46,9 +45,6 @@ const EmployeeArea = ({ appD, setAppD }) => {
                         </Route> */}
                         <Route exact path="/profile">
                             <Profile />
-                        </Route>
-                        <Route exact path="/settings">
-                            <Settings />
                         </Route>
                         <Route exact path="/logout">
                             <LogOut appD={appD} setAppD={setAppD} />
