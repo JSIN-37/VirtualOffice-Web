@@ -8,12 +8,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import attendance from '../resources/attendance.svg';
-import task from '../resources/task-mgmt.svg';
-import fileMgmt from '../resources/file-mgmt.svg';
-import doc from '../resources/doc.svg';
-import mobile from '../resources/mobile.svg';
-import admin from '../resources/admin.svg';
+import attendance from '../resources/home_attendance.svg';
+import task from '../resources/home_task-mgmt.svg';
+import fileMgmt from '../resources/home_file-mgmt.svg';
+import doc from '../resources/home_doc.svg';
+import mobile from '../resources/home_mobile.svg';
+import admin from '../resources/home_admin.svg';
 
 const useStyles = makeStyles((theme) => ({
     '@global': {

@@ -16,14 +16,10 @@ import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import EventIcon from "@material-ui/icons/Event";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
 import { useHistory, useLocation } from "react-router";
-import logo from '../../resources/logo.png';
-import user from "../../resources/user.svg";
-// import { Link as useLocation } from "react-router-dom";
-// import { Link as useHistory } from "react-router-dom";
-
+import logo from '../resources/logo.png';
+import user from "../resources/emp_user.svg";
 
 const drawerWidth = 240;
 

@@ -5,32 +5,28 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/core/styles";
 import EventIcon from "@material-ui/icons/Event";
-
-// Tabs for Pringle - <3
-import AttendanceReports from "./../../pages/hod/AttendanceReports";
-import Absentees from "./../../pages/hod/Absentees";
-import Attendees from "./../../pages/hod/Attendees";
+import AttendanceReports from "./AttendanceReports";
+import Absentees from "./Absentees";
+import Attendees from "./Attendees";
+import AttendanceOverview from "./AttendanceOverview";
 import AttendanceTable from "./AttendanceTable";
-
-const drawerWidth = 280;
+import MyAttendance from "./MyAttendance";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: `calc(100% - ${drawerWidth}px)`,
+        width: "100%",
     },
     apptitle: {
         padding: theme.spacing(2), //16px
         fontWeight: 500,
         textDecoration: "none",
     },
-    appspace: {
-        padding: theme.spacing(1, 2), //16px
-        fontWeight: 500,
-        color: "#E3E6F5",
-    },
     appbar: {
         background: "#E3E6F5",
         height: 58,
+    },
+    appbaricon: {
+        marginLeft: "240px"
     },
     tab: {
         color: "#3F51B4",
@@ -63,9 +59,6 @@ export default function DivisionHeader() {
                 elevation={0}
             >
                 <Toolbar>
-                    <Typography variant="h6" className={classes.appspace}>
-                        spacespacespaicespa
-                    </Typography>
                     <EventIcon
                         color="primary"
                         className={classes.appbaricon}
@@ -82,13 +75,13 @@ export default function DivisionHeader() {
                         <Tab label="Active Attendees" className={classes.tab} />
                         <Tab label="Absentees" className={classes.tab} />
                         <Tab label="Reports" className={classes.tab} />
+                        <Tab label="My Attendance" className={classes.tab} />
                     </Tabs>
                 </Toolbar>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <Grid item xs={12}>
-                    <AttendanceTable />
-                </Grid>
+                <AttendanceOverview />
+                <AttendanceTable />
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Attendees />
@@ -98,6 +91,9 @@ export default function DivisionHeader() {
             </TabPanel>
             <TabPanel value={value} index={3}>
                 <AttendanceReports />
+            </TabPanel>
+            <TabPanel value={value} index={4}>
+                <MyAttendance />
             </TabPanel>
         </Grid>
     );

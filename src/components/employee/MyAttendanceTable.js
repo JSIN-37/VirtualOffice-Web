@@ -7,26 +7,25 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
     table: {
         minWidth: 1100,
     },
     tableRow: {
-        height: 40,
+        height: 35,
     },
     tableCell: {
-        paddingTop: "10px",
-        paddingBottom: "10px",
+        paddingTop: "8px",
+        paddingBottom: "8px",
         backgroundColor: "#f4f4f4",
-        fontSize: 16,
+        fontSize: 14,
     },
 });
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-        height: 40,
+        height: 35,
         "&:nth-of-type(even)": {
             backgroundColor: "#f9f9f9",
         },
@@ -38,17 +37,16 @@ const StyledTableCell = withStyles((theme) => ({
         padding: "0px 18px",
     },
     body: {
-        fontSize: 15,
+        fontSize: 14,
     },
 }))(TableCell);
 
-export default function AttendanceTable(props) {
+export default function MyAttendanceTable() {
     const classes = useStyles();
     // const rows = props.rows; // Changed props here love <3
 
     function createData(
         id,
-        name,
         date,
         startTime,
         endTime,
@@ -61,7 +59,6 @@ export default function AttendanceTable(props) {
     ) {
         return {
             id,
-            name,
             date,
             startTime,
             endTime,
@@ -77,7 +74,6 @@ export default function AttendanceTable(props) {
     const [rows, setRows] = React.useState([
         createData(
             "1",
-            "D.S. Perera",
             "12/06/2021",
             "9.00 AM",
             "5.00 PM",
@@ -90,7 +86,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "2",
-            "W. P. De Silva",
             "12/06/2021",
             "10.00 AM",
             "5.00 PM",
@@ -103,7 +98,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "3",
-            "A. L. Pathirana",
             "12/06/2021",
             "9.00 AM",
             "5.00 PM",
@@ -116,7 +110,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "4",
-            "K. H. H. Gamage",
             "12/06/2021",
             "12.00 PM",
             "5.00 PM",
@@ -129,7 +122,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "5",
-            "D.M. Dunuwila",
             "12/06/2021",
             "9.00 AM",
             "5.00 PM",
@@ -142,7 +134,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "6",
-            "S.S. Dias",
             "12/06/2021",
             "-",
             "-",
@@ -155,7 +146,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "7",
-            "J.Y. Perera",
             "12/06/2021",
             "9.00 AM",
             "5.00 PM",
@@ -168,7 +158,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "8",
-            "W. P. De Silva",
             "11/06/2021",
             "10.00 AM",
             "5.00 PM",
@@ -181,7 +170,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "9",
-            "D.M. Dunuwila",
             "11/06/2021",
             "9.00 AM",
             "5.00 PM",
@@ -194,7 +182,6 @@ export default function AttendanceTable(props) {
         ),
         createData(
             "10",
-            "W. P. De Silva",
             "11/06/2021",
             "10.00 AM",
             "5.00 PM",
@@ -214,13 +201,6 @@ export default function AttendanceTable(props) {
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow className={classes.tableRow}>
-                                <TableCell
-                                    className={classes.tableCell}
-                                    align="left"
-                                    style={{ paddingLeft: "30px" }}
-                                >
-                                    Name
-                                </TableCell>
                                 <TableCell className={classes.tableCell} align="left">
                                     Date
                                 </TableCell>
@@ -253,13 +233,6 @@ export default function AttendanceTable(props) {
                         <TableBody>
                             {rows.map((row) => (
                                 <StyledTableRow key={row.id}>
-                                    <StyledTableCell
-                                        component="th"
-                                        scope="row"
-                                        style={{ paddingLeft: "30px" }}
-                                    >
-                                        {row.name}
-                                    </StyledTableCell>
                                     <StyledTableCell align="left">{row.date}</StyledTableCell>
                                     <StyledTableCell align="left">
                                         {row.startTime}
@@ -285,13 +258,6 @@ export default function AttendanceTable(props) {
                     </Table>
                 </TableContainer>
             </Grid>
-            <Button
-                variant="contained"
-                color="primary"
-                style={{ marginLeft: "25px" }}
-            >
-                Export To Excel
-            </Button>
         </Grid>
     );
 }

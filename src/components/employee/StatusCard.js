@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { Button, Typography, Grid, Radio, RadioGroup } from '@material-ui/core';
 import { makeStyles, FormControlLabel } from "@material-ui/core";
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -55,11 +57,14 @@ export default function StatusCard() {
             <Grid item xs={2}><br />
                 <Typography variant="body1" color="initial" pr={2}>I am</Typography>
             </Grid>
-            <Grid item xs={10}><br />
+            <Grid item xs={7}><br />
                 <RadioGroup row>
                     <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
                     <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
                     <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
+                    <IconButton style={{ color: "#28B463" }} aria-label="save">
+                        <CheckCircleRoundedIcon />
+                    </IconButton>
                 </RadioGroup>
             </Grid>
         </Grid>

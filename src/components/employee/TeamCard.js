@@ -1,3 +1,4 @@
+import React from "react";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core";
+import Modal from '@material-ui/core/Modal';
+import TeamDetails from './TeamDetails'
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -21,12 +24,49 @@ const useStyles = makeStyles((theme) => {
         data: {
             textAlign: 'right',
             fontWeight: '400'
-        }
+        },
+        modal: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        paper: {
+            position: 'relative',
+            width: 450,
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+        },
     }
 })
 
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
+
+
 export default function TeamCard({ team, handleDelete }) {
     const classes = useStyles()
+    const [modalStyle] = React.useState(getModalStyle);
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div>
@@ -53,6 +93,14 @@ export default function TeamCard({ team, handleDelete }) {
                             </Typography>
                         </Grid>
                     </Grid>
+                    <Button variant="outlined"
+                        color="primary"
+                        size="small"
+                        style={{
+                            marginLeft: '8px'
+                        }} onClick={handleOpen}>
+                        View
+                    </Button>
                     <Button
                         variant="outlined"
                         color="primary"
@@ -69,6 +117,16 @@ export default function TeamCard({ team, handleDelete }) {
                         <DeleteIcon /></IconButton>
                 </CardContent>
             </Card>
-        </div>
+            <Modal
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                open={open}
+                onClose={handleClose}
+            >
+                <div style={modalStyle} className={classes.paper}>
+                    <TeamDetails />
+                </div>
+            </Modal>
+        </div >
     )
 }

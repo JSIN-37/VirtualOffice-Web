@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link as RouterLink } from "react-router-dom";
-import logo from "../resources/logo_small.png";
+import logo from "../resources/home_logo.png";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {

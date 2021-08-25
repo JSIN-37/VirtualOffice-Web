@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import heroimg from '../resources/hero-img.png';
+import heroimg from '../resources/home_hero-img.png';
 
 const useStyles = makeStyles((theme) => ({
     HeroSection: {

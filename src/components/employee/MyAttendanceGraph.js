@@ -20,7 +20,7 @@ const state = {
     ]
 };
 
-export default function DashPieChart() {
+export default function MyAttendanceGraph() {
 
     return (
         <Container style={{ paddingTop: '6px', paddingBottom: '6px' }}>

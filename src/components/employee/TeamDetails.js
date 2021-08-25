@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography, Grid, Container } from '@material-ui/core';
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core";
-import user from "../resources/user.svg";
+import user from "../../resources/emp_user.svg";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchIcon from '@material-ui/icons/Search';
@@ -69,9 +69,9 @@ export default function DivisionDetails() {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={2}>
-                <Grid item md={5} lg={5} ml={"20px"}>
-                    <Typography variant="body1" className={classes.heading} align="left" >Team Name  </Typography>
+            <Grid container mt="20px">
+                <Grid item md={6} lg={6}>
+                    <Typography variant="body1" className={classes.heading} align="left" >Team Name</Typography>
                     <hr className={classes.hr} />
                     <Typography variant="body2">Doc Team </Typography>
                     <br />
@@ -127,9 +127,6 @@ export default function DivisionDetails() {
                             </Grid>
                         </Grid>
                     </Container>
-                </Grid>
-                <Grid item md={1} lg={1} style={{ paddingRight: 8 }}>
-
                 </Grid>
             </Grid >
         </div>

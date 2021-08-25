@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import AddTeamForm from '../components/AddTeamForm'
+import AddTeamForm from './AddTeamForm'
 
 export default function Teams() {
     return (

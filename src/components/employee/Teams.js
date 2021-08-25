@@ -6,10 +6,8 @@ import Tab from '@material-ui/core/Tab';
 import { makeStyles } from "@material-ui/core/styles";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import { Link } from "react-router-dom";
-import TeamOverview from "./../components/TeamOverview";
+import TeamOverview from "./TeamOverview";
 import AddTeam from "./AddTeam";
-import ViewTeam from "./ViewTeam";
-import EditTeam from "./EditTeam";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,8 +62,6 @@ export default function TeamHeader() {
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>
                         <Tab label="Overview" className={classes.tab} />
                         <Tab label="Add Team" className={classes.tab} />
-                        <Tab label="View Team" className={classes.tab} />
-                        <Tab label="Edit Team" className={classes.tab} />
                     </Tabs>
                 </Toolbar>
             </AppBar>
@@ -74,12 +70,6 @@ export default function TeamHeader() {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <AddTeam />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <ViewTeam />
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                <EditTeam />
             </TabPanel>
         </Grid>
     );

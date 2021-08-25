@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Layout from "./components/hod/Layout";
-import Dashboard from "./pages/hod/Dashboard";
-import Division from "./pages/hod/Division";
-import Teams from "./pages/Teams";
-import Attendance from "./pages/hod/Attendance";
-import Profile from "./pages/Profile";
-import LogOut from "./pages/LogOut";
-import LogIn from "./pages/LogIn";
+import Layout from "./components/Layout";
+import Dashboard from "./components/employee/Dashboard";
+import Division from "./components/employee/Division";
+import Teams from "./components/employee/Teams";
+import Attendance from "./components/employee/Attendance";
+import Profile from "./components/employee/Profile";
+import LogOut from "./components/LogOut";
+import LogIn from "./components/employee/LogIn";
 
 const EmployeeArea = ({ appD, setAppD }) => {
     if (appD.token && appD.isAdmin == null) {

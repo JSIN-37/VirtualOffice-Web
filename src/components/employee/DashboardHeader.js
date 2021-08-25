@@ -14,10 +14,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 500,
         textDecoration: 'none'
     },
-    appspace: {
-        padding: theme.spacing(2),//16px
-        fontWeight: 500,
-        color: "#E3E6F5"
+    appbaricon: {
+        marginLeft: "240px"
     },
     appbar: {
         background: '#E3E6F5',
@@ -36,9 +34,6 @@ export default function DivisionHeader() {
                 className={classes.appbar}
                 elevation={0}>
                 <Toolbar>
-                    <Typography variant="h6" className={classes.appspace}>
-                        spacespacespaicespa
-                    </Typography>
                     <DashboardIcon color="primary" className={classes.appbaricon} fontSize="medium" />
                     <Typography variant="h6" className={classes.apptitle} color="primary" component={Link} to="/">
                         Dashboard

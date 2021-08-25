@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@material-ui/core/Grid'
-import DivisionHeader from '../../components/DivisionHeader'
-import DivisionDetails from '../../components/DivisionDetails'
+import DivisionHeader from './DivisionHeader'
+import DivisionDetails from './DivisionDetails'
 
 
 export default function Division() {

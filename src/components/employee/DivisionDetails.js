@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography, Grid, Container, Paper } from '@material-ui/core';
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core";
-import user from "../resources/user.svg";
+import user from "../../resources/emp_user.svg";
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -72,13 +72,13 @@ export default function DivisionDetails() {
 
     return (
         <div className={classes.root}>
-            <Grid container>
-                <Grid item md={5} lg={5} >
-                    <Typography variant="body1" className={classes.heading} align="left" >Division  </Typography>
+            <Grid container mt="20px">
+                <Grid item md={5} lg={5}>
+                    <Typography variant="body1" className={classes.heading} align="left" >Division</Typography>
                     <hr className={classes.hr} />
-                    <Typography variant="body2">General Adinistration </Typography>
+                    <Typography variant="body2">General Administration </Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Head of Division  </Typography>
+                    <Typography variant="body1" className={classes.heading}>Head of Division</Typography>
                     <hr className={classes.hr} />
                     <Grid container>
                         <Grid item xs={2}>
