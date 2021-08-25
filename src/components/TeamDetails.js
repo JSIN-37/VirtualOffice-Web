@@ -70,24 +70,29 @@ export default function DivisionDetails() {
     return (
         <div className={classes.root}>
             <Grid container spacing={2}>
-                <Grid item md={5} lg={5} >
-                    <Typography variant="body1" className={classes.heading} align="left" >Team Name <hr className={classes.hr} /> </Typography>
+                <Grid item md={5} lg={5} ml={"20px"}>
+                    <Typography variant="body1" className={classes.heading} align="left" >Team Name  </Typography>
+                    <hr className={classes.hr} />
                     <Typography variant="body2">Doc Team </Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Team Leader <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Team Leader  </Typography>
+                    <hr className={classes.hr} />
                     <Typography variant="body2">Doc Team </Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading} align="left" >Description <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading} align="left" >Description  </Typography>
+                    <hr className={classes.hr} />
                     <Typography variant="body2">Doc Team </Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Division <hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Division  </Typography>
+                    <hr className={classes.hr} />
                     <Typography variant="body2">Doc Team </Typography>
                     <br />
 
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}></Grid>
                 <Grid item md={5} lg={5}>
-                    <Typography variant="body1" className={classes.heading}>Team Memebers<hr className={classes.hr} /> </Typography>
+                    <Typography variant="body1" className={classes.heading}>Team Memebers </Typography>
+                    <hr className={classes.hr} />
                     <div style={{ width: 400, marginBottom: "10px" }}>
                         <Autocomplete
                             freeSolo
@@ -101,7 +106,7 @@ export default function DivisionDetails() {
                                     variant="outlined"
                                     InputProps={{
                                         ...params.InputProps, type: 'search', startAdornment: (
-                                            <InputAdornment>
+                                            <InputAdornment position="start">
                                                 <IconButton>
                                                     <SearchIcon />
                                                 </IconButton>

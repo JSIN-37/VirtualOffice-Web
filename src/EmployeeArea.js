@@ -1,20 +1,12 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Layout from "./components/hod/Layout";
 import Dashboard from "./pages/hod/Dashboard";
 import Division from "./pages/hod/Division";
-// import Teams from "./pages/Teams";
-// import AddTeam from "./pages/AddTeam";
-// import ViewTeam from "./pages/ViewTeam";
-// import EditTeam from "./pages/EditTeam";
+import Teams from "./pages/Teams";
 import Attendance from "./pages/hod/Attendance";
-// import Attendees from "./pages/hod/Attendees";
-// import Absentees from "./pages/hod/Absentees";
-// import AttendanceReports from "./pages/hod/AttendanceReports";
 import Profile from "./pages/Profile";
-import LogIn from "./pages/LogIn";
 import LogOut from "./pages/LogOut";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import TeamHeader from "./components/TeamHeader";
+import LogIn from "./pages/LogIn";
 
 const EmployeeArea = ({ appD, setAppD }) => {
     if (appD.token && appD.isAdmin == null) {
@@ -29,20 +21,11 @@ const EmployeeArea = ({ appD, setAppD }) => {
                             <Division />
                         </Route>
                         <Route exact path="/teams">
-                            <TeamHeader />
+                            <Teams />
                         </Route>
                         <Route exact path="/attendance">
                             <Attendance />
                         </Route>
-                        {/* <Route exact path="/attendees">
-                            <Attendees />
-                        </Route> */}
-                        {/* <Route exact path="/absentees">
-                            <Absentees />
-                        </Route> */}
-                        {/* <Route exact path="/attendancereports">
-                            <AttendanceReports />
-                        </Route> */}
                         <Route exact path="/profile">
                             <Profile />
                         </Route>

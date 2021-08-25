@@ -6,7 +6,6 @@ export default function Teams() {
     return (
         <Grid container spacing={4}>
             <Grid item xs={12} sm={6} md={4} >
-                <p>Hii add team here</p>
                 <AddTeamForm />
             </Grid>
 
