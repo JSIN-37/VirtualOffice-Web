@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
+import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Divisions() {
+export default function Settings() {
   const classes = useStyles();
 
   return (
@@ -34,18 +34,18 @@ export default function Divisions() {
         elevation={0}
       >
         <Toolbar>
-          <GroupWorkRoundedIcon
+          <SettingsRoundedIcon
             color="primary"
             className={classes.appbaricon}
             fontSize="medium"
           />
           <Typography variant="h6" className={classes.apptitle} color="primary">
-            Divisions
+            Settings
           </Typography>
         </Toolbar>
       </AppBar>
       <Grid item xs={12} sm={6} md={4}>
-        <h1>Divisions details go here</h1>
+        <h1>Settings details go here</h1>
       </Grid>
     </Grid>
   );

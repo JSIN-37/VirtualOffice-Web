@@ -16,7 +16,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 // import Checkbox from '@material-ui/core/Checkbox';
-// import OfficeImage from '../../resources/man.jpg';
 // import Switch from '@material-ui/core/Switch';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "@material-ui/core/Button";
@@ -121,7 +120,7 @@ function AddTeam(props) {
                     justifyContent="center"
                 >
 
-                    <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+                    <Avatar alt="A Pathirana" src="../../../resources/logo_big.png" className={classes.large} />
 
                 </Grid>
 

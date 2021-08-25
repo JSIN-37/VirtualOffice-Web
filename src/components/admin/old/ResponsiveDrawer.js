@@ -16,17 +16,16 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
-// import OfficeImage from "../../resources/man.jpg";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import Box from '@material-ui/core/Box';
-import { Avatar } from "@material-ui/core";
-// import { IconButton } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-
 import { Link } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+// import { IconButton } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -54,6 +53,12 @@ appbar: {
       flexShrink: 0,
     },
   },
+  // appBar: {
+  //   [theme.breakpoints.up("sm")]: {
+  //     width: `calc(100% - ${drawerWidth}px)`,
+  //     marginLeft: drawerWidth,
+  //   },
+  // },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
@@ -71,9 +76,24 @@ appbar: {
   },
 }));
 
-function EditUserRoles(props) {
+function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
+  const [rolename, roleName] = useState(``);
+  const [description, setDescription] = useState(``);
+
+  const setUerRole = async (rolename, description) => { //add choose file and check box to post
+    var axios = require("axios");
+    roleName('escape error');
+    axios
+      .post(`${window.backendURL}/add-user-role`, {
+        rolename: rolename,
+        description: description,
+  })
+};
+
+
+
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -84,6 +104,7 @@ function EditUserRoles(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+
       <Box  m={1} 
               alignItems= "center"
               justify="center"
@@ -97,7 +118,7 @@ function EditUserRoles(props) {
                     justify="center"
                     justifyContent="center"
               >
-              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+              <Avatar alt="A Pathirana" src="../../../resources/logo_big.png" className={classes.large} />
               </Grid>
               <Grid
                     container
@@ -143,8 +164,7 @@ function EditUserRoles(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      
-<AppBar
+      <AppBar
                 position="fixed"
                 color="primary"
                 className={classes.appbar}
@@ -207,6 +227,7 @@ function EditUserRoles(props) {
               shrink: true,
             }}
             variant="filled"
+            onChange={(e) => setUerRole(e.target.value)}
           ></TextField>
           <br />
           <Checkbox
@@ -227,11 +248,12 @@ function EditUserRoles(props) {
               shrink: true,
             }}
             variant="filled"
+            onChange={(e) => setDescription(e.target.value)}
           ></TextField>
           <br />
           <br />
 
-          <h4>Permissions</h4>
+          <Typography>Permissions</Typography>
         </form>
         <table width="100%">
           <tr>
@@ -241,9 +263,9 @@ function EditUserRoles(props) {
           </tr>
 
           <tr>
-            <td><Typography> Division Management </Typography></td>
-            <td> <Typography>Employee Management </Typography></td>
-            <td> <Typography>Task Management</Typography> </td>
+            <td><Typography> Division Management  </Typography> </td>
+            <td><Typography>Employee Management</Typography>  </td>
+            <td><Typography> Task Management </Typography></td>
             <td> </td>
           </tr>
 
@@ -387,10 +409,13 @@ function EditUserRoles(props) {
           <tr>
             <td> </td>
             <td> </td>
-
             <td align="right">
-              <Button color="secondary">Delete User Role</Button>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" 
+              onClick={(e) => {
+                // e.preventDefault();
+                setUerRole(rolename, description);
+              }}
+              >
                 Save Role
               </Button>
             </td>
@@ -406,12 +431,12 @@ function EditUserRoles(props) {
   );
 }
 
-export default EditUserRoles;
-
-EditUserRoles.propTypes = {
+ResponsiveDrawer.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
   window: PropTypes.func,
 };
+
+export default ResponsiveDrawer;

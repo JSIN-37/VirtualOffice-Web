@@ -15,19 +15,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import OfficeImage from '../../resources/man.jpg';
+import Checkbox from '@material-ui/core/Checkbox';
 // import Switch from '@material-ui/core/Switch';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
-import { Box } from '@material-ui/core';
-import { Avatar } from '@material-ui/core';
-
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+// import { IconButton } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-// import { IconButton } from '@material-ui/core';
-
 
 const drawerWidth = 240;
 
@@ -72,7 +67,7 @@ appbar: {
   },
 }));
 
-function SetUpProfile(props) {
+function MemberDesignation(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -85,40 +80,7 @@ function SetUpProfile(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Box  m={1} 
-              alignItems= "center"
-              justify="center"
-              justifyContent="center">
-
-            <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems= "center"
-                    justify="center"
-                    justifyContent="center"
-              >
-              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
-              </Grid>
-              <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems= "center"
-                    justify="center"
-                    justifyContent="center"
-              >
-              <Typography color="initial" >
-                  A.T. Pathirana
-              </Typography>
-              <Typography color="initial" >
-                  Head of Division
-              </Typography>
-              </Grid>
-          </Box>
-
-
-      <Divider/>
+    
       <List>
         {[
           { name: "Organization", link: "/organization" },
@@ -133,6 +95,17 @@ function SetUpProfile(props) {
           <ListItem button key={text.name} component={Link} to={text.link}>
             {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
             <ListItemText primary={text.name} />
+          </ListItem>
+        ))}
+      </List>
+
+
+      <Divider/>
+      <List>
+        {['Organization', 'Divisions', 'Teams', 'User Roles & Permissions','Members','Profile','Settings','Log Out'].map((text, index) => (
+          <ListItem button key={text}>
+            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+            <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
@@ -162,9 +135,6 @@ function SetUpProfile(props) {
                     </Typography>
                 </Toolbar>
             </AppBar>
-
-
-
       
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -204,7 +174,7 @@ function SetUpProfile(props) {
           </Typography>
   
 
-            <table  width="50%" >
+            <table  width="100%" >
                 <tr>
                     <td>
                     <TextField
@@ -231,37 +201,24 @@ function SetUpProfile(props) {
                     variant="outlined"
                   />
                     </td>
-                    <td> </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        Profile Picture
-                        <Button variant="contained"
-                        size="small" 
-                        style={{ margin: 4}}
-
-                        >Choose File</Button>
+                    <td> 
+                      Role
+                      <div>
+                      <Checkbox
+                            name="checkedB"
+                            color="primary"
+                          />
+                        Director
+                        <Checkbox
+                            name="checkedB"
+                            color="primary"
+                          />
+                        DD - Deputy Director
+                      </div>
 
                     </td>
-                    <td></td>
                 </tr>
 
-                <tr>
-                    <td width="100%">
-                    <TextField
-                    id="filled-required"
-                    label="Contact Number"
-                    placeholder="Eg: +94715632789"
-                    style={{ margin: 2}}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    variant="outlined"
-                  />
-                    </td>
-                    <td></td>
-                </tr>
 
                 <tr>
                     <td>
@@ -283,53 +240,34 @@ function SetUpProfile(props) {
                     <td></td>
                 </tr>
 
+
+
+                
                 <tr>
                     <td>
+                      
                     <TextField
-                    id="filled-password-input"
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
+                    id="filled-required"
+                    label="Designation"
+                    placeholder="Academic Staff"
                     style={{ margin: 2}}
                     InputLabelProps={{
                       shrink: true,
                     }}
                     variant="outlined"
                   />
-
-
-
+                  
                     </td>
                     <td></td>
+
                 </tr>
-
-                <tr>
-                    <td>
-                    <TextField
-                    id="filled-password-input"
-                    label="Confirm Password"
-                    type="password"
-                    placeholder="Re-enter password"
-                    style={{ margin: 2}}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    variant="outlined"
-                  />
-
-
-
-
-                    </td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td><Typography>Designation : Worker (Default)</Typography></td>
-                    <td></td>
-                </tr>
-
             </table>
+{
+          <Checkbox
+              name="checkedB"
+              color="primary"
+            />
+          }Active User
             <Grid
                       container
                       spacing={0}
@@ -355,7 +293,7 @@ function SetUpProfile(props) {
   );
 }
 
-SetUpProfile.propTypes = {
+MemberDesignation.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -363,4 +301,4 @@ SetUpProfile.propTypes = {
   window: PropTypes.func,
 };
 
-export default SetUpProfile;
+export default MemberDesignation;

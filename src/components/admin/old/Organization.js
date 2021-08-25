@@ -1,11 +1,11 @@
 import React from "react";
-import "../../App.css";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -15,43 +15,35 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-// import TextField from "@material-ui/core/TextField";
+import TextField from "@material-ui/core/TextField";
 // import Checkbox from "@material-ui/core/Checkbox";
-// import OfficeImage from "../../resources/man.jpg";
-// import OrgImage from "../../resources/orgImage.jpg";
+import OrgImage from "../../../resources/orgImage.jpg";
 // import Switch from "@material-ui/core/Switch";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-// import { IconButton } from "@material-ui/core";
-// import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-import AllTeamsCard from './AllTeamsCard.js';
-import { Link } from "react-router-dom";
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import { Avatar } from "@material-ui/core";
-// import Paper from '@material-ui/core/Paper';
-// import Visibility from '@material-ui/icons/Visibility';
-// import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import Box from '@material-ui/core/Box';
+// import { withStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+// import IconButton from '@material-ui/core/IconButton';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+ 
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
+  
   root: {
     display: "flex",
-  },
-  paper: {
-    padding: theme.spacing(1),
-    // textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  drawerx: {
-    [theme.breakpoints.up("sm")]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
   },
   apptitle: {
     padding: theme.spacing(2),//16px
@@ -90,7 +82,7 @@ appbar: {
   },
 }));
 
-function AllTeams(props) {
+function Organization(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -117,8 +109,11 @@ function AllTeams(props) {
                     justify="center"
                     justifyContent="center"
               >
-              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
+
+              <Avatar alt="A Pathirana" src="../../../resources/logo_big.png" className={classes.large} />
+
               </Grid>
+
               <Grid
                     container
                     spacing={0}
@@ -136,8 +131,11 @@ function AllTeams(props) {
               </Grid>
           </Box>
 
-
-
+      <List>
+        <ListItem>
+                 
+        </ListItem>
+      </List>
 
       <Divider />
       <List>
@@ -166,8 +164,8 @@ function AllTeams(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      
-            <AppBar
+    
+<AppBar
                 position="fixed"
                 color="primary"
                 className={classes.appbar}
@@ -183,9 +181,10 @@ function AllTeams(props) {
                 </Toolbar>
             </AppBar>
 
-      <nav className={classes.drawerx} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
+          
           <Drawer
             container={container}
             variant="temporary"
@@ -199,6 +198,7 @@ function AllTeams(props) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
+            
             {drawer}
           </Drawer>
         </Hidden>
@@ -216,85 +216,74 @@ function AllTeams(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Grid container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justify="center"
-      style={{ minHeight: '100vh' }}>
-
-
-
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "flex-start"
-        justify="center"
-        justifyContent="flex-start"
-        style={{ minHeight: '20vh' , spacing:'{10rem}'}}
+        <Typography variant="h6" noWrapn style={{ margin: 4 }}>
+          Organization
+        </Typography>
+        <br/>
         
-      >
-         <h3>
-        Teams
-      </h3>
-        </Grid>
-
-        <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={3}>
-          <Grid item xs={4}>
-           <AllTeamsCard/>
-
-            {/* <Paper className={classes.paper}>item</Paper> */}
-          </Grid>
-
-          <Grid item xs={4}>
-          <AllTeamsCard/>
-          </Grid>
-
-          <Grid item xs={4}>
-           <AllTeamsCard/>
-          </Grid>
-
-
-          <Grid item xs={4}>
-          <AllTeamsCard/>  
-          </Grid>
-
-
-        </Grid>
-
+        <Avatar>
+          <img src={OrgImage} className="VO-logo" alt="logo" />
+        </Avatar>
+        <Typography>UCSC</Typography>
         
-      </Grid>
-      <br/>
-        
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "flex-start"
-        justify="center"
-        justifyContent="flex-start"
-        style={{ minHeight: '10vh' }}
-      >
-      <Button variant="contained" color="primary" className="button-user-role" component={Link}
-              to="/add-new-team">
-      
-      + Add new Team
-      </Button>
-        </Grid>
+        <br/> 
+        <br/> 
 
-      </Grid>
-        
+        <form>
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="System Administrator"
+            placeholder="A L Silva"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
 
-      
+        <br/> 
+        <br/> 
+
+
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Administrator Email "
+            placeholder="Email"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+        </form>
+
+        <br/>
+        <Button color="primary" component={Link}
+              to="/divisions">Divisions</Button> <br/>
+
+        <Button color="primary" component={Link}
+              to="/teams"> Teams</Button><br/>
+
+
+        <Button color="primary" component={Link}
+              to="/user-roles">User Roles</Button><br/>
+        <br/>
+
+
+        <Button variant="contained" color="primary" component={Link}
+              to="/edit-organization-details">
+        Edit Details
+        </Button>
+
        
       </main>
     </div>
   );
 }
 
-AllTeams.propTypes = {
+Organization.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -302,4 +291,4 @@ AllTeams.propTypes = {
   window: PropTypes.func,
 };
 
-export default AllTeams;;
+export default Organization;

@@ -14,21 +14,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-// import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField';
 // import Checkbox from '@material-ui/core/Checkbox';
-// import OfficeImage from '../../resources/man.jpg';
 // import Switch from '@material-ui/core/Switch';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddIcon from '@material-ui/icons/Add';
-import { Link } from "react-router-dom";
 import { Box } from '@material-ui/core';
-// import { IconButton } from '@material-ui/core';
 import { Avatar } from '@material-ui/core';
+
+import { Link } from 'react-router-dom';
 import DashboardIcon from "@material-ui/icons/Dashboard";
+// import { IconButton } from '@material-ui/core';
+
 
 const drawerWidth = 240;
 
@@ -73,7 +71,7 @@ appbar: {
   },
 }));
 
-function ViewTeam(props) {
+function SetUpProfile(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -99,11 +97,8 @@ function ViewTeam(props) {
                     justify="center"
                     justifyContent="center"
               >
-
-              <Avatar alt="A Pathirana" src="../../resources/logo_big.png" className={classes.large} />
-
+              <Avatar alt="A Pathirana" src="../../../resources/logo_big.png" className={classes.large} />
               </Grid>
-
               <Grid
                     container
                     spacing={0}
@@ -204,70 +199,133 @@ function ViewTeam(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography variant="h6" noWrapn style={{ margin: 4}} >
-           Add Team
+           Set Up Your Profile
           </Typography>
   
 
-            <table  width="100%" >
-
-                <tr>
-                    <td><Typography>
-                        Team Leader
-                        </Typography>
-                    </td>
-                    <td>
-                    <Typography>
-                    Members
-                    </Typography>
-                    </td>
-
-
-                </tr>
+            <table  width="50%" >
                 <tr>
                     <td>
-                    <AccountCircleIcon/> 
-                    <Typography>K.P. Hewagamge</Typography>
-                    </td>
-                    <td>
-                    <AddCircleOutlineIcon/> <Typography>Add Member</Typography>
-                                  
-                        
-                        
-                    </td>
-                </tr>
-                
+                    <TextField
+                    required
+                    id="filled-required"
+                    label="First Name"
+                    placeholder="D.S."
+                    style={{ margin: 2}}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                    />
 
-                <tr>
-                    <td>
-                    <Typography>
-                        Description
-                    </Typography>
-
-                    </td>
-
-                    <td>
-                    <AccountCircleIcon/> 
-                    <Typography>K.P. Hewagamge
-                    </Typography>
-                        
-                    </td>
-
-
-                </tr>
-
-
-
-
-
-                <tr>
-                    <td>
-                      <Typography>
-                    Projects/Task
-                    </Typography>
-                    <br/>
-                    <AddIcon/>
+                  <TextField
+                    required
+                    id="filled-required"
+                    label="Last Name"
+                    placeholder="Silva"
+                    style={{ margin: 2}}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                  />
                     </td>
                     <td> </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Profile Picture
+                        <Button variant="contained"
+                        size="small" 
+                        style={{ margin: 4}}
+
+                        >Choose File</Button>
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td width="100%">
+                    <TextField
+                    id="filled-required"
+                    label="Contact Number"
+                    placeholder="Eg: +94715632789"
+                    style={{ margin: 2}}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                  />
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>
+
+                    <TextField
+                    id="filled-required"
+                    label="Email Address"
+                    placeholder="arsilva@gmail.com"
+                    style={{ margin: 2}}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                  />
+
+
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>
+                    <TextField
+                    id="filled-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    style={{ margin: 2}}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                  />
+
+
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>
+                    <TextField
+                    id="filled-password-input"
+                    label="Confirm Password"
+                    type="password"
+                    placeholder="Re-enter password"
+                    style={{ margin: 2}}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                  />
+
+
+
+
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td><Typography>Designation : Worker (Default)</Typography></td>
+                    <td></td>
                 </tr>
 
             </table>
@@ -283,7 +341,7 @@ function ViewTeam(props) {
                       
                      <div>
                     <Button variant="contained" color="primary" style={{ margin: 4}}  >
-                      Save Role
+                      Save Changes
                     </Button>
 
                     <Button variant="outlined" color="primary" style={{ margin: 4}}  >
@@ -296,7 +354,7 @@ function ViewTeam(props) {
   );
 }
 
-ViewTeam.propTypes = {
+SetUpProfile.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -304,4 +362,4 @@ ViewTeam.propTypes = {
   window: PropTypes.func,
 };
 
-export default ViewTeam;
+export default SetUpProfile;
