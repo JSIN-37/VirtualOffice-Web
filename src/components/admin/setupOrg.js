@@ -64,14 +64,22 @@ function SetupOrg() {
   const [orgname, setOrgname] = useState(``);
   const [country, setCountry] = useState(``);
 
+  // var jsonObj = {
+  //   fname: fname,
+  //   lname: lname,
+  // };
+
+  //const obj = JSON.parse(jsonObj);
+
   const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
     var axios = require("axios");
-    axios
+      axios
       .post(`${window.backendURL}/setup-organization`, {
         fname: fname,
         lname: lname,
         orgname:orgname,
-        country: country,
+        country: country
+        // jsonObj: obj
   })
 };
 
