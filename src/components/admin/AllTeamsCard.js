@@ -12,7 +12,11 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    borderRadius: 20,
+    maxWidth: 700,
+    padding: "20px",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    overflow: "visible",
     textDecorationColor:'blue',
   },
   bullet: {
@@ -36,7 +40,7 @@ function AllTeamCard() {
   return (
     <Card className={classes.root} variant="outlined">
       <Typography align="center">Design Team </Typography>
-      
+      <br/>
 
       <table >
         <tr>
@@ -60,7 +64,7 @@ function AllTeamCard() {
         style={{ minHeight: '20vh' }}
       >
           
-    <Button variant="outlined" size="small"> 
+    <Button variant="contained" size="small"> 
         <EditOutlinedIcon style={{ color: blue[500] }}/>
         <Typography >Edit</Typography>
           

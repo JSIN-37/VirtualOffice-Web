@@ -10,8 +10,12 @@ import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    width: "50vw",
+    borderRadius: 20,
+    maxWidth: 700,
+    padding: "20px",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    overflow: "visible",
+    textDecorationColor:'blue',
   },
   bullet: {
     display: "inline-block",

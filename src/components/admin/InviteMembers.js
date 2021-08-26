@@ -57,7 +57,7 @@ function InviteMembers() {
           }}
         >
           <img src={OfficeImage} className="VO-logo" alt="logo" />
-          <Typography align="left">Invite Members</Typography>
+          <h2 align="left">Invite Members</h2>
          
 
           <table width="100%">

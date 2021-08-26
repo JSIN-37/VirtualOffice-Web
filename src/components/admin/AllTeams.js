@@ -235,9 +235,9 @@ function AllTeams(props) {
         style={{ minHeight: '20vh' , spacing:'{10rem}'}}
         
       >
-         <h3>
+         <h2>
         Teams
-      </h3>
+        </h2>
         </Grid>
 
         <Grid container spacing={1}>

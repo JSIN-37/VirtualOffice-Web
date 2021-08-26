@@ -30,10 +30,18 @@ import { Avatar } from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 
+import clsx from 'clsx';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
- 
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+
   small: {
     width: theme.spacing(3),
     height: theme.spacing(3),
@@ -177,7 +185,8 @@ function Organization(props) {
                     </Typography>
                     <DashboardIcon color="primary" className={classes.appbaricon} fontSize="large" />
                     <Typography variant="h5" className={classes.apptitle} color="primary" component={Link} to="/">
-                        Dashboard
+                        Organization
+
                     </Typography>
                 </Toolbar>
             </AppBar>

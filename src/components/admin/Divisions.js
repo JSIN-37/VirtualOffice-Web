@@ -226,9 +226,8 @@ function Division(props) {
         style={{ minHeight: '20vh' , spacing:'{10rem}'}}
         
       >
-        <Typography>
-        Divisions
-        </Typography>
+        <h2> Divisions </h2>
+       
       
         </Grid>
 

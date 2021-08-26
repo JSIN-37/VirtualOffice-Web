@@ -145,7 +145,6 @@ function Members(props) {
           { name: "Teams", link: "/teams" },
           { name: "User Roles & Permissions", link: "/user-roles" },
           { name: "Employees", link: "/employees" },
-          { name: "Profile", link: "/profile" },
           { name: "Settings", link: "/settings" },
           { name: "Log Out", link: "/" },
         ].map((text, index) => (
@@ -221,7 +220,7 @@ function Members(props) {
         </Typography>
 
         <div>
-          <MenuIcon /> <EmailIcon /> <AnnouncementIcon /> <DeleteIcon />
+          {/* <MenuIcon /> <EmailIcon /> <AnnouncementIcon /> <DeleteIcon /> */}
           <Grid
             container
             spacing={0}

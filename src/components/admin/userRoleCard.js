@@ -12,7 +12,11 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    borderRadius: 20,
+    maxWidth: 700,
+    padding: "20px",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    overflow: "visible",
     textDecorationColor:'blue',
   },
   bullet: {
@@ -54,7 +58,7 @@ function UserRoleCards() {
         style={{ minHeight: '20vh' }}
       >
           
-    <Button variant="outlined" size="small" className="button-edit-role" 
+    <Button variant="contained" size="small" className="button-edit-role" 
             component={Link}
             to="/edit-role"> 
         <EditOutlinedIcon style={{ color: blue[500] }}/>
