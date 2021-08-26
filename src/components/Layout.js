@@ -26,7 +26,8 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => {
     return {
         root: {
-            display: 'flex'
+            display: 'flex',
+            backgroundColor: '#fff'
         },
         page: {
             // background: '#f9f9f9',
@@ -72,7 +73,6 @@ const useStyles = makeStyles((theme) => {
         toolbar: theme.mixins.toolbar
     }
 })
-
 
 export default function Layout({ children }) {
     const classes = useStyles()
