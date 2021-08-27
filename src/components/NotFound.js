@@ -43,10 +43,9 @@ export default function NotFound() {
             <Grid item xs={5}>
                 <Typography color="primary" variant="h5" className={classes.text}>Unfortunately, the page you requested does not exist.</Typography>
                 <Typography color="primary" variant="h6" className={classes.text}>The reason might be:</Typography>
-                <Typography color="primary" variant="body1" className={classes.list}>The page has moved</Typography>
-                <Typography color="primary" variant="body1" className={classes.list}>The page no longer existS</Typography>
-                <Typography color="primary" variant="body1" className={classes.list}>The page has moved</Typography>
-                <Typography color="primary" variant="body1" className={classes.list}>The address (URL) is not correct</Typography>
+                <Typography color="primary" variant="body1" className={classes.list}>The page has moved.</Typography>
+                <Typography color="primary" variant="body1" className={classes.list}>The page no longer existS.</Typography>
+                <Typography color="primary" variant="body1" className={classes.list}>The address (URL) is not correct.</Typography>
                 <br />
                 <Button variant="contained" component={Link} to="/" color="primary" style={{ marginTop: 10 }}> Back to Home </Button>
             </Grid>

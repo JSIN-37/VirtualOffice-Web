@@ -13,19 +13,24 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Link from "@material-ui/core/Link";
 import logo from "../../resources/logo_big.png";
 import Alerts from "../Alerts";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({
     root: {
         Height: "100%",
+        width: "100%",
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: "center",
+        paddingTop: 0
     },
     card: {
         borderRadius: 25,
-        width: 400,
         textAlign: "center",
-        padding: "20px",
-        marginTop: "50px",
+        marginTop: 70,
+        padding: 25,
         boxShadow: "0 8px 30px -12px rgba(0,0,0,0.3)",
         overflow: "visible",
     },
@@ -37,15 +42,16 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1,
     },
     textField: {
-        width: 370,
+        width: 360,
     },
     form: {
+        display: "flex",
+        flexDirection: "column",
         width: "100%", // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-        alignItems: "center",
+        marginTop: 10,
     },
     button: {
-        margin: theme.spacing(1),
+        margin: 10,
     },
     action: {
         display: "flex",
@@ -62,12 +68,16 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
     },
     submit: {
-        margin: theme.spacing(2, 0),
+        margin: "20px 0px",
     },
     grid: {
         flexGrow: 1,
-        marginTop: "0"
+        marginTop: 0
     },
+    snackbar: {
+        position: "absolute",
+        top: 0,
+    }
 }));
 
 export default function LogIn({ appD, onLogin }) {
@@ -102,6 +112,7 @@ export default function LogIn({ appD, onLogin }) {
                     onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
                 } else {
                     setLoginError(true);
+
                 }
             })
             .catch((err) => {
@@ -112,20 +123,37 @@ export default function LogIn({ appD, onLogin }) {
                 }
             });
     };
+
+    const handleClose = () => {
+        setLoginError(false);
+    };
+
     function LoginError() {
         if (loginError) {
             return (
-                <Alerts
-                    type={"error"}
-                    title={"Login Failed"}
-                    message={"Incorrect username/ password. Please try again"}
-                />
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={LoginError}
+                    autoHideDuration={5000}
+                    onClose={handleClose}
+                    className={classes.snackbar}
+                    action={
+                        <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                    }>
+                    <Alerts
+                        type={"error"}
+                        title={"Login Failed"}
+                        message={"Incorrect username/ password. Please try again"}
+                    />
+                </Snackbar>
             );
         }
         return "";
     }
     return (
-        <Grid container spacing={1} justifyContent="center" alignItems="center" align="center" className={classes.root} >
+        <Grid container className={classes.root} spacing={0} alignItems="center">
             <LoginError />
             <Grid item >
                 <Card className={classes.card}>
@@ -140,6 +168,7 @@ export default function LogIn({ appD, onLogin }) {
                                 margin="normal"
                                 required
                                 fullWidth
+                                className={classes.textField}
                                 id="email"
                                 label="Email Address"
                                 name="email"
@@ -152,6 +181,7 @@ export default function LogIn({ appD, onLogin }) {
                                 margin="normal"
                                 required
                                 fullWidth
+                                className={classes.textField}
                                 name="password"
                                 label="Password"
                                 type="password"
@@ -160,12 +190,13 @@ export default function LogIn({ appD, onLogin }) {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <div className={classes.grid}>
-                                <Grid container spacing={3}>
+                                <Grid container>
                                     <Grid item xs={6} className={classes.gridRemember}>
                                         <FormControlLabel
                                             control={<Checkbox value="remember" color="primary" />}
                                             label="Remember me"
                                             align="left"
+                                            variant="body2"
                                         />
                                     </Grid>
                                     <Grid item xs={6} className={classes.gridForgot}>
@@ -178,6 +209,7 @@ export default function LogIn({ appD, onLogin }) {
                             <Button
                                 type="submit"
                                 variant="contained"
+                                fullWidth={false}
                                 color="primary"
                                 className={classes.submit}
                                 onClick={(e) => {

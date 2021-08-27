@@ -1,6 +1,9 @@
 import React from 'react';
+import { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 export default function Alerts(props) {
     const {
         type,
@@ -18,10 +22,22 @@ export default function Alerts(props) {
         message
     } = props
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div className={classes.root}>
-            <Alert severity={type} style={{ textAlign: "center" }}>
+            <Alert
+                open={open}
+                severity={type}
+                action={
+                    <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+                        <CloseIcon fontSize="small" />
+                    </IconButton>
+                }>
                 <AlertTitle>{title}</AlertTitle>
                 {message}
             </Alert>
