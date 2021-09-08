@@ -36,10 +36,6 @@ export default function AssignTasksAddTask() {
     setResume,
   } = useContext(AssignDB);
 
-  
-  
-  
-  
   //input for title and description
   const [taskTitle, setTaskTitle] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
@@ -52,8 +48,19 @@ export default function AssignTasksAddTask() {
 
 
   //keep track of whether all task details are provided, or still in draft stage
-  const [isWorkers, setIsWorkers] = useState(false)
-  
+  const [isComplete, setIsComplete] = useState(false)
+  function checkStatus(){
+    if(taskTitle === '' || taskDescription ==='' || assignedWorkers.length ===0){
+      setIsComplete(false)
+      
+    }else{
+      setIsComplete(true)
+    }
+  }
+
+  useEffect(()=>{
+    checkStatus()
+  }, [taskTitle, taskDescription, assignedWorkers])  
   
   //what to do when clicking on ADD on an employee card, on the selecting employees for task bit
   function addEmployeeToTask(id){
@@ -78,7 +85,28 @@ export default function AssignTasksAddTask() {
   }
   
   //what to do when clicking ADD TASK / SAVE DRAFT
-  
+  function addTask(){
+    const newTask = {
+      id : uuidv4(),
+      title:taskTitle,
+      owner:1,
+      description:taskDescription,
+      deadline : selectedDate,
+      workers : assignedWorkers
+    }
+    setAssignedTasksDB([...assignedTasksDB, newTask])
+  }
+
+  function saveDraft(){
+    const newDraft = {
+      id : uuidv4(),
+      title: taskTitle || "No Title Entered",
+      description : taskDescription || "No description, instructions etc",
+      deadline : selectedDate,
+      workers : assignedWorkers
+    }
+    setDraftsDB([...draftsDB, newDraft])
+  }
   //for the task deadline -> comes from mui datepicker
   const [selectedDate, handleDateChange] = useState(new Date());
 
@@ -88,7 +116,6 @@ export default function AssignTasksAddTask() {
     setOpen(true);
   };
 
-  let btnText = "Save Draft"
 
   return (
     <Card className={classes.top}>
@@ -131,10 +158,15 @@ export default function AssignTasksAddTask() {
             <Button onClick={handleOpen}>Add Employees</Button>
           </Grid>
           <Grid item>
-            <Button variant='contained' color='primary' >
-              {btnText}
+            <Button variant='contained' color='primary' onClick={saveDraft}>
+              SAVE DRAFT
             </Button>
           </Grid>
+          {isComplete && <Grid item>
+            <Button variant='contained' color='primary' onClick={addTask}>
+              ADD TASK
+            </Button>
+          </Grid>}
         </Grid>
       </CardContent>
       <AssignTasksModal

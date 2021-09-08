@@ -15,21 +15,10 @@ const useStyles = makeStyles({
     background: '#E3E6F5',
   },
 
-  inProgress: {
+  selected: {
     background: '#81c784',
   },
 
-  overDue: {
-    background: '#ffb74d',
-  },
-
-  delete: {
-    cursor: 'pointer',
-  },
-
-  addBtn: {
-    right: 2,
-  },
 });
 
 export default function EmployeeCardMini(props) {
@@ -58,7 +47,7 @@ console.log("EMPLOYEE = ",props.employee)
   }
 
   return (
-    <Card className={classes.card}>
+    <Card className={`${classes.card} ${employee.selected? classes.selected : null}`}>
       <Typography>{employee.name}</Typography>
       {assign && (
         <Grid container justifyContent='flex-end'>
