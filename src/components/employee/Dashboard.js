@@ -10,7 +10,7 @@ import DashBarChart from "./DashBarChart";
 import CoworkersCard from "./CoworkersCard";
 import TimeStamps from "./TimeStamps";
 import DashboardHeader from "./DashboardHeader";
-import useFetch from "../../useFetch";
+import useFetch from "../../hooks/useFetch";
 
 const useStyles = makeStyles((theme) => ({
     root: {
