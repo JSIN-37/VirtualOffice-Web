@@ -35,20 +35,20 @@ export default function Tasks() {
     if (tasksJSON != null) {
       setTaskDB(JSON.parse(tasksJSON));
     }
-    console.log('read from TaskDB');
+    console.log('read from TaskDB -> My Tasks');
   }, []);
 
   //REPLACE WITH SERVER FETCH
   //write changes to taskDB to local storage
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(taskDB));
-    console.log('wrote to taskDB');
+    console.log('wrote to taskDB -> My Tasks');
   }, [taskDB]);
 
   //add a task to taskDB
   function addTask(task) {
     setTaskDB([...taskDB, task]);
-    console.log('TASKS.JS addt ', taskDB);
+
   }
 
   //when a task is changed (inProgress / overDue/ etc) -> write changes to taskDB

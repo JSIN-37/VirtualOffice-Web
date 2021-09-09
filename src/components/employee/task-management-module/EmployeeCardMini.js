@@ -29,7 +29,7 @@ export default function EmployeeCardMini(props) {
   const removeEmployeeFromTask = props.removeEmployeeFromTask
   const setDisplayEmployee = props.setDisplayEmployee;
 
-console.log("EMPLOYEE = ",props.employee)
+//console.log("EMPLOYEE = ",props.employee)
 
 
   function handleClick() {

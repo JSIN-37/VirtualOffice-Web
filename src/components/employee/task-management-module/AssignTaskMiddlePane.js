@@ -12,15 +12,14 @@ const useStyles = makeStyles({
     background: '#f9f9f9',
   },
 });
-export default function AssignTasksMiddlePane(props) {
+export default function AssignTasksMiddlePane() {
+  console.log("RENDERED ASSIGN TASKS MIDDLE PANE .JS")
   const classes = useStyles();
-
-  const keys = props.keys;
-
   return (
     <Card className={`${classes.pane}`}>
       <CardContent>
-        <AssignTasksAddTask keys={keys} />
+        <AssignTasksAddTask/>
+
       </CardContent>
 
       <CardContent>

@@ -26,10 +26,6 @@ const useStyles = makeStyles({
 export default function Assign() {
   const classes = useStyles();
 
-  //REPLACE WITH SERVER FETCH and WRITE - ASSIGNED TASKS ARRAY
-
-  //Read from storage on first render
-
   //get data context values
   const { assignedTasksDB, setAssignedTasksDB, draftsDB, setDraftsDB } =
     useContext(TaskManagementData);

@@ -72,8 +72,7 @@ export default function Tasks() {
 
   //Writing to assigned tasks DB when theres a change to the array
   useEffect(() => {
-    console.log('writing AssignedTasksDB');
-    console.log(assignedTasksDB);
+    console.log('writing to AssignedTasksDB -> minion tasks');
     localStorage.setItem(
       LOCAL_STORAGE_ASSIGNED_TASKS_KEY,
       JSON.stringify(assignedTasksDB)
@@ -82,8 +81,7 @@ export default function Tasks() {
 
   //Writing to drafts DB when theres a change to the array
   useEffect(() => {
-    console.log('writing draftsDB');
-    console.log(draftsDB);
+    console.log('writing  to draftsDB -> minion drafts');
     localStorage.setItem(LOCAL_STORAGE_DRAFTS_KEY, JSON.stringify(draftsDB));
   }, [draftsDB]);
 

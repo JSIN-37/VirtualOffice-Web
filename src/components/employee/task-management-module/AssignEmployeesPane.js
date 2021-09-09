@@ -36,7 +36,7 @@ export default function AssignEmployeesPane() {
   //if displayEmployee IS NULLL, employee list will show all the employee cards
   const [displayEmployee, setDisplayEmployee] = useState(null);
   useEffect(() => {
-    console.log(displayEmployee);
+ 
   }, [displayEmployee]);
 
   //gets id of employee thats selected in the dropdown, and sets the displayEmployee variable to the employee object

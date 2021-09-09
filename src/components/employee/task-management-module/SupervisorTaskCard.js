@@ -2,6 +2,7 @@ import { Avatar, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles({
   click: {
     minHeight: '100px',
@@ -23,26 +24,28 @@ export default function SupervisorTaskCard(props) {
 
   const blank = () => {};
 
-  console.log('props inside SupTaskCard', props.task);
   const task = props.task;
   //id, owner, title, description, deadline, workers
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
+  const [deadline, setDeadline] = useState(task.deadline)
   const workers = task.workers;
 
   const cardClickFunction = props.cardClickFunction || blank;
-  console.log(cardClickFunction);
 
   if (title === '') {
     setTitle('No Title');
   }
 
-  if (description === '') {
+  if (description ==='') {
     setDescription('No Description');
   }
 
+  if(deadline === null){
+    setDeadline('no deadline set')
+  }
+
   const isWorkers = workers.length > 0;
-  console.log('from supcard, isWorkers? ', isWorkers);
 
   function handleCardClick() {
     cardClickFunction(task);
@@ -52,6 +55,7 @@ export default function SupervisorTaskCard(props) {
     <Card className={classes.card} onClick={handleCardClick}>
       <CardContent>
         <Typography>{title}</Typography>
+        <Typography>{deadline}</Typography>
       </CardContent>
       <CardContent>
         <Typography>Description</Typography>

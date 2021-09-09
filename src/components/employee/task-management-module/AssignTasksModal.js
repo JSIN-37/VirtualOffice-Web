@@ -9,7 +9,7 @@ import {
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import EmployeeCardMini from './EmployeeCardMini';
 
 const useStyles = makeStyles({
@@ -34,7 +34,6 @@ const useStyles = makeStyles({
 
 export default function AssignTasksModal(props) {
   const classes = useStyles();
-  console.log("EMPLOYEEs  IN MODAL ",props.unassignedWorkers )
   const { setOpen,  open, addEmployeeToTask, removeEmployeeFromTask } = props;
  
 

@@ -12,8 +12,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import { v4 as uuidv4 } from 'uuid';
 import { AssignDB } from './AssignTasks';
 
-import { format } from 'date-fns';
 import AssignTasksModal from './AssignTasksModal';
+import { format,  parseISO } from 'date-fns';
 
 const useStyles = makeStyles({
   top: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 export default function AssignTasksAddTask() {
-  console.log('ATAT');
+  console.log('RENDERED ASSIGN TASKS ADD TASK .JS -> INPUT SECTION FOR ADDING / RESUMING');
   
   const classes = useStyles();
 
@@ -32,19 +32,26 @@ export default function AssignTasksAddTask() {
     setAssignedTasksDB,
     draftsDB,
     setDraftsDB,
-    resume,
-    setResume,
+    resume
+
   } = useContext(AssignDB);
 
   //input for title and description
   const [taskTitle, setTaskTitle] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
+  //for the task deadline -> comes from mui datepicker
+  const [selectedDate, handleDateChange] = useState(new Date());
+
+  //FOR MODAL -OPEN AND CLOSE
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
   
   //for each task, keep track of who's assigned to it and who's not. Initially, all employees are unassigned
   const [unassignedWorkers, setUnassignedWorkers] = useState(employeeDB.map((em)=>({...em, selected:false})))
   const [assignedWorkers, setAssignedWorkers] = useState([])
-  console.log("Unassigned -> ",unassignedWorkers)
-  console.log("Assigned -> ",assignedWorkers)
+
 
 
   //keep track of whether all task details are provided, or still in draft stage
@@ -58,14 +65,30 @@ export default function AssignTasksAddTask() {
     }
   }
 
+  //check if the details are complete whenever these three are done.
   useEffect(()=>{
     checkStatus()
   }, [taskTitle, taskDescription, assignedWorkers])  
-  
+
+
+  //Resuming a draft
+  useEffect(() => {
+    setTaskTitle(resume.title || '')
+    setTaskDescription(resume.description || '')
+    resume.workers && resume.workers.forEach((w)=> addEmployeeToTask(w.id))
+
+    if(resume) {handleDateChange(parseISO(resume.deadline))}
+
+    return(() => {
+      resume.workers && resume.workers.forEach(w => removeEmployeeFromTask(w.id))
+      handleDateChange(new Date())
+    })
+  }, [resume])
+
+
   //what to do when clicking on ADD on an employee card, on the selecting employees for task bit
   function addEmployeeToTask(id){
     const newEmployee = employeeDB.filter((emp)=>emp.id === id)[0]
-    console.log("ADDING EMP WITH ID -> ", id, newEmployee)
     setAssignedWorkers([...assignedWorkers, newEmployee])
     //set selected : true inside unassigned array
     const newUnassigned = unassignedWorkers.filter((em)=> em.id===id)[0]
@@ -78,21 +101,29 @@ export default function AssignTasksAddTask() {
       setAssignedWorkers(newAssigned)
       //set selected : false for this employee in the unassigned emps array
       const newUnassigned = unassignedWorkers.filter((em)=> em.id===id)[0]
-      console.log("FOUND REMOVAL -> ",newUnassigned)
       newUnassigned.selected = false
-      console.log("REMOVED REMOVAL -> ",newUnassigned)
-      console.log("NEW UNASS ARRAY ", unassignedWorkers)
+
   }
   
   //what to do when clicking ADD TASK / SAVE DRAFT
+
+  function formatDate(date){
+    if(date){
+      return format(selectedDate, 'yyyy-MM-dd' )
+    }else{
+      return ''
+    }
+  }
+
   function addTask(){
     const newTask = {
       id : uuidv4(),
       title:taskTitle,
       owner:1,
       description:taskDescription,
-      deadline : selectedDate,
-      workers : assignedWorkers
+      deadline : formatDate(selectedDate),
+      workers : assignedWorkers,
+      inProgress : false
     }
     setAssignedTasksDB([...assignedTasksDB, newTask])
   }
@@ -100,21 +131,16 @@ export default function AssignTasksAddTask() {
   function saveDraft(){
     const newDraft = {
       id : uuidv4(),
-      title: taskTitle || "No Title Entered",
-      description : taskDescription || "No description, instructions etc",
-      deadline : selectedDate,
-      workers : assignedWorkers
+      title: taskTitle ,
+      description : taskDescription,
+      deadline : formatDate(selectedDate),
+      workers : assignedWorkers,
+      inProgress : false
+
     }
     setDraftsDB([...draftsDB, newDraft])
   }
-  //for the task deadline -> comes from mui datepicker
-  const [selectedDate, handleDateChange] = useState(new Date());
-
-  //FOR MODAL -OPEN AND CLOSE
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  
 
 
   return (
