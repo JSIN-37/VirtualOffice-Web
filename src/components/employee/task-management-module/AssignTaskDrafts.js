@@ -1,4 +1,4 @@
-import React, {  useContext } from 'react';
+import React, {  useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import { AssignDB } from './AssignTasks';
@@ -21,8 +21,9 @@ export default function AssignTaskDrafts() {
   console.log("RENDERED ASSIGN TASKS DRAFTS -> RIGHT PANE UNDER ASSIGN")
   const classes = useStyles();
 
-  const { draftsDB, setResume } = useContext(AssignDB);
+  const { draftsDB, setDraftsDB,setResume } = useContext(AssignDB);
 
+  
   return (
     <Card className={`${classes.pane} ${classes.paneRight}`}>
       <CardContent>
@@ -32,6 +33,10 @@ export default function AssignTaskDrafts() {
               key={draft.id}
               task={draft}
               cardClickFunction={setResume}
+              assign={true}
+              draftsDB={draftsDB}
+              setDraftsDB={setDraftsDB}
+
             />
           );
         })}

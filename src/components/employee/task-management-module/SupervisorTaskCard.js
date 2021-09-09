@@ -1,5 +1,5 @@
 import { Avatar, Card, CardContent, Grid, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -25,6 +25,7 @@ export default function SupervisorTaskCard(props) {
   const blank = () => {};
 
   const task = props.task;
+  const assign = props.assign || false
   //id, owner, title, description, deadline, workers
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
@@ -32,7 +33,6 @@ export default function SupervisorTaskCard(props) {
   const workers = task.workers;
 
   const cardClickFunction = props.cardClickFunction || blank;
-
   if (title === '') {
     setTitle('No Title');
   }
@@ -48,7 +48,11 @@ export default function SupervisorTaskCard(props) {
   const isWorkers = workers.length > 0;
 
   function handleCardClick() {
-    cardClickFunction(task);
+    cardClickFunction(task)
+    if(assign){
+      const x = props.draftsDB.filter(dr=>dr.id!==task.id)
+      props.setDraftsDB(x)
+    }
   }
 
   return (

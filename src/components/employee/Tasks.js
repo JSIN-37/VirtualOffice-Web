@@ -44,15 +44,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Tasks() {
+    console.log("RENDER TASK MANAGEMENT MODULE ROOT - TASKS.JS - ")
     const classes = useStyles();
     //REPLACE WITH SERVER FETCH and WRITE - ASSIGNED TASKS ARRAY
   const [assignedTasksDB, setAssignedTasksDB] = useState([]);
   const [draftsDB, setDraftsDB] = useState([]);
+  const [resume, setResume] = useState(false);
+
   const TaskManagementDataContextVals = {
     assignedTasksDB,
     setAssignedTasksDB,
     draftsDB,
     setDraftsDB,
+    resume,
+    setResume
   };
 
   //Read from storage on first render

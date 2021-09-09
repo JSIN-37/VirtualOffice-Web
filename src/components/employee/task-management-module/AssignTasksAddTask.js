@@ -32,7 +32,7 @@ export default function AssignTasksAddTask() {
     setAssignedTasksDB,
     draftsDB,
     setDraftsDB,
-    resume
+    resume,
 
   } = useContext(AssignDB);
 
@@ -78,7 +78,7 @@ export default function AssignTasksAddTask() {
     resume.workers && resume.workers.forEach((w)=> addEmployeeToTask(w.id))
 
     if(resume) {handleDateChange(parseISO(resume.deadline))}
-
+    
     return(() => {
       resume.workers && resume.workers.forEach(w => removeEmployeeFromTask(w.id))
       handleDateChange(new Date())

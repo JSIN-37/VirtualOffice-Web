@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import AssignTasksMiddlePane from './AssignTaskMiddlePane';
 import AssignEmployeesPane from './AssignEmployeesPane';
 import AssignTaskDrafts from './AssignTaskDrafts';
@@ -24,18 +24,19 @@ const useStyles = makeStyles({
 });
 
 export default function Assign() {
+  console.log("RENDERED ASSIGN MAIN ")
   const classes = useStyles();
 
   //get data context values
-  const { assignedTasksDB, setAssignedTasksDB, draftsDB, setDraftsDB } =
+  const { assignedTasksDB, setAssignedTasksDB, draftsDB, setDraftsDB, resume, setResume } =
     useContext(TaskManagementData);
 
   //need to see list of employees when adding a task as well
   const employeeDB = employees;
 
   //to resume editing a draft
-  const [resume, setResume] = useState(false);
-
+  
+  
   //stuff that other components need access to
   const assignDBContextValues = {
     employeeDB,
