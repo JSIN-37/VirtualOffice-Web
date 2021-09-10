@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 });
 export default function TaskDetails() {
   let { inspecting } = useContext(TaskDB);
-  if (inspecting === undefined) {
+  if (inspecting === null) {
     inspecting = {
       id: null,
       title: 'Select Task To View',

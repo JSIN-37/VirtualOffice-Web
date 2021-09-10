@@ -106,7 +106,6 @@ export default function AssignTasksAddTask() {
   }
   
   //what to do when clicking ADD TASK / SAVE DRAFT
-
   function formatDate(date){
     if(date){
       return format(selectedDate, 'yyyy-MM-dd' )
@@ -129,6 +128,12 @@ export default function AssignTasksAddTask() {
   }
 
   function saveDraft(){
+
+    if(taskTitle==='' && taskDescription===''){
+      alert('Cannot save empty draft. Add a Title if you wish to save just a date.')
+      return
+    }
+
     const newDraft = {
       id : uuidv4(),
       title: taskTitle ,

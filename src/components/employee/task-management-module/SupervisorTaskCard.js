@@ -1,6 +1,7 @@
-import { Avatar, Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { Avatar, Card, CardActionArea, CardContent, Grid, Typography } from '@material-ui/core';
 import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Delete } from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
@@ -15,8 +16,11 @@ const useStyles = makeStyles({
     marginTop: 10,
     background: '#E3E6F5',
     overflow: 'auto',
-    cursor: 'pointer',
   },
+
+  cursor:{
+    cursor:'pointer'
+  }
 });
 
 export default function SupervisorTaskCard(props) {
@@ -55,13 +59,27 @@ export default function SupervisorTaskCard(props) {
     }
   }
 
+  function handleDeleteDraft(e){
+    e.preventDefault()
+    const x = props.draftsDB.filter(dr=>dr.id!==task.id)
+    props.setDraftsDB(x)
+  }
+
   return (
-    <Card className={classes.card} onClick={handleCardClick}>
+    <Card className={classes.card} >
       <CardContent>
-        <Typography>{title}</Typography>
-        <Typography>{deadline}</Typography>
+        <Grid container justifyContent='space-evenly'>
+          <Grid item>  <Typography>{title}</Typography></Grid>
+          
+          {assign && <Grid item><Delete className={classes.cursor} onClick={handleDeleteDraft}/></Grid>}
+          </Grid>
+       
+       
+        
       </CardContent>
-      <CardContent>
+      <Grid item> <Typography>{deadline}</Typography></Grid>
+     <CardActionArea onClick={handleCardClick}>
+     <CardContent>
         <Typography>Description</Typography>
         <Typography>{description}</Typography>
       </CardContent>
@@ -72,6 +90,10 @@ export default function SupervisorTaskCard(props) {
           })}
         </Grid>
       )}
+       </CardActionArea>
+
+    
+      
     </Card>
   );
 }

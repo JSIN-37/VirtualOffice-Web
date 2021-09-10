@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState , useEffect, useRef} from 'react'
 import Grid from '@material-ui/core/Grid'
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Tabs from '@material-ui/core/Tabs';
@@ -46,9 +46,27 @@ const useStyles = makeStyles((theme) => ({
 export default function Tasks() {
     console.log("RENDER TASK MANAGEMENT MODULE ROOT - TASKS.JS - ")
     const classes = useStyles();
+    const writeT = useRef(false)
+    const writeD = useRef(false)
     //REPLACE WITH SERVER FETCH and WRITE - ASSIGNED TASKS ARRAY
-  const [assignedTasksDB, setAssignedTasksDB] = useState([]);
-  const [draftsDB, setDraftsDB] = useState([]);
+  const [assignedTasksDB, setAssignedTasksDB] = useState(()=>{ 
+      console.log("reading from assigned tasks DB")
+      const arr = localStorage.getItem(LOCAL_STORAGE_ASSIGNED_TASKS_KEY)
+      if(arr !== null){
+          return JSON.parse(arr)
+      }else{
+          return []
+      }
+  });
+  const [draftsDB, setDraftsDB] = useState(()=>{
+      console.log("reading  from drafts DB")
+      const arr = localStorage.getItem(LOCAL_STORAGE_DRAFTS_KEY)
+      if(arr!== null){
+          return JSON.parse(arr)
+      }else{
+          return []
+      }
+  });
   const [resume, setResume] = useState(false);
 
   const TaskManagementDataContextVals = {
@@ -60,23 +78,14 @@ export default function Tasks() {
     setResume
   };
 
-  //Read from storage on first render
-  useEffect(() => {
-    const assignedTasksDBJSON = localStorage.getItem(
-      LOCAL_STORAGE_ASSIGNED_TASKS_KEY
-    );
-    if (assignedTasksDBJSON !== null) {
-      setAssignedTasksDB(JSON.parse(assignedTasksDBJSON));
-    }
 
-    const draftsDBJSON = localStorage.getItem(LOCAL_STORAGE_DRAFTS_KEY);
-    if (draftsDBJSON !== null) {
-      setDraftsDB(JSON.parse(draftsDBJSON));
-    }
-  }, []);
 
   //Writing to assigned tasks DB when theres a change to the array
   useEffect(() => {
+    if(!writeT.current){
+        writeT.current = true
+        return
+    }
     console.log('writing to AssignedTasksDB -> minion tasks');
     localStorage.setItem(
       LOCAL_STORAGE_ASSIGNED_TASKS_KEY,
@@ -86,6 +95,10 @@ export default function Tasks() {
 
   //Writing to drafts DB when theres a change to the array
   useEffect(() => {
+    if(!writeD.current){
+        writeD.current = true
+        return
+    }
     console.log('writing  to draftsDB -> minion drafts');
     localStorage.setItem(LOCAL_STORAGE_DRAFTS_KEY, JSON.stringify(draftsDB));
   }, [draftsDB]);
