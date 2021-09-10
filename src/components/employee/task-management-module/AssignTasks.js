@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 });
 
 export default function Assign() {
-  console.log("RENDERED ASSIGN MAIN ")
   const classes = useStyles();
 
   //get data context values

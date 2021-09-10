@@ -18,7 +18,6 @@ const useStyles = makeStyles({
 });
 
 export default function AssignTaskDrafts() {
-  console.log("RENDERED ASSIGN TASKS DRAFTS -> RIGHT PANE UNDER ASSIGN")
   const classes = useStyles();
 
   const { draftsDB, setDraftsDB,setResume } = useContext(AssignDB);

@@ -13,7 +13,6 @@ const useStyles = makeStyles({
   },
 });
 export default function AssignTasksMiddlePane() {
-  console.log("RENDERED ASSIGN TASKS MIDDLE PANE .JS")
   const classes = useStyles();
   return (
     <Card className={`${classes.pane}`}>

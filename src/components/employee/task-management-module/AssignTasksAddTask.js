@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 });
 
 export default function AssignTasksAddTask() {
-  console.log('RENDERED ASSIGN TASKS ADD TASK .JS -> INPUT SECTION FOR ADDING / RESUMING');
   
   const classes = useStyles();
 

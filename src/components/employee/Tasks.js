@@ -50,7 +50,6 @@ export default function Tasks() {
     const writeD = useRef(false)
     //REPLACE WITH SERVER FETCH and WRITE - ASSIGNED TASKS ARRAY
   const [assignedTasksDB, setAssignedTasksDB] = useState(()=>{ 
-      console.log("reading from assigned tasks DB")
       const arr = localStorage.getItem(LOCAL_STORAGE_ASSIGNED_TASKS_KEY)
       if(arr !== null){
           return JSON.parse(arr)
@@ -59,7 +58,6 @@ export default function Tasks() {
       }
   });
   const [draftsDB, setDraftsDB] = useState(()=>{
-      console.log("reading  from drafts DB")
       const arr = localStorage.getItem(LOCAL_STORAGE_DRAFTS_KEY)
       if(arr!== null){
           return JSON.parse(arr)

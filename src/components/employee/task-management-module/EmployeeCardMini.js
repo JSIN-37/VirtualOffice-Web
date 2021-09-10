@@ -36,12 +36,10 @@ export default function EmployeeCardMini(props) {
     if(employee.selected){
       //currently selected, so remove from task
       removeEmployeeFromTask(employee.id)
-      console.log("IN CARD REMOVE")
     }
     else{
       //curently not selected, so add to task
       addEmployeeToTask(employee.id)
-      console.log("IN CARD ADD")
     }
     setDisplayEmployee(null);
   }

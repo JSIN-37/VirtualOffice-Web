@@ -33,14 +33,12 @@ export default function Inspect() {
   const classes = useStyles();
 
   const [showTask, setShowTask] = useState(null);
-  console.log('SHOW TASK WHAT ', showTask);
 
   function cardClickFunction(task) {
     setShowTask(task);
   }
 
   const { assignedTasksDB } = useContext(TaskManagementData);
-  console.log('INSPECT PAGE ', assignedTasksDB);
   return (
     <Grid container className={classes.paneContainer}>
       <Grid item xs={6}>
