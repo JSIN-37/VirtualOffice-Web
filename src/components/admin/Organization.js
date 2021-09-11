@@ -7,7 +7,9 @@ import { TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
-import Tab from "@material-ui/core/Tab";
+import {Tab} from "@material-ui/core";
+import EditOrganization from "./EditOrganization";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     fontSize: "16px",
   },
+  indicator: {
+    backgroundColor: "#3F51B4",
+  },
 }));
 
 export default function Organization() {
@@ -51,6 +56,10 @@ export default function Organization() {
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
+    };
+
+    const TabPanel = ({ children, index, value }) => {
+      return <>{value === index && <>{children}</>}</>;
     };
 
   return (
@@ -72,10 +81,13 @@ export default function Organization() {
           </Typography>
           <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }} >
                         <Tab label="Overview" className={classes.tab} />
-                        <Tab label="Edit Division" className={classes.tab} />
+                        <Tab label="Edit Organization" className={classes.tab} />
           </Tabs>
         </Toolbar>
       </AppBar>
+      <TabPanel value={value} index={1}>
+        <EditOrganization/>
+      </TabPanel>
       <Grid>
         {/* <h1>Organization details go here</h1> */}
         <form>
@@ -121,10 +133,10 @@ export default function Organization() {
         <br/>
 
 
-        <Button variant="contained" color="primary" component={Link}
+        {/* <Button variant="contained" color="primary" component={Link}
               to="/edit-organization-details">
         Edit Details
-        </Button>
+        </Button> */}
       </Grid>
     </Grid>
   );
