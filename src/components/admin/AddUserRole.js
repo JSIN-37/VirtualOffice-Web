@@ -2,19 +2,12 @@ import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
-import DivisionCard from './DivisionCard.js';
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { Tab } from "@material-ui/core";
-import { Tabs } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
-import { Checkbox } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
-
+import { TextField } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
+import { Switch } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,31 +48,6 @@ export default function AddUserRole() {
 
   return (
     <Grid container spacing={4}>
-      <AppBar
-        position="fixed"
-        color="primary"
-        className={classes.appbar}
-        elevation={0}
-      >
-        <Toolbar>
-        <PersonOutlineRoundedIcon
-            color="primary"
-            className={classes.appbaricon}
-            fontSize="medium"
-          />
-          <Typography variant="h6" className={classes.apptitle} color="primary">
-            UserRoles
-          </Typography>
-          <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }} >
-                        <Tab label="User Roles" className={classes.tab} />
-                        <Tab label="Add User Roles" className={classes.tab} />
-                        <Tab label="Edit User Roles" className={classes.tab} />
-                        <Tab label="Assign User Roles" className={classes.tab} />
-          </Tabs>
-
-
-        </Toolbar>
-      </AppBar>
       <Grid>
         {/* <h1>Divisions details go here</h1> */}
         <form>
@@ -252,14 +220,8 @@ export default function AddUserRole() {
 
             {/* <Paper className={classes.paper}>item</Paper> */}
             </Grid>
-
-
         </Grid>    
         </Grid>
-
-
-        
-
         <br/>
         <Button color="primary" variant="contained" >Save Role</Button> 
         

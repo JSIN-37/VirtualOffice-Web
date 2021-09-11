@@ -61,7 +61,7 @@ appbar: {
   },
 }));
 
-function MemberDesignation(props) {
+function EmployeeDesignation(props) {
   
   return (
     <div className={classes.root}>
@@ -191,4 +191,4 @@ function MemberDesignation(props) {
   );
 }
 
-export default MemberDesignation;
+export default EmployeeDesignation;

@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddUserRole() {
+export default function EditUserRole() {
   const classes = useStyles();
 
   const [value, setValue] = useState(0);
@@ -55,31 +55,6 @@ export default function AddUserRole() {
 
   return (
     <Grid container spacing={4}>
-      <AppBar
-        position="fixed"
-        color="primary"
-        className={classes.appbar}
-        elevation={0}
-      >
-        <Toolbar>
-        <PersonOutlineRoundedIcon
-            color="primary"
-            className={classes.appbaricon}
-            fontSize="medium"
-          />
-          <Typography variant="h6" className={classes.apptitle} color="primary">
-            UserRoles
-          </Typography>
-          <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }} >
-                        <Tab label="User Roles" className={classes.tab} />
-                        <Tab label="Add User Roles" className={classes.tab} />
-                        <Tab label="Edit User Roles" className={classes.tab} />
-                        <Tab label="Assign User Roles" className={classes.tab} />
-          </Tabs>
-
-
-        </Toolbar>
-      </AppBar>
       <Grid>
         {/* <h1>Divisions details go here</h1> */}
         <form>
@@ -265,7 +240,7 @@ export default function AddUserRole() {
         
         <Button color="primary" variant="outlined" >Cancel</Button> 
 
-        <Button color="secondary">Delete User Role</Button>
+        <Button color="secondary" variant="outlined" >Delete Usser Role</Button> 
       </Grid>
     </Grid>
   );

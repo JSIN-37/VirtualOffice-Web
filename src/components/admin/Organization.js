@@ -9,6 +9,7 @@ import { Button } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
 import {Tab} from "@material-ui/core";
 import EditOrganization from "./EditOrganization";
+import OrganizationOverview from "./OrganizationOverview";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,59 +86,13 @@ export default function Organization() {
           </Tabs>
         </Toolbar>
       </AppBar>
+      <TabPanel value={value} index={0}>
+        <OrganizationOverview/>
+      </TabPanel>
       <TabPanel value={value} index={1}>
         <EditOrganization/>
       </TabPanel>
-      <Grid>
-        {/* <h1>Organization details go here</h1> */}
-        <form>
-          <TextField
-            className="Text-field"
-            id="filled-full-width"
-            style={{ margin: 4 }}
-            label="System Administrator"
-            placeholder="A L Silva"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          ></TextField>
-
-        <br/> 
-        <br/> 
-
-
-        <TextField
-            className="Text-field"
-            id="filled-full-width"
-            style={{ margin: 4 }}
-            label="Administrator Email "
-            placeholder="Email"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          ></TextField>
-        </form>
-
-        <br/>
-        <Button color="primary" component={Link}
-              to="/divisions">Divisions</Button> <br/>
-
-        <Button color="primary" component={Link}
-              to="/teams"> Teams</Button><br/>
-
-
-        <Button color="primary" component={Link}
-              to="/user-roles">User Roles</Button><br/>
-        <br/>
-
-
-        {/* <Button variant="contained" color="primary" component={Link}
-              to="/edit-organization-details">
-        Edit Details
-        </Button> */}
-      </Grid>
+     
     </Grid>
   );
 }

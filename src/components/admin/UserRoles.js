@@ -8,6 +8,10 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Tab } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
+import AddUserRole from "./AddUserRole";
+import EditUserRoles from "./EditUserRole";
+import UserRoleOverview from "./UserRoleOverview";
+import AssignUserRoles from "./AssignUserRole";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +40,9 @@ tab: {
   textTransform: "none",
   fontSize: "16px",
 },
+indicator: {
+  backgroundColor: "#3F51B4",
+},
 }));
 
 export default function UserRoles() {
@@ -44,6 +51,10 @@ export default function UserRoles() {
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
+    };
+
+    const TabPanel = ({ children, index, value }) => {
+      return <>{value === index && <>{children}</>}</>;
     };
 
   return (
@@ -69,39 +80,21 @@ export default function UserRoles() {
                         <Tab label="Edit User Roles" className={classes.tab} />
                         <Tab label="Assign User Roles" className={classes.tab} />
           </Tabs>
-
-
-
         </Toolbar>
       </AppBar>
-      <Grid>
-        {/* <h1>UserRoles details go here</h1> */}
-        <Grid container spacing={1}>
-      <Grid container item xs={12} spacing={3}>
-        <Grid item xs={4}>
-         <UserRoleCards/>
-
-          {/* <Paper className={classes.paper}>item</Paper> */}
-        </Grid>
-
-        <Grid item xs={4}>
-        <UserRoleCards/>
-        </Grid>
-
-        <Grid item xs={4}>
-         <UserRoleCards/>
-        </Grid>
-
-
-        <Grid item xs={4}>
-        <UserRoleCards/>  
-        </Grid>
-
-
-      </Grid>
-
-      
-    </Grid>
+      <TabPanel value={value} index={0}>
+        <UserRoleOverview/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <AddUserRole/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <EditUserRoles/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+       <AssignUserRoles/>
+      </TabPanel>
+     
     <br/>
       
     <Grid
@@ -113,16 +106,15 @@ export default function UserRoles() {
       justifyContent="flex-start"
       style={{ minHeight: '10vh' }}
     >
-    <Button variant="contained" 
+    {/* <Button variant="contained" 
             color="primary" 
             className="button-add-user" 
             component={Link}
             to="/add-user-role"
       >
     + Add New Role
-    </Button>
+    </Button> */}
       </Grid>
       </Grid>
-    </Grid>
   );
 }
