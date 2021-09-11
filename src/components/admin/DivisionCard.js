@@ -63,10 +63,10 @@ function DivionCard() {
               style={{ minHeight: '15vh' }}
             >
                 
-          <Button variant="contained" size="small" justifyContent="flex-end"> 
+          {/* <Button variant="contained" size="small" justifyContent="flex-end"> 
               <EditOutlinedIcon style={{ color: blue[500] }} />
               <Typography>Edit</Typography>
-          </Button>
+          </Button> */}
             </Grid>
               
             </td>

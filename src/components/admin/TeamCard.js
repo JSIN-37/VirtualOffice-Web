@@ -57,11 +57,11 @@ function AllTeamCard() {
         style={{ minHeight: '20vh' }}
       >
           
-    <Button variant="contained" size="small"> 
+    {/* <Button variant="contained" size="small"> 
         <EditOutlinedIcon style={{ color: blue[500] }}/>
         <Typography >Edit</Typography>
           
-    </Button>
+    </Button> */}
       </Grid>
     </Card>
   );

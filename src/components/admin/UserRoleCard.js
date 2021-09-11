@@ -54,12 +54,12 @@ function UserRoleCards() {
         style={{ minHeight: '10vh' }}
       >
           
-    <Button variant="contained" size="small" className="button-edit-role" 
+    {/* <Button variant="contained" size="small" className="button-edit-role" 
             component={Link}
             to="/edit-role"> 
         <EditOutlinedIcon style={{ color: blue[500] }}/>
           Edit
-    </Button>
+    </Button> */}
       </Grid>
 
     </Card>

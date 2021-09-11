@@ -8,6 +8,13 @@ import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import { Tab } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +52,16 @@ export default function Teams() {
     const handleTabs = (e, val) => {
         setValue(val);
     };
+
+    const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Grid container spacing={4}>
@@ -111,10 +128,55 @@ export default function Teams() {
         style={{ minHeight: '10vh' }}
       >
       <Button variant="contained" color="primary" className="button-user-role" component={Link}
-              to="/add-new-team">
+              to="/add-new-team" onClick={handleClickOpen}>
       
       + Add new Team
       </Button>
+
+
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Team Members</DialogTitle>
+        <DialogContent>
+
+        <Grid container item lg={12} spacing={3}>
+            <Grid item md={4}>
+            <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Search Employees"
+            type="email"
+            fullWidth
+          />
+            </Grid>
+
+            <Grid item md={4} >
+            <Button color="primary" variant="contained">
+              Add
+            </Button>
+            </Grid>
+
+            <Grid item md={4} >
+              <Avatar alt="Remy Sharp"  fontsize="small"/>
+              <Typography variant="body2" >A.T. Pathirana</Typography>
+            </Grid>
+  
+          </Grid>
+
+
+
+
+          
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" variant="contained">
+            Save
+          </Button>
+          <Button onClick={handleClose} color="primary" variant="outlined">
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
       </Grid>
 
       </Grid>

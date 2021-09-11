@@ -8,6 +8,12 @@ import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import EmployeeTable from "./EmployeeTable";
 import { TabPanel } from "@material-ui/lab";
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 
@@ -31,6 +37,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Employees() {
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
@@ -76,14 +92,61 @@ export default function Employees() {
             component={Link}
             to="/invite-employees"
             color="primary"
+            onClick={handleClickOpen}
             style={{ margin: 4 }}
           >
             Invite Employees
           </Button>
-          
 
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Invite Empoyees of your organization</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
 
-
+          </DialogContentText>
+          <form>
+            
+          </form>
+        </DialogContent>
+          <Grid container item lg={12} spacing={3}>
+            <Grid item md={6}>
+            Name
+            <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            type="email"
+            placeholder="Eg: A P Perera"
+            fullWidth
+            />
+              
+            </Grid>
+            <Grid item md={6} >
+              Email
+              <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              type="email"
+              placeholder="Eg: apperera@gmail.com"
+              fullWidth
+              />
+              
+            </Grid>
+          </Grid>
+        
+          <DialogActions>
+            <Button onClick={handleClose} color="primary" variant="contained"
+            component={Link}
+            to="/invite-employees"
+            onClick={handleClickOpen}
+            justifyContent="flex-start"
+            style={{ margin: 4 }}
+            size="small">
+              Send Invitation
+            </Button>
+          </DialogActions>
+        </Dialog>
 
 
         </Grid>

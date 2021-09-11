@@ -70,7 +70,7 @@ export default function MemberCard({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Edit</Button>
+        {/* <Button size="small">Edit</Button> */}
         <Button size="small" onClick={() => deleteMember()}>
           Delete
         </Button>
