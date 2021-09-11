@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect, useRef} from 'react'
 import Grid from '@material-ui/core/Grid'
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Tabs from '@material-ui/core/Tabs';
@@ -6,10 +6,15 @@ import Tab from '@material-ui/core/Tab';
 import { makeStyles } from "@material-ui/core/styles";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import { Link } from "react-router-dom";
-import MyTasks from "./MyTasks";
-import InspectTasks from "./InspectTasks";
-import AssignTasks from "./AssignTasks";
-import TaskReports from "./TaskReports";
+import MyTasks from "./task-management-module/MyTasks";
+import InspectTasks from "./task-management-module/InspectTasks";
+import AssignTasks from "./task-management-module/AssignTasks";
+import TaskReports from "./task-management-module/TaskReports";
+
+export const TaskManagementData = React.createContext();
+const LOCAL_STORAGE_ASSIGNED_TASKS_KEY = 'vo-material.assigned_tasks_array';
+const LOCAL_STORAGE_DRAFTS_KEY = 'vo-material.drafts_array';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,8 +43,64 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TeamHeader() {
+export default function Tasks() {
+    console.log("RENDER TASK MANAGEMENT MODULE ROOT - TASKS.JS - ")
     const classes = useStyles();
+    const writeT = useRef(false)
+    const writeD = useRef(false)
+    //REPLACE WITH SERVER FETCH and WRITE - ASSIGNED TASKS ARRAY
+  const [assignedTasksDB, setAssignedTasksDB] = useState(()=>{ 
+      const arr = localStorage.getItem(LOCAL_STORAGE_ASSIGNED_TASKS_KEY)
+      if(arr !== null){
+          return JSON.parse(arr)
+      }else{
+          return []
+      }
+  });
+  const [draftsDB, setDraftsDB] = useState(()=>{
+      const arr = localStorage.getItem(LOCAL_STORAGE_DRAFTS_KEY)
+      if(arr!== null){
+          return JSON.parse(arr)
+      }else{
+          return []
+      }
+  });
+  const [resume, setResume] = useState(false);
+
+  const TaskManagementDataContextVals = {
+    assignedTasksDB,
+    setAssignedTasksDB,
+    draftsDB,
+    setDraftsDB,
+    resume,
+    setResume
+  };
+
+
+
+  //Writing to assigned tasks DB when theres a change to the array
+  useEffect(() => {
+    if(!writeT.current){
+        writeT.current = true
+        return
+    }
+    console.log('writing to AssignedTasksDB -> minion tasks');
+    localStorage.setItem(
+      LOCAL_STORAGE_ASSIGNED_TASKS_KEY,
+      JSON.stringify(assignedTasksDB)
+    );
+  }, [assignedTasksDB]);
+
+  //Writing to drafts DB when theres a change to the array
+  useEffect(() => {
+    if(!writeD.current){
+        writeD.current = true
+        return
+    }
+    console.log('writing  to draftsDB -> minion drafts');
+    localStorage.setItem(LOCAL_STORAGE_DRAFTS_KEY, JSON.stringify(draftsDB));
+  }, [draftsDB]);
+
 
     const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
@@ -69,6 +130,7 @@ export default function TeamHeader() {
                     </Tabs>
                 </Toolbar>
             </AppBar>
+            <TaskManagementData.Provider value={TaskManagementDataContextVals}>
             <TabPanel value={value} index={0}>
                 <MyTasks />
             </TabPanel>
@@ -81,6 +143,7 @@ export default function TeamHeader() {
             <TabPanel value={value} index={3}>
                 <TaskReports />
             </TabPanel>
+            </TaskManagementData.Provider>
         </Grid>
     );
 }
