@@ -39,10 +39,10 @@ function OrganizationOverview() {
       <br/>
       <Grid container style={{ paddingTop: '10px', }} align="center" justifyContent="center" alignItems="center">
                 <Grid item xs={2}>
-                    <Avatar alt="Remy Sharp"  />
+                    <Avatar alt="Remy Sharp"  src="./src/resources/orgImage.jpg"/>
                 </Grid>
                 <Grid item xs={10}>
-                    <Typography >University of Colombo School of Computing (UCSC)</Typography>
+                    <Typography fontSize="8">University of Colombo School of Computing (UCSC)</Typography>
                 </Grid>
       </Grid>
       <br/>
@@ -50,13 +50,16 @@ function OrganizationOverview() {
       <Typography variant="overline">
         System Administrator
       </Typography>
-      <TextField id="filled-basic" label="Eg: A R Perera" variant="filled" />
+      <Typography fontSize="10">A R Perera</Typography>      
+
+      {/* <TextField id="filled-basic" label="Eg: A R Perera" variant="filled" /> */}
 
       <br/>
       <br/>
       <Typography variant="overline">
         Administrator Email
       </Typography>
+      <Typography fontSize="10">arperera@gmail.com</Typography>
       {/* <TextField id="filled-basic" label="Eg: arperera" variant="filled" /> */}
       <br/>
       <br/>
