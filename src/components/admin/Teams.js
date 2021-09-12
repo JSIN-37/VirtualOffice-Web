@@ -75,7 +75,7 @@ export default function Teams() {
           <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }} >
                         <Tab label="Overview" className={classes.tab} />
                         <Tab label="Add Team" className={classes.tab} />
-                        <Tab label="View Team" className={classes.tab} />
+                        <Tab label="Edit Team" className={classes.tab} />
           </Tabs>
 
         </Toolbar>
