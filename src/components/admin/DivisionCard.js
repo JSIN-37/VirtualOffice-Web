@@ -59,8 +59,7 @@ function DivionCard({ divId }) {
 
       <table >
         <tr>
-            <td><Typography>Head of Division:</Typography></td>
-            
+            <td><Typography>Head of Division:</Typography></td>            
             <td><Typography>{divisionHead}</Typography></td>
         </tr>
         <tr>

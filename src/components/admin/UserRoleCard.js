@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -34,8 +34,11 @@ const useStyles = makeStyles({
 });
 
 
-function UserRoleCards() {
+function UserRoleCards({userRoleId}) {
   const classes = useStyles();
+
+  const [roleName, setRoleName] = useState(``);
+  const [roleDescription, setRoleDescription] = useState(``);
 
   const [open, setOpen] = React.useState(false);
 
@@ -53,13 +56,27 @@ function UserRoleCards() {
     };
   // const bull = <span className={classes.bullet}>•</span>;
 
+  useEffect(() => {
+    getUserRoleDetails();
+  }, [])
+
+  const getUserRoleDetails = () => {
+    var axios = require('axios');
+    axios.get(`${window.backendURL}/admin/get-userRole`, userRoleId) //get the team details
+      .then(res => {
+        const userRole = res.data;
+        setRoleName(userRole.roleName); 
+        setRoleDescription(userRole.roleDescription); 
+    })
+  };
+
   return (
     <Card className={classes.root} variant="outlined">
-      <Typography align="left">Director</Typography>
+      <Typography align="left">{roleName}</Typography>
 
       <table >
         <tr>
-            <td><Typography>Secondary Text</Typography></td>
+            <td><Typography>{roleDescription}</Typography></td>
         </tr>
       </table>
         
