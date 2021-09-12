@@ -33,21 +33,28 @@ function OrganizationOverview() {
   
   return (
     <Grid >
-      <Typography>
+      <Typography variant="overline">
         Organzation Name
       </Typography>
       <br/>
-      <Avatar/>
+      <Grid container style={{ paddingTop: '10px', }} align="center" justifyContent="center" alignItems="center">
+                <Grid item xs={2}>
+                    <Avatar alt="Remy Sharp"  />
+                </Grid>
+                <Grid item xs={10}>
+                    <Typography >University of Colombo School of Computing (UCSC)</Typography>
+                </Grid>
+      </Grid>
       <br/>
       <br/>
-      <Typography>
+      <Typography variant="overline">
         System Administrator
       </Typography>
       <TextField id="filled-basic" label="Eg: A R Perera" variant="filled" />
 
       <br/>
       <br/>
-      <Typography>
+      <Typography variant="overline">
         Administrator Email
       </Typography>
       <TextField id="filled-basic" label="Eg: arperera" variant="filled" />
