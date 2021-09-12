@@ -8,6 +8,11 @@ import { Avatar } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +48,13 @@ function AddTeam() {
         orgname:orgname,
         country: country,
   })
+};
+
+// const classes = useStyles();
+//   const [team, setTeam] = React.useState('');
+
+const handleChange = (event) => {
+  //  setTeam(event.target.value);
 };
 
   return (
@@ -89,15 +101,19 @@ function AddTeam() {
                 Team Members
         </Typography>
         <br/>
-        
-        <Typography>
-        <AddCircleIcon/>
-            Add Employee
-        </Typography>
-        <br/>
-        <Typography variant="body2" >
-        <Avatar alt="Remy Sharp"  fontsize="small"/>
-        A.T. Pathirana</Typography>
+        <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Select Division</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          // value={division}
+          onChange={handleChange}
+        >
+          <MenuItem >Director's Office</MenuItem>
+          <MenuItem >Management </MenuItem>
+          <MenuItem >Examinatoin Division</MenuItem>
+        </Select>
+      </FormControl>
         </Grid>
       </Grid>
     <br/>
