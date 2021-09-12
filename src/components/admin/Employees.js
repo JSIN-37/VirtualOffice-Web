@@ -89,8 +89,8 @@ export default function Employees() {
         
           <Button
             variant="contained"
-            component={Link}
-            to="/invite-employees"
+            // component={Link}
+            // to="/invite-employees"
             color="primary"
             onClick={handleClickOpen}
             style={{ margin: 4 }}

@@ -7,7 +7,7 @@ import { Typography } from "@material-ui/core";
 
 export default function AddDivision() {
   return (
-    <Grid container spacing={4}>
+    <Grid container spacing={4} style={{ paddingTop: '10px', }}>
       <Grid>
         <form>
           <TextField
@@ -68,7 +68,6 @@ export default function AddDivision() {
           />
           Allow Head of Division to add employees
           </Typography>
-          <br />
           <Typography>
           <Checkbox
             defaultChecked
@@ -77,7 +76,6 @@ export default function AddDivision() {
           />
           Allow employees to assign tasks
           </Typography>
-          <br />
           <Typography>
           <Checkbox
             defaultChecked
@@ -86,7 +84,6 @@ export default function AddDivision() {
           />
           Allow employees to create teams
           </Typography>
-          <br />
           <Typography>
           <Checkbox
             defaultChecked
@@ -95,7 +92,6 @@ export default function AddDivision() {
           />
           Allow Head of Division to review tasks
           </Typography>
-          <br />
         </form>
 
         <br />

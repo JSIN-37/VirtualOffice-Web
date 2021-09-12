@@ -57,7 +57,12 @@ function EditOrganization() {
 
       <Grid container spacing={24}>
        <Grid  item xs={12}>
-    
+
+         
+      <Typography variant="overline">
+        Edit Administrator Details
+      </Typography>
+      <br/>
       <TextField
           required
           className="Text-field-org"
@@ -68,7 +73,6 @@ function EditOrganization() {
           InputLabelProps={{
             shrink: true,
           }}
-          variant="outlined"
           onChange={(e) => setFname(e.target.value)}
         />
         
@@ -81,13 +85,12 @@ function EditOrganization() {
           InputLabelProps={{
             shrink: true,
           }}
-          variant="outlined"
           onChange={(e) => setLname(e.target.value)}
         />
         </Grid>
         </Grid>
           <br/>
-        <TextField
+        {/* <TextField
           className="Text-field-org"
           id="filled-full-width"
           label ="Organization"
@@ -98,12 +101,10 @@ function EditOrganization() {
           }}
           variant="outlined"
           onChange={(e) => setOrgname(e.target.value)}
-        />
-        <br/>
-        <br/>
+        /> */}
           <form style={{ margin: 2}}>
-          <Typography>
-          Logo
+          <Typography variant="overline">
+            Logo
           </Typography>
              
 
@@ -123,7 +124,6 @@ function EditOrganization() {
             id="filled-required"
             label="Country/Region"
             placeholder="Country/Region"
-            variant="outlined"
             InputLabelProps={{
               shrink: true,
             }}
@@ -132,22 +132,23 @@ function EditOrganization() {
 
       <br/>
       <br/>
-        <Typography style={{ margin: 2}}>
+      <small >
         As Admin you will be reponsible for the personal data of 
         people in your organization as well as the data 
         managemnet requests they submit to you. <br/>Learn more.
-        </Typography>
+        </small>
       {/*Hyperlink the LEARN MORE AND TERMS AND SERVICES */}
       <br/>
+      <Typography>
       <Checkbox
         defaultChecked
         style={{ margin: 2}}
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
-      <small >
+      
       I agree to the terms and services
-      </small>
+      </Typography>      
 
       <Grid
         container
