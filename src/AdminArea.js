@@ -9,6 +9,9 @@ import Teams from "./components/admin/Teams";
 import UserRoles from "./components/admin/UserRoles";
 import Employees from "./components/admin/Employees";
 import Settings from "./components/admin/Settings";
+import SetUpOrganization from "./components/admin/SetUpOrganization";
+import AddDivision from "./components/admin/AddDivision";
+import AddUserRole from "./components/admin/AddUserRole"
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -38,6 +41,21 @@ const AdminArea = ({ appD, setAppD }) => {
           <Route exact path="/logout">
             <LogOut appD={appD} setAppD={setAppD} />
           </Route>
+          <Route exact path="/set-up-organization">
+            <SetUpOrganization/>
+          </Route>
+          <Route exact path="/add-new-division">
+            <AddDivision/>
+          </Route>
+          <Route exact path="/add-user-role">
+            <AddUserRole/>
+          </Route>
+
+
+          
+
+
+
         </Layout>
       </Router>
     );
