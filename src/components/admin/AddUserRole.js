@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
   },
+  root2: {
+    width: "100%",
+    boxSizing: "border-box"
+},
   apptitle: {
     padding: theme.spacing(2), //16px
     fontWeight: 500,
@@ -46,23 +50,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddUserRole() {
-  const classes = useStyles();
+export default function AddUserRole(userRoleId) {
 
+  const classes = useStyles();
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
     };
 
     const [addTeam, setAddTeam] = React.useState('');
+    const [userRoles, setUserRole] = React.useState([]);
 
     const handleChange = (event) => {
       setAddTeam(event.target.value);
+      setUserRole(event.target.value);
     };
+
+    const getUserRoles = () => {
+      var axios = require('axios');
+      axios.get(`${window.backendURL}/admin/get-userRoles`, userRoleId) //get the team details
+        .then(res => {
+          const userRole = res.data;
+          setUserRole(userRole.name);
+      })
+    };
+
+    let UserRoleList=userRoles.map((userRole,index)=>{
+      return (<Typography key={index}>
+          {userRole}
+      </Typography>)
+    })
 
 
   return (
-    <Grid container spacing={4}>
+    <div className={classes.root2}>
+    <Grid container spacing={4} >
       <Grid>
         {/* <h1>Divisions details go here</h1> */}
         <form>
@@ -77,8 +99,13 @@ export default function AddUserRole() {
             }}
             variant="outlined"
           ></TextField> */}
+          <Typography>
+                Role Name
+        </Typography>
 
-        <FormControl className={classes.formControl}>
+          {UserRoleList}
+
+        {/* <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Select the Role</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -90,7 +117,7 @@ export default function AddUserRole() {
               <MenuItem >Role 2 </MenuItem>
               <MenuItem >Role 3</MenuItem>
             </Select>
-          </FormControl> 
+          </FormControl>  */}
           <br/>
           <Checkbox
                 defaultChecked
@@ -257,5 +284,7 @@ export default function AddUserRole() {
         <Button color="primary" variant="outlined" >Cancel</Button> 
       </Grid>
     </Grid>
+    </div>
   );
+  
 }

@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function AssignUserRole() {
+function AssignUserRole(memberId) {
 
   const classes = useStyles();
   const [fname, setFname] = useState(``);
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);
   const [country, setCountry] = useState(``);
+  const [member, setMember] = React.useState([]);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
@@ -45,7 +46,24 @@ function AssignUserRole() {
 
     const handleChange = (event) => {
       setAddTeam(event.target.value);
+      setMember(event.target.value);
     };
+
+
+    const getMember = () => {
+      var axios = require('axios');
+      axios.get(`${window.backendURL}/admin/get-member`, memberId) //get the team details
+        .then(res => {
+          const Member = res.data;
+          setMember(Member.name);
+      })
+    };
+
+    let MemberList=member.map((Member,index)=>{
+      return (<Typography key={index}>
+          {Member}
+      </Typography>)
+    })
 
   const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
     var axios = require("axios");
@@ -80,7 +98,12 @@ function AssignUserRole() {
                 Email Address
             </Typography>
             <TextField id="filled-basic" label="Eg:aarperera@gmail.com" /> */}
-            <FormControl className={classes.formControl}>
+
+          <Typography>
+            Add a Member
+            {MemberList}
+          </Typography>
+            {/* <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -92,7 +115,7 @@ function AssignUserRole() {
               <MenuItem >U J Uyanhewa </MenuItem>
               <MenuItem >J H S Abeytunger</MenuItem>
             </Select>
-          </FormControl> 
+          </FormControl>  */}
             <br/>
             <br/>
             <Typography>

@@ -39,6 +39,7 @@ function UserRoleCards({userRoleId}) {
 
   const [roleName, setRoleName] = useState(``);
   const [roleDescription, setRoleDescription] = useState(``);
+  const [rolePermissions, setRolePermissions] = useState([]);
 
   const [open, setOpen] = React.useState(false);
 
@@ -58,6 +59,7 @@ function UserRoleCards({userRoleId}) {
 
   useEffect(() => {
     getUserRoleDetails();
+    getUserRolePermissions();
   }, [])
 
   const getUserRoleDetails = () => {
@@ -69,6 +71,25 @@ function UserRoleCards({userRoleId}) {
         setRoleDescription(userRole.roleDescription); 
     })
   };
+
+  const getUserRolePermissions = () => {
+    var axios = require('axios');
+    axios.get(`${window.backendURL}/admin/get-permissions`, userRoleId) //get the team details
+      .then(res => {
+        const permissions = res.data;
+        setRoleName(permissions); 
+    })
+  };
+
+
+
+  let PermissionList=rolePermissions.map((permission,index)=>{
+    return (<Typography key={index}>
+        {permission}
+    </Typography>)
+  })
+
+
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -98,26 +119,15 @@ function UserRoleCards({userRoleId}) {
           Permissions
     </Button>
 
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Invite Empoyees of your organization</DialogTitle>
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Permissions</DialogTitle>
         <DialogContent>
           <DialogContentText>
 
           </DialogContentText>
           <form>
-            <Typography>
-              Permission 1
-            </Typography>
-            <Typography>
-              Permission 2
-            </Typography>
-            <Typography>
-              Permission 3
-            </Typography>
-            <Typography>
-              Permission 4
-            </Typography>
-            
+            {PermissionList}
+                      
           </form>
         </DialogContent>
          

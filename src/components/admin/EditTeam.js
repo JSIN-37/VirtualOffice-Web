@@ -43,7 +43,7 @@ formControl: {
 
 
 
-function EditTeam() {
+function EditTeam(teamMemberId) {
 
   const classes = useStyles();
   const [fname, setFname] = useState(``);
@@ -57,26 +57,31 @@ function EditTeam() {
     };
 
     const [addTeam, setAddTeam] = React.useState('');
+    const [team, setTeam] = React.useState('');
+    const [teamMembers, setTeamMembers] = useState([]);
 
     const handleChange = (event) => {
       setAddTeam(event.target.value);
+      setTeam(event.target.value);
     };
 
 
     const [open, setOpen] = React.useState(false);
 
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
-    var axios = require("axios");
-    axios
-      .post(`${window.backendURL}/setup-organization`, {
-        fname: fname,
-        lname: lname,
-        orgname:orgname,
-        country: country,
-  })
+    const getTeamMembers = () => {
+      var axios = require('axios');
+      axios.get(`${window.backendURL}/admin/get-teamMember`, teamMemberId) //get the team details
+        .then(res => {
+          const teamMember = res.data;
+          setTeamMembers(teamMember.name);
+      })
+    };
 
-};
-
+    let MemeberList=teamMembers.map((teamMember,index)=>{
+      return (<Typography key={index}>
+          {teamMember}
+      </Typography>)
+    })
 
   
   return (
@@ -139,7 +144,8 @@ function EditTeam() {
                 Team Members
         </Typography>
         <br/>
-        <FormControl className={classes.formControl}>
+        {MemeberList}
+        {/* <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -147,12 +153,13 @@ function EditTeam() {
           value={addTeam}
           onChange={handleChange}
         >
+           
           <MenuItem >A R Perera</MenuItem>
           <MenuItem >U J Uyanhewa </MenuItem>
           <MenuItem >J H S Abeytunger</MenuItem>
         </Select>
       </FormControl>        
-        
+         */}
         </Grid>
       </Grid>
     <br/>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +15,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
 import UserRoleCards from "./UserRoleCard";
+import { useState, useEffect } from "react";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,34 +47,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function UserRoleOverview() {
   const classes = useStyles();
+  const [userRoles, setUserRoles] = useState([]);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
+        
     };
+  
+      useEffect(() => {
+        getUserRoles();
+      }, [])
+
+      const getUserRoles = () => {
+        var axios = require('axios');
+        axios.get(`${window.backendURL}/admin/get-getUserRole`) //get the ids of all the divisions
+          .then(res => {
+            const userRoleIds = res.data;
+            setUserRoles(userRoleIds);
+        })
+      };
+
+    let userRoleList=userRoles.map((userRole,index)=>{
+      return (<Grid key={index} item xs={4}>
+                <UserRoleCards userRoleId={userRole} />
+              </Grid>)
+    })
+
 
   return (
         <Grid container spacing={1}>
-      <Grid container item xs={12} spacing={3}>
-        <Grid item xs={4}>
-         <UserRoleCards/>
-
-        </Grid>
-
-        <Grid item xs={4}>
-        <UserRoleCards/>
-        </Grid>
-
-        <Grid item xs={4}>
-         <UserRoleCards/>
-        </Grid>
-
-
-        <Grid item xs={4}>
-        <UserRoleCards/>  
-        </Grid>
+      <Grid container item xs={12} spacing={3} >
+        {userRoleList}
+        
       </Grid>
    </Grid>
   );

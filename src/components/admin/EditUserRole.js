@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditUserRole() {
+export default function EditUserRole(memberId) {
   const classes = useStyles();
   const [fname, setFname] = useState(``);
   const [lname, setLname] = useState(``);
@@ -67,10 +67,28 @@ export default function EditUserRole() {
     };
 
     const [addTeam, setAddTeam] = React.useState('');
+    const [member, setMember] = React.useState([]);
 
     const handleChange = (event) => {
       setAddTeam(event.target.value);
+      setMember(event.target.value);
     };
+
+    const getMember = () => {
+      var axios = require('axios');
+      axios.get(`${window.backendURL}/admin/get-member`, memberId) //get the team details
+        .then(res => {
+          const Member = res.data;
+          setMember(Member.name);
+      })
+    };
+
+    let MemberList=member.map((Member,index)=>{
+      return (<Typography key={index}>
+          {Member}
+      </Typography>)
+    })
+
 
 
     const [open, setOpen] = React.useState(false);
@@ -91,7 +109,14 @@ export default function EditUserRole() {
             }}
             variant="outlined"
           ></TextField> */}
-          <FormControl className={classes.formControl}>
+
+          <Typography>
+            Add a Member
+            {MemberList}
+          </Typography>
+
+
+          {/* <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -103,7 +128,7 @@ export default function EditUserRole() {
               <MenuItem >U J Uyanhewa </MenuItem>
               <MenuItem >J H S Abeytunger</MenuItem>
             </Select>
-          </FormControl>    
+          </FormControl>     */}
           <br/>
           <br/>
           <Checkbox

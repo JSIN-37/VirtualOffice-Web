@@ -39,7 +39,6 @@ function AddTeam() {
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);
   const [country, setCountry] = useState(``);
-
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
