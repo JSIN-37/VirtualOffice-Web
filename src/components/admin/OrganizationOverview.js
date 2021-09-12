@@ -57,7 +57,7 @@ function OrganizationOverview() {
       <Typography variant="overline">
         Administrator Email
       </Typography>
-      <TextField id="filled-basic" label="Eg: arperera" variant="filled" />
+      {/* <TextField id="filled-basic" label="Eg: arperera" variant="filled" /> */}
       <br/>
       <br/>
 
