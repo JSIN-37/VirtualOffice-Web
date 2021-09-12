@@ -5,7 +5,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles } from "@material-ui/core/styles";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
-import { Link } from "react-router-dom";
 import TeamOverview from "./TeamOverview";
 import AddTeam from "./AddTeam";
 
@@ -56,7 +55,7 @@ export default function TeamHeader() {
                 elevation={0}>
                 <Toolbar>
                     <PeopleRoundedIcon color="primary" className={classes.appbaricon} fontSize="medium" />
-                    <Typography variant="h6" className={classes.apptitle} color="primary" component={Link} to="/teams">
+                    <Typography variant="h6" className={classes.apptitle} color="primary">
                         Teams
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>
