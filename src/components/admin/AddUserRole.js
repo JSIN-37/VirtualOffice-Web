@@ -8,6 +8,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { Switch } from "@material-ui/core";
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     fontSize: "16px",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+  },
 }));
 
 export default function AddUserRole() {
@@ -46,12 +54,19 @@ export default function AddUserRole() {
         setValue(val);
     };
 
+    const [addTeam, setAddTeam] = React.useState('');
+
+    const handleChange = (event) => {
+      setAddTeam(event.target.value);
+    };
+
+
   return (
     <Grid container spacing={4}>
       <Grid>
         {/* <h1>Divisions details go here</h1> */}
         <form>
-          <TextField
+          {/* <TextField
             className="Text-field"
             id="filled-full-width"
             style={{ margin: 4 }}
@@ -61,7 +76,21 @@ export default function AddUserRole() {
               shrink: true,
             }}
             variant="outlined"
-          ></TextField>
+          ></TextField> */}
+
+        <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Select the Role</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={addTeam}
+              onChange={handleChange}
+            >
+              <MenuItem >Role 1</MenuItem>
+              <MenuItem >Role 2 </MenuItem>
+              <MenuItem >Role 3</MenuItem>
+            </Select>
+          </FormControl> 
           <br/>
           <Checkbox
                 defaultChecked

@@ -110,7 +110,7 @@ export default function Layout({ children }) {
       path: "/employees",
     },
     {
-      text: "Settings",
+      text: "Profile Settings",
       icon: <SettingsRoundedIcon color="primary" />,
       path: "/settings",
     },

@@ -9,7 +9,7 @@ import { Tab } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
 import TeamOverview from "./TeamOverview";
 import AddTeam from "./AddTeam";
-import ViewTeam from "./ViewTeam";
+import EditTeam from "./EditTeam";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,7 +87,7 @@ export default function Teams() {
         <AddTeam/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ViewTeam/>
+        <EditTeam/>
       </TabPanel>
 
       

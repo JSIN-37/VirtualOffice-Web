@@ -17,11 +17,35 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar } from "@material-ui/core";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddIcon from '@material-ui/icons/Add';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 
-function ViewTeam() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+  root2: {
+    width: "100%",
+    boxSizing: "border-box"
+},
+formControl: {
+  margin: theme.spacing(1),
+  minWidth: 120,
+},
+}));
 
-  // const classes = useStyles();
+
+
+function EditTeam() {
+
+  const classes = useStyles();
   const [fname, setFname] = useState(``);
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);
@@ -31,6 +55,13 @@ function ViewTeam() {
     const handleTabs = (e, val) => {
         setValue(val);
     };
+
+    const [addTeam, setAddTeam] = React.useState('');
+
+    const handleChange = (event) => {
+      setAddTeam(event.target.value);
+    };
+
 
     const [open, setOpen] = React.useState(false);
 
@@ -43,22 +74,25 @@ function ViewTeam() {
         orgname:orgname,
         country: country,
   })
+
 };
 
 
   
   return (
-    <Grid>
-        <Grid container item lg={12} spacing={6}>
-        <Grid item lg={6}>
+    <div className={classes.root2}>
+        <Grid container mt="20px">
+        <Grid item md={5} lg={5}>
             <Typography>
                 Team Name
+                <br/>
                 <TextField id="filled-basic" label="Eg: Design Team" />
             </Typography>
             <br/>
             <br/>
             <Typography>
                 Team Leader
+                <br/>
             </Typography>
             <TextField id="filled-basic" label="Eg: A T Perera"  />
             <br/>
@@ -66,6 +100,7 @@ function ViewTeam() {
 
             <Typography>
                 Description
+                <br/>
                 <TextField id="filled-basic" label="Desciption"  />
             </Typography>
             
@@ -76,9 +111,14 @@ function ViewTeam() {
                 Project Tasks
                 <br/>
                 <AddIcon/>
+                <br/>
+                <AddIcon/>
+                <br/>
+                <AddIcon/>
+                <br/>
             </Typography>
             
-            
+            <br/>
             <Button variant="contained" 
                 color="primary" 
             >
@@ -94,20 +134,25 @@ function ViewTeam() {
 
         </Grid>
 
-        <Grid item lg={6}>
+        <Grid item md={5} lg={5}>
         <Typography>
                 Team Members
         </Typography>
         <br/>
+        <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={addTeam}
+          onChange={handleChange}
+        >
+          <MenuItem >A R Perera</MenuItem>
+          <MenuItem >U J Uyanhewa </MenuItem>
+          <MenuItem >J H S Abeytunger</MenuItem>
+        </Select>
+      </FormControl>        
         
-        <Typography>
-        <AddCircleIcon/>
-            Add Employee
-        </Typography>
-        <br/>
-        <Typography variant="body2" >
-        <Avatar alt="Remy Sharp"  fontsize="small"/>
-        A.T. Pathirana</Typography>
         </Grid>
       </Grid>
     <br/>
@@ -122,9 +167,9 @@ function ViewTeam() {
       >
     + Add New Role
     </Button> */}
-      </Grid>       
-  </Grid>
+      </Grid>  
+  </div>
   );
 }
 
-export default ViewTeam;
+export default EditTeam;

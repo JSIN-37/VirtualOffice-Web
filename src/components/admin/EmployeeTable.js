@@ -102,6 +102,8 @@ export default function AttendanceTable(props) {
               <EditOutlinedIcon style={{ color: blue[500] }} />
               <Typography>Edit</Typography>
             </Button>
+
+
         ),
         createData(
             <Checkbox
@@ -132,6 +134,8 @@ export default function AttendanceTable(props) {
               <EditOutlinedIcon style={{ color: blue[500] }} />
               <Typography>Edit</Typography>
             </Button>
+            
+            
         ),
         createData(
             <Checkbox

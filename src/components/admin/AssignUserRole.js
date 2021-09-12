@@ -6,7 +6,12 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import { useState } from "react";
 import {TextField} from '@material-ui/core';
-import { makeStyles } from "@material-ui/core/styles";
+import AddIcon from '@material-ui/icons/Add';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         width: '25ch',
       },
+    },
+
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
     },
   }));
 
@@ -31,7 +41,11 @@ function AssignUserRole() {
         setValue(val);
     };
 
-    const [open, setOpen] = React.useState(false);
+    const [addTeam, setAddTeam] = React.useState('');
+
+    const handleChange = (event) => {
+      setAddTeam(event.target.value);
+    };
 
   const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
     var axios = require("axios");
@@ -50,7 +64,7 @@ function AssignUserRole() {
         {/* <h1>UserRoles details go here</h1> */}
       <Grid container item lg={12} spacing={6}>
         <Grid item lg={6}>
-            <Typography>
+            {/* <Typography>
                 First Name
             </Typography>
             <TextField id="filled-basic" label="Eg: A R "  />
@@ -65,7 +79,20 @@ function AssignUserRole() {
             <Typography>
                 Email Address
             </Typography>
-            <TextField id="filled-basic" label="Eg:aarperera@gmail.com" />
+            <TextField id="filled-basic" label="Eg:aarperera@gmail.com" /> */}
+            <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={addTeam}
+              onChange={handleChange}
+            >
+              <MenuItem >A R Perera</MenuItem>
+              <MenuItem >U J Uyanhewa </MenuItem>
+              <MenuItem >J H S Abeytunger</MenuItem>
+            </Select>
+          </FormControl> 
             <br/>
             <br/>
             <Typography>
