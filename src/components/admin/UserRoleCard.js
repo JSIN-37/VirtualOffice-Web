@@ -64,7 +64,7 @@ function UserRoleCards({userRoleId}) {
 
   const getUserRoleDetails = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-userRole`, userRoleId) //get the team details
+    axios.get(`${window.backendURL}/admin/get-userRole`,  { params: { userRoleId: userRoleId } }) //get the team details
       .then(res => {
         const userRole = res.data;
         setRoleName(userRole.roleName); 
@@ -74,7 +74,7 @@ function UserRoleCards({userRoleId}) {
 
   const getUserRolePermissions = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-permissions`, userRoleId) //get the team details
+    axios.get(`${window.backendURL}/admin/get-permissions`, { params: { userRoleId: userRoleId } }) //get the team details
       .then(res => {
         const permissions = res.data;
         setRoleName(permissions); 

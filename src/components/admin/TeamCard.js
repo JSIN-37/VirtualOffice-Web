@@ -48,7 +48,7 @@ function AllTeamCard({teamId}) {
 
   const getTeamDetails = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-team`, teamId) //get the team details
+    axios.get(`${window.backendURL}/admin/get-team`, { params: { teamId: teamId } }) //get the team details
       .then(res => {
         const team = res.data;
         setTeamName(team.team_name); //Team Name
