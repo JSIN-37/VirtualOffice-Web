@@ -76,7 +76,7 @@ export default function EditDivision() {
   
   const deleteDivision = () => {
     var axios = require('axios');
-    axios.delete(`${window.backendURL}/admin/get-divisions${division}`) //delete the division record in the DB under the given division Id 
+    axios.delete(`${window.backendURL}/admin/get-divisions/${division}`) //delete the division record in the DB under the given division Id 
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -200,7 +200,7 @@ export default function EditDivision() {
             defaultChecked
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
-            onClick={handleP1}
+            onChange={handleP1}
           />
           Allow Head of Division to add employees
           </Typography>
@@ -209,7 +209,7 @@ export default function EditDivision() {
             defaultChecked
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
-            onClick={handleP2}
+            onChange={handleP2}
           />
           Allow employees to assign tasks
           </Typography>
@@ -218,7 +218,7 @@ export default function EditDivision() {
             defaultChecked
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
-            onClick={handleP3}
+            onChange={handleP3}
           />
           Allow employees to create teams
           </Typography>
@@ -227,7 +227,7 @@ export default function EditDivision() {
             defaultChecked
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
-            onClick={handleP4}
+            onChange={handleP4}
           />
           Allow Head of Division to review tasks
           </Typography>

@@ -43,7 +43,7 @@ function DivionCard({ divId }) {
 
   const getDivisionDetails = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-division`, divId) //get the details of the deivision
+    axios.get(`${window.backendURL}/admin/get-division`,  { params: { divisionId: divId } }) //get the details of the deivision
       .then(res => {
         const division = res.data;
         setDivisionName(division.name); //Division Name
