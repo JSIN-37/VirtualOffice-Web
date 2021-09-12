@@ -7,7 +7,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
-import { useState } from "react";
 import TeamCard from './TeamCard.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -15,9 +14,25 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar } from "@material-ui/core";
+import { useState, useEffect } from "react";
 
 
 function TeamOverview() {
+
+  const [teams, setTeams] = useState([]);
+  
+  useEffect(() => {
+    getTeams();
+  }, [])
+
+  const getTeams = () => {
+    var axios = require('axios');
+    axios.get(`${window.backendURL}/admin/get-teams`) //get the ids of all the divisions
+      .then(res => {
+        const teamIds = res.data;
+        setTeams(teamIds);
+    })
+  };
 
   // const classes = useStyles();
   const [fname, setFname] = useState(``);
@@ -43,35 +58,21 @@ function TeamOverview() {
   })
 };
 
-
+  let teamList=teams.map((team,index)=>{
+    return (<Grid key={index} item xs={4}>
+              <TeamCard teamId={team} />
+            </Grid>)
+  })
   
   return (
     <Grid>
         <Grid>
         {/* <h1>Teams details go here</h1> */}
-        <Grid container spacing={1}>
+        <Grid container spacing={4}>
         <Grid container item xs={12} spacing={3}>
-          <Grid item xs={4}>
-           <TeamCard/>
-
-            {/* <Paper className={classes.paper}>item</Paper> */}
-          </Grid>
-
-          <Grid item xs={4}>
-          <TeamCard/>
-          </Grid>
-
-          <Grid item xs={4}>
-          <TeamCard/>
-          </Grid>
-
-
-          <Grid item xs={4}>
-          <TeamCard/>  
-          </Grid>
-
-        </Grid> 
+        {teamList}
       </Grid>
+    </Grid>
       <br/>
         
       <Grid

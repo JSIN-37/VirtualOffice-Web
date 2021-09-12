@@ -191,7 +191,7 @@ export default function LogIn({ appD, onLogin }) {
               </Button>
 
               <br/>
-
+{/* 
               <Button
                 type="primary"
                 variant="outlined"
@@ -205,7 +205,7 @@ export default function LogIn({ appD, onLogin }) {
                 color="primary"
               >
                 Set Up Organization
-              </Button>
+              </Button> */}
 
 
             </form>

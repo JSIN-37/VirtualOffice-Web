@@ -14,6 +14,11 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
+import AddIcon from '@material-ui/icons/Add';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,22 +48,57 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     fontSize: "16px",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
-export default function EditUserRole() {
+export default function EditUserRole(memberId) {
   const classes = useStyles();
+  const [fname, setFname] = useState(``);
+  const [lname, setLname] = useState(``);
+  const [orgname, setOrgname] = useState(``);
+  const [country, setCountry] = useState(``);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
     };
 
+    const [addTeam, setAddTeam] = React.useState('');
+    const [member, setMember] = React.useState([]);
+
+    const handleChange = (event) => {
+      setAddTeam(event.target.value);
+      setMember(event.target.value);
+    };
+
+    const getMember = () => {
+      var axios = require('axios');
+      axios.get(`${window.backendURL}/admin/get-member`, memberId) //get the team details
+        .then(res => {
+          const Member = res.data;
+          setMember(Member.name);
+      })
+    };
+
+    let MemberList=member.map((Member,index)=>{
+      return (<Typography key={index}>
+          {Member}
+      </Typography>)
+    })
+
+
+
+    const [open, setOpen] = React.useState(false);
+
   return (
     <Grid container spacing={4}>
       <Grid>
         {/* <h1>Divisions details go here</h1> */}
         <form>
-          <TextField
+          {/* <TextField
             className="Text-field"
             id="filled-full-width"
             style={{ margin: 4 }}
@@ -68,7 +108,28 @@ export default function EditUserRole() {
               shrink: true,
             }}
             variant="outlined"
-          ></TextField>
+          ></TextField> */}
+
+          <Typography>
+            Add a Member
+            {MemberList}
+          </Typography>
+
+
+          {/* <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={addTeam}
+              onChange={handleChange}
+            >
+              <MenuItem >A R Perera</MenuItem>
+              <MenuItem >U J Uyanhewa </MenuItem>
+              <MenuItem >J H S Abeytunger</MenuItem>
+            </Select>
+          </FormControl>     */}
+          <br/>
           <br/>
           <Checkbox
                 defaultChecked

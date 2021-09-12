@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -34,9 +34,28 @@ const useStyles = makeStyles({
 });
 
 
-function AllTeamCard() {
+function AllTeamCard({teamId}) {
   const classes = useStyles();
+
+  const [teamName, setTeamName] = useState(``);
+  const [divisionName, setDivsionName] = useState(``);
+  const [numberOfMembers, setNumberOfMembers] = useState('');
   // const bull = <span className={classes.bullet}>•</span>;
+
+  useEffect(() => {
+    getTeamDetails();
+  }, [])
+
+  const getTeamDetails = () => {
+    var axios = require('axios');
+    axios.get(`${window.backendURL}/admin/get-team`, { params: { teamId: teamId } }) //get the team details
+      .then(res => {
+        const team = res.data;
+        setTeamName(team.team_name); //Team Name
+        setDivsionName(team.division_name); //Division Name
+        setNumberOfMembers(team.no_of_members); //No of members
+    })
+  };
 
   const [open, setOpen] = React.useState(false);
 
@@ -56,18 +75,17 @@ function AllTeamCard() {
 
   return (
     <Card className={classes.root} variant="outlined">
-      <Typography align="center" variant="overline">Design Team </Typography>
+      <Typography align="center" variant="overline">{teamName} </Typography>
       <br/>
 
       <table >
         <tr>
-            <td><Typography variant="overline">Division:</Typography></td>
-            
-            <td><Typography >General Administration</Typography></td>
+            <td><Typography variant="overline">Division:</Typography></td>            
+            <td><Typography >{divisionName}</Typography></td>
         </tr>
         <tr>
             <td><Typography variant="overline">Members:</Typography></td>
-            <td><Typography>2</Typography></td>
+            <td><Typography>{numberOfMembers}</Typography></td>
         </tr>
     </table>
     <Grid

@@ -8,12 +8,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { Switch } from "@material-ui/core";
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     display: "flex",
   },
+  root2: {
+    width: "100%",
+    boxSizing: "border-box"
+},
   apptitle: {
     padding: theme.spacing(2), //16px
     fontWeight: 500,
@@ -36,22 +44,51 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     fontSize: "16px",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+  },
 }));
 
-export default function AddUserRole() {
-  const classes = useStyles();
+export default function AddUserRole(userRoleId) {
 
+  const classes = useStyles();
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
     };
 
+    const [addTeam, setAddTeam] = React.useState('');
+    const [userRoles, setUserRole] = React.useState([]);
+
+    const handleChange = (event) => {
+      setAddTeam(event.target.value);
+      setUserRole(event.target.value);
+    };
+
+    const getUserRoles = () => {
+      var axios = require('axios');
+      axios.get(`${window.backendURL}/admin/get-userRoles`, userRoleId) //get the team details
+        .then(res => {
+          const userRole = res.data;
+          setUserRole(userRole.name);
+      })
+    };
+
+    let UserRoleList=userRoles.map((userRole,index)=>{
+      return (<Typography key={index}>
+          {userRole}
+      </Typography>)
+    })
+
+
   return (
-    <Grid container spacing={4}>
+    <div className={classes.root2}>
+    <Grid container spacing={4} >
       <Grid>
         {/* <h1>Divisions details go here</h1> */}
         <form>
-          <TextField
+          {/* <TextField
             className="Text-field"
             id="filled-full-width"
             style={{ margin: 4 }}
@@ -61,7 +98,26 @@ export default function AddUserRole() {
               shrink: true,
             }}
             variant="outlined"
-          ></TextField>
+          ></TextField> */}
+          <Typography>
+                Role Name
+        </Typography>
+
+          {UserRoleList}
+
+        {/* <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Select the Role</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={addTeam}
+              onChange={handleChange}
+            >
+              <MenuItem >Role 1</MenuItem>
+              <MenuItem >Role 2 </MenuItem>
+              <MenuItem >Role 3</MenuItem>
+            </Select>
+          </FormControl>  */}
           <br/>
           <Checkbox
                 defaultChecked
@@ -228,5 +284,7 @@ export default function AddUserRole() {
         <Button color="primary" variant="outlined" >Cancel</Button> 
       </Grid>
     </Grid>
+    </div>
   );
+  
 }

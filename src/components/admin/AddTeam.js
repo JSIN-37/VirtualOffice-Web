@@ -22,6 +22,14 @@ const useStyles = makeStyles((theme) => ({
         width: '25ch',
       },
     },
+    root2: {
+      width: "100%",
+      boxSizing: "border-box"
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
   }));
 
 function AddTeam() {
@@ -31,10 +39,15 @@ function AddTeam() {
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);
   const [country, setCountry] = useState(``);
-
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
+    };
+  
+    const [team, setTeam] = React.useState('');
+
+    const handleChange = (event) => {
+      setTeam(event.target.value);
     };
 
     const [open, setOpen] = React.useState(false);
@@ -50,17 +63,13 @@ function AddTeam() {
   })
 };
 
-// const classes = useStyles();
-//   const [team, setTeam] = React.useState('');
-
-const handleChange = (event) => {
-  //  setTeam(event.target.value);
-};
 
   return (
+    <div className={classes.root2}>
+      
     <Grid>
-      <Grid container item lg={12} spacing={6}>
-        <Grid item lg={6}>
+      <Grid container mt="20px">
+        <Grid  item md={5} lg={5}>
             <Typography>
                 Team Name
             </Typography>
@@ -96,22 +105,22 @@ const handleChange = (event) => {
 
         </Grid>
 
-        <Grid item lg={6}>
+        <Grid  item md={5} lg={5}>
         <Typography>
                 Team Members
         </Typography>
         <br/>
         <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Select Division</InputLabel>
+        <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          // value={division}
+          value={team}
           onChange={handleChange}
         >
-          <MenuItem >Director's Office</MenuItem>
-          <MenuItem >Management </MenuItem>
-          <MenuItem >Examinatoin Division</MenuItem>
+          <MenuItem >A R Perera</MenuItem>
+          <MenuItem >U J Uyanhewa </MenuItem>
+          <MenuItem >J H S Abeytunger</MenuItem>
         </Select>
       </FormControl>
         </Grid>
@@ -130,6 +139,11 @@ const handleChange = (event) => {
     </Button> */}
       </Grid>
       </Grid>
+
+
+
+    </div>
+    
   );
 }
 
