@@ -117,10 +117,8 @@ function EmployeeDesignation(props) {
                     </td>
                 </tr>
 
-
                 <tr>
                     <td>
-
                     <TextField
                     id="filled-required"
                     label="Email Address"
@@ -131,16 +129,9 @@ function EmployeeDesignation(props) {
                     }}
                     variant="outlined"
                   />
-
-
-
                     </td>
                     <td></td>
                 </tr>
-
-
-
-                
                 <tr>
                     <td>
                       
@@ -154,7 +145,6 @@ function EmployeeDesignation(props) {
                     }}
                     variant="outlined"
                   />
-                  
                     </td>
                     <td></td>
 

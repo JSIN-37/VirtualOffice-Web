@@ -1,25 +1,12 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import {  Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
-import DivisionCard from './DivisionCard.js';
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { Tab } from "@material-ui/core";
-import { Tabs } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
-import AddIcon from '@material-ui/icons/Add';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,11 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditUserRole(memberId) {
   const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
-
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
@@ -292,9 +274,6 @@ export default function EditUserRole(memberId) {
 
         </Grid>    
         </Grid>
-
-
-        
 
         <br/>
         <Button color="primary" variant="contained" >Save Role</Button> 

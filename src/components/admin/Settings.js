@@ -4,7 +4,6 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import { TextField } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

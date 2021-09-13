@@ -31,10 +31,7 @@ const useStyles = makeStyles((theme) => ({
 function AssignUserRole(memberId) {
 
   const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
+  
   const [member, setMember] = React.useState([]);
 
   const [value, setValue] = useState(0);

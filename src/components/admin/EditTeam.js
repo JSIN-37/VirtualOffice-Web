@@ -5,24 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 //import OfficeImage from '../../../resources/logo_big.png';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import { useState } from "react";
-import TeamCard from './TeamCard.js';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Avatar } from "@material-ui/core";
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,19 +32,19 @@ formControl: {
 function EditTeam(teamMemberId) {
 
   const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
+  const [team, setTeam] = useState('');
+  const [teamMember, setTeamMembers] = useState([]);
+  const [addTeam, setAddTeam] = useState([]);
+  const [teamMembers, setTeamMember] = useState([]);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
         setValue(val);
     };
 
-    const [addTeam, setAddTeam] = React.useState('');
-    const [team, setTeam] = React.useState('');
-    const [teamMembers, setTeamMembers] = useState([]);
+    const [editTeam, setEditTeam] = React.useState('');
+    const [teamLeader, setTeamLeader] = React.useState('');
+    const [description, setDescription] = useState('');
 
     const handleChange = (event) => {
       setAddTeam(event.target.value);
@@ -77,13 +63,46 @@ function EditTeam(teamMemberId) {
       })
     };
 
+    const saveChanges = () =>{
+      var axios = require('axios');
+      axios.post(`${window.backendURL}/admin/get-team`, { //save changes for the selected team
+          teamId: team,
+          teamLeader: teamLeader,
+          description: description
+        })
+        .then((res) => {
+          let data = res.data;
+          console.log(data);
+        });
+    }
+
+    const deleteTeam = () => {
+      var axios = require('axios');
+      axios.delete(`${window.backendURL}/admin/get-team/${team}`) //delete the team record in the DB under the given team Id 
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+    }
+
+    const handleTeamNameChange = (event) => {
+      setEditTeam(event.target.value);
+    };
+
+    const handleTeamLeaderChange = (event) => {
+      setTeamLeader(event.target.value);
+    };
+
+    const handleDescriptionChange= (event) => {
+      setDescription(event.target.value);
+    };
+
     let MemeberList=teamMembers.map((teamMember,index)=>{
       return (<Typography key={index}>
           {teamMember}
       </Typography>)
     })
 
-  
   return (
     <div className={classes.root2}>
         <Grid container mt="20px">
@@ -91,7 +110,7 @@ function EditTeam(teamMemberId) {
             <Typography>
                 Team Name
                 <br/>
-                <TextField id="filled-basic" label="Eg: Design Team" />
+                <TextField id="filled-basic" label="Eg: Design Team" onChange={handleTeamNameChange}/>
             </Typography>
             <br/>
             <br/>
@@ -99,14 +118,14 @@ function EditTeam(teamMemberId) {
                 Team Leader
                 <br/>
             </Typography>
-            <TextField id="filled-basic" label="Eg: A T Perera"  />
+            <TextField id="filled-basic" label="Eg: A T Perera" onChange={handleTeamLeaderChange} />
             <br/>
             <br/>
 
             <Typography>
                 Description
                 <br/>
-                <TextField id="filled-basic" label="Desciption"  />
+                <TextField id="filled-basic" label="Desciption"  onChange={handleDescriptionChange}/>
             </Typography>
             
             <br/>
@@ -126,8 +145,16 @@ function EditTeam(teamMemberId) {
             <br/>
             <Button variant="contained" 
                 color="primary" 
+                onClick={saveChanges}
             >
                Save Changes
+            </Button>
+
+            <Button variant="outlined" 
+                color="primary" 
+                onClick={deleteTeam} 
+            >
+                Delete Team
             </Button>
 
             <Button variant="outlined" 
