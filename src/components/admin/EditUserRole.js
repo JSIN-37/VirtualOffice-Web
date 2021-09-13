@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import {  Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,6 +7,10 @@ import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -199,7 +203,7 @@ function EditUserRole() {
     }
   };
 
-  let userRoleList=divisions.map((userRole,index)=>{
+  let userRoleList=userRoles.map((userRole,index)=>{
     return <MenuItem key={"role"+index} value={userRole.id}>{userRole.name}</MenuItem>;
   })
 
