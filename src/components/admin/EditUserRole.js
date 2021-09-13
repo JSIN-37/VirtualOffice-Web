@@ -43,30 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 function EditUserRole() {
   const classes = useStyles();
-<<<<<<< HEAD
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
-
-    const [addTeam, setAddTeam] = React.useState('');
-    const [member, setMember] = React.useState([]);
-
-    const handleChange = (event) => {
-      setAddTeam(event.target.value);
-      setMember(event.target.value);
-    };
-
-    const getMember = () => {
-      var axios = require('axios');
-      axios.get(`${window.backendURL}/admin/get-member`, memberId) //get the team details
-        .then(res => {
-          const Member = res.data;
-          setMember(Member.name);
-      })
-    };
-=======
->>>>>>> origin/redemption-3
 
   const [editRole, setEditRole] = useState("");
   const [userRoles, setUserRoles] = useState([]);

@@ -5,7 +5,7 @@ import Division from "./components/employee/Division";
 import Teams from "./components/employee/Teams";
 import Tasks from "./components/employee/Tasks";
 import Attendance from "./components/employee/Attendance";
-import Profile from "./components/employee/Profile";
+import Profile from "./components/Profile";
 import LogOut from "./components/LogOut";
 import LogIn from "./components/employee/LogIn";
 
