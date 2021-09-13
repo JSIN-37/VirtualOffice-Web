@@ -52,8 +52,6 @@ export default function Employees() {
     const handleTabs = (e, val) => {
         setValue(val);
     };
-
-
   return (
     <Grid container spacing={4}>
       <AppBar
