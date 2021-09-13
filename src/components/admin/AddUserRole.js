@@ -84,7 +84,7 @@ function AddUserRole() {
   
   const getEmpManagmentPermissions = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-division-employee-permissions`) //get the id and name of all the employee managment permissions
+    axios.get(`${window.backendURL}/admin/get-employee-management-permissions`) //get the id and name of all the employee managment permissions
       .then(res => {
         const empPermissions = res.data;
         setEmpPermissions(empPermissions);
@@ -93,12 +93,13 @@ function AddUserRole() {
 
   const getTaskManagmentPermissions = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-division-task-permissions`) //get the id and name of all the task managment permissions
+    axios.get(`${window.backendURL}/admin/get-task-management-permissions`) //get the id and name of all the task managment permissions
       .then(res => {
         const taskPermissions = res.data;
         setTaskPermissions(taskPermissions);
     })
   };
+  
   const addNewRole = () =>{
     var axios = require('axios');
     axios.post(`${window.backendURL}/admin/create-role`, { //create new role and add permissions (Division, Employee and Task)

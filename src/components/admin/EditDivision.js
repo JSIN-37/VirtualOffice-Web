@@ -124,7 +124,7 @@ export default function EditDivision() {
         <Select
           labelId="division-select-label"
           id="division-select"
-          value=""
+          value={division}
           onChange={handleDivisionChange}
         >
           {divisionList}
@@ -136,7 +136,7 @@ export default function EditDivision() {
         <Select
           labelId="HOD-select-label"
           id="HOD-select"
-          value=""
+          value={HOD}
           onChange={handleHODChange}
         >
           {HODList}
