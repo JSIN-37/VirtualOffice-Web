@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid'
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +34,7 @@ export default function DivisionHeader() {
                 elevation={0}>
                 <Toolbar>
                     <DashboardIcon color="primary" className={classes.appbaricon} fontSize="medium" />
-                    <Typography variant="h6" className={classes.apptitle} color="primary" component={Link} to="/">
+                    <Typography variant="h6" className={classes.apptitle} color="primary">
                         Dashboard
                     </Typography>
                 </Toolbar>

@@ -31,7 +31,7 @@ export default function AddDivision() {
 
   const addDivision = () =>{
     var axios = require('axios');
-    axios.post(`${window.backendURL}/admin/get-divisions`, { //save changes for the selected division
+    axios.post(`${window.backendURL}/admin/create-division`, { //save changes for the selected division
         divisionName: division,
         hodId: HOD,
         description: description,

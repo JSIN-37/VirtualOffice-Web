@@ -62,7 +62,7 @@ export default function StatusCard() {
                     <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
                     <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
                     <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
-                    <IconButton style={{ color: "#28B463" }} aria-label="save">
+                    <IconButton style={{ color: "#23AF5E" }} aria-label="save">
                         <CheckCircleRoundedIcon />
                     </IconButton>
                 </RadioGroup>
