@@ -212,7 +212,7 @@ function EditUserRole() {
     }
   };
 
-  let userRoleList=divisions.map((userRole,index)=>{
+  let userRoleList=userRoles.map((userRole,index)=>{
     return <MenuItem key={"role"+index} value={userRole.id}>{userRole.name}</MenuItem>;
   })
 
