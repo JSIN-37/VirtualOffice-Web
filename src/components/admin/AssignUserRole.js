@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from "@material-ui/core/Button";
 import Card from '@material-ui/core/Card';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function AssignUserRole(memberId) {
+function AssignUserRole() {
 
   const classes = useStyles();
   const [fname, setFname] = useState(``);
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);
   const [country, setCountry] = useState(``);
-  const [member, setMember] = React.useState([]);
+  const [members, setMembers] = useState([]);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
@@ -50,16 +50,16 @@ function AssignUserRole(memberId) {
     };
 
 
-    const getMember = () => {
+    const getMembers = () => {
       var axios = require('axios');
-      axios.get(`${window.backendURL}/admin/get-member`, memberId) //get the team details
+      axios.get(`${window.backendURL}/admin/get-member`) //get the team details
         .then(res => {
-          const Member = res.data;
-          setMember(Member.name);
+          const memberList = res.data;
+          setMembers(memberList.name);
       })
     };
 
-    let MemberList=member.map((Member,index)=>{
+    let MemberList=members.map((Member,index)=>{
       return (<Typography key={index}>
           {Member}
       </Typography>)

@@ -50,7 +50,7 @@ export default function EditDivision() {
 
   const getHODs = () => {
     var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-divisions`) //get the id and name of the employees who has the user role 'HOD' (head of division)
+    axios.get(`${window.backendURL}/admin/get-HODs`) //get the id and name of the employees who has the user role 'HOD' (head of division)
       .then(res => {
         const hods = res.data;
         setHODs(hods);
@@ -59,7 +59,7 @@ export default function EditDivision() {
 
   const saveChanges = () =>{
     var axios = require('axios');
-    axios.post(`${window.backendURL}/admin/get-divisions`, { //save changes for the selected division
+    axios.post(`${window.backendURL}/admin/edit-division`, { //save changes for the selected division
         divisionId: division,
         hodId: HOD,
         description: description,
@@ -76,7 +76,7 @@ export default function EditDivision() {
   
   const deleteDivision = () => {
     var axios = require('axios');
-    axios.delete(`${window.backendURL}/admin/get-divisions/${division}`) //delete the division record in the DB under the given division Id 
+    axios.delete(`${window.backendURL}/admin/delete-division/${division}`) //delete the division record in the DB under the given division Id 
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -109,11 +109,11 @@ export default function EditDivision() {
   }
 
   let divisionList=divisions.map((division,index)=>{
-    return <MenuItem key={index} value={division.id}>{division.name}</MenuItem>;
+    return <MenuItem key={"div"+index} value={division.id}>{division.name}</MenuItem>;
   })
 
   let HODList=HODs.map((HOD,index)=>{
-    return <MenuItem key={index} value={HOD.id}>{HOD.name}</MenuItem>;
+    return <MenuItem key={"hod"+index} value={HOD.id}>{HOD.name}</MenuItem>;
   })
 
   return (
