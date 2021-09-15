@@ -10,8 +10,8 @@ const useStyles = makeStyles({
     }
 })
 
-const CLIENT_ID = "236866159961-e5beovnrcb1uvobol7onli1biqlj8b5b.apps.googleusercontent.com";
-const API_KEY = 'AIzaSyAGDki5jqxrfywEWIeV-P4qsjO--mXwD30';
+const CLIENT_ID = "enter key";
+const API_KEY = 'enter-key';
 
 
 export default function EmailModule() {
