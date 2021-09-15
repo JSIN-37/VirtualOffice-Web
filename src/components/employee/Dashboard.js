@@ -11,6 +11,7 @@ import CoworkersCard from "./CoworkersCard";
 import TimeStamps from "./TimeStamps";
 import DashboardHeader from "./DashboardHeader";
 import useFetch from "../../hooks/useFetch";
+import EmailModule from './email-module/EmailModule'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -86,19 +87,8 @@ export default function Dashboard() {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
-                            <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h6" className={classes.title}>
-                                    Tasks in Progress
-                                </Typography>
-                                {doings.map((doing) => (
-                                    <Grid item xs={12} md={12} key={doing.id}>
-                                        <DoingCard doing={doing} />
-                                    </Grid>
-                                ))}
-                                <Button color="primary" size="small">
-                                    View More{" "}
-                                </Button>
-                            </Card>
+                        {window.gapi && <EmailModule/>}
+                        {!window.gapi && <Typography>Loading Emails</Typography>}
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
