@@ -2,6 +2,7 @@ import { Button, Card, Grid, Typography } from '@material-ui/core'
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import EmailCard from './EmailCard';
+import {keys} from './keys'
 
 const useStyles = makeStyles({
     emailContainer : {
@@ -10,8 +11,8 @@ const useStyles = makeStyles({
     }
 })
 
-const CLIENT_ID = "236866159961-pdog0gmaa3ifcjd3fvkoroeemapu5hbn.apps.googleusercontent.com";
-const API_KEY = 'AIzaSyA-0phqlk9VL6UAal7Mc4Z_2nt9PWPI4cY';
+const CLIENT_ID = keys.CLIENT_ID
+const API_KEY = keys.API_KEY
 
 export default function EmailModule() {
     const classes = useStyles()
