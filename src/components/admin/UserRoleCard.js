@@ -80,17 +80,11 @@ function UserRoleCards({userRoleId}) {
         setRoleName(permissions); 
     })
   };
-
-
-
   let PermissionList=rolePermissions.map((permission,index)=>{
     return (<Typography key={index}>
         {permission}
     </Typography>)
   })
-
-
-
   return (
     <Card className={classes.root} variant="outlined">
       <Typography align="left">{roleName}</Typography>
@@ -100,8 +94,6 @@ function UserRoleCards({userRoleId}) {
             <td><Typography>{roleDescription}</Typography></td>
         </tr>
       </table>
-        
-
         
     <Grid
         container
@@ -130,14 +122,9 @@ function UserRoleCards({userRoleId}) {
                       
           </form>
         </DialogContent>
-         
           <DialogActions>
-            
           </DialogActions>
         </Dialog>
-
-
-
       </Grid>
 
     </Card>

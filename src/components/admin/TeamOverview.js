@@ -35,10 +35,6 @@ function TeamOverview() {
   };
 
   // const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
@@ -46,17 +42,6 @@ function TeamOverview() {
     };
 
     const [open, setOpen] = React.useState(false);
-
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
-    var axios = require("axios");
-    axios
-      .post(`${window.backendURL}/setup-organization`, {
-        fname: fname,
-        lname: lname,
-        orgname:orgname,
-        country: country,
-  })
-};
 
   let teamList=teams.map((team,index)=>{
     return (<Grid key={index} item xs={4}>

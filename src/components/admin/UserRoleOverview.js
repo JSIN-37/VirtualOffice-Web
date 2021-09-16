@@ -47,19 +47,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function UserRoleOverview() {
   const classes = useStyles();
   const [userRoles, setUserRoles] = useState([]);
 
   const [value, setValue] = useState(0);
     const handleTabs = (e, val) => {
-        setValue(val);
-        
+        setValue(val);  
     };
-  
-      useEffect(() => {
+        useEffect(() => {
         getUserRoles();
       }, [])
 
@@ -77,8 +73,6 @@ export default function UserRoleOverview() {
                 <UserRoleCards userRoleId={userRole} />
               </Grid>)
     })
-
-
   return (
         <Grid container spacing={1}>
       <Grid container item xs={12} spacing={3} >

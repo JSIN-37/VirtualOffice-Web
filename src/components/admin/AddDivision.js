@@ -1,11 +1,55 @@
 import React, {useState, useEffect} from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    display: "flex",
+  },
+  root2: {
+    width: "100%",
+    boxSizing: "border-box"
+},
+  apptitle: {
+    padding: theme.spacing(2), //16px
+    fontWeight: 500,
+    textDecoration: "none",
+  },
+  appspace: {
+    padding: theme.spacing(2),//16px
+    fontWeight: 500,
+    color: "#E3E6F5"
+  },
+  appbaricon: {
+    marginLeft: "240px",
+  },
+  appbar: {
+    background: "#E3E6F5",
+    height: 58,
+  },
+  tab: {
+    color: "#3F51B4",
+    textTransform: "none",
+    fontSize: "16px",
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+  },
+}));
 
 export default function AddDivision() {
+
+  const classes = useStyles();
 
   const [division, setDivision] = useState('');
   const [description, setDescription] = useState('');
@@ -31,7 +75,7 @@ export default function AddDivision() {
 
   const addDivision = () =>{
     var axios = require('axios');
-    axios.post(`${window.backendURL}/admin/get-divisions`, { //save changes for the selected division
+    axios.post(`${window.backendURL}/admin/create-division`, { //save changes for the selected division
         divisionName: division,
         hodId: HOD,
         description: description,

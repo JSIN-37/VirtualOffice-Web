@@ -73,9 +73,7 @@ function OrganizationOverview() {
       <br/>
 
       <Button color="primary"  component={Link}
-              to="/user-roles">User Roles</Button>
-
-      
+              to="/user-roles">User Roles</Button>     
     </Grid>    
   );
 }
