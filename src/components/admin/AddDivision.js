@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+} from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,19 +61,19 @@ export default function AddDivision({ appD }) {
   const [permission3, setPermission3] = useState(false);
   const [permission4, setPermission4] = useState(false);
 
-  useEffect(() => {
-    getHODs();
-  }, []);
+  // useEffect(() => {
+  //   getHODs();
+  // }, []);
 
-  const getHODs = () => {
-    var axios = require("axios");
-    axios
-      .get(`${window.backendURL}/admin/get-divisions`) //get the id and name of the employees who has the user role 'HOD' (head of division)
-      .then((res) => {
-        const hods = res.data;
-        setHODs(hods);
-      });
-  };
+  // const getHODs = () => {
+  //   var axios = require("axios");
+  //   axios
+  //     .get(`${window.backendURL}/admin/get-divisions`) //get the id and name of the employees who has the user role 'HOD' (head of division)
+  //     .then((res) => {
+  //       const hods = res.data;
+  //       setHODs(hods);
+  //     });
+  // };
 
   const addDivision = (appD) => {
     const config = {
