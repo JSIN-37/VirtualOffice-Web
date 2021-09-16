@@ -3,11 +3,11 @@ import Grid from "@material-ui/core/Grid";
 import { Button, Typography } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -19,68 +19,85 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditDivision() {
+export default function EditDivision({ appD }) {
   const classes = useStyles();
 
   const [divisions, setDivisions] = useState([]);
-  const [division, setDivision] = useState('');
-  const [description, setDescription] = useState('');
+  const [division, setDivision] = useState("");
+  const [description, setDescription] = useState("");
   const [HODs, setHODs] = useState([]);
-  const [HOD, setHOD] = useState('');
+  const [HOD, setHOD] = useState("");
   const [permission1, setPermission1] = useState(true);
   const [permission2, setPermission2] = useState(true);
   const [permission3, setPermission3] = useState(true);
   const [permission4, setPermission4] = useState(true);
-  
-  
-  useEffect(() => {
-    getDivisions();
-    getHODs();
-  }, [])
 
-  const getDivisions = () => {
-    var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-divisions`) //get the id and names of all the divisions
-      .then(res => {
+  useEffect(() => {
+    getDivisions(appD);
+    // getHODs();
+  }, [appD]);
+
+  const getDivisions = (appD) => {
+    const config = {
+      headers: { Authorization: `Bearer ${appD.token}` },
+    };
+    var axios = require("axios");
+    axios
+      .get(`${window.backendURL}/admin/divisions`, config) //get the id and names of all the divisions
+      .then((res) => {
         const divisionSet = res.data;
         setDivisions(divisionSet);
-    })
+      });
   };
 
-  const getHODs = () => {
-    var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-HODs`) //get the id and name of the employees who has the user role 'HOD' (head of division)
-      .then(res => {
-        const hods = res.data;
-        setHODs(hods);
-    })
-  };
+  // const getHODs = () => {
+  //   var axios = require('axios');
+  //   axios.get(`${window.backendURL}/admin/get-HODs`) //get the id and name of the employees who has the user role 'HOD' (head of division)
+  //     .then(res => {
+  //       const hods = res.data;
+  //       setHODs(hods);
+  //   })
+  // };
 
-  const saveChanges = () =>{
-    var axios = require('axios');
-    axios.post(`${window.backendURL}/admin/edit-division`, { //save changes for the selected division
-        divisionId: division,
-        hodId: HOD,
-        description: description,
-        p1: permission1, //true/false
-        p2: permission2, //true/false
-        p3: permission3, //true/false
-        p4: permission4, //true/false
-      })
+  const saveChanges = () => {
+    const config = {
+      headers: { Authorization: `Bearer ${appD.token}` },
+    };
+    var axios = require("axios");
+    axios
+      .patch(
+        `${window.backendURL}/admin/division/${division}`,
+        {
+          //save changes for the selected division
+          divisionId: division,
+          hodId: HOD,
+          description: description,
+          p1: permission1, //true/false
+          p2: permission2, //true/false
+          p3: permission3, //true/false
+          p4: permission4, //true/false
+        },
+        config
+      )
       .then((res) => {
         let data = res.data;
         console.log(data);
       });
-  }
-  
-  const deleteDivision = () => {
-    var axios = require('axios');
-    axios.delete(`${window.backendURL}/admin/delete-division/${division}`) //delete the division record in the DB under the given division Id 
-      .then(res => {
+  };
+
+  const deleteDivision = (appD) => {
+    const config = {
+      headers: { Authorization: `Bearer ${appD.token}` },
+    };
+    var axios = require("axios");
+    axios
+      .delete(`${window.backendURL}/admin/division/${division}`, config) //delete the division record in the DB under the given division Id
+      .then((res) => {
+        console.log(`${window.backendURL}/admin/division/${division}`);
         console.log(res);
         console.log(res.data);
-      })
-  }
+      });
+  };
 
   const handleDivisionChange = (event) => {
     setDivision(event.target.value);
@@ -96,51 +113,61 @@ export default function EditDivision() {
 
   const handleP1 = (event) => {
     setPermission1(event.target.checked);
-  }
+  };
   const handleP2 = (event) => {
     setPermission2(event.target.checked);
-  }
+  };
   const handleP3 = (event) => {
     setPermission3(event.target.checked);
-  }
+  };
   const handleP4 = (event) => {
     setPermission4(event.target.checked);
-  }
+  };
 
-  let divisionList=divisions.map((division,index)=>{
-    return <MenuItem key={"div"+index} value={division.id}>{division.name}</MenuItem>;
-  })
+  let divisionList = divisions.map((division, index) => {
+    return (
+      <MenuItem key={"div" + index} value={division.id}>
+        {division.name}
+      </MenuItem>
+    );
+  });
 
-  let HODList=HODs.map((HOD,index)=>{
-    return <MenuItem key={"hod"+index} value={HOD.id}>{HOD.name}</MenuItem>;
-  })
+  let HODList = HODs.map((HOD, index) => {
+    return (
+      <MenuItem key={"hod" + index} value={HOD.id}>
+        {HOD.name}
+      </MenuItem>
+    );
+  });
 
   return (
     <Grid container spacing={4}>
       <Grid>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="division-select-label">Select Division</InputLabel>
-        <Select
-          labelId="division-select-label"
-          id="division-select"
-          value={division}
-          onChange={handleDivisionChange}
-        >
-          {divisionList}
-        </Select>
-      </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="division-select-label">Select Division</InputLabel>
+          <Select
+            labelId="division-select-label"
+            id="division-select"
+            value={division}
+            onChange={handleDivisionChange}
+          >
+            {divisionList}
+          </Select>
+        </FormControl>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="HOD-select-label">Select the Head of Division</InputLabel>
-        <Select
-          labelId="HOD-select-label"
-          id="HOD-select"
-          value={HOD}
-          onChange={handleHODChange}
-        >
-          {HODList}
-        </Select>
-      </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="HOD-select-label">
+            Select the Head of Division
+          </InputLabel>
+          <Select
+            labelId="HOD-select-label"
+            id="HOD-select"
+            value={HOD}
+            onChange={handleHODChange}
+          >
+            {HODList}
+          </Select>
+        </FormControl>
 
         <form>
           {/* <TextField
@@ -190,45 +217,43 @@ export default function EditDivision() {
         </form>
 
         <form>
-          <Typography>
-          Permissions
-          </Typography>
+          <Typography>Permissions</Typography>
           <br />
           <Typography>
-          <Checkbox
-            defaultChecked
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-            onChange={handleP1}
-          />
-          Allow Head of Division to add employees
+            <Checkbox
+              defaultChecked
+              color="primary"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              onChange={handleP1}
+            />
+            Allow Head of Division to add employees
           </Typography>
           <Typography>
-          <Checkbox
-            defaultChecked
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-            onChange={handleP2}
-          />
-          Allow employees to assign tasks
+            <Checkbox
+              defaultChecked
+              color="primary"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              onChange={handleP2}
+            />
+            Allow employees to assign tasks
           </Typography>
           <Typography>
-          <Checkbox
-            defaultChecked
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-            onChange={handleP3}
-          />
-          Allow employees to create teams
+            <Checkbox
+              defaultChecked
+              color="primary"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              onChange={handleP3}
+            />
+            Allow employees to create teams
           </Typography>
           <Typography>
-          <Checkbox
-            defaultChecked
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-            onChange={handleP4}
-          />
-          Allow Head of Division to review tasks
+            <Checkbox
+              defaultChecked
+              color="primary"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              onChange={handleP4}
+            />
+            Allow Head of Division to review tasks
           </Typography>
         </form>
 
@@ -240,10 +265,15 @@ export default function EditDivision() {
         <Button color="primary" variant="outlined">
           Cancel
         </Button>
-        <Button onClick={deleteDivision} color="secondary" variant="outlined" >
+        <Button
+          onClick={() => {
+            deleteDivision(appD);
+          }}
+          color="secondary"
+          variant="outlined"
+        >
           Delete Division
         </Button>
-
       </Grid>
     </Grid>
   );
