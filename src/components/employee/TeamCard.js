@@ -2,14 +2,14 @@ import React from "react";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import CreateIcon from '@material-ui/icons/Create';
 import { Button, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core";
-import Modal from '@material-ui/core/Modal';
-import TeamDetails from './TeamDetails'
+import SubjectIcon from '@material-ui/icons/Subject';
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -25,47 +25,20 @@ const useStyles = makeStyles((theme) => {
             textAlign: 'right',
             fontWeight: '400'
         },
-        modal: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        paper: {
-            position: 'relative',
-            width: 450,
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
+        closeButton: {
+            position: 'absolute',
+            right: theme.spacing(1),
+            top: theme.spacing(1),
+            color: theme.palette.grey[500],
         },
     }
 })
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
-
-
 export default function TeamCard({ team, handleDelete }) {
     const classes = useStyles()
-    const [modalStyle] = React.useState(getModalStyle);
-    const [open, setOpen] = React.useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
+    const [openView, setOpenView] = React.useState(false);
     const handleClose = () => {
-        setOpen(false);
+        setOpenView(false);
     };
 
     return (
@@ -75,7 +48,7 @@ export default function TeamCard({ team, handleDelete }) {
                     title={team.name}
                 />
                 <CardContent style={{ paddingTop: '0' }}>
-                    <Grid container style={{ padding: 8 }}>
+                    <Grid container style={{ padding: '8px' }}>
                         <Grid item xs={6}>
                             <Typography variant="body1" className={classes.info}>
                                 Team Leader:
@@ -96,37 +69,37 @@ export default function TeamCard({ team, handleDelete }) {
                     <Button variant="outlined"
                         color="primary"
                         size="small"
-                        style={{
-                            marginLeft: '8px'
-                        }} onClick={handleOpen}>
+                        style={{ marginLeft: '8px' }}
+                        startIcon={<SubjectIcon />}
+                        onClick={() => setOpenView(true)}>
                         View
                     </Button>
-                    <Button
-                        variant="outlined"
-                        color="primary"
-                        size="small"
-                        style={{
-                            marginLeft: '8px'
-                        }}
-                        startIcon={<CreateIcon />
-                            // onClick={()}
-                        }
-                    >Edit
-                    </Button>
+
                     <IconButton color="secondary" onClick={() => handleDelete(team.id)}>
                         <DeleteIcon /></IconButton>
                 </CardContent>
             </Card>
-            <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={open}
-                onClose={handleClose}
-            >
-                <div style={modalStyle} className={classes.paper}>
-                    <TeamDetails />
-                </div>
-            </Modal>
+            <Dialog onClose={handleClose} open={openView} maxWidth={'md'}>
+                <DialogTitle id="simple-dialog-title">{team.name}</DialogTitle>
+                <Grid container style={{ padding: "20px" }}>
+                    <Grid item md={6}>
+                        <Typography variant="body1" className={classes.info}>
+                            Description:
+                        </Typography>
+                        <Typography variant="body1" className={classes.info}>
+                            Members:
+                        </Typography>
+                    </Grid>
+                    <Grid item md={6}>
+                        <Typography variant="body1" pb={1} className={classes.data}>
+                            {team.description}
+                        </Typography>
+                        <Typography variant="body1" pb={1} className={classes.data}>
+                            A.T. Pathirana
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </Dialog>
         </div >
     )
 }
