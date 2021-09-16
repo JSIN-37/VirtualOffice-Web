@@ -10,12 +10,14 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import logo from "../../resources/logo_big.png";
 import Alerts from "../Alerts";
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import ForgotPassword from "./ForgotPassword";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const useStyles = makeStyles(({
     root: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles(({
     },
     media: {
         margin: "10px auto 0",
-        width: "23%",
+        width: "24%",
         height: 50,
         position: "relative",
         zIndex: 1,
@@ -47,8 +49,7 @@ const useStyles = makeStyles(({
     form: {
         display: "flex",
         flexDirection: "column",
-        width: "100%", // Fix IE 11 issue.
-        marginTop: 10,
+        width: "100%", // Fix IE 11 issue
     },
     button: {
         margin: 10,
@@ -68,7 +69,7 @@ const useStyles = makeStyles(({
         justifyContent: "center",
     },
     submit: {
-        margin: "20px 0px",
+        margin: "10px 0px",
     },
     grid: {
         flexGrow: 1,
@@ -112,7 +113,6 @@ export default function LogIn({ appD, onLogin }) {
                     onLogin({ ...tmpAppD }); // Need to set it this way to ask React to re-render
                 } else {
                     setLoginError(true);
-
                 }
             })
             .catch((err) => {
@@ -153,87 +153,94 @@ export default function LogIn({ appD, onLogin }) {
         return "";
     }
     return (
-        <Grid container className={classes.root} spacing={0} alignItems="center">
-            <LoginError />
-            <Grid item >
-                <Card className={classes.card}>
-                    <CardMedia className={classes.media} image={logo} title="logo" />
-                    <CardContent>
-                        <Typography variant="h5" align="left">
-                            Sign In
-                        </Typography>
-                        <form className={classes.form} noValidate>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                className={classes.textField}
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                className={classes.textField}
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <div className={classes.grid}>
-                                <Grid container>
-                                    <Grid item xs={6} className={classes.gridRemember}>
-                                        <FormControlLabel
-                                            control={<Checkbox value="remember" color="primary" />}
-                                            label="Remember me"
-                                            align="left"
-                                            variant="body2"
-                                        />
-                                    </Grid>
-                                    <Grid item xs={6} className={classes.gridForgot}>
-                                        <Link href="#" variant="body1" align="right">
-                                            {"Forgot Password"}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                fullWidth={false}
-                                color="primary"
-                                className={classes.submit}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    loginAttempt(email, password);
-                                }}
-                            >
-                                Sign In
-                            </Button>
-                        </form>
-                        <div className={classes.list}>
-                            <Typography align="center">Don't have an account?</Typography>
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                className={classes.button}
-                            >
-                                Request Access
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
-            </Grid>
-        </Grid>
+
+        <Router basename="/employee">
+            <Route exact path="/">
+                <Grid container className={classes.root} spacing={0} alignItems="center">
+                    <LoginError />
+                    <Grid item >
+                        <Card className={classes.card}>
+                            <CardMedia className={classes.media} image={logo} title="logo" />
+                            <CardContent>
+                                <Typography variant="h5" align="left">
+                                    Sign In
+                                </Typography>
+                                <form className={classes.form} noValidate>
+                                    <TextField
+                                        variant="outlined"
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        className={classes.textField}
+                                        id="email"
+                                        label="Email Address"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <TextField
+                                        variant="outlined"
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        className={classes.textField}
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                    <div className={classes.grid}>
+                                        <Grid container>
+                                            <Grid item xs={6} className={classes.gridRemember}>
+                                                <FormControlLabel
+                                                    control={<Checkbox value="remember" color="primary" />}
+                                                    label="Remember me"
+                                                    align="left"
+                                                    variant="body2"
+                                                />
+                                            </Grid>
+                                            <Grid item xs={6} className={classes.gridForgot}>
+                                                <Link variant="body2" align="right" style={{ textDecoration: "none" }}
+                                                    to="/forgot-password">
+                                                    <Typography variant="body2" >Forgot Password</Typography>
+                                                </Link>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        fullWidth={false}
+                                        color="primary"
+                                        className={classes.submit}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            loginAttempt(email, password);
+                                        }}
+                                    >
+                                        Sign In
+                                    </Button>
+                                </form>
+                                <Typography align="center">Don't have an account?</Typography>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    className={classes.button}
+                                >
+                                    Request Access
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Route>
+            <Route exact path="/forgot-password">
+                <ForgotPassword />
+            </Route>
+        </Router>
     );
 }
 
