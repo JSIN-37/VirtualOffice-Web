@@ -10,15 +10,13 @@ const useStyles = makeStyles({
     }
 })
 
-const CLIENT_ID = "enter key";
-const API_KEY = 'enter-key';
-
+const CLIENT_ID = "236866159961-pdog0gmaa3ifcjd3fvkoroeemapu5hbn.apps.googleusercontent.com";
+const API_KEY = 'AIzaSyA-0phqlk9VL6UAal7Mc4Z_2nt9PWPI4cY';
 
 export default function EmailModule() {
     const classes = useStyles()
     console.log("RENDER EMAIL")
 
-    
 
     // Array of API discovery doc URLs for APIs used by the quickstart
     var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
@@ -33,11 +31,14 @@ export default function EmailModule() {
 
     useEffect(() => {
         handleClientLoad()
-    }, [])
+        if(!window.gapi.client){
+            return
+        }else{
+            listMail()
+        }
+    }, [window.gapi.client])
 
-    useEffect(()=>{
-        listMail()
-    }, emails)
+    
 
     function handleClientLoad(){
         window.gapi.load('client:auth2', initClient)
@@ -117,6 +118,7 @@ export default function EmailModule() {
 
     
     console.log("EMS", emails)
+    
     return (
         <Card variant="outlined" elevation={1} className={classes.emailContainer}>
             <Grid container alignContent='center' direction='column'>
@@ -128,8 +130,6 @@ export default function EmailModule() {
                 <Grid item>
                     {!signedIn && <Button variant='outlined' onClick={handleSignInClick}>Sign In</Button>}
                     {signedIn && <Button variant='outlined' onClick={handleSignOutClick}>Sign Out</Button>}
-                    {/* <Button variant='outlined' onClick={listMail}>Show Mail</Button> */}
-
                 </Grid>
 
                 {emails.length && emails.map((email)=>{

@@ -87,8 +87,8 @@ export default function Dashboard() {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
-                        {window.gapi && <EmailModule/>}
-                        {!window.gapi && <Typography>Loading Emails</Typography>}
+                       <EmailModule/>
+                        
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>
