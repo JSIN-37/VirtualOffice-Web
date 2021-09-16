@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     borderRadius: 25,
-    maxWidth: 400,
+    maxWidth: 600,
     textAlign: "center",
     padding: "20px",
     margin: "80px",
@@ -103,7 +103,7 @@ export default function LogIn({ appD, onLogin }) {
       .catch((err) => {
         let res = err.response;
         // let data = res.data;
-        if (res.status === 401) {
+        if (res && res.status === 401) {
           setLoginError(true);
         }
       });
@@ -162,7 +162,7 @@ export default function LogIn({ appD, onLogin }) {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div className={classes.grid}>
-                <Grid container spacing={3}>
+                <Grid container spacing={2}>
                   <Grid item xs={6} className={classes.gridRemember}>
                     <FormControlLabel
                       control={<Checkbox value="remember" color="primary" />}
@@ -189,6 +189,25 @@ export default function LogIn({ appD, onLogin }) {
               >
                 Sign In
               </Button>
+
+              <br/>
+{/* 
+              <Button
+                type="primary"
+                variant="outlined"
+                color="primary"
+                className={classes.submit}
+                onClick={(e) => {
+                  //
+                }}
+                component={Link}
+                to="/set-up-organization"
+                color="primary"
+              >
+                Set Up Organization
+              </Button> */}
+
+
             </form>
           </CardContent>
         </Card>

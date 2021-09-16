@@ -3,6 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
+import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,8 +46,128 @@ export default function Settings() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid item xs={12} sm={6} md={4}>
-        <h1>Settings details go here</h1>
+      <Grid>
+        {/* <h1>Settings details go here</h1> */}
+        <form>
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="First Name"
+            placeholder="A R"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Last Name "
+            placeholder="Perera"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+          <br/>
+          <br/>
+
+        <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Profile Picture "
+            InputLabelProps={{
+              shrink: true,
+            }}
+          ></TextField>
+
+          <br/>
+          <br/>
+
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Contact Number "
+            placeholder="Eg: +94 123 456 789"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+          <br/>
+          <br/>
+
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Email Address "
+            placeholder="arperera@gmail.com"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+          <br/>
+          <br/>
+
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Password"
+            type="Password"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+          <br/>
+          <br/>
+
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Confirm Password"
+            type="Password"
+            placeholder="Re-enter password"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          ></TextField>
+
+          <br/>
+          <br/>
+
+          <TextField
+            className="Text-field"
+            id="filled-full-width"
+            style={{ margin: 4 }}
+            label="Designation "
+            placeholder="Management Assistant"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          ></TextField>
+
+        </form>
+
+        <br/>
+        <Button color="primary" variant="contained" >Save Changes</Button> 
+        
+        <Button color="primary" variant="outlined" >Cancel</Button> 
+
       </Grid>
     </Grid>
   );

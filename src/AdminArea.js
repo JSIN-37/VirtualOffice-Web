@@ -21,7 +21,7 @@ const AdminArea = ({ appD, setAppD }) => {
             <Organization />
           </Route>
           <Route exact path="/divisions">
-            <Divisions />
+            <Divisions appD={appD} />
           </Route>
           <Route exact path="/teams">
             <Teams />
