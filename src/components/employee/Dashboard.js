@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import { Card, Button, Typography } from "@material-ui/core";
 import StatusCard from "./StatusCard";
 import TodoCard from "./TodoCard";
-import DoingCard from "./DoingCard";
 import DashPieChart from "./DashPieChart";
 import DashBarChart from "./DashBarChart";
 import CoworkersCard from "./CoworkersCard";

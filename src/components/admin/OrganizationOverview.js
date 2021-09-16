@@ -1,24 +1,21 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
-import Card from '@material-ui/core/Card';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 //import OfficeImage from '../../../resources/logo_big.png';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
-import { useState } from "react";
+//import { useState } from "react";
 import { Avatar } from '@material-ui/core';
 
 function OrganizationOverview() {
 
   // const classes = useStyles();
-  const [fname, setFname] = useState(``);
+/*  const [fname, setFname] = useState(``);
   const [lname, setLname] = useState(``);
   const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
+  const [country, setCountry] = useState(``);*/
 
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
+/*  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
     var axios = require("axios");
     axios
       .post(`${window.backendURL}/setup-organization`, {
@@ -27,7 +24,7 @@ function OrganizationOverview() {
         orgname:orgname,
         country: country,
   })
-};
+};*/
 
 
   

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { Switch } from "@material-ui/core";
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,10 +48,6 @@ const useStyles = makeStyles((theme) => ({
 function AddUserRole() {
 
   const classes = useStyles();
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
   
   const [newRoleName, setNewRoleName] = useState("");
   const [description, setDescription] = useState("");

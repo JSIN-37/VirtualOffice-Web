@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
-import EmployeeCard from "./EmployeeCard";
 import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import EmployeeTable from "./EmployeeTable";
-import { TabPanel } from "@material-ui/lab";
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -48,10 +46,6 @@ export default function Employees() {
     setOpen(false);
   };
 
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
   return (
     <Grid container spacing={4}>
       <AppBar

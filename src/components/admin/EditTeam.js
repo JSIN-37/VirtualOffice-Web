@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
-import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 //import OfficeImage from '../../../resources/logo_big.png';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
@@ -37,11 +35,6 @@ function EditTeam(teamMemberId) {
   const [addTeam, setAddTeam] = useState([]);
   const [teamMembers, setTeamMember] = useState([]);
 
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
-
     const [editTeam, setEditTeam] = React.useState('');
     const [teamLeader, setTeamLeader] = React.useState('');
     const [description, setDescription] = useState('');
@@ -50,9 +43,6 @@ function EditTeam(teamMemberId) {
       setAddTeam(event.target.value);
       setTeam(event.target.value);
     };
-
-
-    const [open, setOpen] = React.useState(false);
 
     const getTeamMembers = () => {
       var axios = require('axios');

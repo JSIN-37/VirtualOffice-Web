@@ -1,24 +1,11 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
-import DivisionCard from './DivisionCard.js';
-import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { Tab } from "@material-ui/core";
-import { Tabs } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
-import { Checkbox } from "@material-ui/core";
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
+//import { makeStyles } from "@material-ui/core/styles";
 import UserRoleCards from "./UserRoleCard";
 import { useState, useEffect } from "react";
 
 
-const useStyles = makeStyles((theme) => ({
+/*const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     display: "flex",
@@ -45,16 +32,13 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     fontSize: "16px",
   },
-}));
+}));*/
 
 export default function UserRoleOverview() {
-  const classes = useStyles();
+//  const classes = useStyles();
   const [userRoles, setUserRoles] = useState([]);
 
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);  
-    };
+  
         useEffect(() => {
         getUserRoles();
       }, [])

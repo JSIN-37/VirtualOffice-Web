@@ -61,19 +61,19 @@ export default function AddDivision({ appD }) {
   const [permission3, setPermission3] = useState(false);
   const [permission4, setPermission4] = useState(false);
 
-  // useEffect(() => {
-  //   getHODs();
-  // }, []);
+   useEffect(() => {
+     getHODs();
+   }, []);
 
-  // const getHODs = () => {
-  //   var axios = require("axios");
-  //   axios
-  //     .get(`${window.backendURL}/admin/get-divisions`) //get the id and name of the employees who has the user role 'HOD' (head of division)
-  //     .then((res) => {
-  //       const hods = res.data;
-  //       setHODs(hods);
-  //     });
-  // };
+   const getHODs = () => {
+     var axios = require("axios");
+     axios
+      .get(`${window.backendURL}/admin/get-divisions`) //get the id and name of the employees who has the user role 'HOD' (head of division)
+       .then((res) => {
+         const hods = res.data;
+         setHODs(hods);
+       });
+   };
 
   const addDivision = (appD) => {
     const config = {
