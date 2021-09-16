@@ -16,7 +16,6 @@ const API_KEY = keys.API_KEY
 
 export default function EmailModule() {
     const classes = useStyles()
-    console.log("RENDER EMAIL")
 
 
     // Array of API discovery doc URLs for APIs used by the quickstart
@@ -31,7 +30,6 @@ export default function EmailModule() {
 
 
     useEffect(() => {
-        console.log("FIRST RENDER")
         if(window.gapi){
             handleClientLoad()
         }else{
@@ -122,9 +120,6 @@ export default function EmailModule() {
             })
         })
     }
-
-    
-    console.log("EMS", emails)
     
     return (
         <Card variant="outlined" elevation={1} className={classes.emailContainer}>
@@ -139,7 +134,7 @@ export default function EmailModule() {
                     {signedIn && <Button variant='outlined' onClick={handleSignOutClick}>Sign Out</Button>}
                 </Grid>
                 {emails.length >0 && emails.map((email)=>{
-                    return <EmailCard email={email}/>
+                    return <EmailCard  key={email.id} email={email}/>
                 })}
                 {!emails.length && <Button onClick={listMail}>Load Emails</Button>}
             
