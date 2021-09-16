@@ -31,13 +31,22 @@ export default function EmailModule() {
 
 
     useEffect(() => {
-        handleClientLoad()
-        if(!window.gapi.client){
+        console.log("FIRST RENDER")
+        if(window.gapi){
+            handleClientLoad()
+        }else{
+            return
+        }
+        if(!window.gapi.client ){
             return
         }else{
-            listMail()
+            if(window.gapi.client.gmail){
+                listMail()
+            }else{return}
+            
         }
-    }, [window.gapi.client])
+    }, [window.gapi, window.gapi.client])
+
 
     
 
@@ -86,26 +95,23 @@ export default function EmailModule() {
         }).then( function (response) {
             const msg = JSON.parse(JSON.stringify(response))
             const objectArray = msg.result.messages
-            console.log("RESPONSE FROM GMAIL = ", msg.result.messages)
+            //console.log("RESPONSE FROM GMAIL = ", msg.result.messages)
             objectArray.map((obj)=>{
                 emailIdArray.push(obj.id)
             })
             loadEmails(emailIdArray)
         })
-
-        
-
     }
 
     function loadEmails(array){
         array.map((id)=>{
-            console.log(id)
+            //console.log(id)
             window.gapi.client.gmail.users.messages.get({
                 'userId':'me',
                 'id':`${id}`
             }).then((response) => {
                 setEmails((oldEmails)=>{
-                    console.log("googles response ",response)
+                    //console.log("googles response ",response)
                     const newMail = {
                         id : id,
                         snippet : response.result.snippet,
@@ -132,10 +138,10 @@ export default function EmailModule() {
                     {!signedIn && <Button variant='outlined' onClick={handleSignInClick}>Sign In</Button>}
                     {signedIn && <Button variant='outlined' onClick={handleSignOutClick}>Sign Out</Button>}
                 </Grid>
-
-                {emails.length && emails.map((email)=>{
+                {emails.length >0 && emails.map((email)=>{
                     return <EmailCard email={email}/>
                 })}
+                {!emails.length && <Button onClick={listMail}>Load Emails</Button>}
             
 
             </Grid>
