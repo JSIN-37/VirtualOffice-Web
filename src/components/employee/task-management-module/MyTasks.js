@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext} from 'react';
+import { MyTaskUtils } from '../../../EmployeeArea';
 import InspectTasksPane from './InspectTasksPane';
 import MyTasksPane from './MyTasksPane';
 import TaskReportsPane from './TaskReportsPane';
@@ -20,17 +21,18 @@ const useStyles = makeStyles({
 const LOCAL_STORAGE_KEY = 'vo-material.my-tasks';
 export default function Tasks() {
   const classes = useStyles();
-  const isFirstRender = useRef(true)
+  // const isFirstRender = useRef(true)
 
   //taskDB has all the tasks this person has to do.
   //task has -> id, title, description, inProgress(bool), overDue(bool), dueDate(null for now)
-  const [taskDB, setTaskDB] = useState(()=>{
-    console.log('reading from My Tasks DB')
-    const arr = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if(arr!== null){
-      return JSON.parse(arr)
-    }else{return []}
-  });
+  // const [taskDB, setTaskDB] = useState(()=>{
+  //   console.log('reading from My Tasks DB')
+  //   const arr = localStorage.getItem(LOCAL_STORAGE_KEY)
+  //   if(arr!== null){
+  //     return JSON.parse(arr)
+  //   }else{return []}
+  // });
+  const {taskDB, setTaskDB} = useContext(MyTaskUtils);
 
   //inspecting = task that should be displayed in the inspect pane -> with add comment and mark complete btn
   const [inspecting, setInspecting] = useState(null);
@@ -47,14 +49,14 @@ export default function Tasks() {
 
   //REPLACE WITH SERVER FETCH
   //write changes to taskDB to local storage
-  useEffect(() => {
-    if(isFirstRender.current){
-      isFirstRender.current = false
-      return
-    }
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(taskDB));
-    console.log('wrote to taskDB -> My Tasks');
-  }, [taskDB]);
+  // useEffect(() => {
+  //   if(isFirstRender.current){
+  //     isFirstRender.current = false
+  //     return
+  //   }
+  //   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(taskDB));
+  //   console.log('wrote to taskDB -> My Tasks');
+  // }, [taskDB]);
 
   //add a task to taskDB
   function addTask(task) {
