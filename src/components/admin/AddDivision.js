@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import { Button, MenuItem, FormControl, InputLabel, Select } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -139,7 +139,7 @@ export default function AddDivision() {
           <br />
           <br />
 
-          <FormControl className={classes.formControl}>
+          <FormControl >
             <InputLabel id="HOD-select-label">Select the Head of Division</InputLabel>
             <Select
               labelId="HOD-select-label"
