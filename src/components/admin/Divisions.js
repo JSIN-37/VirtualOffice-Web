@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Divisions() {
+export default function Divisions({ appD }) {
   const classes = useStyles();
 
   const [value, setValue] = useState(0);
@@ -75,13 +75,13 @@ export default function Divisions() {
         </Toolbar>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <DivisionsOverview />
+        <DivisionsOverview appD={appD} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AddDivision />
+        <AddDivision appD={appD} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <EditDivision />
+        <EditDivision appD={appD} />
       </TabPanel>
     </Grid>
   );
