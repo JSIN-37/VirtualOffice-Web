@@ -160,7 +160,7 @@ export default function EditOrganization({ appD }) {
                             error={passwordError}
                         />
                         <FormControlLabel style={{ marginTop: "10px" }}
-                            control={<Checkbox name="agreement" />}
+                            control={<Checkbox color="primary" name="agreement" />}
                             label={<Typography className={classes.agreement}>As Admin you will be reponsible for the personal data of
                                 people in your organization as well as the data
                                 managemnet requests they submit to you.</Typography>}
