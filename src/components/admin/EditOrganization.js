@@ -1,183 +1,189 @@
 import React from 'react';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core";
+import { Typography, Container } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
-import { Typography } from '@material-ui/core';
-import { useState } from "react";
+import { Avatar } from '@material-ui/core';
+import image from "../../resources/orgImage.jpg"
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        height: "90vh",
+        display: "flex",
+    },
+    title: {
+        fontWeight: 400,
+        fontSize: 24,
+        margin: "10px auto",
+    },
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%", // Fix IE 11 issue
+    },
+    field: {
+        width: 370,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: "#f9f9f9",
+    },
+    bigAvatar: {
+        width: 70,
+        height: 70,
+        margin: "15px",
+    },
+    agreement: {
+        fontSize: "12px"
+    },
+    button: {
+        margin: "15px 15px 0 0",
+    },
+}));
 
-function EditOrganization() {
+export default function EditOrganization({ appD }) {
+    const classes = useStyles();
+    const [orgName, setOrgName] = useState("");
+    const [sysAdmin, setSysAdmin] = useState("");
+    const [sysAdminEmail, setSysAdminEmail] = useState("");
+    const [password, setPassword] = useState("123");
+    const [orgNameError, setOrgNameError] = useState(false);
+    const [sysAdminError, setSysAdminError] = useState(false);
+    const [sysAdminEmailError, setSysAdminEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
 
-  // const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setOrgNameError(false);
+        setSysAdminError(false);
+        setSysAdminEmailError(false);
+        setPasswordError(false);
 
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
-    var axios = require("axios");
-    axios
-      .post(`${window.backendURL}/setup-organization`, {
-        fname: fname,
-        lname: lname,
-        orgname:orgname,
-        country: country,
-  })
-};
+        if (orgName === "") {
+            setOrgNameError(true);
+        }
+        if (sysAdmin === "") {
+            setSysAdminError(true);
+        }
+        if (sysAdminEmail === "") {
+            setSysAdminEmailError(true);
+        }
+        if (password === "") {
+            setPasswordError(true);
+        }
+        if (orgName && sysAdmin && sysAdminEmail && password) {
+            const config = {
+                headers: { Authorization: `Bearer ${appD.token}` },
+            };
+            var axios = require("axios");
+            axios
+                .post(`${window.backendURL}/setup-organization`,
+                    {
+                        orgName: orgName,
+                        sysAdmin: sysAdmin,
+                        sysAdminEmail: sysAdminEmail,
+                        password: password,
+                    },
+                    config
+                )
+                .then((res) => {
+                    let data = res.data;
+                    console.log(data);
+                });
+        }
+    };
 
+    return (
+        <Container className={classes.root}>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={5}>
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setOrgName(e.target.value)}
+                            label="Organization Name"
+                            variant="outlined"
+                            color="primary"
+                            fullWidth
+                            required
+                            id="orgName"
+                            error={orgNameError}
+                        />
+                        <Grid container spacing={0}>
+                            <Grid item md={2} style={{ display: "flex", alignItems: "center", flexDirection: "column" }} >
+                                <Avatar alt="Organization Logo" src={image} className={classes.bigAvatar} />
+                            </Grid>
+                            <Grid item md={7}>
+                                <Button variant="outlined" size="small" style={{ margin: "30px" }}>Update Logo</Button>
+                            </Grid>
+                        </Grid>
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setSysAdmin(e.target.value)}
+                            label="System Admin Name"
+                            variant="outlined"
+                            color="primary"
+                            fullWidth
+                            required
+                            id="sysAdmin"
+                            error={sysAdminError}
+                        />
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setSysAdminEmail(e.target.value)}
+                            label="System Admin Email"
+                            variant="outlined"
+                            color="primary"
+                            fullWidth
+                            required
+                            id="sysAdminEmail"
+                            error={sysAdminEmailError}
+                        />
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setPassword(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                            color="primary"
+                            fullWidth
+                            name="currentPassword"
+                            label="Enter Password to Confirm"
+                            type="password"
+                            id="currentPassword"
+                            autoComplete="current-password"
+                            required
+                            error={passwordError}
+                        />
+                        <FormControlLabel style={{ marginTop: "10px" }}
+                            control={<Checkbox name="agreement" />}
+                            label={<Typography className={classes.agreement}>As Admin you will be reponsible for the personal data of
+                                people in your organization as well as the data
+                                managemnet requests they submit to you.</Typography>}
+                        />
+                        <Link to="/"><Typography className={classes.agreement} >Learn more.</Typography></Link>
 
-  
-  return (
-    <Grid
-    container
-    spacing={0}
-    direction="column"
-    justify="flex-start"
-    style={{ minHeight: '100vh' }}
-    >
-  
-    <Grid item xs={6}>
-    
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        justify="flex-start"
-        style={{ minHeight: '5vh' }}
-      >
-
-        <Grid item xs={3}>
-        {/* <img src={OfficeImage} className="VO-logo" alt="logo" /> */}
-        </Grid>   
-      </Grid> 
- 
-      <br/>
-
-      <Grid container spacing={24}>
-       <Grid  item xs={12}>
-
-         
-      <Typography variant="overline">
-        Edit Administrator Details
-      </Typography>
-      <br/>
-      <TextField
-          required
-          className="Text-field-org"
-          id="filled-required"
-          label="First Name"
-          placeholder="D.S."
-          style={{ margin: 2}}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={(e) => setFname(e.target.value)}
-        />
-        
-        <TextField
-          required
-          id="filled-required"
-          label="Last Name"
-          placeholder="Perera"
-          style={{ margin: 2}}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={(e) => setLname(e.target.value)}
-        />
-        </Grid>
-        </Grid>
-          <br/>
-        {/* <TextField
-          className="Text-field-org"
-          id="filled-full-width"
-          label ="Organization"
-          style={{ margin: 2}}
-          placeholder="Senior Assistant Registrar"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          onChange={(e) => setOrgname(e.target.value)}
-        /> */}
-          <form style={{ margin: 2}}>
-          <Typography variant="overline">
-            Logo
-          </Typography>
-             
-
-          <Button 
-          size="small"
-          variant="contained" 
-          style={{ margin:2}}
-          >
-            Choose File
-          </Button>
-          </form>
-
-          <br/>
-          <TextField
-            className="Text-field"
-            style={{ margin: 4}}
-            id="filled-required"
-            label="Country/Region"
-            placeholder="Country/Region"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-
-      <br/>
-      <br/>
-      <small >
-        As Admin you will be reponsible for the personal data of 
-        people in your organization as well as the data 
-        managemnet requests they submit to you. <br/>Learn more.
-        </small>
-      {/*Hyperlink the LEARN MORE AND TERMS AND SERVICES */}
-      <br/>
-      <Typography>
-      <Checkbox
-        defaultChecked
-        style={{ margin: 2}}
-        color="primary"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
-      
-      I agree to the terms and services
-      </Typography>      
-
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "center"
-        justify="center"
-        justifyContent="center"
-        style={{ minHeight: '20vh' }}
-      >
-
-       <Button 
-          variant="contained" 
-          component={Link}
-          to="/organization"
-          color="primary" 
-          style={{ margin: 4}}  
-          onClick={(e) => {
-            // e.preventDefault();
-            setUpOrgAttempt(fname, lname, orgname, country);
-          }}
-          
-       >
-        Set up Organization
-        </Button>
-        </Grid>
-    </Grid>      
-   </Grid>
-  );
+                        <Button
+                            type="submit"
+                            color="primary"
+                            variant="contained"
+                            className={classes.button}>
+                            Submit
+                        </Button>
+                        <Button
+                            type="reset"
+                            color="primary"
+                            variant="outlined"
+                            className={classes.button}>
+                            Cancel
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </Container >
+    );
 }
-
-export default EditOrganization;
