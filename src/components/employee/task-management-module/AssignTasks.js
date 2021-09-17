@@ -15,11 +15,8 @@ export const AssignDB = React.createContext();
 
 const useStyles = makeStyles({
   paneContainer: {
-    marginTop: '1vh',
-    marginBottom: '1vh',
-    minHeight: '93vh',
-    background: 'green',
-    maxHeight: '93vh',
+    maxHeight: '90vh',
+    minHeight: '90vh'
   },
 });
 

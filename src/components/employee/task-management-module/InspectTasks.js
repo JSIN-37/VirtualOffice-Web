@@ -13,18 +13,15 @@ import InspectRightCard from './InspectRightCard';
 
 const useStyles = makeStyles({
   paneContainer: {
-    marginTop: '1vh',
-    marginBottom: '1vh',
-    minHeight: '93vh',
-    background: 'green',
-    maxHeight: '93vh',
+    minHeight : '90vh',
+    maxHeight : '90vh',
+    
+    
   },
-
   left: {
-    minHeight: '93vh',
-    maxHeight: '93vh',
+    minHeight : '90vh',
+    maxHeight : '90vh',
     overflowY: 'auto',
-    background: '#f9f9f9',
     marginRight: 5,
   },
 });
@@ -42,7 +39,7 @@ export default function Inspect() {
   return (
     <Grid container className={classes.paneContainer}>
       <Grid item xs={6}>
-        <Card className={classes.left}>
+        <Card variant="outlined" elevation={1} className={classes.left}>
           <CardHeader title='Assigned Tasks' />
           <CardContent>
             {assignedTasksDB.map((task) => {
