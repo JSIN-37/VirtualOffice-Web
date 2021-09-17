@@ -1,17 +1,13 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
-import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 //import OfficeImage from '../../../resources/logo_big.png';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import TeamCard from './TeamCard.js';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar } from "@material-ui/core";
 import { useState, useEffect } from "react";
@@ -35,28 +31,8 @@ function TeamOverview() {
   };
 
   // const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
-
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
 
     const [open, setOpen] = React.useState(false);
-
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
-    var axios = require("axios");
-    axios
-      .post(`${window.backendURL}/setup-organization`, {
-        fname: fname,
-        lname: lname,
-        orgname:orgname,
-        country: country,
-  })
-};
 
   let teamList=teams.map((team,index)=>{
     return (<Grid key={index} item xs={4}>

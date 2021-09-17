@@ -6,8 +6,10 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
 import ErrorRoundedIcon from '@material-ui/icons/ErrorRounded';
+import Box from '@material-ui/core/Box';
 import Avatar from "@material-ui/core/Avatar";
 import TextField from '@material-ui/core/TextField'
+import Link from '@material-ui/core/Link';
 import user from "../resources/emp_user.svg";
 import { useState } from "react";
 import usePasswordValidation from "../hooks/usePasswordValidation";
@@ -34,10 +36,14 @@ const useStyles = makeStyles((theme) => {
             background: '#E3E6F5',
             height: 58,
         },
+        paper: {
+            backgroundColor: "#f9f9f9",
+            marginBottom: 20,
+        },
         bigAvatar: {
             width: 100,
             height: 100,
-            paddingBottom: 10,
+            marginBottom: 10,
         },
         text: {
             fontWeight: 400,
@@ -65,7 +71,7 @@ const useStyles = makeStyles((theme) => {
             marginBottom: 3,
         },
         button: {
-            marginTop: 10,
+            marginTop: 20,
             marginRight: 20
         },
         closeButton: {
@@ -74,11 +80,6 @@ const useStyles = makeStyles((theme) => {
             top: theme.spacing(1),
             color: theme.palette.grey[500],
         },
-        dialog: {
-            width: 800,
-            top: '50%',
-            left: '50%',
-        }
     }
 })
 
@@ -141,29 +142,32 @@ export default function Profile() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Grid container spacing={4}>
-                <Grid item md={2} style={{ display: "flex", alignItems: "center", flexDirection: "column" }} >
-                    <Avatar alt="Remy Sharp" src={user} className={classes.bigAvatar} />
-                    <Button variant="outlined" color="primary" size="small" style={{ marginBottom: "10px" }}> Update Photo </Button>
-                </Grid>
-                <Grid item md={10}>
-                    <Grid container style={{ paddingTop: "10px", paddingLeft: "10px" }}>
-                        <Grid item md={2}>
-                            <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Name: </Typography>
-                            <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Email:</Typography>
-                            <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Designation:</Typography>
-                            <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Department:</Typography>
-                        </Grid>
-                        <Grid item md={10}>
-                            <Typography variant="body1" className={classes.text}>A.T. Pathirana </Typography>
-                            <Typography variant="body1" className={classes.text}>pathirana@gmail.com </Typography>
-                            <Typography variant="body1" className={classes.text}>Head of Division </Typography>
-                            <Typography variant="body1" className={classes.text}>General Administration </Typography>
+            <Box width="100%" className={classes.paper}>
+                <Grid container spacing={4}>
+                    <Grid item md={2} style={{ display: "flex", alignItems: "center", flexDirection: "column" }} >
+                        <Avatar alt="Profile picture" src={user} className={classes.bigAvatar} />
+                        <Link href="#" variant="body1">
+                            Update Photo
+                        </Link>
+                    </Grid>
+                    <Grid item md={10}>
+                        <Grid container style={{ paddingTop: "10px", paddingLeft: "10px" }}>
+                            <Grid item md={2}>
+                                <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Name: </Typography>
+                                <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Email:</Typography>
+                                <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Designation:</Typography>
+                                <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Department:</Typography>
+                            </Grid>
+                            <Grid item md={10}>
+                                <Typography variant="body1" className={classes.text}>A.T. Pathirana </Typography>
+                                <Typography variant="body1" className={classes.text}>pathirana@gmail.com </Typography>
+                                <Typography variant="body1" className={classes.text}>Head of Division </Typography>
+                                <Typography variant="body1" className={classes.text}>General Administration </Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-            <hr />
+            </Box >
             <form noValidate autoComplete="off" >
                 <div className={classes.root}>
                     <Typography variant="h6" className={classes.header}>Profile Details</Typography>

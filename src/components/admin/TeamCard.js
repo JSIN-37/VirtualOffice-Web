@@ -67,12 +67,6 @@ function AllTeamCard({teamId}) {
     setOpen(false);
   };
 
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
-
-
   return (
     <Card className={classes.root} variant="outlined">
       <Typography align="center" variant="overline">{teamName} </Typography>

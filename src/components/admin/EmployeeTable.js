@@ -12,7 +12,6 @@ import { Checkbox } from "@material-ui/core";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { blue } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 
 
 const useStyles = makeStyles({
@@ -47,9 +46,6 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: 14,
     },
 }))(TableCell);
-
-
-
 
 export default function AttendanceTable(props) {
     const classes = useStyles();

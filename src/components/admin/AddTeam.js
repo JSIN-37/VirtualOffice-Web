@@ -1,16 +1,13 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import { useState } from "react";
-import { Avatar } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -35,33 +32,39 @@ const useStyles = makeStyles((theme) => ({
 function AddTeam() {
 
   const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
-  
-    const [team, setTeam] = React.useState('');
+  const [team, setTeam] = useState('');
+  const [description, setDescription] = useState('');
+  const [teamLeader, setTeamLeader] = useState(``);
+    
 
     const handleChange = (event) => {
       setTeam(event.target.value);
     };
 
-    const [open, setOpen] = React.useState(false);
+    const addTeam = () =>{
+      var axios = require('axios');
+      axios.post(`${window.backendURL}/admin/get-addTeams`, { 
+          teamId: team,
+          teamName : team,
+          description: description,
+          teamLeader : teamLeader
+        })
+        .then((res) => {
+          let data = res.data;
+          console.log(data);
+        });
+    }
+    const handleTeamName = (event) => {
+      setTeam(event.target.value);
+    };
 
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
-    var axios = require("axios");
-    axios
-      .post(`${window.backendURL}/setup-organization`, {
-        fname: fname,
-        lname: lname,
-        orgname:orgname,
-        country: country,
-  })
-};
+    const handleDescription = (event) => {
+      setDescription(event.target.value);
+    };
+
+    const handleTeamLeader = (event) => {
+      setTeamLeader(event.target.value);
+    };
 
 
   return (
@@ -74,24 +77,25 @@ function AddTeam() {
                 Team Name
             </Typography>
             <br/>
-            <TextField id="filled-basic" label="Eg: Design Team" variant="filled" />
+            <TextField id="filled-basic" label="Eg: Design Team" variant="filled" onChange={handleTeamName}/>
             <br/>
             <br/>
             <Typography>
                 Description
             </Typography>
-            <TextField id="filled-basic" label="Desciption" variant="filled" />
+            <TextField id="filled-basic" label="Desciption" variant="filled" onChange={handleDescription}/>
             <br/>
             <br/>
             <Typography>
                 Team Leader
             </Typography>
-            <TextField id="filled-basic" label="Eg: A T Perera" variant="filled" />
+            <TextField id="filled-basic" label="Eg: A T Perera" variant="filled" onChange={handleTeamLeader}/>
             <br/>
             <br/>
             
             <Button variant="contained" 
                 color="primary" 
+                onClick={addTeam}
             >
                 Add Team
             </Button>

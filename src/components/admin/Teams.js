@@ -3,8 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
-import { Button } from "@material-ui/core";
-import { Link } from "@material-ui/core";
 import { Tab } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
 import TeamOverview from "./TeamOverview";

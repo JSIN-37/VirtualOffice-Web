@@ -4,7 +4,6 @@ import {
   Avatar,
   Card,
   CardContent,
- 
   Grid,
   Typography,
 } from '@material-ui/core';
@@ -12,10 +11,9 @@ import AddComment from './AddComment';
 
 const useStyles = makeStyles({
   right: {
-    minHeight: '93vh',
-    maxHeight: '93vh',
+    minHeight: '90vh',
+    maxHeight: '90vh',
     overflowY: 'auto',
-    background: '#f9f9f9',
     marginLeft: 5,
   },
 
@@ -33,7 +31,7 @@ export default function InspectRightCard(props) {
   const task = props.showTask;
   const classes = useStyles();
   return (
-    <Card className={classes.right}>
+    <Card variant="outlined" elevation={1} className={classes.right}>
       <CardContent>
         <Grid
           className={classes.mainGrid}

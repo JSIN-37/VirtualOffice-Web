@@ -4,13 +4,13 @@ import Grid from "@material-ui/core/Grid";
 import { Card, Button, Typography } from "@material-ui/core";
 import StatusCard from "./StatusCard";
 import TodoCard from "./TodoCard";
-import DoingCard from "./DoingCard";
 import DashPieChart from "./DashPieChart";
 import DashBarChart from "./DashBarChart";
 import CoworkersCard from "./CoworkersCard";
 import TimeStamps from "./TimeStamps";
 import DashboardHeader from "./DashboardHeader";
 import useFetch from "../../hooks/useFetch";
+import EmailModule from './email-module/EmailModule'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,13 +36,6 @@ export default function Dashboard() {
     const classes = useStyles();
     const [todos, setTodos] = useState([]);
     useFetch(`${window.backendURL}/interim/todos`, setTodos);
-
-    const [doings, setDoings] = useState([]);
-    useEffect(() => {
-        fetch(`${window.backendURL}/interim/doing`)
-            .then((res) => res.json())
-            .then((data) => setDoings(data));
-    }, []);
 
     const [emps, setEmps] = useState([]);
     useEffect(() => {
@@ -86,19 +79,8 @@ export default function Dashboard() {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
-                            <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h6" className={classes.title}>
-                                    Tasks in Progress
-                                </Typography>
-                                {doings.map((doing) => (
-                                    <Grid item xs={12} md={12} key={doing.id}>
-                                        <DoingCard doing={doing} />
-                                    </Grid>
-                                ))}
-                                <Button color="primary" size="small">
-                                    View More{" "}
-                                </Button>
-                            </Card>
+                            <EmailModule />
+
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>

@@ -9,8 +9,6 @@ import { Link } from "react-router-dom";
 import { Typography } from '@material-ui/core';
 import { useState } from "react";
 
-
-
 function SetUpOrganization() {
 
   // const classes = useStyles();
@@ -29,8 +27,6 @@ function SetUpOrganization() {
         country: country,
   })
 };
-
-
   
   return (
     <Grid
@@ -184,7 +180,6 @@ function SetUpOrganization() {
             // e.preventDefault();
             setUpOrgAttempt(fname, lname, orgname, country);
           }}
-          
        >
         Set up Organization
         </Button>

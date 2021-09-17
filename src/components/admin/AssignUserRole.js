@@ -1,20 +1,13 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
-import Card from '@material-ui/core/Card';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {TextField} from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+//import { makeStyles } from '@material-ui/core/styles';
 
-
-const useStyles = makeStyles((theme) => ({
+/*const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
         margin: theme.spacing(1),
@@ -26,46 +19,40 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       minWidth: 120,
     },
-  }));
+  }));*/
 
-function AssignUserRole(memberId) {
+function AssignUserRole() {
 
-  const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
-  const [member, setMember] = React.useState([]);
+//  const classes = useStyles();
+  const [members, setMembers] = useState([]);
 
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
+//    const [addTeam, setAddTeam] = React.useState('');
 
-    const [addTeam, setAddTeam] = React.useState('');
-
-    const handleChange = (event) => {
+/*    const handleChange = (event) => {
       setAddTeam(event.target.value);
       setMember(event.target.value);
-    };
+    };*/
 
+    useEffect(() => {
+      getMembers();
+    }, [])
 
-    const getMember = () => {
+    const getMembers = () => {
       var axios = require('axios');
-      axios.get(`${window.backendURL}/admin/get-member`, memberId) //get the team details
+      axios.get(`${window.backendURL}/admin/get-member`) //get the team details
         .then(res => {
-          const Member = res.data;
-          setMember(Member.name);
+          const memberList = res.data;
+          setMembers(memberList.name);
       })
     };
 
-    let MemberList=member.map((Member,index)=>{
+    let MemberList=members.map((Member,index)=>{
       return (<Typography key={index}>
           {Member}
       </Typography>)
     })
 
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
+/*  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
     var axios = require("axios");
     axios
       .post(`${window.backendURL}/setup-organization`, {
@@ -74,12 +61,12 @@ function AssignUserRole(memberId) {
         orgname:orgname,
         country: country,
   })
-};
+};*/
 
   
   return (
     <Grid>
-        {/* <h1>UserRoles details go here</h1> */}
+       
       <Grid container item lg={12} spacing={6}>
         <Grid item lg={6}>
             {/* <Typography>

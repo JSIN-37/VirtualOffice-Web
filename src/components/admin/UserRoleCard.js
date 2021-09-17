@@ -3,11 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { blue } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -51,10 +48,6 @@ function UserRoleCards({userRoleId}) {
     setOpen(false);
   };
 
-  const [value, setValue] = useState(0);
-    const handleTabs = (e, val) => {
-        setValue(val);
-    };
   // const bull = <span className={classes.bullet}>•</span>;
 
   useEffect(() => {
@@ -80,17 +73,11 @@ function UserRoleCards({userRoleId}) {
         setRoleName(permissions); 
     })
   };
-
-
-
   let PermissionList=rolePermissions.map((permission,index)=>{
     return (<Typography key={index}>
         {permission}
     </Typography>)
   })
-
-
-
   return (
     <Card className={classes.root} variant="outlined">
       <Typography align="left">{roleName}</Typography>
@@ -100,8 +87,6 @@ function UserRoleCards({userRoleId}) {
             <td><Typography>{roleDescription}</Typography></td>
         </tr>
       </table>
-        
-
         
     <Grid
         container
@@ -130,14 +115,9 @@ function UserRoleCards({userRoleId}) {
                       
           </form>
         </DialogContent>
-         
           <DialogActions>
-            
           </DialogActions>
         </Dialog>
-
-
-
       </Grid>
 
     </Card>
