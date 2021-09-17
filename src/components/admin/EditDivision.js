@@ -4,11 +4,8 @@ import { Button, Typography, Container } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -160,58 +157,31 @@ export default function EditDivision({ appD }) {
         <Container className={classes.root}>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                    <FormControl variant="outlined" className={classes.field}>
-                        <InputLabel id="division-select-label">Select Division</InputLabel>
-                        <Select
-                            labelId="division-select-label"
-                            id="division-select"
-                            value={division}
-                            onChange={handleDivisionChange}
-                        >
-                            {divisionList}
-                        </Select>
-                    </FormControl>
-                    <FormControl variant="outlined" className={classes.field}>
-                        <InputLabel id="HOD-select-label">Select the Head of Division</InputLabel>
-                        <Select
-                            labelId="HOD-select-label"
-                            id="HOD-select"
-                            value={HOD}
-                            onChange={handleHODChange} >
-                            {HODList}
-                        </Select>
-                    </FormControl>
+                    <TextField
+                        className={classes.field}
+                        select
+                        labelId="division-select-label"
+                        label="Select Division"
+                        id="division-select"
+                        value={division}
+                        onChange={handleDivisionChange}
+                        variant="outlined"
+                    >
+                        {divisionList}
+                    </TextField>
+                    <TextField
+                        className={classes.field}
+                        select
+                        labelId="HOD-select-label"
+                        label="Select the Head of Division"
+                        id="HOD-select"
+                        value={HOD}
+                        onChange={handleHODChange}
+                        variant="outlined"
+                    >
+                        {HODList}
+                    </TextField>
                     <form>
-                        {/* <TextField
-            className="Text-field"
-            id="filled-full-width"
-            style={{ margin: 4 }}
-            label="Division Name"
-            placeholder="External Degrees Centre "
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          ></TextField>
-
-          <br />
-          <br />
-            *
-          <TextField
-            className="Text-field"
-            id="filled-full-width"
-            style={{ margin: 4 }}
-            label="Head of Division "
-            placeholder="D.R. Siva"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          ></TextField>
-
-          <br />
-          <br />*/}
-
                         <TextField
                             className={classes.field}
                             id="description"

@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Container } from "@material-ui/core";
-import {
-    Button,
-    MenuItem,
-    FormControl,
-    InputLabel,
-    Select,
-} from "@material-ui/core";
+import { Button, MenuItem, } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -135,20 +129,19 @@ export default function AddDivision({ appD }) {
                             }}
                             variant="outlined"
                             onChange={handleDivNameChange} />
-
-                        <FormControl variant="outlined" className={classes.field}>
-                            <InputLabel id="HOD-select-label">Select the Head of Division</InputLabel>
-                            <Select
-                                labelId="HOD-select-label"
-                                id="HOD-select"
-                                value={HOD}
-                                onChange={handleHODChange}>
-                                {HODList}
-                                <MenuItem value={10}>A. T. Pathirana</MenuItem>
-                                <MenuItem value={20}>D. L. Silva</MenuItem>
-                            </Select>
-                        </FormControl>
-
+                        <TextField
+                            className={classes.field}
+                            select
+                            label="Select the Head of Division"
+                            labelId="HOD-select-label"
+                            id="HOD-select"
+                            value={HOD}
+                            onChange={handleHODChange}
+                            variant="outlined" >
+                            {HODList}
+                            <MenuItem value={10}>A. T. Pathirana</MenuItem>
+                            <MenuItem value={20}>D. L. Silva</MenuItem>
+                        </TextField>
                         <TextField
                             className={classes.field}
                             id="description"
@@ -217,6 +210,6 @@ export default function AddDivision({ appD }) {
                     </Button>
                 </Grid>
             </Grid>
-        </Container>
+        </Container >
     );
 }
