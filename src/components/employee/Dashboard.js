@@ -37,13 +37,6 @@ export default function Dashboard() {
     const [todos, setTodos] = useState([]);
     useFetch(`${window.backendURL}/interim/todos`, setTodos);
 
-    const [doings, setDoings] = useState([]);
-    useEffect(() => {
-        fetch(`${window.backendURL}/interim/doing`)
-            .then((res) => res.json())
-            .then((data) => setDoings(data));
-    }, []);
-
     const [emps, setEmps] = useState([]);
     useEffect(() => {
         fetch(`${window.backendURL}/interim/emps`)
@@ -86,8 +79,8 @@ export default function Dashboard() {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
-                       <EmailModule/>
-                        
+                            <EmailModule />
+
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card variant="outlined" elevation={1} className={classes.card}>

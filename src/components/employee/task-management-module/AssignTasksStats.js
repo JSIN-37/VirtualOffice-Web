@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   bottom: {
-    minHeight: '20vh',
+    minHeight: '16vh',
+    maxHeight:'16vh'
   },
 });
 
