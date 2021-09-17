@@ -109,11 +109,11 @@ export default function Layout({ children }) {
             icon: <GroupRoundedIcon color="primary" />,
             path: "/employees",
         },
-        {
-            text: "Organization Settings",
-            icon: <SettingsRoundedIcon color="primary" />,
-            path: "/settings",
-        },
+        // {
+        //   text: "Profile Settings",
+        //   icon: <SettingsRoundedIcon color="primary" />,
+        //   path: "/settings",
+        // },
         {
             text: "Log out",
             icon: <PowerSettingsNewRoundedIcon color="primary" />,

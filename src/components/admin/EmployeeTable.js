@@ -49,6 +49,7 @@ export default function AttendanceTable(props) {
     const classes = useStyles();
 
     function createData(
+        id,
         checkBox,
         name,
         email,
@@ -57,6 +58,7 @@ export default function AttendanceTable(props) {
         edit
     ) {
         return {
+            id,
             checkBox,
             name,
             email,
@@ -68,6 +70,7 @@ export default function AttendanceTable(props) {
     // eslint-disable-next-line
     const [rows, setRows] = React.useState([
         createData(
+            "1",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -84,6 +87,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "2",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -100,6 +104,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "3",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -116,6 +121,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "4",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -132,6 +138,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "5",
             <Checkbox
                 defaultChecked
                 color="primary"
@@ -149,6 +156,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "6",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -165,6 +173,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "7",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -181,6 +190,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "8",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -197,6 +207,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "9",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -213,6 +224,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "10",
             <Checkbox
                 defaultChecked
                 color="primary"
@@ -230,6 +242,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "11",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -246,6 +259,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "12",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -262,6 +276,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "13",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -278,6 +293,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "14",
             <Checkbox
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -294,6 +310,7 @@ export default function AttendanceTable(props) {
             </Button>
         ),
         createData(
+            "15",
             <Checkbox
                 defaultChecked
                 color="primary"
@@ -315,7 +332,7 @@ export default function AttendanceTable(props) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleChangePage = (event, newPage) => {
+    const handlePageChange = (event, newPage) => {
         setPage(newPage);
     };
 
@@ -425,7 +442,7 @@ export default function AttendanceTable(props) {
                         count={rows.length}
                         rowsPerPage={rowsPerPage}
                         page={page}
-                        onChangePage={handleChangePage}
+                        onPageChange={handlePageChange}
                         onChangeRowsPerPage={handleChangeRowsPerPage}
                     />
                 </Grid>
