@@ -5,7 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   pane: {
-    minHeight: '93vh',
+    minHeight : '90vh',
+    maxHeight : '90vh',
+    overflow : 'auto'
   },
   middlePane: {
     marginRight: 5,
@@ -16,7 +18,7 @@ const useStyles = makeStyles({
 export default function InspectTasksPane() {
   const classes = useStyles();
   return (
-    <Card className={`${classes.pane} ${classes.middlePane}`}>
+    <Card variant="outlined" elevation={1} className={`${classes.pane} ${classes.middlePane}`} >
       <CardContent>
         <Typography>Inspect</Typography>{' '}
       </CardContent>

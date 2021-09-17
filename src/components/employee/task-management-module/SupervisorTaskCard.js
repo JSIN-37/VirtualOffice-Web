@@ -86,7 +86,7 @@ export default function SupervisorTaskCard(props) {
       {isWorkers && (
         <Grid container>
           {workers.map((worker) => {
-            return <Avatar>{worker.id}</Avatar>;
+            return <Avatar key={worker.id}>{worker.id}</Avatar>;
           })}
         </Grid>
       )}

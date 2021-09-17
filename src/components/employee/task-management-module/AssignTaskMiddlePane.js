@@ -6,8 +6,8 @@ import AssignTasksStats from './AssignTasksStats';
 
 const useStyles = makeStyles({
   pane: {
-    minHeight: '93vh',
-    maxHeight: '93vh',
+    maxHeight: '90vh',
+    minHeight: '90vh',
     overflowY: 'auto',
     background: '#f9f9f9',
   },
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 export default function AssignTasksMiddlePane() {
   const classes = useStyles();
   return (
-    <Card className={`${classes.pane}`}>
+    <Card variant="outlined" elevation={1} className={`${classes.pane}`}>
       <CardContent>
         <AssignTasksAddTask/>
 

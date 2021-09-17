@@ -10,11 +10,8 @@ export const TaskDB = React.createContext();
 
 const useStyles = makeStyles({
   paneContainer: {
-    marginTop: '1vh',
-    marginBottom: '1vh',
-    minHeight: '93vh',
-    background: 'green',
-    maxHeight: '93vh',
+    minHeight : '90vh',
+    maxHeight : '90vh'
   },
 });
 
