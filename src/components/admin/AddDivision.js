@@ -135,24 +135,20 @@ export default function AddDivision({ appD }) {
                             }}
                             variant="outlined"
                             onChange={handleDivNameChange} />
-                        <br />
+
                         <FormControl variant="outlined" className={classes.field}>
                             <InputLabel id="HOD-select-label">Select the Head of Division</InputLabel>
                             <Select
                                 labelId="HOD-select-label"
                                 id="HOD-select"
-                                value=""
+                                value={HOD}
                                 onChange={handleHODChange}>
                                 {HODList}
-
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={10}>General Administration</MenuItem>
-                                <MenuItem value={20}>Establishment</MenuItem>
+                                <MenuItem value={10}>A. T. Pathirana</MenuItem>
+                                <MenuItem value={20}>D. L. Silva</MenuItem>
                             </Select>
                         </FormControl>
-                        <br />
+
                         <TextField
                             className={classes.field}
                             id="description"

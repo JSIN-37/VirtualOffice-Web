@@ -7,12 +7,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import TablePagination from '@material-ui/core/TablePagination';
 import { Button } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { blue } from '@material-ui/core/colors';
-import Typography from '@material-ui/core/Typography';
-
+import IconButton from '@material-ui/core/IconButton';
+import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
 const useStyles = makeStyles({
     table: {
@@ -24,17 +24,15 @@ const useStyles = makeStyles({
     tableCell: {
         paddingTop: "10px",
         paddingBottom: "10px",
+        paddingLeft: "30px",
         backgroundColor: "#f4f4f4",
-        fontSize: 15,
+        fontSize: 16,
     },
 });
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-        height: 38,
-        "&:nth-of-type(even)": {
-            backgroundColor: "#f9f9f9",
-        },
+        height: 40,
     },
 }))(TableRow);
 
@@ -43,13 +41,13 @@ const StyledTableCell = withStyles((theme) => ({
         padding: "0px 18px",
     },
     body: {
-        fontSize: 14,
+        fontSize: 15,
     },
 }))(TableCell);
 
 export default function AttendanceTable(props) {
     const classes = useStyles();
-    
+
     function createData(
         checkBox,
         name,
@@ -71,49 +69,66 @@ export default function AttendanceTable(props) {
     const [rows, setRows] = React.useState([
         createData(
             <Checkbox
-                defaultChecked
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
             />,
-            "K P Hewagamage",
-            "hewagamage@gmail.com",
+            "D.S. Perera",
+            "dsperera@gmail.com",
             "Director’s Office",
             "Director",
-            <Button variant="contained" size="small" justifyContent="flex-end"> 
-              <EditOutlinedIcon style={{ color: blue[500] }} />
-              <Typography>Edit</Typography>
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
             </Button>
-            ),
+        ),
         createData(
             <Checkbox
-                defaultChecked
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
             />,
-            "K P Hewagamage",
-            "hewagamage@gmail.com",
+            "W. P. De Silva",
+            "wpsilva@gmail.com",
             "General Administration",
             "SR",
-            <Button variant="contained" size="small" justifyContent="flex-end"> 
-              <EditOutlinedIcon style={{ color: blue[500] }} />
-              <Typography>Edit</Typography>
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
             </Button>
-
-
         ),
         createData(
             <Checkbox
-                defaultChecked
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
             />,
-            "K P Hewagamage",
-            "hewagamage@gmail.com",
+            "A. L. Pathirana",
+            "atpathirana@gmail.com",
             "Establishment",
             "HOD",
-            <Button variant="contained" size="small" justifyContent="flex-end"> 
-              <EditOutlinedIcon style={{ color: blue[500] }} />
-              <Typography>Edit</Typography>
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "K. H. H. Gamage",
+            "khhamage@gmail.com",
+            "Academic, Publications & Welfare",
+            "AO",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
             </Button>
         ),
         createData(
@@ -122,38 +137,202 @@ export default function AttendanceTable(props) {
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
             />,
-            "K P Hewagamage",
-            "hewagamage@gmail.com",
-            "Academic, Publications & Welfare",
-            "AO",
-            <Button variant="contained" size="small" justifyContent="flex-end"> 
-              <EditOutlinedIcon style={{ color: blue[500] }} />
-              <Typography>Edit</Typography>
+            "D.M. Dunuwila",
+            "dmdunuwila@gmail.com",
+            "Director’s Office",
+            "Director",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
             </Button>
-            
-            
         ),
         createData(
             <Checkbox
-            defaultChecked
-            color="primary"
-            inputProps={{ 'aria-label': 'secondary checkbox' }}
-        />,
-        "K P Hewagamage",
-        "hewagamage@gmail.com",
-        "Director’s Office",
-        "Director",
-        <Button variant="contained" size="small" justifyContent="flex-end"> 
-          <EditOutlinedIcon style={{ color: blue[500] }} />
-          <Typography>Edit</Typography>
-        </Button>
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "D.S. Perera",
+            "dsperera@gmail.com",
+            "Director’s Office",
+            "Director",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "W. P. De Silva",
+            "wpsilva@gmail.com",
+            "General Administration",
+            "SR",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "A. L. Pathirana",
+            "atpathirana@gmail.com",
+            "Establishment",
+            "HOD",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "K. H. H. Gamage",
+            "khhamage@gmail.com",
+            "Academic, Publications & Welfare",
+            "AO",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                defaultChecked
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "D.M. Dunuwila",
+            "dmdunuwila@gmail.com",
+            "Director’s Office",
+            "Director",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "D.S. Perera",
+            "dsperera@gmail.com",
+            "Director’s Office",
+            "Director",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "W. P. De Silva",
+            "wpsilva@gmail.com",
+            "General Administration",
+            "SR",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "A. L. Pathirana",
+            "atpathirana@gmail.com",
+            "Establishment",
+            "HOD",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "K. H. H. Gamage",
+            "khhamage@gmail.com",
+            "Academic, Publications & Welfare",
+            "AO",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
+        ),
+        createData(
+            <Checkbox
+                defaultChecked
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />,
+            "D.M. Dunuwila",
+            "dmdunuwila@gmail.com",
+            "Director’s Office",
+            "Director",
+            <Button variant="outlined"
+                color="primary"
+                size="small"
+                startIcon={<EditRoundedIcon />}>
+                Edit
+            </Button>
         ),
     ]);
 
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
     return (
         <>
-            <Grid container justifyContent="center" align="center">
-                <Grid item style={{ padding: "0 18px 18px" }}>
+            <Grid container >
+                <Grid item xs={12} md={12} justifyContent="flex-start" >
+                    <IconButton aria-label="mail" color="primary">
+                        <EmailRoundedIcon />
+                    </IconButton>
+                </Grid>
+                <Grid item justifyContent="center" align="center" style={{ padding: "0 18px 18px" }} >
                     <TableContainer>
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
@@ -161,13 +340,11 @@ export default function AttendanceTable(props) {
                                     <TableCell
                                         className={classes.tableCell}
                                         align="left"
-                                        style={{ paddingLeft: "30px" }}
                                     >
                                     </TableCell>
                                     <TableCell
                                         className={classes.tableCell}
                                         align="left"
-                                        style={{ paddingLeft: "30px" }}
                                     >
                                         Name
                                     </TableCell>
@@ -181,67 +358,77 @@ export default function AttendanceTable(props) {
                                         Role
                                     </TableCell>
                                     <TableCell className={classes.tableCell} align="left">
-                                        
+
                                     </TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
-                                    <StyledTableRow key={row.id}>
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                            style={{ paddingLeft: "30px" }}
-                                        >
-                                            {row.checkBox}
-                                        </StyledTableCell>                                     
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                            style={{ paddingLeft: "30px" }}
-                                        >
-                                            {row.name}
-                                        </StyledTableCell>
+                                {rows
+                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map((row) => (
+                                        <StyledTableRow key={row.id}>
+                                            <StyledTableCell
+                                                component="th"
+                                                scope="row"
+                                                style={{ paddingLeft: "30px" }}
+                                            >
+                                                {row.checkBox}
+                                            </StyledTableCell>
+                                            <StyledTableCell
+                                                component="th"
+                                                scope="row"
+                                                style={{ paddingLeft: "30px" }}
+                                            >
+                                                {row.name}
+                                            </StyledTableCell>
 
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                            style={{ paddingLeft: "30px" }}
-                                        >
-                                            {row.email}
-                                        </StyledTableCell>
+                                            <StyledTableCell
+                                                component="th"
+                                                scope="row"
+                                                style={{ paddingLeft: "30px" }}
+                                            >
+                                                {row.email}
+                                            </StyledTableCell>
 
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                            style={{ paddingLeft: "30px" }}
-                                        >
-                                            {row.division}
-                                        </StyledTableCell>
+                                            <StyledTableCell
+                                                component="th"
+                                                scope="row"
+                                                style={{ paddingLeft: "30px" }}
+                                            >
+                                                {row.division}
+                                            </StyledTableCell>
 
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                            style={{ paddingLeft: "30px" }}
-                                        >
-                                            {row.role}
-                                        </StyledTableCell>
+                                            <StyledTableCell
+                                                component="th"
+                                                scope="row"
+                                                style={{ paddingLeft: "30px" }}
+                                            >
+                                                {row.role}
+                                            </StyledTableCell>
 
-                                        <StyledTableCell
-                                            component="th"
-                                            scope="row"
-                                            style={{ paddingLeft: "30px" }}
-                                        >
-                                            {row.edit}
-                                        </StyledTableCell>
+                                            <StyledTableCell
+                                                component="th"
+                                                scope="row"
+                                                style={{ paddingLeft: "30px" }}
+                                            >
+                                                {row.edit}
+                                            </StyledTableCell>
 
-                                    </StyledTableRow>
-                                ))}
+                                        </StyledTableRow>
+                                    ))}
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
+                        component="div"
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
                 </Grid>
-
             </Grid>
         </>
     );
