@@ -12,7 +12,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,17 +34,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Employees() {
+export default function Employees(appD) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
+  const [firstname, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
+    
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
     setOpen(false);
+  };
+
+  const handleNameChange = (event) => {
+    setFirstName(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const postEmployees = async (appD) => {
+    const config = {
+      headers: { Authorization: `Bearer ${appD.token}` },
+    };
+    // const bodyParameters = {
+    //   key: "value",
+    // };
+    console.log(firstname);
+    console.log(email);
+    axios
+      .post(`${window.backendURL}/admin/user`,{
+          first_name : firstname,
+          email : email
+      } ,config)
+      .then(console.log)
+      .catch(console.log);
   };
 
   return (
@@ -86,6 +116,7 @@ export default function Employees() {
             color="primary"
             onClick={handleClickOpen}
             style={{ margin: 4 }}
+            
           >
             Invite Employees
           </Button>
@@ -106,10 +137,11 @@ export default function Employees() {
             <TextField
             autoFocus
             margin="dense"
-            id="name"
-            type="email"
+            id="firstname"
+            type="name"
             placeholder="Eg: A P Perera"
             fullWidth
+            onChange={handleNameChange}
             />
               
             </Grid>
@@ -118,10 +150,11 @@ export default function Employees() {
               <TextField
               autoFocus
               margin="dense"
-              id="name"
+              id="email"
               type="email"
               placeholder="Eg: apperera@gmail.com"
               fullWidth
+              onChange={handleEmailChange}
               />
               
             </Grid>
@@ -131,7 +164,8 @@ export default function Employees() {
             <Button onClick={handleClose} color="primary" variant="contained"
             component={Link}
             to="/invite-employees"
-            onClick={handleClickOpen}
+            // onClick={handleClickOpen}
+            onClick={() => postEmployees(appD)}
             justifyContent="flex-start"
             style={{ margin: 4 }}
             size="small">
