@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useState } from "react";
-import { Button, Typography, Grid, Radio, RadioGroup } from '@material-ui/core';
+import { Container, Typography, Grid, Radio, RadioGroup } from '@material-ui/core';
 import { makeStyles, FormControlLabel } from "@material-ui/core";
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import IconButton from '@material-ui/core/IconButton';
+import ProgressBar from "./ProgressBar";
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -36,37 +37,23 @@ export default function StatusCard() {
 
     const classes = useStyles()
     return (
-        <Grid container align="center" justifyContent="center" alignItems="center">
-            <Grid item xs={3} >
-                <Button variant="contained" disabled={disable} color="primary" onClick={(e) => {
-                    setDisable(true)
-                    handelTimeStamp()
-                }}>
-                    Start work</Button>
+        <Container>
+            <ProgressBar />
+            <Grid container align="center" justifyContent="center" alignItems="center">
+                <Grid item xs={2}><br />
+                    <Typography variant="body1" color="initial" pr={2}>I am</Typography>
+                </Grid>
+                <Grid item xs={7}><br />
+                    <RadioGroup row>
+                        <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
+                        <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
+                        <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
+                        <IconButton style={{ color: "#23AF5E" }} aria-label="save">
+                            <CheckCircleRoundedIcon />
+                        </IconButton>
+                    </RadioGroup>
+                </Grid>
             </Grid>
-            <Grid item xs={3}>
-                <Button variant="contained" color="primary" onClick={handelTimeStamp}>Stop Work</Button>
-            </Grid>
-            <Grid item xs={3}>
-                <Button variant="contained" className={classes.breakBtn} onClick={handelTimeStamp}>Start Break</Button>
-            </Grid>
-            <Grid item xs={3}>
-                <Button disabled variant="contained" className={classes.breakBtn} onClick={handelTimeStamp}>Stop Break</Button>
-            </Grid>
-
-            <Grid item xs={2}><br />
-                <Typography variant="body1" color="initial" pr={2}>I am</Typography>
-            </Grid>
-            <Grid item xs={7}><br />
-                <RadioGroup row>
-                    <FormControlLabel value="available" control={<Radio value="available" />} label={<Typography variant="body1" color="initial" pr={2}>Available</Typography>} />
-                    <FormControlLabel value="busy" control={<Radio value="busy" />} label={<Typography variant="body1" color="initial" pr={2}>Busy</Typography>} />
-                    <FormControlLabel value="onbreak" control={<Radio value="onbreak" />} label={<Typography variant="body1" color="initial" pr={2}>On Break</Typography>} />
-                    <IconButton style={{ color: "#23AF5E" }} aria-label="save">
-                        <CheckCircleRoundedIcon />
-                    </IconButton>
-                </RadioGroup>
-            </Grid>
-        </Grid>
+        </Container>
     )
 }

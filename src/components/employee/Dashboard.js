@@ -52,6 +52,9 @@ export default function Dashboard() {
                 <DashboardHeader />
                 <Grid item xs={12} md={7}>
                     <Card variant="outlined" elevation={1} className={classes.card}>
+                        <Typography variant="h6" className={classes.title}>
+                            Time
+                        </Typography>
                         <StatusCard />
                     </Card>
                     <Grid container spacing={3}>
