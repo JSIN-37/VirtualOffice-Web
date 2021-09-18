@@ -9,6 +9,8 @@ import NotFound from "./components/NotFound";
 // Backend endpoint - set to live for now
 window.backendURL = "http://vo.zx-software.com:3040/api/v1"; // Define without trailing '/'
 
+export const AppData = React.createContext();
+
 const App = () => {
   const [appD, setAppD] = React.useState({});
 
@@ -17,30 +19,34 @@ const App = () => {
     var credentials = {};
     if (localStorage.getItem("credentials")) {
       credentials = JSON.parse(localStorage.getItem("credentials"));
-      let tmpAppD = { email: credentials.email, token: credentials.token };
+      let tmpAppD = {
+        email: credentials.email,
+        token: credentials.token,
+        isAdmin: credentials.isAdmin,
+      };
       setAppD(tmpAppD);
     }
   }, []);
 
   return (
-    <>
+    <AppData.Provider value={[appD, setAppD]}>
       <Router>
         <Switch>
           <Route exact path="/">
             <WelcomeScreen />
           </Route>
           <Route path="/employee">
-            <EmployeeArea appD={appD} setAppD={setAppD} />
+            <EmployeeArea />
           </Route>
           <Route path="/admin">
-            <AdminArea appD={appD} setAppD={setAppD} />
+            <AdminArea />
           </Route>
           <Route path="*">
             <NotFound />
           </Route>
         </Switch>
       </Router>
-    </>
+    </AppData.Provider>
   );
 };
 
