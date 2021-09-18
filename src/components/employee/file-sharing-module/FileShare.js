@@ -84,7 +84,7 @@ export default function FileShare() {
     
     return (
         <>
-        <Button onClick={createPicker}>Click</Button>
+        <Button onClick={createPicker} variant='contained' color='primary'>Google Drive</Button>
         </>
     )
 }
