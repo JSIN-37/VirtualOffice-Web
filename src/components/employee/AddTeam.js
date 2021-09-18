@@ -10,6 +10,8 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Link from "@material-ui/core/Link";
 
+import { AppData } from "../../App";
+
 const useStyles = makeStyles((theme) => ({
   field: {
     width: 370,
@@ -30,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddTeam({ appD }) {
+export default function AddTeam() {
+  const [appD] = React.useContext(AppData);
   const classes = useStyles();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TeamHeader({ appD }) {
+export default function TeamHeader() {
   const classes = useStyles();
 
   const [value, setValue] = useState(0);
@@ -76,7 +76,7 @@ export default function TeamHeader({ appD }) {
         <TeamOverview />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AddTeam appD={appD} />
+        <AddTeam />
       </TabPanel>
     </Grid>
   );

@@ -9,10 +9,12 @@ import Teams from "./components/admin/Teams";
 import UserRoles from "./components/admin/UserRoles";
 import Employees from "./components/admin/Employees";
 import Settings from "./components/admin/Settings";
-
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-const AdminArea = ({ appD, setAppD }) => {
+import { AppData } from "./App";
+
+const AdminArea = () => {
+  const [appD] = React.useContext(AppData);
   if (appD.token && appD.isAdmin) {
     return (
       <Router basename="/admin">
@@ -21,7 +23,7 @@ const AdminArea = ({ appD, setAppD }) => {
             <Organization />
           </Route>
           <Route exact path="/divisions">
-            <Divisions appD={appD} />
+            <Divisions />
           </Route>
           <Route exact path="/teams">
             <Teams />
@@ -36,30 +38,14 @@ const AdminArea = ({ appD, setAppD }) => {
             <Settings />
           </Route>
           <Route exact path="/logout">
-            <LogOut appD={appD} setAppD={setAppD} />
+            <LogOut />
           </Route>
         </Layout>
       </Router>
     );
   } else {
-    return <LogIn onLogin={setAppD} appD={appD} />;
+    return <LogIn />;
   }
 };
 
 export default AdminArea;
-
-// import WorkerLogIn from "./components/admin/WorkerLogIn.js";
-// import AllTeams from "./components/admin/old/AllTeams.js";
-// import Division from "./components/admin/old/Divisions.js";
-// import SetupOrg from "./components/admin/old/setupOrg.js";
-// import SetUpEmail from "./components/admin/setUpEmail.js";
-// import ResponsiveDrawer from "./components/admin/old/ResponsiveDrawer.js";
-// import UserRoles from "./components/admin/old/UserRoles.js";
-// import EditUserRoles from "./components/admin/old/EditUserRoles.js";
-// import InviteMembers from "./components/admin/old/InviteMembers.js";
-// import SetUpProfile from "./components/admin/SetUpProfile.js";
-// import MemberDesignation from "./components/admin/MemberDesignation.js";
-// import Members from "./components/admin/old/Members.js";
-// import AddDivision from "./components/admin/old/AddDivision.js";
-// import AddTeam from "./components/admin/old/AddTeam.js";
-// import ViewTeam from "./components/admin/ViewTeam.js";

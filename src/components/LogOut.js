@@ -1,4 +1,8 @@
-const LogOut = ({ appD, setAppD }) => {
+import { AppData } from "../App";
+import { useContext } from "react";
+
+const LogOut = () => {
+  const [appD, setAppD] = useContext(AppData);
   // Remove from state
   let tmpAppD = appD;
   tmpAppD.token = null;
