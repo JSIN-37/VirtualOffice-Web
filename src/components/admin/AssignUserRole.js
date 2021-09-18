@@ -144,6 +144,16 @@ function AssignUserRole() {
                             id="division"
                         />
                         <br />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox checked
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="Active user"
+                        />
+                        <br />
                         <Button
                             type="submit"
                             color="primary"
