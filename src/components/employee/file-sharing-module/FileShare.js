@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core';
 import React, {useState, useEffect} from 'react'
+import { filesharekeys } from './filesharekeys';
 
 export default function FileShare() {
    
@@ -18,17 +19,16 @@ export default function FileShare() {
             console.log("GAPI AUTH 2 TOKEN ", x)
             console.log("got access token ",accessToken)
         }
-    }, [])
+    })
      // The Browser API key obtained from the window.google API Console.
     // Replace with your own Browser API key, or your own key.
-    var developerKey = 'AIzaSyBc4j2943doYd1rB1F4q-aulLKmL5SEiWc';
+    var developerKey = filesharekeys.developerKey;
 
-    // The Client ID obtained from the window.google API Console. Replace with your own Client ID.
-    var clientId = "236866159961-lmr7803n45cikhpdj4uovame2cmbnrad.apps.googleusercontent.com"
+    
 
     // Replace with your own project number from console.developers.window.google.com.
     // See "Project number" under "IAM & Admin" > "Settings"
-    var appId = "236866159961";
+    var appId = filesharekeys.appId;
 
     // Scope to use to access user's Drive items.
     var scope = ['https://www.googleapis.com/auth/drive.file'];
@@ -40,7 +40,9 @@ export default function FileShare() {
 
     
     function onPickerApiLoad() {
-      setPicker(true)
+      if(!pickerApiLoaded){
+        setPicker(true)
+      }
     }
 
     // function handleAuthResult(authResult) {

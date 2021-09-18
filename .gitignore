@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/components/employee/email-module/keys.js
+
+keys
+/src/components/employee/email-module/emailkeys.js
+/src/components/employee/file-sharing-module/filesharekeys.js
 # testing
 /coverage
 
