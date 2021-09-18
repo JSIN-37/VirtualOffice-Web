@@ -107,8 +107,7 @@ export default function EmployeeOverview(appD) {
                         to="/invite-employees"
                         // onClick={handleClickOpen}
                         onClick={() => postEmployees(appD)}
-                        justifyContent="flex-start"
-                        style={{ margin: 4 }}
+
                         size="small">
                         Send Invitation
                     </Button>

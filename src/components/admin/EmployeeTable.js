@@ -8,7 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from '@material-ui/core/TablePagination';
-import { Button } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
@@ -344,108 +344,110 @@ export default function AttendanceTable(props) {
     return (
         <>
             <Grid container >
-                <Grid item xs={12} md={12} justifyContent="flex-start" >
+                <Container justifycontent="flex-start" >
                     <IconButton aria-label="mail" color="primary">
                         <EmailRoundedIcon />
                     </IconButton>
-                </Grid>
-                <Grid item justifyContent="center" align="center" style={{ padding: "0 18px 18px" }} >
-                    <TableContainer>
-                        <Table className={classes.table} aria-label="simple table">
-                            <TableHead>
-                                <TableRow className={classes.tableRow}>
-                                    <TableCell
-                                        className={classes.tableCell}
-                                        align="left"
-                                    >
-                                    </TableCell>
-                                    <TableCell
-                                        className={classes.tableCell}
-                                        align="left"
-                                    >
-                                        Name
-                                    </TableCell>
-                                    <TableCell className={classes.tableCell} align="left">
-                                        Email
-                                    </TableCell>
-                                    <TableCell className={classes.tableCell} align="left">
-                                        Division
-                                    </TableCell>
-                                    <TableCell className={classes.tableCell} align="left">
-                                        Role
-                                    </TableCell>
-                                    <TableCell className={classes.tableCell} align="left">
+                </Container >
+                <Container justifycontent="center" >
+                    <Grid item align="center" style={{ padding: "0 18px 18px" }} >
+                        <TableContainer>
+                            <Table className={classes.table} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow className={classes.tableRow}>
+                                        <TableCell
+                                            className={classes.tableCell}
+                                            align="left"
+                                        >
+                                        </TableCell>
+                                        <TableCell
+                                            className={classes.tableCell}
+                                            align="left"
+                                        >
+                                            Name
+                                        </TableCell>
+                                        <TableCell className={classes.tableCell} align="left">
+                                            Email
+                                        </TableCell>
+                                        <TableCell className={classes.tableCell} align="left">
+                                            Division
+                                        </TableCell>
+                                        <TableCell className={classes.tableCell} align="left">
+                                            Role
+                                        </TableCell>
+                                        <TableCell className={classes.tableCell} align="left">
 
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((row) => (
-                                        <StyledTableRow key={row.id}>
-                                            <StyledTableCell
-                                                component="th"
-                                                scope="row"
-                                                style={{ paddingLeft: "30px" }}
-                                            >
-                                                {row.checkBox}
-                                            </StyledTableCell>
-                                            <StyledTableCell
-                                                component="th"
-                                                scope="row"
-                                                style={{ paddingLeft: "30px" }}
-                                            >
-                                                {row.name}
-                                            </StyledTableCell>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {rows
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map((row) => (
+                                            <StyledTableRow key={row.id}>
+                                                <StyledTableCell
+                                                    component="th"
+                                                    scope="row"
+                                                    style={{ paddingLeft: "30px" }}
+                                                >
+                                                    {row.checkBox}
+                                                </StyledTableCell>
+                                                <StyledTableCell
+                                                    component="th"
+                                                    scope="row"
+                                                    style={{ paddingLeft: "30px" }}
+                                                >
+                                                    {row.name}
+                                                </StyledTableCell>
 
-                                            <StyledTableCell
-                                                component="th"
-                                                scope="row"
-                                                style={{ paddingLeft: "30px" }}
-                                            >
-                                                {row.email}
-                                            </StyledTableCell>
+                                                <StyledTableCell
+                                                    component="th"
+                                                    scope="row"
+                                                    style={{ paddingLeft: "30px" }}
+                                                >
+                                                    {row.email}
+                                                </StyledTableCell>
 
-                                            <StyledTableCell
-                                                component="th"
-                                                scope="row"
-                                                style={{ paddingLeft: "30px" }}
-                                            >
-                                                {row.division}
-                                            </StyledTableCell>
+                                                <StyledTableCell
+                                                    component="th"
+                                                    scope="row"
+                                                    style={{ paddingLeft: "30px" }}
+                                                >
+                                                    {row.division}
+                                                </StyledTableCell>
 
-                                            <StyledTableCell
-                                                component="th"
-                                                scope="row"
-                                                style={{ paddingLeft: "30px" }}
-                                            >
-                                                {row.role}
-                                            </StyledTableCell>
+                                                <StyledTableCell
+                                                    component="th"
+                                                    scope="row"
+                                                    style={{ paddingLeft: "30px" }}
+                                                >
+                                                    {row.role}
+                                                </StyledTableCell>
 
-                                            <StyledTableCell
-                                                component="th"
-                                                scope="row"
-                                                style={{ paddingLeft: "30px" }}
-                                            >
-                                                {row.edit}
-                                            </StyledTableCell>
+                                                <StyledTableCell
+                                                    component="th"
+                                                    scope="row"
+                                                    style={{ paddingLeft: "30px" }}
+                                                >
+                                                    {row.edit}
+                                                </StyledTableCell>
 
-                                        </StyledTableRow>
-                                    ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <TablePagination
-                        rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
-                        component="div"
-                        count={rows.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handlePageChange}
-                        onChangeRowsPerPage={handleChangeRowsPerPage}
-                    />
-                </Grid>
+                                            </StyledTableRow>
+                                        ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
+                            component="div"
+                            count={rows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onPageChange={handlePageChange}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                    </Grid>
+                </Container >
             </Grid>
         </>
     );

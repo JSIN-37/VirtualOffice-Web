@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         display: "flex",
-        width: "100%", // Fix IE 11 issue
-        justifyContent: "flex-start",
+
     },
     namefield: {
         marginTop: 10,
@@ -31,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: "15px 15px 0 0",
+    },
+    formControlLabel: {
+        marginRight: "5px"
     },
 }));
 
@@ -58,6 +60,7 @@ function AssignUserRole() {
             })
     };
 
+    // eslint-disable-next-line no-unused-vars
     let MemberList = members.map((Member, index) => {
         return (<Typography key={index}>
             {Member}
@@ -78,16 +81,16 @@ function AssignUserRole() {
     return (
         <>
             <Container className={classes.root}>
-                <Grid container spacing={0}>
-                    <Grid item xs={12} md={6}>
+                <Grid container spacing={2}>
+                    <Grid item md={5}>
                         <form className={classes.form}>
                             <Grid item xs={2} md={2}>
                                 <TextField
                                     className={classes.namefield}
+                                    style={{ marginRight: "20px", width: "120px" }}
                                     label="First Name"
                                     variant="outlined"
                                     color="primary"
-                                    fullWidth
                                     required
                                     id="firstName"
                                 />
@@ -95,11 +98,10 @@ function AssignUserRole() {
                             <Grid item xs={4} md={4}>
                                 <TextField
                                     className={classes.namefield}
-                                    style={{ marginLeft: "20px" }}
+                                    style={{ marginLeft: "50px", width: "240px" }}
                                     label="Last Name"
                                     variant="outlined"
                                     color="primary"
-                                    fullWidth
                                     required
                                     id="lastName"
                                 />
@@ -142,16 +144,6 @@ function AssignUserRole() {
                             id="division"
                         />
                         <br />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked
-                                    color="primary"
-                                    inputProps={{ "aria-label": "secondary checkbox" }}
-                                />}
-                            label="Active Role"
-                        />
-                        <br />
                         <Button
                             type="submit"
                             color="primary"
@@ -166,34 +158,112 @@ function AssignUserRole() {
                             className={classes.button}>
                             Cancel
                         </Button>
-                    </Grid >
-                    <Grid item xs={12} md={6}>
-                        <form className={classes.form}>
-                            <Grid item xs={12} md={6}>
-                                <Grid item xs={6} md={6}>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                color="primary"
-                                                inputProps={{ "aria-label": "secondary checkbox" }}
-                                            />}
-                                        label="Director"
-                                    />
-                                </Grid >
-                                <Grid item xs={6} md={6}>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                color="primary"
-                                                inputProps={{ "aria-label": "secondary checkbox" }}
-                                            />}
-                                        label="Director"
-                                    />
-                                </Grid >
-                            </Grid >
-                        </form>
-                    </Grid >
-                </Grid >
+                    </Grid>
+                    <Grid item md={3}>
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="Director"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="HOD - Head of Division"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="SR - Senior Registrar"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="SAR - Senior Assist. Registrar"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="MA - Management Assistant"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="Worker"
+                        />
+                    </Grid>
+                    <Grid item md={3}>
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="DD - Deputy Director"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="AO - Administrative Officer"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="DP - Deputy Registrar"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="AR - Assistant Registrar"
+                        />
+                        <FormControlLabel
+                            className={classes.formControlLabel}
+                            control={
+                                <Checkbox
+                                    color="primary"
+                                    inputProps={{ "aria-label": "secondary checkbox" }}
+                                />}
+                            label="TO - Technical Officer"
+                        />
+                    </Grid>
+                </Grid>
+                <br />
             </Container >
 
 
