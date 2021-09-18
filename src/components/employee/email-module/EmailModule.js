@@ -1,8 +1,8 @@
 import { Button, Card, Grid, Typography } from '@material-ui/core'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import EmailCard from './EmailCard';
-import {keys} from './keys'
+import {emailkeys} from './emailkeys'
 
 const useStyles = makeStyles({
     emailContainer : {
@@ -11,8 +11,8 @@ const useStyles = makeStyles({
     }
 })
 
-const CLIENT_ID = keys.CLIENT_ID
-const API_KEY = keys.API_KEY
+const CLIENT_ID = emailkeys.CLIENT_ID
+const API_KEY = emailkeys.API_KEY
 
 export default function EmailModule() {
     const classes = useStyles()
@@ -28,6 +28,49 @@ export default function EmailModule() {
     const [signedIn, setSignedIn] = useState(false)
     const [emails, setEmails] = useState([])
 
+    // const handleClientLoad = useCallback(() =>{
+    //     window.gapi.load('client:auth2', initClient)
+    // })
+
+    const listMail = useCallback(() =>{
+        const emailIdArray = []
+        window.gapi.client.gmail.users.messages.list({
+            'userId':'me'
+        }).then( function (response) {
+            const msg = JSON.parse(JSON.stringify(response))
+            const objectArray = msg.result.messages
+            //console.log("RESPONSE FROM GMAIL = ", msg.result.messages)
+            objectArray.forEach(function (msg){
+                emailIdArray.push(msg.id)
+            })
+            loadEmails(emailIdArray)
+        })
+    },[])
+
+    function loadEmails(array){
+        array.forEach(function (id){
+            //console.log(id)
+            window.gapi.client.gmail.users.messages.get({
+                'userId':'me',
+                'id':`${id}`
+            }).then((response) => {
+                setEmails((oldEmails)=>{
+                    //console.log("googles response ",response)
+                    const newMail = {
+                        id : id,
+                        snippet : response.result.snippet,
+                        labelIds : response.result.labelIds
+                    }
+                    return [...oldEmails, newMail]
+                })
+            })
+        })
+    }
+
+    const handleClientLoad = useCallback(()=>{
+        window.gapi.load('client:auth2', initClient)
+    },[])
+    
 
     useEffect(() => {
         if(window.gapi){
@@ -43,15 +86,8 @@ export default function EmailModule() {
             }else{return}
             
         }
-    }, [window.gapi, window.gapi.client])
+    }, [])
 
-
-    
-
-    function handleClientLoad(){
-        window.gapi.load('client:auth2', initClient)
-    }
-    
     function initClient(){
         window.gapi.client.init({
             apiKey : API_KEY,
@@ -86,40 +122,7 @@ export default function EmailModule() {
         window.gapi.auth2.getAuthInstance().signOut();
     }
 
-    const emailIdArray = []
-    function listMail(){
-        window.gapi.client.gmail.users.messages.list({
-            'userId':'me'
-        }).then( function (response) {
-            const msg = JSON.parse(JSON.stringify(response))
-            const objectArray = msg.result.messages
-            //console.log("RESPONSE FROM GMAIL = ", msg.result.messages)
-            objectArray.map((obj)=>{
-                emailIdArray.push(obj.id)
-            })
-            loadEmails(emailIdArray)
-        })
-    }
 
-    function loadEmails(array){
-        array.map((id)=>{
-            //console.log(id)
-            window.gapi.client.gmail.users.messages.get({
-                'userId':'me',
-                'id':`${id}`
-            }).then((response) => {
-                setEmails((oldEmails)=>{
-                    //console.log("googles response ",response)
-                    const newMail = {
-                        id : id,
-                        snippet : response.result.snippet,
-                        labelIds : response.result.labelIds
-                    }
-                    return [...oldEmails, newMail]
-                })
-            })
-        })
-    }
     
     return (
         <Card variant="outlined" elevation={1} className={classes.emailContainer}>
