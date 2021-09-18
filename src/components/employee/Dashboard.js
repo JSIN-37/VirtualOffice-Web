@@ -5,7 +5,6 @@ import { Card, Button, Typography } from "@material-ui/core";
 import StatusCard from "./StatusCard";
 import TodoCard from "./TodoCard";
 import DashPieChart from "./DashPieChart";
-import DashBarChart from "./DashBarChart";
 import CoworkersCard from "./CoworkersCard";
 import TimeStamps from "./TimeStamps";
 import DashboardHeader from "./DashboardHeader";

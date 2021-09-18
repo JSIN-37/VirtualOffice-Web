@@ -19,7 +19,6 @@ import user from "../../resources/emp_user.svg";
 import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
 import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
-import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 
 const drawerWidth = 240;
 
