@@ -19,7 +19,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import ForgotPassword from "./ForgotPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { AppData } from "../../App";
+import { AppData, KeyData } from "../../App";
 
 const useStyles = makeStyles({
   root: {
@@ -90,6 +90,7 @@ export default function LogIn() {
   const [loginError, setLoginError] = useState(false);
 
   const [appD, setAppD] = React.useContext(AppData);
+  const {keys, setKeys} = React.useContext(KeyData);
 
   const loginAttempt = async (email, password) => {
     var axios = require("axios");
@@ -100,14 +101,22 @@ export default function LogIn() {
       })
       .then((res) => {
         let data = res.data;
-        // Token should be avail. if successful
         if (data.token) {
-          let tmpCreds = {
-            token: `${data.token}`,
-            isAdmin: false,
-          };
-          localStorage.setItem("credentials", JSON.stringify(tmpCreds));
-          setAppD({ ...appD, token: data.token, isAdmin: false }); // Need to set it this way to ask React to re-render
+          const config = {
+            headers: { Authorization: `Bearer ${data.token}` },
+          }
+          axios
+            .get(`${window.backendURL}/user/all-keys`, config).then((res)=>{
+              console.log("RESPONSE FROM ALL KEYS ->", res.data)
+              setKeys(res.data)
+              let tmpCreds = {
+                token: `${data.token}`,
+                isAdmin: false,
+              };
+              localStorage.setItem("credentials", JSON.stringify(tmpCreds));
+              setAppD({ ...appD, token: data.token, isAdmin: false }); // Need to set it this way to ask React to re-render
+            })
+          
         } else {
           setLoginError(true);
         }

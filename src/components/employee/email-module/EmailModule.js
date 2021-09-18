@@ -1,8 +1,9 @@
 import { Button, Card, Grid, Typography } from '@material-ui/core'
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, useContext} from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import EmailCard from './EmailCard';
 import {emailkeys} from './emailkeys'
+import { KeyData } from '../../../App';
 
 const useStyles = makeStyles({
     emailContainer : {
@@ -11,12 +12,14 @@ const useStyles = makeStyles({
     }
 })
 
-const CLIENT_ID = emailkeys.CLIENT_ID
-const API_KEY = emailkeys.API_KEY
 
 export default function EmailModule() {
     const classes = useStyles()
 
+    const {keys} = useContext(KeyData)
+    console.log("FROM EMAIL MOD, CONTWXT KEYX",keys)
+    const CLIENT_ID= keys.EMAIL_CLIENT_ID
+    const API_KEY = keys.EMAIL_API_KEY
 
     // Array of API discovery doc URLs for APIs used by the quickstart
     var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];

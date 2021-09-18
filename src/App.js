@@ -10,9 +10,12 @@ import NotFound from "./components/NotFound";
 window.backendURL = "http://vo.zx-software.com:3040/api/v1"; // Define without trailing '/'
 
 export const AppData = React.createContext();
+export const KeyData = React.createContext();
 
 const App = () => {
   const [appD, setAppD] = React.useState({});
+  const [keys, setKeys] = React.useState({})
+  const keyContextValues = { keys, setKeys}
 
   // Load saved credentials
   React.useEffect(() => {
@@ -30,6 +33,7 @@ const App = () => {
 
   return (
     <AppData.Provider value={[appD, setAppD]}>
+      <KeyData.Provider value={keyContextValues}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -46,6 +50,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
+      </KeyData.Provider>
     </AppData.Provider>
   );
 };
