@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core';
 import React, {useState, useEffect} from 'react'
 
-export default function FileShare(props) {
+export default function FileShare() {
    
     const [pickerApiLoaded, setPicker] = useState(false)
     const [accessToken, setToken] = useState(null)
@@ -10,9 +10,12 @@ export default function FileShare(props) {
             window.gapi.load('picker', {'callback': onPickerApiLoad})
             console.log("PICKER LOADED", pickerApiLoaded)
         }
-        if(window.gapi.auth){
-            const x =  window.gapi.auth.getToken()
-            setToken(x.access_token)
+        if(window.gapi.auth2){
+            const x =  window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token
+            if(!accessToken){
+              setToken(x)
+            }
+            console.log("GAPI AUTH 2 TOKEN ", x)
             console.log("got access token ",accessToken)
         }
     }, [])
