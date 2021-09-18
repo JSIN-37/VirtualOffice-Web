@@ -82,7 +82,7 @@ export default function EmployeeOverview(appD) {
                 // to="/invite-employees"
                 color="primary"
                 onClick={handleClickOpen}>
-                Invite Employees
+                Invite Employee
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Invite Empoyees of your organization</DialogTitle>
