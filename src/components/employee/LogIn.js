@@ -21,6 +21,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { AppData } from "../../App";
 
+import axios from "axios";
+
 const useStyles = makeStyles({
   root: {
     Height: "100%",
@@ -92,7 +94,6 @@ export default function LogIn() {
   const [appD, setAppD] = React.useContext(AppData);
 
   const loginAttempt = async (email, password) => {
-    var axios = require("axios");
     axios
       .post(`${window.backendURL}/user/login`, {
         email: email,
@@ -107,7 +108,22 @@ export default function LogIn() {
             isAdmin: false,
           };
           localStorage.setItem("credentials", JSON.stringify(tmpCreds));
-          setAppD({ ...appD, token: data.token, isAdmin: false }); // Need to set it this way to ask React to re-render
+          // Get all keys and store them in appD
+          const config = {
+            headers: { Authorization: `Bearer ${data.token}` },
+          };
+          axios
+            .get(`${window.backendURL}/user/all-keys`, config)
+            .then((res) => {
+              let allKeys = res.data;
+              localStorage.setItem("keys", JSON.stringify(allKeys));
+              setAppD({
+                ...appD,
+                token: data.token,
+                isAdmin: false,
+                keys: allKeys,
+              }); // Need to set it this way to ask React to re-render
+            });
         } else {
           setLoginError(true);
         }

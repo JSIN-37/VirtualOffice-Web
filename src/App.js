@@ -19,10 +19,12 @@ const App = () => {
     var credentials = {};
     if (localStorage.getItem("credentials")) {
       credentials = JSON.parse(localStorage.getItem("credentials"));
+      var allKeys = JSON.parse(localStorage.getItem("keys"));
       let tmpAppD = {
         email: credentials.email,
         token: credentials.token,
         isAdmin: credentials.isAdmin,
+        keys: allKeys,
       };
       setAppD(tmpAppD);
     }
