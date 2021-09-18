@@ -1,15 +1,25 @@
 import { Button, Card, Grid, Typography } from '@material-ui/core'
-import React, {useState, useEffect, useCallback} from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import EmailCard from './EmailCard';
-import {emailkeys} from './emailkeys'
+import { emailkeys } from './emailkeys'
 
-const useStyles = makeStyles({
-    emailContainer : {
-        maxHeight : '400px',
-        overflow:'auto'
-    }
-})
+const useStyles = makeStyles((theme) => ({
+    emailContainer: {
+        maxHeight: '400px',
+        overflow: 'auto',
+        padding: theme.spacing(2),
+        paddingTop: theme.spacing(2),
+        marginBottom: "15px",
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+    },
+    title: {
+        color: "#000000",
+        textAlign: "left",
+        paddingLeft: "20px",
+    },
+}));
 
 const CLIENT_ID = emailkeys.CLIENT_ID
 const API_KEY = emailkeys.API_KEY
@@ -32,34 +42,34 @@ export default function EmailModule() {
     //     window.gapi.load('client:auth2', initClient)
     // })
 
-    const listMail = useCallback(() =>{
+    const listMail = useCallback(() => {
         const emailIdArray = []
         window.gapi.client.gmail.users.messages.list({
-            'userId':'me'
-        }).then( function (response) {
+            'userId': 'me'
+        }).then(function (response) {
             const msg = JSON.parse(JSON.stringify(response))
             const objectArray = msg.result.messages
             //console.log("RESPONSE FROM GMAIL = ", msg.result.messages)
-            objectArray.forEach(function (msg){
+            objectArray.forEach(function (msg) {
                 emailIdArray.push(msg.id)
             })
             loadEmails(emailIdArray)
         })
-    },[])
+    }, [])
 
-    function loadEmails(array){
-        array.forEach(function (id){
+    function loadEmails(array) {
+        array.forEach(function (id) {
             //console.log(id)
             window.gapi.client.gmail.users.messages.get({
-                'userId':'me',
-                'id':`${id}`
+                'userId': 'me',
+                'id': `${id}`
             }).then((response) => {
-                setEmails((oldEmails)=>{
+                setEmails((oldEmails) => {
                     //console.log("googles response ",response)
                     const newMail = {
-                        id : id,
-                        snippet : response.result.snippet,
-                        labelIds : response.result.labelIds
+                        id: id,
+                        snippet: response.result.snippet,
+                        labelIds: response.result.labelIds
                     }
                     return [...oldEmails, newMail]
                 })
@@ -67,34 +77,34 @@ export default function EmailModule() {
         })
     }
 
-    const handleClientLoad = useCallback(()=>{
+    const handleClientLoad = useCallback(() => {
         window.gapi.load('client:auth2', initClient)
-    },[])
-    
+    }, [])
+
 
     useEffect(() => {
-        if(window.gapi){
+        if (window.gapi) {
             handleClientLoad()
-        }else{
+        } else {
             return
         }
-        if(!window.gapi.client ){
+        if (!window.gapi.client) {
             return
-        }else{
-            if(window.gapi.client.gmail){
+        } else {
+            if (window.gapi.client.gmail) {
                 listMail()
-            }else{return}
-            
+            } else { return }
+
         }
     }, [])
 
-    function initClient(){
+    function initClient() {
         window.gapi.client.init({
-            apiKey : API_KEY,
+            apiKey: API_KEY,
             clientId: CLIENT_ID,
-            discoveryDocs : DISCOVERY_DOCS,
-            scope : SCOPES
-        }).then(function(){
+            discoveryDocs: DISCOVERY_DOCS,
+            scope: SCOPES
+        }).then(function () {
             //listen to changes to signed in status
             window.gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus)
 
@@ -104,44 +114,44 @@ export default function EmailModule() {
         })
     }
 
-    function updateSigninStatus(signedIn){
+    function updateSigninStatus(signedIn) {
         //true if signed in, false if signed out.
-        if(signedIn){
+        if (signedIn) {
             setSignedIn(true)
-        }else{
+        } else {
             setSignedIn(false)
         }
     }
 
-    function handleSignInClick(){
+    function handleSignInClick() {
         window.gapi.auth2.getAuthInstance().signIn()
-        
+
     }
 
-    function handleSignOutClick(){
+    function handleSignOutClick() {
         window.gapi.auth2.getAuthInstance().signOut();
     }
 
-
-    
     return (
         <Card variant="outlined" elevation={1} className={classes.emailContainer}>
-            <Grid container alignContent='center' direction='column'>
-
+            <Grid container justifyContent="space-between" spacing={0}>
                 <Grid item>
-                 <Typography>Email Thing</Typography>
+                    <Typography variant="h6" className={classes.title}>
+                        Emails
+                    </Typography>
                 </Grid>
-
                 <Grid item>
-                    {!signedIn && <Button variant='outlined' onClick={handleSignInClick}>Sign In</Button>}
-                    {signedIn && <Button variant='outlined' onClick={handleSignOutClick}>Sign Out</Button>}
+                    {!signedIn && <Button variant='outlined' style={{ marginBottom: "15px" }} size="small" onClick={handleSignInClick}>Sign In</Button>}
+                    {signedIn && <Button variant='outlined' style={{ marginBottom: "15px" }} size="small" onClick={handleSignOutClick}>Sign Out</Button>}
                 </Grid>
-                {emails.length >0 && emails.map((email)=>{
-                    return <EmailCard  key={email.id} email={email}/>
-                })}
-                {!emails.length && <Button onClick={listMail}>Load Emails</Button>}
-            
-
+            </Grid>
+            <Grid container justifyContent="center" spacing={0}>
+                <Grid item >
+                    {emails.length > 0 && emails.map((email) => {
+                        return <EmailCard key={email.id} email={email} />
+                    })}
+                    {!emails.length && <Button color="primary" onClick={listMail}>Load Emails</Button>}
+                </Grid>
             </Grid>
         </Card>
     )
