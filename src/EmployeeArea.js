@@ -10,11 +10,14 @@ import LogOut from "./components/LogOut";
 import LogIn from "./components/employee/LogIn";
 import React, { useState, useEffect, useRef } from "react";
 
+import { AppData } from "./App";
+
 //exporting taskDB and setTaskDB using Context - consumed by Dashboard and Tasks components.
 export const MyTaskUtils = React.createContext();
 const LOCAL_STORAGE_KEY = "vo-material.my-tasks";
 
-const EmployeeArea = ({ appD, setAppD }) => {
+const EmployeeArea = () => {
+  const [appD] = React.useContext(AppData);
   //FOR TASK MANAGEMENT - COMMON ANCESTOR
   const isFirstRender = useRef(true);
   const [taskDB, setTaskDB] = useState(() => {
@@ -38,7 +41,7 @@ const EmployeeArea = ({ appD, setAppD }) => {
   const MyTaskUtilsValues = { taskDB, setTaskDB };
   //End of stuff used for task management
 
-  if (appD.token && appD.isAdmin == null) {
+  if (appD.token && !appD.isAdmin) {
     return (
       <Router basename="/employee">
         <Layout>
@@ -51,7 +54,7 @@ const EmployeeArea = ({ appD, setAppD }) => {
             <Division />
           </Route>
           <Route exact path="/teams">
-            <Teams appD={appD} />
+            <Teams />
           </Route>
           <Route exact path="/tasks">
             <MyTaskUtils.Provider value={MyTaskUtilsValues}>
@@ -65,13 +68,13 @@ const EmployeeArea = ({ appD, setAppD }) => {
             <Profile />
           </Route>
           <Route exact path="/logout">
-            <LogOut appD={appD} setAppD={setAppD} />
+            <LogOut />
           </Route>
         </Layout>
       </Router>
     );
   } else {
-    return <LogIn onLogin={setAppD} appD={appD} />;
+    return <LogIn />;
   }
 };
 

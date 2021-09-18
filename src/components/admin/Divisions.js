@@ -9,6 +9,8 @@ import { Tabs } from "@material-ui/core";
 import AddDivision from "./AddDivision.js";
 import EditDivision from "./EditDivision";
 
+import { AppData } from "../../App";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -35,8 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Divisions({ appD }) {
+export default function Divisions() {
   const classes = useStyles();
+
+  const [appD] = React.useContext(AppData);
 
   const [value, setValue] = useState(0);
   const handleTabs = (e, val) => {
