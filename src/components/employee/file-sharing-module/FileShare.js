@@ -1,0 +1,85 @@
+import { Button } from '@material-ui/core';
+import React, {useState, useEffect} from 'react'
+
+export default function FileShare(props) {
+   
+    const [pickerApiLoaded, setPicker] = useState(false)
+    const [accessToken, setToken] = useState(null)
+    useEffect(()=>{
+        if(window.gapi){
+            window.gapi.load('picker', {'callback': onPickerApiLoad})
+            console.log("PICKER LOADED", pickerApiLoaded)
+        }
+        if(window.gapi.auth){
+            const x =  window.gapi.auth.getToken()
+            setToken(x.access_token)
+            console.log("got access token ",accessToken)
+        }
+    }, [])
+     // The Browser API key obtained from the window.google API Console.
+    // Replace with your own Browser API key, or your own key.
+    var developerKey = 'AIzaSyBc4j2943doYd1rB1F4q-aulLKmL5SEiWc';
+
+    // The Client ID obtained from the window.google API Console. Replace with your own Client ID.
+    var clientId = "236866159961-lmr7803n45cikhpdj4uovame2cmbnrad.apps.googleusercontent.com"
+
+    // Replace with your own project number from console.developers.window.google.com.
+    // See "Project number" under "IAM & Admin" > "Settings"
+    var appId = "236866159961";
+
+    // Scope to use to access user's Drive items.
+    var scope = ['https://www.googleapis.com/auth/drive.file'];
+
+    
+    var oauthToken;
+
+    // Use the window.google API Loader script to load the window.google.picker script.
+
+    
+    function onPickerApiLoad() {
+      setPicker(true)
+    }
+
+    // function handleAuthResult(authResult) {
+    //   if (authResult && !authResult.error) {
+    //       console.log("HEEHEE", authResult.access_token)
+    //     oauthToken = authResult.access_token;
+
+    //   }
+    // }
+
+    // Create and render a Picker object for searching images.
+    function createPicker() {
+        console.log("CREAT", pickerApiLoaded, accessToken)
+      if (pickerApiLoaded && accessToken) {
+        var view = new window.google.picker.View(window.google.picker.ViewId.DOCS);
+        view.setMimeTypes("image/png,image/jpeg,image/jpg");
+        var picker = new window.google.picker.PickerBuilder()
+            .enableFeature(window.google.picker.Feature.NAV_HIDDEN)
+            .enableFeature(window.google.picker.Feature.MULTISELECT_ENABLED)
+            .setAppId(appId)
+            .setOAuthToken(accessToken)
+            .addView(view)
+            .addView(new window.google.picker.DocsUploadView())
+            .setDeveloperKey(developerKey)
+            .setCallback(pickerCallback)
+            .build();
+         picker.setVisible(true);
+      }
+    }
+
+    // A simple callback implementation.
+    function pickerCallback(data) {
+      if (data.action == window.google.picker.Action.PICKED) {
+        var fileId = data.docs[0].id;
+        alert('The user selected: ' + fileId);
+      }
+    }
+
+    
+    return (
+        <>
+        <Button onClick={createPicker}>Click</Button>
+        </>
+    )
+}

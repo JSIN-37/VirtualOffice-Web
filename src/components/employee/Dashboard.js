@@ -11,6 +11,7 @@ import TimeStamps from "./TimeStamps";
 import DashboardHeader from "./DashboardHeader";
 import useFetch from "../../hooks/useFetch";
 import EmailModule from './email-module/EmailModule'
+import FileShare from "./file-sharing-module/FileShare";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,6 +44,7 @@ export default function Dashboard() {
             .then((res) => res.json())
             .then((data) => setEmps(data));
     }, []);
+
 
     return (
         <div className={classes.root}>
@@ -83,12 +85,7 @@ export default function Dashboard() {
 
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Card variant="outlined" elevation={1} className={classes.card}>
-                                <Typography variant="h6" className={classes.title}>
-                                    My Weekly Performance
-                                </Typography>
-                                <DashBarChart />
-                            </Card>
+                            <FileShare />
                         </Grid>
                     </Grid>
                 </Grid>
