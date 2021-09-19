@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Card, Button, Typography } from "@material-ui/core";
@@ -45,6 +45,16 @@ export default function Dashboard() {
             .then((data) => setEmps(data));
     }, []);
 
+    const [isGoogleSignedIn, setIsGoogleSignedIn] = useState((old)=> old ? old : false)
+    const isGapiLoaded  = useRef(false)
+    const [auth2Instance, setAuth2Instance] = useState(null)
+
+
+
+    // function logRef(){
+    //     console.log("isGoogleSignedIn", isGoogleSignedIn)
+    //     console.log("auth2Instance", auth2Instance)
+    // }
 
     return (
         <div className={classes.root}>
@@ -84,7 +94,7 @@ export default function Dashboard() {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
-                            <EmailModule />
+                            <EmailModule isGoogleSignedIn={isGoogleSignedIn} setIsGoogleSignedIn={setIsGoogleSignedIn} isGapiLoaded={isGapiLoaded} auth2Instance={auth2Instance} setAuth2Instance={setAuth2Instance}/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -93,7 +103,7 @@ export default function Dashboard() {
                         <Typography variant="h6" className={classes.title}>
                             File Sharing
                         </Typography>
-                        <FileShare />
+                        <FileShare isGoogleSignedIn={isGoogleSignedIn} auth2Instance={auth2Instance}/>
                     </Card>
                     <Card variant="outlined" elevation={1} className={classes.card}>
                         <Typography variant="h6" className={classes.title}>
@@ -112,6 +122,10 @@ export default function Dashboard() {
                         <TimeStamps />
                     </Card>
                 </Grid>
+
+                {/* <Grid item> 
+                        <Button variant='contained' color='primary' onClick={logRef}>Get Ref Vals</Button>
+                </Grid> */}
             </Grid>
         </div>
     );
