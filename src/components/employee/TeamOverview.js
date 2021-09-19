@@ -18,6 +18,18 @@ export default function TeamOverview() {
       let data = res.data;
       setTeams(data);
     });
+
+  //   axios.get(`${window.backendURL}/interim/teams`, config).then((res) => {
+  //     let data = res.data;
+  //     setTeams(data);
+  //   });
+
+  //   axios.post(`${window.backendURL}/admin/invite_team_members`, { //send a mail
+  //     teamId: team,
+  //     memberId: memberId,
+  // }, config)
+
+
   }, [appD]);
 
   const handleDelete = async (id) => {
