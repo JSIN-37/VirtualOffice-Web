@@ -168,13 +168,9 @@ export default function EmailModule(props) {
         <Grid item>
           {!isGoogleSignedIn && (
             <div
-            
               style={{ marginBottom: "15px" }}
-          
               id='btn'
-             
             >
-              Sign In
             </div>
           )}
           {isGoogleSignedIn && (
