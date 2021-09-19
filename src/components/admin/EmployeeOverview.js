@@ -44,10 +44,18 @@ export default function EmployeeOverview(appD) {
         console.log(firstname);
         console.log(email);
         axios
-            .post(`${window.backendURL}/admin/user`, {
+             .post(`${window.backendURL}/admin/user`, {
+                 first_name: firstname,
+                 email: email
+             }, config)
+
+            //adding the invited employee details to a table with a flag. 
+            //by default flag is F. If employee accepted it becomes T.
+            .post(`${window.backendURL}/admin/accept_invitation`, {
                 first_name: firstname,
                 email: email
             }, config)
+
             .then(console.log)
             .catch(console.log);
     };
@@ -63,7 +71,7 @@ export default function EmployeeOverview(appD) {
                 // to="/invite-employees"
                 color="primary"
                 onClick={handleClickOpen}>
-                Invite Employees
+                Invite Employee
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Invite Empoyees of your organization</DialogTitle>
