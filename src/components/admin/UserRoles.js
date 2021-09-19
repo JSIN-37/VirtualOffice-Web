@@ -93,7 +93,6 @@ export default function UserRoles() {
                 spacing={0}
                 direction="column"
                 alignItems="flex-start"
-                justify="center"
                 justifyContent="flex-start"
                 style={{ minHeight: '10vh' }}
             >

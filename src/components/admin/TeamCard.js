@@ -87,7 +87,6 @@ function AllTeamCard({teamId}) {
         spacing={0}
         direction="column"
         alignItems= "flex-end"
-        justify="center"
         justifyContent="flex-end"
         style={{ minHeight: '20vh' }}
       >
