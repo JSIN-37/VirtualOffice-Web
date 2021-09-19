@@ -45,22 +45,21 @@ function AddTeam() {
 
     const addTeam = () => {
         var axios = require('axios');
-        axios
-            .get(`${window.backendURL}/admin/get-employee-details`) //get the id and name of all employees
+        axios.get(`${window.backendURL}/admin/get-employee-details`) //get the id and name of all employees
             .then(res => {
                 const teamMembers = res.data;
                 setTeamMemberDropDown(teamMembers);
             })
 
             //M:M
-            .post(`${window.backendURL}/admin/get-addTeams`, {
+        axios.post(`${window.backendURL}/admin/get-addTeams`, {
                 teamId: team,
                 teamName: team,
                 description: description,
                 teamLeader: teamLeader
             })
 
-            post(`${window.backendURL}/admin/invite_team_members`, {
+        axios.post(`${window.backendURL}/admin/invite_team_members`, {
                 teamId: team,
                 memberId: memberId,
             }, config)
