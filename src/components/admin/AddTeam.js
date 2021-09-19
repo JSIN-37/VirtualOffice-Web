@@ -94,6 +94,17 @@ export default function AddTeam() {
       });
   };
 
+//   const handleDelete = async (id) => {
+//     const config = {
+//       headers: { Authorization: `Bearer ${appD.token}` },
+//     };
+//     var axios = require("axios");
+//     await axios.delete(`${window.backendURL}/interim/teams/${id}`, config);
+
+//     const newTeams = teams.filter((team) => team.id !== id);
+//     setTeams(newTeams);
+//   };
+
   //      const employees = [
   //          { empName: 'A. T. Pathirana' },
   //          { empName: 'D. H. Gamage' },
@@ -103,7 +114,12 @@ export default function AddTeam() {
   let selectedMemberList = selectedMembers.map((member, index) => {
     return (
       <Grid key={index}>
-        <Grid item xs={8} style={{ justifyContent: "flex-start" }}>
+          <Typography>
+          {member.first_name + " " + member.last_name}
+          <CloseIcon />
+          </Typography>
+          
+        {/* <Grid item xs={8} style={{ justifyContent: "flex-start" }}>
           <Typography variant="body1" className={classes.info}>
             {member.first_name + " " + member.last_name}
           </Typography>
@@ -112,7 +128,7 @@ export default function AddTeam() {
           <IconButton aria-label="close" size="small">
             <CloseIcon />
           </IconButton>
-        </Grid>
+        </Grid> */}
       </Grid>
     );
   });
@@ -120,6 +136,7 @@ export default function AddTeam() {
   const [openView, setOpenView] = React.useState(false);
   const handleClose = () => {
     setOpenView(false);
+    setSelectedMembers([]);
   };
 
   const handleSubmit = (AppData) => {
@@ -315,9 +332,10 @@ export default function AddTeam() {
           </div>
           <Grid
             container
-            justifyContent="center"
+            // justifyContent="center"
             align="center"
             className={classes.listItem}
+            direction="column"
           >
             {selectedMemberList}
           </Grid>
