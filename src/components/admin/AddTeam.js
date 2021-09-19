@@ -1,190 +1,191 @@
-import React from 'react';
+import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Grid from '@material-ui/core/Grid';
-//import { Link } from "react-router-dom";
-import { Typography } from '@material-ui/core';
-import { useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { makeStyles } from "@material-ui/core";
+import { Typography, Container } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import AddBoxRoundedIcon from "@material-ui/icons/AddBoxRounded";
+import user from "../../resources/emp_user.svg";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import Link from "@material-ui/core/Link";
 
+import { AppData } from "../../App";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-    root2: {
         width: "100%",
         boxSizing: "border-box"
     },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
+    field: {
+        width: 370,
+        marginTop: 20,
+        backgroundColor: "#f9f9f9",
+    },
+    smallAvatar: {
+        width: theme.spacing(5),
+        height: theme.spacing(5),
+    },
+    icon: {
+        fontSize: 40,
+        margin: "10px",
+    },
+    button: {
+        marginTop: 20,
+        marginRight: 20,
     },
 }));
 
-function AddTeam() {
-
+export default function AddTeam() {
+    const [appD] = React.useContext(AppData);
     const classes = useStyles();
-    const [team, setTeam] = useState('');
-    const [description, setDescription] = useState('');
-    const [memberId, setMemberId] = useState(``);
-    const [teamLeader, setTeamLeader] = useState(``);
-    const [teamMemberList, setTeamMemberDropDown] = useState([]);
-
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [leader, setLeader] = useState("");
+    const [nameError, setNameError] = useState(false);
+    const [descriptionError, setDescriptionError] = useState(false);
+    const [leaderError, setLeaderError] = useState(false);
+    const [division, setDivision] = React.useState("");
 
     const handleChange = (event) => {
-        setTeam(event.target.value);
+        setDivision(event.target.value);
     };
 
-    const addTeam = () => {
-        var axios = require('axios');
-        axios
-            .get(`${window.backendURL}/admin/get-employee-details`) //get the id and name of all employees
-            .then(res => {
-                const teamMembers = res.data;
-                setTeamMemberDropDown(teamMembers);
-            })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setNameError(false);
+        setDescriptionError(false);
 
-            //M:M
-            .post(`${window.backendURL}/admin/get-addTeams`, {
-                teamId: team,
-                teamName: team,
-                description: description,
-                teamLeader: teamLeader
-            })
-
-            post(`${window.backendURL}/admin/invite_team_members`, {
-                teamId: team,
-                memberId: memberId,
-            }, config)
-
-            .then((res) => {
-                let data = res.data;
-                console.log(data);
-            });
-    }
-    const handleTeamName = (event) => {
-        setTeam(event.target.value);
+        if (name === "") {
+            setNameError(true);
+        }
+        if (description === "") {
+            setDescriptionError(true);
+        }
+        if (leader === "") {
+            setLeaderError(true);
+        }
+        if (name && description && leader) {
+            const config = {
+                headers: { Authorization: `Bearer ${appD.token}` },
+            };
+            var axios = require("axios");
+            axios
+                .post(
+                    `${window.backendURL}/interim/teams`,
+                    {
+                        name: name,
+                        leader: leader,
+                        division: division,
+                        description: description,
+                    },
+                    config
+                )
+                .then((res) => {
+                    let data = res.data;
+                    console.log(data);
+                });
+        }
     };
-
-    const handleDescription = (event) => {
-        setDescription(event.target.value);
-    };
-
-    let teamMemberList = teamMembers.map((memName, index) => {
-        return (
-            <>
-                <FormControlLabel
-                    key={"memberName" + index}
-                    control={
-                        <Switch
-                            key={"memberSwitch" + index}
-                            onChange={handleEmpPermissionChange}
-                            value={memName.id}
-                            name={"teamMembersSwitch" + index}
-                            color="primary"
-                        />
-                    }
-                    label={memName.name}
-                /><br />
-            </>
-        );
-    })
-
 
     return (
-        <div className={classes.root2}>
-
-            <Grid>
-                <Grid container mt="20px">
-                    <Grid item md={5} lg={5}>
-                        <Typography>
-                            Team Name
-                        </Typography>
-                        <br />
-                        <TextField id="filled-basic" label="Eg: Design Team" variant="filled" onChange={handleTeamName} />
-                        <br />
-                        <br />
-                        <Typography>
-                            Description
-                        </Typography>
-                        <TextField id="filled-basic" label="Desciption" variant="filled" onChange={handleDescription} />
-                        <br />
-                        <br />
-                        <Typography>
-                            Team Leader
-                        </Typography>
-                        <TextField id="filled-basic" label="Eg: A T Perera" variant="filled" onChange={handleTeamLeader} />
-                        <br />
-                        <br />
-
-                        <Button variant="contained"
+        <Container className={classes.root}>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={5}>
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setName(e.target.value)}
+                            label="Team Name"
+                            variant="outlined"
                             color="primary"
-                            onClick={addTeam}
+                            fullWidth
+                            required
+                            error={nameError}
+                        />
+
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setDescription(e.target.value)}
+                            label="Description"
+                            variant="outlined"
+                            color="primary"
+                            multiline
+                            rows={4}
+                            fullWidth
+                            required
+                            error={descriptionError}
+                        />
+                        <TextField
+                            className={classes.field}
+                            id="division"
+                            select
+                            label="Division"
+                            value={division}
+                            onChange={handleChange}
+                            variant="outlined"
                         >
-                            Add Team
-                        </Button>
-
-                        <Button variant="outlined"
+                            <MenuItem value="None">None</MenuItem>
+                            <MenuItem value="SomeDivision">Some Division</MenuItem>
+                        </TextField>
+                        <TextField
+                            className={classes.field}
+                            onChange={(e) => setLeader(e.target.value)}
+                            label="Leader"
+                            variant="outlined"
                             color="primary"
+                            fullWidth
+                            required
+                            error={leaderError}
+                        />
+                        <br />
+                        <Link href="#">
+                            <Typography variant="body1">
+                                <AddBoxRoundedIcon className={classes.icon} color="primary" />
+                                Add Members
+                            </Typography>
+                        </Link>
+                        <br />
+                        <Button
+                            type="submit"
+                            color="primary"
+                            variant="contained"
+                            className={classes.button}
+                        >
+                            Submit
+                        </Button>
+                        <Button
+                            type="reset"
+                            color="primary"
+                            variant="outlined"
+                            className={classes.button}
                         >
                             Cancel
                         </Button>
-
-
                     </Grid>
-
-                    <Grid item md={5} lg={5}>
-                        <Typography>
-                            Team Members
+                    <Grid item xs={12} md={5}>
+                        <Typography variant="body1" className={classes.heading}>
+                            Team Members{" "}
                         </Typography>
-                        <br />
-                        {teamMemberList}
-                        {/* <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
-                            
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={team}
-                                onChange={handleChange}
-                            >
-                                <MenuItem >A R Perera</MenuItem>
-                                <MenuItem >U J Uyanhewa </MenuItem>
-                                <MenuItem >J H S Abeytunger</MenuItem>
-                            </Select>
-                        </FormControl> */}
+                        <hr className={classes.hr} />
+                        <Grid container>
+                            <Grid item xs={2}>
+                                <Avatar
+                                    alt="Remy Sharp"
+                                    src={user}
+                                    className={classes.smallAvatar}
+                                />
+                            </Grid>
+                            <Grid item xs={10} style={{ marginTop: "10px" }}>
+                                <Typography variant="body2" align="left">
+                                    A.T. Pathirana
+                                </Typography>
+                            </Grid>
+                        </Grid>
                     </Grid>
+                    <Grid item xs={12} md={1}></Grid>
                 </Grid>
-                <br />
-                
-
-
-                <Grid
-                >
-                    {/* <Button variant="contained" 
-            color="primary" 
-            className="button-add-user" 
-            component={Link}
-            to="/add-user-role"
-      >
-    + Add New Role
-    </Button> */}
-                </Grid>
-            </Grid>
-
-
-
-        </div>
-
+            </form>
+        </Container>
     );
 }
-
-export default AddTeam;

@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import { Tab } from "@material-ui/core";
 import { Tabs } from "@material-ui/core";
-import TeamOverview from "../employee/TeamOverview";
-import AddTeam from "../employee/AddTeam";
+import TeamOverview from "./TeamOverview";
+import AddTeam from "./AddTeam";
 import EditTeam from "./EditTeam";
 
 const useStyles = makeStyles((theme) => ({
