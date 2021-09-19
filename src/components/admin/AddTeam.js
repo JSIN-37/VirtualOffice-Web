@@ -19,6 +19,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { useEffect } from "react";
 import { AppData } from "../../App";
 
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -94,42 +99,25 @@ export default function AddTeam() {
       });
   };
 
-//   const handleDelete = async (id) => {
-//     const config = {
-//       headers: { Authorization: `Bearer ${appD.token}` },
-//     };
-//     var axios = require("axios");
-//     await axios.delete(`${window.backendURL}/interim/teams/${id}`, config);
-
-//     const newTeams = teams.filter((team) => team.id !== id);
-//     setTeams(newTeams);
-//   };
-
-  //      const employees = [
-  //          { empName: 'A. T. Pathirana' },
-  //          { empName: 'D. H. Gamage' },
-  //          { empName: 'K. L. Perera' },
-  // ]
-
   let selectedMemberList = selectedMembers.map((member, index) => {
     return (
-      <Grid key={index}>
-          <Typography>
-          {member.first_name + " " + member.last_name}
-          <CloseIcon />
-          </Typography>
-          
-        {/* <Grid item xs={8} style={{ justifyContent: "flex-start" }}>
-          <Typography variant="body1" className={classes.info}>
-            {member.first_name + " " + member.last_name}
-          </Typography>
-        </Grid>
-        <Grid item xs={1} style={{ justifyContent: "flex-end" }}>
-          <IconButton aria-label="close" size="small">
+      <ListItem key={index}>
+        <ListItemText primary={member.first_name + " " + member.last_name} />
+        <ListItemIcon>
+          <IconButton
+            onClick={() => {
+              const myID = member.id;
+              let tmpSel = selectedMembers.filter((member) => {
+                if (member.id === myID) return false;
+                else return true;
+              });
+              setSelectedMembers(tmpSel);
+            }}
+          >
             <CloseIcon />
           </IconButton>
-        </Grid> */}
-      </Grid>
+        </ListItemIcon>
+      </ListItem>
     );
   });
 
@@ -303,12 +291,24 @@ export default function AddTeam() {
               freeSolo
               disableClearable
               onChange={(event, value) => {
-                setSelectedMembers([...selectedMembers, value]);
+                if (value.id) {
+                  let tmpSel = [...selectedMembers, value];
+                  // https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
+                  tmpSel = Array.from(new Set(tmpSel.map((a) => a.id))).map(
+                    (id) => {
+                      return tmpSel.find((a) => a.id === id);
+                    }
+                  );
+                  setSelectedMembers(tmpSel);
+                }
               }}
               options={teamMembers}
-              getOptionLabel={(options) =>
-                options.first_name + " " + options.last_name
-              }
+              getOptionLabel={(options) => {
+                if (options.id) {
+                  return options.first_name + " " + options.last_name;
+                }
+                return "";
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -337,7 +337,9 @@ export default function AddTeam() {
             className={classes.listItem}
             direction="column"
           >
-            {selectedMemberList}
+            <List style={{ overflow: "auto", maxHeight: 100 }}>
+              {selectedMemberList}
+            </List>
           </Grid>
           <Button
             color="primary"
