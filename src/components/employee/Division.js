@@ -5,6 +5,7 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
 import { Paper } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import Avatar from "@material-ui/core/Avatar";
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         marginBottom: '0',
-        fontWeight: "600",
+        fontWeight: "500",
         textAlign: "left"
     },
     hr: {
@@ -105,11 +106,11 @@ export default function Division() {
             <Grid container className={classes.detailsContainer}>
                 <Grid item md={5} lg={5}>
                     <Typography variant="body1" className={classes.heading} align="left" >Division</Typography>
-                    <hr className={classes.hr} />
+                    <Divider style={{ marginBottom: 10 }} />
                     <Typography variant="body2">General Administration </Typography>
                     <br />
                     <Typography variant="body1" className={classes.heading}>Head of Division</Typography>
-                    <hr className={classes.hr} />
+                    <Divider style={{ marginBottom: 10 }} />
                     <Grid container>
                         <Grid item xs={2}>
                             <Avatar alt="Remy Sharp" src={user} className={classes.bigAvatar} />
@@ -120,7 +121,7 @@ export default function Division() {
                     </Grid>
                     <br />
                     <Typography variant="body1" className={classes.heading}>Teams  </Typography>
-                    <hr className={classes.hr} />
+                    <Divider style={{ marginBottom: 10 }} />
                     <Container className={classes.teams}>
                         <Paper elevation={0} className={classes.team}>
                             <AddBoxRoundedIcon className={classes.icon} color="primary" />
@@ -137,7 +138,7 @@ export default function Division() {
                     </Container>
                     <br />
                     <Typography variant="body1" className={classes.heading}>Projects/ Tasks  </Typography>
-                    <hr className={classes.hr} />
+                    <Divider style={{ marginBottom: 10 }} />
                     <Container className={classes.tasks}>
                         <Paper elevation={0} className={classes.task}>
                             <AddBoxRoundedIcon className={classes.icon} color="primary" />
@@ -156,7 +157,7 @@ export default function Division() {
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}></Grid>
                 <Grid item md={5} lg={5}>
                     <Typography variant="body1" className={classes.heading}>Current Employees </Typography>
-                    <hr className={classes.hr} />
+                    <Divider style={{ marginBottom: 10 }} />
                     <div style={{ width: 400, marginBottom: "10px" }}>
                         <Autocomplete
                             freeSolo

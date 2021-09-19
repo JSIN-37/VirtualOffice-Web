@@ -3,23 +3,29 @@ import React, {useState, useEffect} from 'react'
 
 import { AppData } from '../../../App';
 
-export default function FileShare() {
+export default function FileShare(props) {
     const [appD] = React.useContext(AppData);
    
     const [pickerApiLoaded, setPicker] = useState(false)
     const [accessToken, setToken] = useState(null)
+
+  //   const isGoogleSignedIn = props.isGoogleSignedIn
+  //   const auth2Instance = props.auth2Instance
+
+  //   function logRef(){
+  //     console.log("isGoogleSignedIn", isGoogleSignedIn)
+  //     console.log("auth2Instance", auth2Instance)
+  // }
+
     useEffect(()=>{
         if(window.gapi){
             window.gapi.load('picker', {'callback': onPickerApiLoad})
-            console.log("PICKER LOADED", pickerApiLoaded)
         }
         if(window.gapi.auth2){
             const x =  window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token
             if(!accessToken){
               setToken(x)
             }
-            console.log("GAPI AUTH 2 TOKEN ", x)
-            console.log("got access token ",accessToken)
         }
     })
      // The Browser API key obtained from the window.google API Console.
@@ -33,13 +39,11 @@ export default function FileShare() {
     var appId = appD.keys.FILE_SHARE_APP_ID;
 
     // Scope to use to access user's Drive items.
-    var scope = ['https://www.googleapis.com/auth/drive.file'];
+    //var scope = ['https://www.googleapis.com/auth/drive.file'];
 
     
-    var oauthToken;
 
     // Use the window.google API Loader script to load the window.google.picker script.
-
     
     function onPickerApiLoad() {
       if(!pickerApiLoaded){
@@ -57,29 +61,19 @@ export default function FileShare() {
 
     // Create and render a Picker object for searching images.
     function createPicker() {
-        console.log("CREAT", pickerApiLoaded, accessToken)
       if (pickerApiLoaded && accessToken) {
-        var view = new window.google.picker.View(window.google.picker.ViewId.DOCS);
+        var view = new window.google.picker.View(window.google.picker.ViewId.FOLDERS);
         view.setMimeTypes("image/png,image/jpeg,image/jpg");
         var picker = new window.google.picker.PickerBuilder()
-            .enableFeature(window.google.picker.Feature.NAV_HIDDEN)
             .enableFeature(window.google.picker.Feature.MULTISELECT_ENABLED)
+            .enableFeature((window.google.picker.Feature.MULTISELECT_ENABLED))
             .setAppId(appId)
             .setOAuthToken(accessToken)
             .addView(view)
-            .addView(new window.google.picker.DocsUploadView())
+            .addView(new window.google.picker.DocsUploadView().setIncludeFolders(true))
             .setDeveloperKey(developerKey)
-            .setCallback(pickerCallback)
             .build();
          picker.setVisible(true);
-      }
-    }
-
-    // A simple callback implementation.
-    function pickerCallback(data) {
-      if (data.action == window.google.picker.Action.PICKED) {
-        var fileId = data.docs[0].id;
-        alert('The user selected: ' + fileId);
       }
     }
 
@@ -87,6 +81,7 @@ export default function FileShare() {
     return (
         <>
         <Button onClick={createPicker} variant='contained' color='primary'>Google Drive</Button>
+        {/* <Button variant='contained' color='primary' onClick={logRef}>Get Ref Vals</Button> */}
         </>
     )
 }

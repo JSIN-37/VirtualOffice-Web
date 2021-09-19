@@ -113,7 +113,6 @@ export default function TeamCard({ team, handleDelete }) {
                     </IconButton>
                 </DialogTitle>
                 <Container align="center" justifycontent="center" className={classes.dialog}>
-
                     <div style={{ width: 450, marginBottom: "10px" }}>
                         <Autocomplete
                             freeSolo
@@ -139,10 +138,10 @@ export default function TeamCard({ team, handleDelete }) {
                         />
                     </div>
                     <Grid container justifyContent="center" align="center" className={classes.listItem}>
-                        <Grid item xs={8} style={{ justifyContent: "flex-start" }}>
+                        <Grid item xs={8} style={{ flexGrow: 1, }}>
                             <Typography variant="body1" className={classes.info} >A.T. Pathirana</Typography>
                         </Grid>
-                        <Grid item xs={1} style={{ justifyContent: "flex-end" }}>
+                        <Grid item xs={1} style={{ flexShrink: 0, }}>
                             <IconButton aria-label="close" size="small" onClick={() => handleDelete()}>
                                 <CloseIcon />
                             </IconButton>

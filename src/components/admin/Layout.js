@@ -11,11 +11,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
-import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { useHistory, useLocation } from "react-router";
 import logo from "../../resources/logo.png";
 import user from "../../resources/emp_user.svg";
-
+import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
 import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
@@ -108,14 +108,14 @@ export default function Layout({ children }) {
             icon: <GroupRoundedIcon color="primary" />,
             path: "/employees",
         },
-        // {
-        //   text: "Profile Settings",
-        //   icon: <SettingsRoundedIcon color="primary" />,
-        //   path: "/settings",
-        // },
+        {
+            text: "Settings",
+            icon: <SettingsRoundedIcon color="primary" />,
+            path: "/settings",
+        },
         {
             text: "Log out",
-            icon: <PowerSettingsNewRoundedIcon color="primary" />,
+            icon: <ExitToAppRoundedIcon color="primary" />,
             path: "/logout",
         },
     ];

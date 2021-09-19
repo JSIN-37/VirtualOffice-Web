@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link as RouterLink } from "react-router-dom";
+import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import logo from "../resources/home_logo.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         paddingLeft: theme.spacing(2),
         textDecoration: "none",
-        color: "#ffffff"
+        color: "#3f51b5"
     },
     toolbarLink: {
         padding: theme.spacing(1),
         flexShrink: 0,
-        textDecoration: "none"
+        textDecoration: "none",
+        textTransform: "none"
     },
 }));
 
@@ -39,9 +41,8 @@ export default function Header(props) {
             <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
                     <img src={logo} alt="logo" className={classes.logo} />
-                    <Typography className={classes.toolbarNav} component={RouterLink} to="/"> .</Typography>
-                    <Typography className={classes.toolbarLink} component={RouterLink} to="/admin"> Admin Login</Typography>
-                    <Typography className={classes.toolbarLink} component={RouterLink} to="/employee"> Employee Login</Typography>
+                    <Typography className={classes.toolbarNav} variant="body2" component={RouterLink} to="/admin"> Admin Login</Typography>
+                    <Button color="primary" className={classes.toolbarLink} startIcon={<PersonRoundedIcon />} component={RouterLink} to="/employee"> Employee Login</Button>
                 </Toolbar>
             </AppBar></CssBaseline>
 

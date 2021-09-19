@@ -122,6 +122,7 @@ export default function LogIn() {
                 token: data.token,
                 isAdmin: false,
                 keys: allKeys,
+                roleName: data.roleName,
               }); // Need to set it this way to ask React to re-render
             });
         } else {

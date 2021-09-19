@@ -5,9 +5,16 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import { Typography, Container } from '@material-ui/core';
 import { Avatar } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import image from "../../resources/orgImage.jpg"
 import admin from "../../resources/emp_user.svg";
+import Map from './Map';
+import {
+    withGoogleMap,
+    withScriptjs
+} from "react-google-maps";
 //import { useState } from "react";
+const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -21,9 +28,6 @@ const useStyles = makeStyles((theme) => {
         text: {
             fontWeight: 400,
             padding: 2
-        },
-        hr: {
-            textAlign: "left"
         },
         bigAvatar: {
             width: 100,
@@ -62,31 +66,47 @@ function OrganizationOverview() {
 
     return (
         <Container className={classes.root}>
-            <Typography variant="h6" className={classes.title} style={{ marginBottom: 10 }} >Organization Name </Typography>
-            <Grid container spacing={0}>
-                <Grid item md={1} style={{ display: "flex", alignItems: "center", flexDirection: "column" }} >
-                    <Avatar alt="Organization Logo" src={image} className={classes.bigAvatar} />
-                </Grid>
-                <Grid item md={7}>
-                    <Typography variant="body1" style={{ margin: "20px" }}>University of Colombo School of Computing (UCSC)</Typography>
-                    <Button variant="outlined" size="small" style={{ marginLeft: "20px" }}>Update Logo</Button>
-                </Grid>
-            </Grid>
-            <Grid item md={6} lg={6}>
-                <Typography variant="h6" style={{ fontWeight: 500 }} className={classes.title}>System Administrator: </Typography>
-                <hr className={classes.hr} />
-                <Grid container >
-                    <Grid item xs={1} style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-                        <Avatar alt="Remy Sharp" src={admin} className={classes.smallAvatar} />
+            <Grid container spacing={5}>
+                <Grid item xs={6}>
+                    <Typography variant="h6" className={classes.title} style={{ marginBottom: 10 }} >Organization Name </Typography>
+                    <Divider style={{ marginBottom: 10 }} />
+                    <Grid container spacing={0}>
+                        <Grid item md={2} style={{ display: "flex", alignItems: "center", flexDirection: "column" }} >
+                            <Avatar alt="Organization Logo" src={image} className={classes.bigAvatar} />
+                        </Grid>
+                        <Grid item md={8}>
+                            <Typography variant="body1" style={{ margin: "20px" }}>University of Colombo School of Computing (UCSC)</Typography>
+                            <Button variant="outlined" size="small" style={{ marginLeft: "20px" }}>Update Logo</Button>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={11} style={{ marginTop: "15px" }}>
-                        <Typography variant="body1" className={classes.text}>A.T. Pathirana</Typography>
+                    <Grid item>
+                        <Typography variant="h6" style={{ fontWeight: 500 }} className={classes.title}>System Administrator: </Typography>
+                        <Divider style={{ marginBottom: 10 }} />
+                        <Grid container >
+                            <Grid item xs={1} style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+                                <Avatar alt="Remy Sharp" src={admin} className={classes.smallAvatar} />
+                            </Grid>
+                            <Grid item xs={11} style={{ marginTop: "15px" }}>
+                                <Typography variant="body1" className={classes.text}>A.T. Pathirana</Typography>
+                            </Grid>
+                        </Grid>
+                        <br />
+                        <Typography variant="h6" style={{ fontWeight: 500 }} className={classes.title}>Administrator Email:</Typography>
+                        <Divider style={{ marginBottom: 10 }} />
+                        <Typography variant="body1" className={classes.text}>pathirana@gmail.com </Typography>
                     </Grid>
                 </Grid>
-                <br />
-                <Typography variant="h6" style={{ fontWeight: 500 }} className={classes.title}>Administrator Email:</Typography>
-                <hr className={classes.hr} />
-                <Typography variant="body1" className={classes.text}>pathirana@gmail.com </Typography>
+                <Grid item xs={6}>
+                    <Typography variant="h6" className={classes.title} style={{ marginBottom: 10 }} >Location </Typography>
+                    <div style={{ width: "100^", height: "100%" }}>
+                        <MapWrapped
+                            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDcWKc6xYTtYk5Cw2oiLFTdOWTSzJM8AGg`}
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `100%` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                        />
+                    </div>
+                </Grid>
             </Grid>
             <br />
             <Button color="primary" component={Link} to="/divisions">Division</Button>
