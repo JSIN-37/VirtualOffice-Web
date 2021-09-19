@@ -49,13 +49,7 @@ export default function EmployeeOverview(appD) {
                  email: email
              }, config)
 
-            //adding the invited employee details to a table with a flag. 
-            //by default flag is F. If employee accepted it becomes T.
-            .post(`${window.backendURL}/admin/accept_invitation`, {
-                first_name: firstname,
-                email: email
-            }, config)
-
+            
             .then(console.log)
             .catch(console.log);
     };

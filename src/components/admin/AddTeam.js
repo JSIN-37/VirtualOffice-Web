@@ -34,7 +34,9 @@ function AddTeam() {
     const classes = useStyles();
     const [team, setTeam] = useState('');
     const [description, setDescription] = useState('');
+    const [memberId, setMemberId] = useState(``);
     const [teamLeader, setTeamLeader] = useState(``);
+    const [teamMemberList, setTeamMemberDropDown] = useState([]);
 
 
     const handleChange = (event) => {
@@ -43,12 +45,26 @@ function AddTeam() {
 
     const addTeam = () => {
         var axios = require('axios');
-        axios.post(`${window.backendURL}/admin/get-addTeams`, {
-            teamId: team,
-            teamName: team,
-            description: description,
-            teamLeader: teamLeader
-        })
+        axios
+            .get(`${window.backendURL}/admin/get-employee-details`) //get the id and name of all employees
+            .then(res => {
+                const teamMembers = res.data;
+                setTeamMemberDropDown(teamMembers);
+            })
+
+            //M:M
+            .post(`${window.backendURL}/admin/get-addTeams`, {
+                teamId: team,
+                teamName: team,
+                description: description,
+                teamLeader: teamLeader
+            })
+
+            post(`${window.backendURL}/admin/invite_team_members`, {
+                teamId: team,
+                memberId: memberId,
+            }, config)
+
             .then((res) => {
                 let data = res.data;
                 console.log(data);
@@ -62,9 +78,25 @@ function AddTeam() {
         setDescription(event.target.value);
     };
 
-    const handleTeamLeader = (event) => {
-        setTeamLeader(event.target.value);
-    };
+    let teamMemberList = teamMembers.map((memName, index) => {
+        return (
+            <>
+                <FormControlLabel
+                    key={"memberName" + index}
+                    control={
+                        <Switch
+                            key={"memberSwitch" + index}
+                            onChange={handleEmpPermissionChange}
+                            value={memName.id}
+                            name={"teamMembersSwitch" + index}
+                            color="primary"
+                        />
+                    }
+                    label={memName.name}
+                /><br />
+            </>
+        );
+    })
 
 
     return (
@@ -114,8 +146,10 @@ function AddTeam() {
                             Team Members
                         </Typography>
                         <br />
-                        <FormControl className={classes.formControl}>
+                        {teamMemberList}
+                        {/* <FormControl className={classes.formControl}>
                             <InputLabel id="demo-simple-select-label">Add a Member</InputLabel>
+                            
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -126,10 +160,12 @@ function AddTeam() {
                                 <MenuItem >U J Uyanhewa </MenuItem>
                                 <MenuItem >J H S Abeytunger</MenuItem>
                             </Select>
-                        </FormControl>
+                        </FormControl> */}
                     </Grid>
                 </Grid>
                 <br />
+                
+
 
                 <Grid
                 >
