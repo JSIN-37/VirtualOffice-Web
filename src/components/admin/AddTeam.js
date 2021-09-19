@@ -66,11 +66,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// const employees = [
-//     { empName: 'A. T. Pathirana' },
-//     { empName: 'D. H. Gamage' },
-//     { empName: 'K. L. Perera' },
-// ]
+const employees = [
+     { empName: 'A. T. Pathirana' },
+     { empName: 'D. H. Gamage' },
+     { empName: 'K. L. Perera' },
+ ]
 
 
 export default function AddTeam() {
@@ -84,9 +84,14 @@ export default function AddTeam() {
     const [descriptionError, setDescriptionError] = useState(false);
     const [leaderError, setLeaderError] = useState(false);
     const [teamMembers, setTeamMembers] = useState([]);
+    const [teamMemberIds, setTeamMemberIds] = useState([]);
 
     useEffect(() => {
         getTeamMembers();
+    }, []);
+
+    useEffect(() => {
+        getTeamMemberIds();
     }, []);
 
     const getTeamMembers = () => {
@@ -104,19 +109,26 @@ export default function AddTeam() {
         // console.log("t ", teamMembers);
     };
 
+    const getTeamMemberIds = (userObj) => {
+        //console.log(JSON.stringify(userObj));
+        let obj = JSON.stringify(userObj);
+        //var r = String(obj);
+        console.log(obj);
+    };
+
 //      const employees = [
 //          { empName: 'A. T. Pathirana' },
 //          { empName: 'D. H. Gamage' },
 //          { empName: 'K. L. Perera' },
 // ]
 
-    let teamMemberList = teamMembers.map((teamMember, index) => {
-        return (
-            <Typography>
-                {teamMember}
-            </Typography>
-        );
-    });
+    // let teamMemberList = teamMembers.map((teamMember, index) => {
+    //     return (
+    //         <Typography>
+    //             {teamMember}
+    //         </Typography>
+    //     );
+    // });
 
     const [openView, setOpenView] = React.useState(false);
     const handleClose = () => {
@@ -273,8 +285,14 @@ export default function AddTeam() {
                         <Autocomplete
                             freeSolo
                             disableClearable
+                            onChange={(event, value) => 
+                                // console.log(JSON.stringify(value, null, ' '))
+                                getTeamMemberIds(value)
+                            }
                             // options={employees.map((option) => option.empName)}
-                            options={teamMemberList.map((option) => option.first_name)}                             
+                            //options={teamMembers.map((option) => option.first_name+" "+option.last_name)} 
+                            options={teamMembers}
+                            getOptionLabel={options => (options.first_name+" "+options.last_name) }                             
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
