@@ -22,12 +22,12 @@ function TeamOverview() {
   }, [])
 
   const getTeams = () => {
-    var axios = require('axios');
-    axios.get(`${window.backendURL}/admin/get-teams`) //get the ids of all the divisions
-      .then(res => {
-        const teamIds = res.data;
-        setTeams(teamIds);
-    })
+    // var axios = require('axios');
+    // axios.get(`${window.backendURL}/admin/get-teams`) //get the ids of all the divisions
+    //   .then(res => {
+    //     const teamIds = res.data;
+    //     setTeams(teamIds);
+    // })
   };
 
   // const classes = useStyles();
@@ -56,7 +56,6 @@ function TeamOverview() {
         spacing={0}
         direction="column"
         alignItems= "flex-start"
-        justify="center"
         justifyContent="flex-start"
         style={{ minHeight: '10vh' }}
       >

@@ -94,7 +94,6 @@ function UserRoleCards({ userRoleId }) {
                 spacing={0}
                 direction="column"
                 alignItems="flex-end"
-                justify="center"
                 justifyContent="flex-end"
                 style={{ minHeight: '10vh' }}
             >
