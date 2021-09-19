@@ -106,6 +106,7 @@ export default function LogIn() {
           let tmpCreds = {
             token: `${data.token}`,
             isAdmin: false,
+            user: data.userData,
           };
           localStorage.setItem("credentials", JSON.stringify(tmpCreds));
           // Get all keys and store them in appD

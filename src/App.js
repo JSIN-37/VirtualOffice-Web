@@ -24,6 +24,7 @@ const App = () => {
         email: credentials.email,
         token: credentials.token,
         isAdmin: credentials.isAdmin,
+        user: credentials.user,
         keys: allKeys,
       };
       setAppD(tmpAppD);
