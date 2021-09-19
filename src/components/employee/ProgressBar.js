@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
     root: {
@@ -35,14 +34,38 @@ LinearProgressWithLabel.propTypes = {
     value: PropTypes.number.isRequired
 };
 
-export default function ProgressBar() {
+export default function ProgressBar({ data }) {
     const classes = useStyles();
-    const [bar, setBar] = useState(50);
+    const [bar, setBar] = useState(0);
+
+    //update progress bar for each secoond
+    useEffect(() => {
+        const interval = setInterval(() => {
+            let diff = Math.round(new Date().getTime() / 1000) - data.start_time;
+            console.log(diff);
+            updateProgress(diff);
+        }, 1000);
+        
+        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+    }, []);
+
+    //calculate work progress
+    const updateProgress = (sec) => {
+        let progress;
+        let workedTime = sec;
+        if (workedTime < 36){
+            progress = (workedTime / 36 * 100); //10*60*60 (Assuming full time -> 10 hours)
+        }else{
+            progress = 100;
+        }
+        setBar(progress);
+    //    changeProgressBarColor(progress);
+    }
 
     return (
         <div className={classes.root}>
             <LinearProgressWithLabel value={bar} />
-            <Button onClick={() => setBar(bar + 5)}>Increase +5</Button>
+            {/* <Button onClick={() => setBar(bar + 5)}>Increase +5</Button> */}
         </div>
     );
 }

@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+    DatePicker,
+    MuiPickersUtilsProvider,
+} from '@material-ui/pickers';
+import axios from "axios";
+import { Autocomplete } from "@material-ui/lab";
+import { TextField } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Button } from "@material-ui/core";
+import ExportData from "./ExportData";
+import { Typography } from "@material-ui/core";
+import { AppData } from "../../App";
 
 const useStyles = makeStyles({
     table: {
@@ -45,6 +55,58 @@ const StyledTableCell = withStyles((theme) => ({
 export default function AttendanceTable(props) {
     const classes = useStyles();
     // const rows = props.rows; // Changed props here love <3
+    const [appD] = useContext(AppData);
+    const [divisionEmployees, setDivisionEmployees] = useState([]);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [employeeRecords, setEmployeeRecords] = useState([]);
+    
+    useEffect(() => {
+        getDivisionEmployees();
+    }, [])
+
+    /* useEffect(() => {
+        getAttendanceLog();
+    }, [selectedDate, selectedEmployee]) */
+
+
+    //Get attendance report by date and the person
+    /* const getAttendanceLog = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${appD.token}` },
+        };
+        axios
+        .get(`${window.backendURL}/user/hodAttendanceReport`, {
+            date: selectedDate,
+            empId: selectedEmployee.id
+        },
+        config)
+        .then((res) => {
+            let data = res.data;
+            console.log(data);
+            setEmployeeRecords(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
+        })
+        .catch (error => {
+            console.log(error);
+        });
+    }; */
+
+    //get employee list if the division that HOD belongs to
+    const getDivisionEmployees = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${appD.token}` },
+        };
+        axios
+        .get(`${window.backendURL}/user/division-users`, config)
+        .then((res) => {
+            let data = res.data;
+            console.log(data);
+            setDivisionEmployees(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
+        })
+        .catch (error => {
+            console.log(error);
+        });
+    }
 
     function createData(
         id,
@@ -209,6 +271,34 @@ export default function AttendanceTable(props) {
 
     return (
         <>
+            <Grid container justifyContent="center" align="center" >
+                <Grid item style={{ padding: "0 18px 18px" }}>
+                <Typography style={{fontWeight: "bold"}}>By Date: </Typography>
+                </Grid>
+                <Grid item style={{ padding: "18px 18px 18px" }}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <DatePicker
+                        value={selectedDate}
+                        onChange={setSelectedDate}
+                    />
+                </MuiPickersUtilsProvider>
+                </Grid>
+                <Grid item style={{ padding: "0 18px 18px" }}>
+                <Typography style={{fontWeight: "bold"}}>By Employee: </Typography>
+                </Grid>
+                <Grid item style={{ padding: "0 18px 18px" }}>
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    style={{width: 300}}
+                    options={divisionEmployees}
+                    renderInput={(params) => <TextField {...params} label="Employee" />}
+                    getOptionLabel={(option) => `${option.first_name} ${option.last_name}`}
+                    onChange={(e,v)=> console.log(v.id)}
+                />
+                </Grid>
+            </Grid>
+                     
             <Grid container justifyContent="center" align="center">
                 <Grid item style={{ padding: "0 18px 18px" }}>
                     <TableContainer>
@@ -288,13 +378,7 @@ export default function AttendanceTable(props) {
                 </Grid>
 
             </Grid>
-            <Button
-                variant="contained"
-                color="primary"
-                style={{ marginLeft: "25px" }}
-            >
-                Export To Excel
-            </Button>
+            <ExportData csvData={rows} fileName={`attendance-report${selectedDate}`} />
         </>
     );
 }
