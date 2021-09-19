@@ -5,9 +5,6 @@
 /.pnp
 .pnp.js
 
-keys
-/src/components/employee/email-module/emailkeys.js
-/src/components/employee/file-sharing-module/filesharekeys.js
 # testing
 /coverage
 

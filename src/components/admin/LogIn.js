@@ -19,6 +19,8 @@ import Box from "@material-ui/core/Box";
 
 import { AppData } from "../../App";
 
+import axios from "axios";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -87,7 +89,6 @@ export default function LogIn() {
   const [appD, setAppD] = React.useContext(AppData);
 
   const loginAttempt = async (password) => {
-    var axios = require("axios");
     axios
       .post(`${window.backendURL}/admin/login`, {
         password: password,

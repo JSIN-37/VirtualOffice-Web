@@ -1,8 +1,10 @@
 import { Button } from '@material-ui/core';
 import React, {useState, useEffect} from 'react'
-import { filesharekeys } from './filesharekeys';
+
+import { AppData } from '../../../App';
 
 export default function FileShare() {
+    const [appD] = React.useContext(AppData);
    
     const [pickerApiLoaded, setPicker] = useState(false)
     const [accessToken, setToken] = useState(null)
@@ -22,13 +24,13 @@ export default function FileShare() {
     })
      // The Browser API key obtained from the window.google API Console.
     // Replace with your own Browser API key, or your own key.
-    var developerKey = filesharekeys.developerKey;
+    var developerKey = appD.keys.FILE_SHARE_DEV_KEY;
 
     
 
     // Replace with your own project number from console.developers.window.google.com.
     // See "Project number" under "IAM & Admin" > "Settings"
-    var appId = filesharekeys.appId;
+    var appId = appD.keys.FILE_SHARE_APP_ID;
 
     // Scope to use to access user's Drive items.
     var scope = ['https://www.googleapis.com/auth/drive.file'];

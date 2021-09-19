@@ -11,15 +11,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from "axios";
 import { useState } from "react";
-import Alert from '@material-ui/lab/Alert';
-import { Snackbar } from '@material-ui/core';
 
 export default function EmployeeOverview(appD) {
 
     const [open, setOpen] = React.useState(false);
     const [firstname, setFirstName] = useState("");
     const [email, setEmail] = useState("");
-    const [showAlert, setShowAlert] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -52,28 +49,11 @@ export default function EmployeeOverview(appD) {
                 email: email
             }, config)
             .then(console.log)
-            // if(_____){
-            //     setOpen(false);
-            // setShowAlert(true);
-            // }
-            
             .catch(console.log);
-            setOpen(false);
-            setShowAlert(true);
-            
     };
 
     return (
         <>
-        {/* <Alert severity='success'  onClose={() => setShowAlert(null)} > Invitation Sent </Alert>  */}
-            {/* {showAlert ? <Alert width= '100%' severity="success"  > Invitation Sent </Alert> : <></> }  */}
-            <Snackbar sx={{ width: '100%' }} onClose={()=>setShowAlert(false)} open={showAlert} autoHideDuration={3000} >
-            <Alert severity="success" >
-            Invitation Sent
-            </Alert>
-            </Snackbar>
-            {/* onClose={() => setShowAlert(null)} */}
-            {/* <h1>Employees details go here</h1> */}
             {/* <h1>Employees details go here</h1> */}
             <EmployeeTable />
             <Button
@@ -83,7 +63,7 @@ export default function EmployeeOverview(appD) {
                 // to="/invite-employees"
                 color="primary"
                 onClick={handleClickOpen}>
-                Invite Employee
+                Invite Employees
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Invite Empoyees of your organization</DialogTitle>
@@ -127,7 +107,6 @@ export default function EmployeeOverview(appD) {
                         to="/invite-employees"
                         // onClick={handleClickOpen}
                         onClick={() => postEmployees(appD)}
-
                         size="small">
                         Send Invitation
                     </Button>

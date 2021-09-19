@@ -11,6 +11,7 @@ import DashboardHeader from "./DashboardHeader";
 import useFetch from "../../hooks/useFetch";
 import EmailModule from './email-module/EmailModule'
 import FileShare from "./file-sharing-module/FileShare";
+// import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';startIcon={<PersonAddIcon />}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
         color: "#000000",
         textAlign: "left",
         paddingLeft: "20px",
-        paddingBottom: "10px",
     },
 }));
 
@@ -52,6 +52,9 @@ export default function Dashboard() {
                 <DashboardHeader />
                 <Grid item xs={12} md={7}>
                     <Card variant="outlined" elevation={1} className={classes.card}>
+                        <Typography variant="h6" className={classes.title}>
+                            Time
+                        </Typography>
                         <StatusCard />
                     </Card>
                     <Grid container spacing={3}>
@@ -80,16 +83,18 @@ export default function Dashboard() {
                         </Grid>
                     </Grid>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={12} md={12}>
                             <EmailModule />
-
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <FileShare />
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={5}>
+                    <Card variant="outlined" elevation={1} className={classes.card}>
+                        <Typography variant="h6" className={classes.title}>
+                            File Sharing
+                        </Typography>
+                        <FileShare />
+                    </Card>
                     <Card variant="outlined" elevation={1} className={classes.card}>
                         <Typography variant="h6" className={classes.title}>
                             My Coworkers
