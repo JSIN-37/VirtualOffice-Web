@@ -22,12 +22,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EmailModule() {
+export default function EmailModule(props) {
+
   // Get keys from app data
   const [appD] = React.useContext(AppData);
   const CLIENT_ID = appD.keys.EMAIL_CLIENT_ID;
   const API_KEY = appD.keys.EMAIL_API_KEY;
   const classes = useStyles();
+
+  const isGoogleSignedIn = props.isGoogleSignedIn
+  const setIsGoogleSignedIn = props.setIsGoogleSignedIn
+  const auth2Instance = props.auth2Instance
+  const setAuth2Instance = props.setAuth2Instance
 
   // Array of API discovery doc URLs for APIs used by the quickstart
   var DISCOVERY_DOCS = [
@@ -36,18 +42,20 @@ export default function EmailModule() {
 
   // Authorization scopes required by the API; multiple scopes can be
   // included, separated by spaces.
-  var SCOPES = "https://www.googleapis.com/auth/gmail.readonly";
+  //var SCOPES = "https://www.googleapis.com/auth/gmail.readonly";
 
-  const [signedIn, setSignedIn] = useState(false);
   const [emails, setEmails] = useState([]);
 
-  // const handleClientLoad = useCallback(() =>{
-  //     window.gapi.load('client:auth2', initClient)
-  // })
 
   const listMail = useCallback(() => {
     const emailIdArray = [];
-    window.gapi.client.gmail.users.messages
+    window.gapi.load('client', ()=>{
+      window.gapi.client.init({
+        apiKey:API_KEY,
+        clientId:CLIENT_ID,
+        discoveryDocs : DISCOVERY_DOCS,
+      }).then(()=>{
+        window.gapi.client.gmail.users.messages
       .list({
         userId: "me",
       })
@@ -60,6 +68,10 @@ export default function EmailModule() {
         });
         loadEmails(emailIdArray);
       });
+      }).catch(()=>{alert('There was an issue with connecting to google servers.')})
+      
+    })
+    
   }, []);
 
   function loadEmails(array) {
@@ -84,63 +96,65 @@ export default function EmailModule() {
     });
   }
 
-  const handleClientLoad = useCallback(() => {
-    window.gapi.load("client:auth2", initClient);
-  }, []);
+  useEffect(()=>{
+    if(isGoogleSignedIn){
+      listMail()
+    }
+    else{
+      return
+    }
+  },[])
 
   useEffect(() => {
-    if (window.gapi) {
-      handleClientLoad();
-    } else {
-      return;
+    if(!isGoogleSignedIn){
+    const script = document.createElement('script')
+    script.src='https://apis.google.com/js/platform.js'
+    document.body.appendChild(script)
+    script.onload = () =>{ beginGapiSignIn() }
     }
-    if (!window.gapi.client) {
-      return;
-    } else {
-      if (window.gapi.client.gmail) {
-        listMail();
-      } else {
-        return;
-      }
-    }
-  }, []);
+  },[]);
 
-  function initClient() {
-    window.gapi.client
-      .init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES,
+  function beginGapiSignIn(){
+    console.log("BEGIN GAPI SIGN IN")
+    window.gapi.load('auth2', ()=>{
+      window.gapi.auth2.init({
+        client_id:CLIENT_ID
       })
-      .then(function () {
-        //listen to changes to signed in status
-        window.gapi.auth2
-          .getAuthInstance()
-          .isSignedIn.listen(updateSigninStatus);
-
-        //first sign in
-        updateSigninStatus(
-          window.gapi.auth2.getAuthInstance().isSignedIn.get()
-        );
-      });
+      console.log("GAPI AUTH2 LOADED")
+      window.gapi.load("signin2", ()=>{
+        console.log("GAPI SIGNIN2 LOADED")
+        const params = {
+          scope : 'https://mail.google.com https://www.googleapis.com/auth/drive',
+          onsuccess: ()=>{
+            // listMail()
+            // setIsGoogleSignedIn(true)
+            // setAuth2Instance(window.gapi.auth2.getAuthInstance())
+            // console.log("SIGNED INTO GOOGLE", isGoogleSignedIn, auth2Instance)
+            updateSignInStatus(window.gapi.auth2.getAuthInstance().isSignedIn.get())
+            window.gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus)
+          }
+        }
+        window.gapi.signin2.render('btn', params)
+      })
+    })
   }
 
-  function updateSigninStatus(signedIn) {
-    //true if signed in, false if signed out.
-    if (signedIn) {
-      setSignedIn(true);
-    } else {
-      setSignedIn(false);
+  function updateSignInStatus(status){
+    if(status){
+      listMail()
+      setIsGoogleSignedIn(true)
+      setAuth2Instance(window.gapi.auth2.getAuthInstance())
+      console.log("SIGNED INTO GOOGLE", isGoogleSignedIn, auth2Instance)
+    }else{
+      setIsGoogleSignedIn(false)
+      setAuth2Instance(null)
+      setEmails([])
+      console.log("SIGNED OUT OF GOOGLE, ", isGoogleSignedIn, auth2Instance)
     }
-  }
-
-  function handleSignInClick() {
-    window.gapi.auth2.getAuthInstance().signIn();
   }
 
   function handleSignOutClick() {
-    window.gapi.auth2.getAuthInstance().signOut();
+    auth2Instance.signOut();
   }
 
   return (
@@ -152,17 +166,14 @@ export default function EmailModule() {
           </Typography>
         </Grid>
         <Grid item>
-          {!signedIn && (
-            <Button
-              variant="outlined"
+          {!isGoogleSignedIn && (
+            <div
               style={{ marginBottom: "15px" }}
-              size="small"
-              onClick={handleSignInClick}
+              id='btn'
             >
-              Sign In
-            </Button>
+            </div>
           )}
-          {signedIn && (
+          {isGoogleSignedIn && (
             <Button
               variant="outlined"
               style={{ marginBottom: "15px" }}
@@ -180,7 +191,7 @@ export default function EmailModule() {
             emails.map((email) => {
               return <EmailCard key={email.id} email={email} />;
             })}
-          {!emails.length && (
+          {!emails.length && isGoogleSignedIn && (
             <Button color="primary" onClick={listMail}>
               Load Emails
             </Button>
