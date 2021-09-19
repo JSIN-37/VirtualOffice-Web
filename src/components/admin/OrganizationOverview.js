@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
 import { Typography, Container } from '@material-ui/core';
 import { Avatar } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import image from "../../resources/orgImage.jpg"
 import admin from "../../resources/emp_user.svg";
 import Map from './Map';
@@ -27,9 +28,6 @@ const useStyles = makeStyles((theme) => {
         text: {
             fontWeight: 400,
             padding: 2
-        },
-        hr: {
-            textAlign: "left"
         },
         bigAvatar: {
             width: 100,
@@ -68,9 +66,10 @@ function OrganizationOverview() {
 
     return (
         <Container className={classes.root}>
-            <Typography variant="h6" className={classes.title} style={{ marginBottom: 10 }} >Organization Name </Typography>
             <Grid container spacing={5}>
                 <Grid item xs={6}>
+                    <Typography variant="h6" className={classes.title} style={{ marginBottom: 10 }} >Organization Name </Typography>
+                    <Divider style={{ marginBottom: 10 }} />
                     <Grid container spacing={0}>
                         <Grid item md={2} style={{ display: "flex", alignItems: "center", flexDirection: "column" }} >
                             <Avatar alt="Organization Logo" src={image} className={classes.bigAvatar} />
@@ -82,7 +81,7 @@ function OrganizationOverview() {
                     </Grid>
                     <Grid item>
                         <Typography variant="h6" style={{ fontWeight: 500 }} className={classes.title}>System Administrator: </Typography>
-                        <hr className={classes.hr} />
+                        <Divider style={{ marginBottom: 10 }} />
                         <Grid container >
                             <Grid item xs={1} style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
                                 <Avatar alt="Remy Sharp" src={admin} className={classes.smallAvatar} />
@@ -93,11 +92,12 @@ function OrganizationOverview() {
                         </Grid>
                         <br />
                         <Typography variant="h6" style={{ fontWeight: 500 }} className={classes.title}>Administrator Email:</Typography>
-                        <hr className={classes.hr} />
+                        <Divider style={{ marginBottom: 10 }} />
                         <Typography variant="body1" className={classes.text}>pathirana@gmail.com </Typography>
                     </Grid>
                 </Grid>
                 <Grid item xs={6}>
+                    <Typography variant="h6" className={classes.title} style={{ marginBottom: 10 }} >Location </Typography>
                     <div style={{ width: "100^", height: "100%" }}>
                         <MapWrapped
                             googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDcWKc6xYTtYk5Cw2oiLFTdOWTSzJM8AGg`}
@@ -108,8 +108,6 @@ function OrganizationOverview() {
                     </div>
                 </Grid>
             </Grid>
-          
-            
             <br />
             <Button color="primary" component={Link} to="/divisions">Division</Button>
             <br />

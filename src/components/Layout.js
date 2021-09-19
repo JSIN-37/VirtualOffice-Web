@@ -16,7 +16,7 @@ import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import EventIcon from "@material-ui/icons/Event";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { useHistory, useLocation } from "react-router";
 import logo from '../resources/logo.png';
 import user from "../resources/emp_user.svg";
@@ -117,7 +117,7 @@ export default function Layout({ children }) {
         },
         {
             text: 'Log out',
-            icon: <PowerSettingsNewRoundedIcon color="primary" />,
+            icon: <ExitToAppRoundedIcon color="primary" />,
             path: '/logout'
         }
     ]

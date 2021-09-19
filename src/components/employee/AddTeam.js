@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core";
-import { Typography, Container, Paper } from "@material-ui/core";
+import { Typography, Container, Paper, Divider } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import AddBoxRoundedIcon from "@material-ui/icons/AddBoxRounded";
 import user from "../../resources/emp_user.svg";
@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
         width: 370,
         marginTop: 20,
         backgroundColor: "#f9f9f9",
+    },
+    heading: {
+        marginBottom: '0',
+        fontWeight: "500",
+        textAlign: "left"
     },
     smallAvatar: {
         width: theme.spacing(5),
@@ -56,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.grey[500],
     },
     dialog: {
-        padding: "0px 20px",
+        padding: "0px 20px 20px",
     },
     listItem: {
         margin: "5px 10px",
@@ -89,10 +94,11 @@ export default function AddTeam() {
         setOpenView(false);
     };
 
-    const handleSubmit = (AppData) => {
-        AppData.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         setNameError(false);
         setDescriptionError(false);
+        setLeaderError(false);
 
         if (name === "") {
             setNameError(true);
@@ -177,19 +183,19 @@ export default function AddTeam() {
                             error={leaderError}
                         />
                         <br />
-                        <Container style={{ display: "flex", alignItems: "left" }}>
-                            <Paper elevation={0} className={classes.members} onClick={() => setOpenView(true)}>
-                                <AddBoxRoundedIcon className={classes.icon} color="primary" />
-                                <Typography variant="body1" color="primary">Add Members</Typography>
-                            </Paper>
-                        </Container>
+
+                        <Paper elevation={0} className={classes.members} onClick={() => setOpenView(true)}>
+                            <AddBoxRoundedIcon className={classes.icon} color="primary" />
+                            <Typography variant="body1" color="primary">Add Members</Typography>
+                        </Paper>
+
                         <br />
                         <Button
                             type="submit"
                             color="primary"
                             variant="contained"
                             className={classes.button}
-                            onClick={() => handleSubmit(AppData)}>
+                            onClick={(e) => handleSubmit(e)}>
                             Submit
                         </Button>
                         <Button
@@ -204,7 +210,7 @@ export default function AddTeam() {
                         <Typography variant="body1" className={classes.heading}>
                             Team Members{" "}
                         </Typography>
-                        <hr className={classes.hr} />
+                        <Divider style={{ marginBottom: 10 }} />
                         <Grid container>
                             <Grid item xs={2}>
                                 <Avatar
@@ -255,25 +261,25 @@ export default function AddTeam() {
                             )}
                         />
                     </div>
-                    <Grid container justifyContent="center" align="center" className={classes.listItem}>
-                        <Grid item xs={8} style={{ justifyContent: "flex-start" }}>
+                    <Grid container className={classes.listItem}>
+                        <Grid item xs={8} style={{ flexGrow: 1, }}>
                             <Typography variant="body1" className={classes.info} >A.T. Pathirana</Typography>
                         </Grid>
-                        <Grid item xs={1} style={{ justifyContent: "flex-end" }}>
-                            <IconButton aria-label="close" size="small" >
+                        <Grid item xs={1} justifyContent="center" align="center" style={{ flexShrink: 0, }}>
+                            <IconButton aria-label="close" size="small">
                                 <CloseIcon />
                             </IconButton>
                         </Grid>
                         <Grid item xs={8} style={{ justifyContent: "flex-start" }}>
                             <Typography variant="body1" className={classes.info} >A.T. Pathirana</Typography>
                         </Grid>
-                        <Grid item xs={1} style={{ justifyContent: "flex-end" }}>
-                            <IconButton aria-label="close" size="small" >
+                        <Grid item xs={1} justifyContent="center" align="center" style={{ justifyContent: "flex-end" }}>
+                            <IconButton aria-label="close" size="small">
                                 <CloseIcon />
                             </IconButton>
                         </Grid>
                     </Grid>
-                    <Button color="primary" variant="contained" startIcon={<PersonAddIcon />} className={classes.dialogButton}>
+                    <Button color="primary" variant="contained" startIcon={<PersonAddIcon />} className={classes.button}>
                         Add Members
                     </Button>
                 </Container>
