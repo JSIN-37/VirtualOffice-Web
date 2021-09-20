@@ -326,7 +326,7 @@ export default function AttendanceOverview(props) {
                                             scope="row"
                                             style={{ paddingLeft: "30px" }}
                                         >
-                                            {`${row.first_name} ${row.last_name}`}
+                                            {`${row.first_name.charAt(0)}. ${row.last_name}`}
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{selectedDate.toISOString().slice(0, 19).replace('T', ' ').split(' ')[0]}</StyledTableCell>
                                         <StyledTableCell align="left">
@@ -334,13 +334,16 @@ export default function AttendanceOverview(props) {
                                         </StyledTableCell>
                                         <StyledTableCell align="left">
                                             {row.start_location ? (
-                                                <Link color="primary" href="https://goo.gl/maps/3anHXvA54aS4GXiZ9" target="_blank">
+                                                <Link color="primary" href={row.start_location} target="_blank">
                                                     View
                                                 </Link>) : "-"}
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.end_time ? getTimeString(row.end_time) : "-"}</StyledTableCell>
                                         <StyledTableCell align="left">
-                                            {row.end_location ? row.end_location : "-"}
+                                            {row.start_location ? (
+                                                <Link color="primary" href={row.end_location} target="_blank">
+                                                    View
+                                                </Link>) : "-"}
                                         </StyledTableCell>
                                         <StyledTableCell align="left">
                                             {row.start_time ? "Present" : "Absent"}
