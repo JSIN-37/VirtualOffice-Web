@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import Grid from "@material-ui/core/Grid";
 import { Container } from "@material-ui/core";
 import TeamCard from "./TeamCard";
@@ -6,9 +6,12 @@ import TeamCard from "./TeamCard";
 import { AppData } from "../../App";
 import TeamTaskCard from "./team-task-stuff/TeamTaskCard";
 
+const LOCAL_STORAGE_KEY_TEAMTASKS = 'VO-TEAM-TASKS'
+
 export default function TeamOverview() {
   const [appD] = React.useContext(AppData);
   const [teams, setTeams] = useState([]);
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
     const config = {
@@ -33,10 +36,24 @@ export default function TeamOverview() {
 
   }, [appD]);
 
-  const [teamTasks, setTeamTasks] = useState([])
+  //set teamTasks to the team tasks saved to local storage
+  const [teamTasks, setTeamTasks] = useState(()=>{
+    const teamTasksJSON = localStorage.getItem(LOCAL_STORAGE_KEY_TEAMTASKS)
+    if(teamTasksJSON === null){
+      return []
+    }else{
+      return JSON.parse(teamTasksJSON)
+    }
+  })
+
   function addTaskTeamVersion(task){
     setTeamTasks([...teamTasks, task])
   }
+
+  //write changes to teamTasks to local storage
+  useEffect(()=>{
+    localStorage.setItem(LOCAL_STORAGE_KEY_TEAMTASKS, JSON.stringify(teamTasks))
+  }, [teamTasks])
 
   const handleDelete = async (id) => {
     const config = {
