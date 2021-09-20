@@ -6,10 +6,10 @@ import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/core/styles";
 import EventIcon from "@material-ui/icons/Event";
 import AttendanceReports from "./AttendanceReports";
-import Absentees from "./Absentees";
+//import Absentees from "./Absentees";
 import Attendees from "./Attendees";
 import AttendanceOverview from "./AttendanceOverview";
-import MyAttendance from "./MyAttendance";
+//import MyAttendance from "./MyAttendance";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,9 +72,7 @@ export default function DivisionHeader() {
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }} >
                         <Tab label="Overview" className={classes.tab} />
                         <Tab label="Active Attendees" className={classes.tab} />
-                        <Tab label="Absentees" className={classes.tab} />
                         <Tab label="Reports" className={classes.tab} />
-                        <Tab label="My Attendance" className={classes.tab} />
                     </Tabs>
                 </Toolbar>
             </AppBar>
@@ -84,14 +82,8 @@ export default function DivisionHeader() {
             <TabPanel value={value} index={1}>
                 <Attendees />
             </TabPanel>
-            <TabPanel value={value} index={2}>
-                <Absentees />
-            </TabPanel>
             <TabPanel value={value} index={3}>
                 <AttendanceReports />
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-                <MyAttendance />
             </TabPanel>
         </Grid>
     );

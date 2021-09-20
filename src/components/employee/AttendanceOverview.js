@@ -16,17 +16,29 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import ExportData from "./ExportData";
-import { Card, CardMedia, Typography } from "@material-ui/core";
+import { Card, CardMedia, Typography, Divider } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import present from "./../../resources/atd_present.svg";
 import absent from "./../../resources/atd_absent.svg";
 import late from "./../../resources/atd_late.svg";
 import { AppData } from "../../App";
-import Attendance from "./Absentees";
+//import Attendance from "./Absentees";
 
 const useStyles = makeStyles({
+    root: {
+        Height: "100%",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: 0,
+    },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+    },
     table: {
-        minWidth: 1150,
+        minWidth: 1200,
     },
     tableRow: {
         height: 38,
@@ -41,6 +53,9 @@ const useStyles = makeStyles({
         borderRadius: 10,
         textAlign: "center",
         overflow: "visible",
+        boxShadow: "0 8px 30px -12px rgba(0,0,0,0.3)",
+        margin: "0 20px 10px",
+        padding: "10px",
     },
     media: {
         margin: "10px auto",
@@ -80,8 +95,8 @@ export default function AttendanceOverview(props) {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [rows, setRows] = useState([]);
-    const [presentCount, setPresentCount] = useState(0);    
-    const [absentCount, setAbsentCount] = useState(0);      
+    const [presentCount, setPresentCount] = useState(0);
+    const [absentCount, setAbsentCount] = useState(0);
     const [lateCount, setLateCount] = useState(0);
 
     useEffect(() => {
@@ -104,22 +119,22 @@ export default function AttendanceOverview(props) {
         };
         let date = selectedDate.toISOString().slice(0, 19).replace('T', ' ').split(' ')[0];
         console.log(date);
-        let empID =selectedEmployee ? selectedEmployee.id : null;
+        let empID = selectedEmployee ? selectedEmployee.id : null;
         axios
-        .post(`${window.backendURL}/user/allcheckins`, {
-            filterDate: date,
-            employeeID: empID
-        },
-        config)
-        .then((res) => {
-            let data = res.data;
-            setRows(data);
-        })
-        .catch (error => {
-            console.log(appD.token);
-            console.log(error.response.data);
-            // console.log(error);
-        });
+            .post(`${window.backendURL}/user/allcheckins`, {
+                filterDate: date,
+                employeeID: empID
+            },
+                config)
+            .then((res) => {
+                let data = res.data;
+                setRows(data);
+            })
+            .catch(error => {
+                console.log(appD.token);
+                console.log(error.response.data);
+                // console.log(error);
+            });
     };
 
     //get employee list if the division that HOD belongs to
@@ -128,24 +143,24 @@ export default function AttendanceOverview(props) {
             headers: { Authorization: `Bearer ${appD.token}` },
         };
         axios
-        .get(`${window.backendURL}/user/division-users`, config)
-        .then((res) => {
-            let data = res.data;
-            setDivisionEmployees(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
-        })
-        .catch (error => {
-            console.log(error);
-        });
+            .get(`${window.backendURL}/user/division-users`, config)
+            .then((res) => {
+                let data = res.data;
+                setDivisionEmployees(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
-    
+
     //count day statistics    
     const updateHeaderData = () => {
         let presentCount = rows.filter((row) => row.start_time).length;
         let absentCount = rows.filter((row) => !row.start_time).length;
         let lateCount = rows.filter((row) => {
-            if (row.start_time){
+            if (row.start_time) {
                 let [hrs, mins, secs] = msecsToLocalTime(row.start_time * 1000);
-                if (hrs>8){
+                if (hrs > 8) {
                     return true
                 }
             }
@@ -162,7 +177,7 @@ export default function AttendanceOverview(props) {
         let [hrs, mins, secs] = msecsToLocalTime(sec * 1000);
         let timeLabel = hrs > 11 ? 'PM' : 'AM';
         hrs = hrs > 12 ? hrs - 12 : hrs;
-        let timeString = `${hrs.toString().length == 1 ? "0"+hrs : hrs}:${mins} ${timeLabel}`;
+        let timeString = `${hrs.toString().length == 1 ? "0" + hrs : hrs}:${mins} ${timeLabel}`;
         return timeString;
     }
 
@@ -171,7 +186,7 @@ export default function AttendanceOverview(props) {
         let dateStamp = new Date(time);
         let timePortion = dateStamp.toString().split(/[ ]+/)[4];
         let timeArray = timePortion.split(':');
-        timeArray.map((item)=> parseInt(item, 10));
+        timeArray.map((item) => parseInt(item, 10));
         return timeArray;
     }
 
@@ -181,65 +196,86 @@ export default function AttendanceOverview(props) {
         sec -= hrs * 60 * 60;
         let mins = Math.floor(sec / 60);
         sec -= mins * 60;
-        let duration = `${hrs.toString().length == 1 ? "0"+hrs : hrs}:${mins.toString().length == 1 ? "0"+mins : mins}`;
+        let duration = `${hrs.toString().length == 1 ? "0" + hrs : hrs}:${mins.toString().length == 1 ? "0" + mins : mins}`;
         return duration;
     }
 
     return (
         <>
-            <Grid container spacing={2} justifyContent="center" align="center">
-            <Grid item md={1}>
-            </Grid>
-            <Grid item md={10}>
-                <Card className={classes.card} elevation={0}>
-                    <Grid container spacing={1} justifyContent="center" align="center">
+            <Grid container className={classes.root} spacing={0} alignItems="center">
+                <Grid item xs={3} >
+                    <Card className={classes.card}>
+                        <Grid container spacing={1} justifyContent="center" align="center">
                             <Grid item md={4}>
                                 <CardMedia className={classes.media} image={present} title="icon" />
-                                <Typography variant="body1" color="primary" className={classes.text}>{`Present: ${presentCount}`}</Typography>
                             </Grid>
+                            <Grid item md={5} className={classes.container}>
+                                <Typography variant="h6" color="primary" className={classes.text}>{`Present: ${presentCount}`}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </Grid>
+                <Grid item xs={3}>
+                    <Card className={classes.card}>
+                        <Grid container spacing={1} justifyContent="center" align="center">
                             <Grid item md={4}>
                                 <CardMedia className={classes.media} image={absent} title="icon" />
-                                <Typography variant="body1" color="primary" className={classes.text}>{`Absent: ${absentCount}`}</Typography>
                             </Grid>
+                            <Grid item md={5} className={classes.container}>
+                                <Typography variant="h6" color="primary" className={classes.text}>{`Absent: ${absentCount}`}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </Grid>
+                <Grid item xs={3}>
+                    <Card className={classes.card}>
+                        <Grid container spacing={1} justifyContent="center" align="center">
                             <Grid item md={4}>
                                 <CardMedia className={classes.media} image={late} title="icon" />
-                                <Typography variant="body1" color="primary" className={classes.text}>{`Late: ${lateCount}`}</Typography>
                             </Grid>
-                    </Grid>
-                </Card>
-            </Grid>
-            <Grid item md={1}>
-            </Grid>
-            <hr />
-            </Grid >
-            <Grid container justifyContent="center" align="center" >
-                <Grid item style={{ padding: "0 18px 18px" }}>
-                <Typography style={{fontWeight: "bold"}}>By Date: </Typography>
+                            <Grid item md={5} className={classes.container}>
+                                <Typography variant="h6" color="primary" className={classes.text}>{`Late: ${lateCount}`}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Card>
                 </Grid>
-                <Grid item style={{ padding: "18px 18px 18px" }}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker
-                        value={selectedDate}
-                        onChange={setSelectedDate}
+            </Grid>
+
+            <Grid container style={{ marginTop: "10px" }}>
+                <Divider variant="middle" />
+                <Grid item className={classes.container}>
+                    <Typography style={{ fontWeight: "bold", margin: "10px 10px 10px 0" }}>By Date: </Typography>
+                </Grid>
+                <Grid item className={classes.container} style={{ margin: "10px 0" }}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <DatePicker
+                            value={selectedDate}
+                            onChange={setSelectedDate}
+                            variant="outlined"
+                        />
+                    </MuiPickersUtilsProvider>
+                </Grid>
+                <Grid item className={classes.container}>
+                    <Typography style={{ fontWeight: "bold", margin: "10px 10px 10px 40px" }}>By Employee: </Typography>
+                </Grid>
+                <Grid item className={classes.container} style={{ margin: "10px 0 25px" }}>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        style={{ width: 300 }}
+                        options={divisionEmployees}
+                        renderInput={(params) =>
+                            <TextField
+                                {...params}
+                                label="Employee"
+                            //variant="outlined"//margin: "10px 0"
+                            />}
+                        getOptionLabel={(option) => `${option.first_name} ${option.last_name}`}
+                        onChange={(e, v) => setSelectedEmployee(v)}
                     />
-                </MuiPickersUtilsProvider>
-                </Grid>
-                <Grid item style={{ padding: "0 18px 18px" }}>
-                <Typography style={{fontWeight: "bold"}}>By Employee: </Typography>
-                </Grid>
-                <Grid item style={{ padding: "0 18px 18px" }}>
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    style={{width: 300}}
-                    options={divisionEmployees}
-                    renderInput={(params) => <TextField {...params} label="Employee" />}
-                    getOptionLabel={(option) => `${option.first_name} ${option.last_name}`}
-                    onChange={(e,v) => setSelectedEmployee(v)}
-                />
                 </Grid>
             </Grid>
-                     
+
             <Grid container justifyContent="center" align="center">
                 <Grid item style={{ padding: "0 18px 18px" }}>
                     <TableContainer>
@@ -297,10 +333,10 @@ export default function AttendanceOverview(props) {
                                             {row.start_time ? getTimeString(row.start_time) : "-"}
                                         </StyledTableCell>
                                         <StyledTableCell align="left">
-                                        {row.start_location ? (
-                                            <Link color="primary" href="https://goo.gl/maps/3anHXvA54aS4GXiZ9" target="_blank">
-                                                View
-                                            </Link>): "-"}
+                                            {row.start_location ? (
+                                                <Link color="primary" href="https://goo.gl/maps/3anHXvA54aS4GXiZ9" target="_blank">
+                                                    View
+                                                </Link>) : "-"}
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.end_time ? getTimeString(row.end_time) : "-"}</StyledTableCell>
                                         <StyledTableCell align="left">
@@ -312,9 +348,9 @@ export default function AttendanceOverview(props) {
                                         <StyledTableCell align="left">
                                             {row.full_half == "N" ? "Short Leave" : (row.full_half == "H" ? "Half Day" : "-")}
                                         </StyledTableCell>
-                                        {row.location_offset ? 
-                                        (<StyledTableCell align="left" style= {{color: 'red'}}>Mismatch</StyledTableCell>)
-                                        :(<StyledTableCell align="left" style= {{color: 'green'}}>Success</StyledTableCell>)}
+                                        {row.location_offset ?
+                                            (<StyledTableCell align="left" style={{ color: 'red' }}>Mismatch</StyledTableCell>)
+                                            : (<StyledTableCell align="left" style={{ color: 'green' }}>Success</StyledTableCell>)}
                                         <StyledTableCell align="left">
                                             {row.start_time ? getDurationString(row.end_time - row.start_time) : "-"}
                                         </StyledTableCell>
@@ -327,6 +363,7 @@ export default function AttendanceOverview(props) {
 
             </Grid>
             <ExportData csvData={rows} fileName={`attendance-report${selectedDate}`} />
+
         </>
     );
 }
