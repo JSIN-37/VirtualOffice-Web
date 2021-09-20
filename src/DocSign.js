@@ -105,7 +105,7 @@ export const DocSign = () => {
       ) : (
         ""
       )}
-      {docID && fileSel ? (
+      {/* {docID && fileSel ? (
         <Button
           variant="contained"
           color="primary"
@@ -119,7 +119,7 @@ export const DocSign = () => {
             axios
               .post(
                 `https://api.pandadoc.com/public/v1/documents/${docID}/session`,
-                { recipient: "bogus@vo.com" },
+                JSON.stringify({ recipient: "bogus@vo.com" }),
                 config
               ) //get the ids of all the divisions
               .then((res) => {
@@ -135,7 +135,7 @@ export const DocSign = () => {
         </Button>
       ) : (
         ""
-      )}
+      )} */}
       <EmployeeSelect
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
