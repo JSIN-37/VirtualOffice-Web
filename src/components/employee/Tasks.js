@@ -1,4 +1,4 @@
-import React, { useState , useEffect, useRef} from 'react'
+import React, { useState , useEffect, useRef, useContext} from 'react'
 import Grid from '@material-ui/core/Grid'
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Tabs from '@material-ui/core/Tabs';
@@ -10,7 +10,9 @@ import MyTasks from "./task-management-module/MyTasks";
 import InspectTasks from "./task-management-module/InspectTasks";
 import AssignTasks from "./task-management-module/AssignTasks";
 import TaskReports from "./task-management-module/TaskReports";
-
+import { AppData } from '../../App';
+import axios from 'axios'
+import { MyTaskUtils } from '../../EmployeeArea';
 export const TaskManagementData = React.createContext();
 const LOCAL_STORAGE_ASSIGNED_TASKS_KEY = 'vo-material.assigned_tasks_array';
 const LOCAL_STORAGE_DRAFTS_KEY = 'vo-material.drafts_array';
@@ -66,14 +68,21 @@ export default function Tasks() {
       }
   });
   const [resume, setResume] = useState(false);
+  
+  //get employees list from server
+  //const [appD] = useContext(AppData)
+  const {employees} = useContext(MyTaskUtils)
 
+  //end of get employees from server
+  
   const TaskManagementDataContextVals = {
     assignedTasksDB,
     setAssignedTasksDB,
     draftsDB,
     setDraftsDB,
     resume,
-    setResume
+    setResume,
+    employees
   };
 
 
