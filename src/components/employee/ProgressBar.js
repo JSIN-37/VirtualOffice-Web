@@ -37,12 +37,12 @@ LinearProgressWithLabel.propTypes = {
 export default function ProgressBar({ data }) {
     const classes = useStyles();
     const [bar, setBar] = useState(0);
+    const [progressColor, setProgressColor] = useState('#737B7D');
 
     //update progress bar for each secoond
     useEffect(() => {
         const interval = setInterval(() => {
             let diff = Math.round(new Date().getTime() / 1000) - data.start_time;
-            console.log(diff);
             updateProgress(diff);
         }, 1000);
         
@@ -53,19 +53,36 @@ export default function ProgressBar({ data }) {
     const updateProgress = (sec) => {
         let progress;
         let workedTime = sec;
-        if (workedTime < 36){
-            progress = (workedTime / 36 * 100); //10*60*60 (Assuming full time -> 10 hours)
+        if (workedTime < 60){
+            progress = (workedTime / 60 * 100); //10*60*60 (Assuming full time -> 10 hours)
         }else{
             progress = 100;
         }
         setBar(progress);
-    //    changeProgressBarColor(progress);
+        changeProgressBarColor(progress);
+    }
+
+    const changeProgressBarColor = (progress) => {
+        let color;
+        if (progress == 0){
+            color = '#737B7D';
+        } else if (progress < 20) {
+            color = '#D6221D';
+        } else if (progress < 50){
+            color = '#FFA500';
+        } else if (progress < 75) {
+            color = '#FDD33A';
+        } else if (progress < 95){
+            color = '#9BBC49';
+        } else {
+            color = '#3BB20A';
+        }
+        setProgressColor(color);
     }
 
     return (
         <div className={classes.root}>
-            <LinearProgressWithLabel value={bar} />
-            {/* <Button onClick={() => setBar(bar + 5)}>Increase +5</Button> */}
+            <LinearProgressWithLabel value={bar} color={progressColor}/>
         </div>
     );
 }

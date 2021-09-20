@@ -41,9 +41,6 @@ export default function EmployeeOverview(appD) {
         const config = {
             headers: { Authorization: `Bearer ${appD.token}` },
         };
-        // const bodyParameters = {
-        //   key: "value",
-        // };
         console.log(firstname);
         console.log(email);
         axios
@@ -51,7 +48,6 @@ export default function EmployeeOverview(appD) {
                 first_name: firstname,
                 email: email
             }, config)
-
 
             .then(console.log)
             // if(_____){

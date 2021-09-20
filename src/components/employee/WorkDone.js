@@ -1,10 +1,10 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 export default function WorkDone() {
     return (
-        <div>
-            <Typography>You have already checked-out!</Typography>
+        <div style={{padding: 5}}>
+            <Alert severity="success">You have already checked-out!</Alert>
         </div>
     )
 }

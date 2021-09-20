@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ShowMoreText from "react-show-more-text";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from '@material-ui/core/CardHeader';
@@ -38,16 +39,21 @@ const useStyles = makeStyles({
         fontWeight: '400',
     },
     data2: {
-        fontSize: '17px',
+        fontSize: '15px',
         color: '#3F51B4',
-        textAlign: 'left',
         fontWeight: '400',
-        marginLeft: 100
     },
+
 });
 
 function DivionCard({ divData }) {
     const classes = useStyles();
+    const [expand, setExpand] = useState(false);
+    const onClick = () => {
+        setExpand(!expand);
+    };
+
+
     // const bull = <span className={classes.bullet}>•</span>;
     // const [divisionName, setDivisionName] = useState(``);
     // const [divisionHead, setDivsionHead] = useState(``);
@@ -93,7 +99,7 @@ function DivionCard({ divData }) {
                             Description:
                         </Typography>
                     </Grid>
-                    <Grid item xs={6}>                        
+                    <Grid item xs={6}>
                         <Typography variant="body1" pb={1} className={classes.data}>
                             {divData.hod_id}
                         </Typography>
@@ -102,11 +108,15 @@ function DivionCard({ divData }) {
                         </Typography>
                         <Typography variant="body1" pb={1} className={classes.data}>
                             {divData.employee_count}
-                        </Typography>                        
+                        </Typography>
                     </Grid>
-                    <Typography variant="body1" pb={1} className={classes.data2}>
-                            {divData.description}
-                    </Typography>
+                    <Grid item xs={12} justify="flex-end">
+                        <Typography variant="body2" align="right" pb={1} className={classes.data2}>
+                            <ShowMoreText className={classes.data2} lines={3} more={"Show More"} less={"Show Less"} onClick={onClick} expanded={expand}>
+                                {divData.description}
+                            </ShowMoreText>
+                        </Typography>
+                    </Grid>
                 </Grid>
             </CardContent>
         </Card>

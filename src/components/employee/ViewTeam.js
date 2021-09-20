@@ -1,41 +1,27 @@
+
 import React from 'react'
 import Container from '@material-ui/core/Grid'
 import Grid from '@material-ui/core/Grid'
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import GroupWorkRoundedIcon from "@material-ui/icons/GroupWorkRounded";
-import { Paper } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Avatar from "@material-ui/core/Avatar";
-import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
-import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import user from "../../resources/emp_user.svg";
+import TeamTaskCard from "./team-task-stuff/TeamTaskCard";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
         boxSizing: "border-box"
     },
-    apptitle: {
-        padding: theme.spacing(2),//16px
-        fontWeight: 500,
-        textDecoration: 'none'
-    },
-    appbaricon: {
-        marginLeft: "240px"
-    },
-    appbar: {
-        background: '#E3E6F5',
-        height: 58,
-    },
     detailsContainer: {
-        marginTop: '20px',
+        marginTop: '10px',
+        marginLeft: '10px',
     },
     heading: {
         marginBottom: '0',
@@ -73,7 +59,18 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         flexDirection: "row",
         minWidth: "100px",
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+    },
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%", // Fix IE 11 issue
+    },
+    field: {
+        width: 370,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: "#f9f9f9",
     },
 }));
 
@@ -85,31 +82,18 @@ const top100Films = [
     { title: '12 Angry Men', year: 1957 }
 ]
 
-export default function Division() {
+export default function ViewTeam({teamTasks}) {
     const classes = useStyles();
+
     return (
         <Container className={classes.root}>
-            <Grid container spacing={4}>
-                <AppBar
-                    position="fixed"
-                    color="primary"
-                    className={classes.appbar}
-                    elevation={0}>
-                    <Toolbar>
-                        <GroupWorkRoundedIcon color="primary" className={classes.appbaricon} fontSize="medium" />
-                        <Typography variant="h6" className={classes.apptitle} color="primary">
-                            Division
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </Grid>
-            <Grid container className={classes.detailsContainer}>
+            <Grid container spacing={2} className={classes.detailsContainer}>
                 <Grid item md={5} lg={5}>
-                    <Typography variant="body1" className={classes.heading} align="left" >Division</Typography>
+                    <Typography variant="body1" className={classes.heading} align="left" >Team Name</Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <Typography variant="body2">General Administration </Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Head of Division</Typography>
+                    <Typography variant="body1" className={classes.heading}>Team Leader</Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <Grid container>
                         <Grid item xs={2}>
@@ -120,43 +104,17 @@ export default function Division() {
                         </Grid>
                     </Grid>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Teams  </Typography>
-                    <Divider style={{ marginBottom: 10 }} />
-                    <Container className={classes.teams}>
-                        <Paper elevation={0} className={classes.team}>
-                            <AddBoxRoundedIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Add Team</Typography>
-                        </Paper>
-                        <Paper elevation={0} className={classes.team}>
-                            <GroupRoundedIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Web Team</Typography>
-                        </Paper>
-                        <Paper elevation={0} className={classes.team}>
-                            <GroupRoundedIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Doc Team</Typography>
-                        </Paper>
-                    </Container>
-                    <br />
                     <Typography variant="body1" className={classes.heading}>Projects/ Tasks  </Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <Container className={classes.tasks}>
-                        <Paper elevation={0} className={classes.task}>
-                            <AddBoxRoundedIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Add task</Typography>
-                        </Paper>
-                        <Paper elevation={0} className={classes.task}>
-                            <AssignmentIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Meeting with Establishment</Typography>
-                        </Paper>
-                        <Paper elevation={0} className={classes.task}>
-                            <AssignmentIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Oversee the process</Typography>
-                        </Paper>
+                        {teamTasks.map((task)=>{
+                            return <TeamTaskCard task={task} />
+                        })}
                     </Container>
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}></Grid>
                 <Grid item md={5} lg={5}>
-                    <Typography variant="body1" className={classes.heading}>Current Employees </Typography>
+                    <Typography variant="body1" className={classes.heading}>Team Members </Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <div style={{ width: 400, marginBottom: "10px" }}>
                         <Autocomplete
@@ -199,5 +157,5 @@ export default function Division() {
             </Grid >
 
         </Container>
-    );
+    )
 }
