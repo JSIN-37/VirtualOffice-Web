@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Tasks() {
     console.log("RENDER TASK MANAGEMENT MODULE ROOT - TASKS.JS - ")
+    const[ appD] = useContext(AppData)
+    const isHeadOfDivision = appD.user.roleName === 'Head of Division'
     const classes = useStyles();
     const writeT = useRef(false)
     const writeD = useRef(false)
@@ -133,9 +135,9 @@ export default function Tasks() {
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>
                         <Tab label="My Tasks" className={classes.tab} />
-                        <Tab label="Inspect" className={classes.tab} />
-                        <Tab label="Assign" className={classes.tab} />
-                        <Tab label="Reports" className={classes.tab} />
+                        {isHeadOfDivision && <Tab label="Inspect" className={classes.tab} />}
+                        {isHeadOfDivision && <Tab label="Assign" className={classes.tab} />}
+                        {isHeadOfDivision && <Tab label="Reports" className={classes.tab} />}
                     </Tabs>
                 </Toolbar>
             </AppBar>
