@@ -78,7 +78,7 @@ export default function AddTeam() {
   const [description, setDescription] = useState("");
   const [division, setDivision] = React.useState("");
   const [leader, setLeader] = useState("");
-  const [divisions, setDivisions] = useState()
+  const [divisions, setDivisions] = useState();
   const [nameError, setNameError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [leaderError, setLeaderError] = useState(false);
@@ -105,37 +105,30 @@ export default function AddTeam() {
       });
   };
 
-
   //get divsion list
   const getDivisions = () => {
     const config = {
-        headers: { Authorization: `Bearer ${appD.token}` },
+      headers: { Authorization: `Bearer ${appD.token}` },
     };
     var axios = require("axios");
     axios
-        .get(`${window.backendURL}/admin/divisions`, config) //get the id and names of all the divisions
-        .then((res) => {
-            const divisionSet = res.data;
-            setDivisions(divisionSet);
-        });
-  };  
+      .get(`${window.backendURL}/admin/divisions`, config) //get the id and names of all the divisions
+      .then((res) => {
+        const divisionSet = res.data;
+        setDivisions(divisionSet);
+      });
+  };
 
   const handleLeaderChange = (e) => {
     let leader = e.target.value;
     setLeader(leader);
-    let teamMemberList = [...selectedMembers, leader];
-    setSelectedMembers(teamMemberList);
-  }
- 
+  };
+
   let selectedMemberList = selectedMembers.map((member, index) => {
     return (
       <ListItem key={index}>
-         <Grid item xs={2}>
-          <Avatar
-            alt="Remy Sharp"
-            src={user}
-            className={classes.smallAvatar}
-          />
+        <Grid item xs={2}>
+          <Avatar alt="Remy Sharp" src={user} className={classes.smallAvatar} />
         </Grid>
         <ListItemText primary={member.first_name + " " + member.last_name} />
         <ListItemIcon>
@@ -162,7 +155,8 @@ export default function AddTeam() {
     setSelectedMembers([]);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setNameError(false);
     setDescriptionError(false);
 
@@ -179,30 +173,40 @@ export default function AddTeam() {
       const config = {
         headers: { Authorization: `Bearer ${appD.token}` },
       };
-      let memberIds = selectedMembers ? selectedMembers.map((member)=>member.id) : null;
+      let memberIds = selectedMembers.map((member) => member.id);
       var axios = require("axios");
+      console.log({
+        name: name,
+        description: description,
+        leaderID: leader.id,
+        divisionID: division,
+        memberIDs: memberIds,
+      });
       axios
         .post(
-          `${window.backendURL}/interim/teams`,
+          `${window.backendURL}/admin/teams`,
           {
             name: name,
-            leader: leader,
-            division: division,
             description: description,
-            memberList: memberIds,
+            leaderID: leader.id,
+            divisionID: division,
+            memberIDs: memberIds,
+            sendEmail: true,
           },
           config
         )
         .then((res) => {
           let data = res.data;
-          console.log(data);
+          if (data.success) {
+            alert("Team has been added!");
+          }
         });
     }
   };
 
   return (
     <Container className={classes.root}>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+      <form noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={5}>
             <TextField
@@ -237,14 +241,12 @@ export default function AddTeam() {
               value={division}
               variant="outlined"
             >
-              <MenuItem value={0}>
-                Mixed
-              </MenuItem>
-              {divisions && divisions.map((division, index) => (
-                  <MenuItem key={index+1} value={division.id}>
+              {divisions &&
+                divisions.map((division, index) => (
+                  <MenuItem key={index} value={division.id}>
                     {division.name}
                   </MenuItem>
-              ))}
+                ))}
             </TextField>
             <TextField
               className={classes.field}
@@ -257,106 +259,84 @@ export default function AddTeam() {
               required
               error={leaderError}
             >
-              {teamMembers && teamMembers.map((member, index) => (
+              {teamMembers &&
+                teamMembers.map((member, index) => (
                   <MenuItem key={index} value={member}>
-                    {member.first_name+" "+member.last_name}
+                    {member.first_name + " " + member.last_name}
                   </MenuItem>
-              ))}
+                ))}
             </TextField>
             <br />
-            <br/>
+            <br />
             <Button
               type="submit"
               color="primary"
               variant="contained"
               className={classes.button}
               onClick={handleSubmit}
-              style={{width: 370}}
+              style={{ width: 370 }}
             >
-              {`Create team & Invite Memebrs`}
+              {`Create and Invite Members`}
             </Button>
-            {/* <Button
-              type="reset"
-              color="primary"
-              variant="outlined"
-              className={classes.button}
-            >
-              Cancel
-            </Button> */}
           </Grid>
           <Grid item xs={12} md={5}>
-          <Typography variant="body1" className={classes.heading}>
+            <Typography variant="body1" className={classes.heading}>
               Add Team Members{" "}
             </Typography>
             <hr className={classes.hr} />
             <div style={{ width: 450, marginBottom: "10px" }}>
-            <Autocomplete
-              freeSolo
-              disableClearable
-              onChange={(event, value) => {
-                if (value.id) {
-                  let tmpSel = [...selectedMembers, value];
-                  // https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
-                  tmpSel = Array.from(new Set(tmpSel.map((a) => a.id))).map(
-                    (id) => {
-                      return tmpSel.find((a) => a.id === id);
-                    }
-                  );
-                  setSelectedMembers(tmpSel);
-                }
-              }}
-              options={teamMembers}
-              getOptionLabel={(options) => {
-                if (options.id) {
-                  return options.first_name + " " + options.last_name;
-                }
-                return "";
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Search Employees"
-                  margin="normal"
-                  variant="outlined"
-                  InputProps={{
-                    ...params.InputProps,
-                    type: "search",
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton>
-                          <SearchIcon></SearchIcon>
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              )}
-            />
-          </div>
-          <Grid
-            container
-            // justifyContent="center"
-            align="center"
-            className={classes.listItem}
-            direction="column"
-          >
-            <List style={{ overflow: "auto" }}>
-              {selectedMemberList}
-            </List>
-          </Grid>
-            {/* <Container style={{ display: "flex", alignItems: "left" }}>
-              <Paper
-                elevation={0}
-                className={classes.members}
-                onClick={() => setOpenView(true)}
-              >
-                <AddBoxRoundedIcon className={classes.icon} color="primary" />
-                <Typography variant="body1" color="primary">
-                  Add Members
-                </Typography>
-              </Paper>
-            </Container> */}
-            <br/>
+              <Autocomplete
+                freeSolo
+                disableClearable
+                onChange={(event, value) => {
+                  if (value.id) {
+                    let tmpSel = [...selectedMembers, value];
+                    // https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
+                    tmpSel = Array.from(new Set(tmpSel.map((a) => a.id))).map(
+                      (id) => {
+                        return tmpSel.find((a) => a.id === id);
+                      }
+                    );
+                    setSelectedMembers(tmpSel);
+                  }
+                }}
+                options={teamMembers}
+                getOptionLabel={(options) => {
+                  if (options.id) {
+                    return options.first_name + " " + options.last_name;
+                  }
+                  return "";
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Search Employees"
+                    margin="normal"
+                    variant="outlined"
+                    InputProps={{
+                      ...params.InputProps,
+                      type: "search",
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconButton>
+                            <SearchIcon></SearchIcon>
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                )}
+              />
+            </div>
+            <Grid
+              container
+              align="center"
+              className={classes.listItem}
+              direction="column"
+            >
+              <List style={{ overflow: "auto" }}>{selectedMemberList}</List>
+            </Grid>
+            <br />
           </Grid>
           <Grid item xs={12} md={1}></Grid>
         </Grid>
@@ -424,7 +404,6 @@ export default function AddTeam() {
           </div>
           <Grid
             container
-            // justifyContent="center"
             align="center"
             className={classes.listItem}
             direction="column"
