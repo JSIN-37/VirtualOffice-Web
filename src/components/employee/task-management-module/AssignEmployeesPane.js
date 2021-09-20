@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     background: '#f9f9f9',
   },
 
+
   paneLeft: {
     marginRight: 10,
   },
@@ -29,7 +30,7 @@ export default function AssignEmployeesPane() {
   //for the autocomplete employee name search thing
   const employeeProps = {
     options: employeeDB,
-    getOptionLabel: (option) => option.name,
+    getOptionLabel: (option) => option.first_name,
   };
 
   //if displayEmployee IS NOT NULL, the employee list will show one employee card - the selected employee

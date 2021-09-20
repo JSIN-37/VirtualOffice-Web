@@ -9,7 +9,7 @@ import Profile from "./components/Profile";
 import LogOut from "./components/LogOut";
 import LogIn from "./components/employee/LogIn";
 import React, { useState, useEffect, useRef } from "react";
-
+import axios from 'axios'
 import { AppData } from "./App";
 
 //exporting taskDB and setTaskDB using Context - consumed by Dashboard and Tasks components.
@@ -38,7 +38,25 @@ const EmployeeArea = () => {
     console.log("wrote to taskDB -> My Tasks");
   }, [taskDB]);
 
-  const MyTaskUtilsValues = { taskDB, setTaskDB };
+    //get employees list from server
+    const [employees, setEmployees] = useState()
+    const config = { headers : { Authorization : `Bearer ${appD.token}`}}
+    if(!employees){
+      axios.get(`${window.backendURL}/user/division-users`, config)
+    .then((result) => {
+      console.log("FETCHED EMPLOYEES", result.data)
+      console.log("typod of result.data", typeof(JSON.stringify(result.data)))
+      console.log("PARSE attempt", JSON.parse(JSON.stringify(result.data)))
+      setEmployees(JSON.parse(JSON.stringify(result.data)))
+    })
+    .catch((err)=>{console.log("Error fetching employees", err)})
+    }
+  
+    //end of get employees from server
+
+  const MyTaskUtilsValues = { taskDB, setTaskDB, employees };
+
+
   //End of stuff used for task management
 
   if (appD.token && !appD.isAdmin) {
