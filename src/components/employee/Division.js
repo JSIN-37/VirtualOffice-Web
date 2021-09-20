@@ -88,7 +88,7 @@ const top100Films = [
 export default function Division() {
     const classes = useStyles();
     return (
-        <Container>
+        <Container className={classes.root}>
             <Grid container spacing={4}>
                 <AppBar
                     position="fixed"
