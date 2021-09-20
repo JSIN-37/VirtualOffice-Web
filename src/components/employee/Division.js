@@ -16,11 +16,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import user from "../../resources/emp_user.svg";
+import ChatModule from './chat/ChatModule';
 
 const useStyles = makeStyles((theme) => ({
+    rootroot:{
+        display: 'flex'
+    },
     root: {
-        width: "100%",
-        boxSizing: "border-box"
+        width: "50%",
+        boxSizing: "border-box",
     },
     apptitle: {
         padding: theme.spacing(2),//16px
@@ -75,6 +79,13 @@ const useStyles = makeStyles((theme) => ({
         minWidth: "100px",
         backgroundColor: "transparent"
     },
+
+    chatContainer : {
+        width: "50%",
+        boxSizing: "border-box",
+        backgroundColor : '#E3E6F5',
+    },
+
 }));
 
 const top100Films = [
@@ -88,6 +99,8 @@ const top100Films = [
 export default function Division() {
     const classes = useStyles();
     return (
+        <>
+        <Container className={classes.rootroot}>
         <Container className={classes.root}>
             <Grid container spacing={4}>
                 <AppBar
@@ -192,12 +205,17 @@ export default function Division() {
                             </Grid>
                         </Grid>
                     </Container>
+                   
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}>
-
                 </Grid>
-            </Grid >
-
+                
+            </Grid > 
         </Container>
+         <Container className={classes.chatContainer}>
+             <ChatModule />
+         </Container>
+        </Container>
+     </>
     );
 }
