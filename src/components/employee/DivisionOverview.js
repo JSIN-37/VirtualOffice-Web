@@ -17,6 +17,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import user from "../../resources/emp_user.svg";
 import axios from 'axios';
 import { AppData } from '../../App';
+import { Box } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,13 +37,25 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '500px',
         textAlign: "left"
     },
-    bigAvatar: {
+    smallAvatar: {
         width: theme.spacing(6),
         height: theme.spacing(6),
     },
-    smallAvatar: {
-        width: theme.spacing(5),
-        height: theme.spacing(5),
+    paper: {
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        padding: "20px",
+        overflow: "auto",
+        marginLeft: 0,
+        backgroundColor: "#f8f8f8",
+    },
+    bigAvatar: {
+        width: 120,
+        height: 120,
+        marginTop: 10,
+        marginBottom: 10,
     },
     icon: {
         fontSize: 40,
@@ -86,6 +100,29 @@ export default function DivisionOverview() {
     const [appD] = useContext(AppData);
     const [divisionEmployees, setDivisionEmployees] = useState([]);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [divisionName, setDivisionName] = useState('');
+
+    useEffect(() => {
+        getMyData();
+        getDivisionEmployees();
+    }, [])
+
+    //get my details
+    const getMyData = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${appD.token}` },
+        };
+        axios
+            .get(`${window.backendURL}/user/whoami`, config)
+            .then((res) => {
+                let data = res.data;
+             //   console.log(data);
+                setDivisionName(data.division_name);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     //get employee list if the division that HOD belongs to
     const getDivisionEmployees = () => {
@@ -96,7 +133,7 @@ export default function DivisionOverview() {
             .get(`${window.backendURL}/user/division-users`, config)
             .then((res) => {
                 let data = res.data;
-                setDivisionEmployees(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
+                setDivisionEmployees(data);
             })
             .catch(error => {
                 console.log(error);
@@ -108,16 +145,16 @@ export default function DivisionOverview() {
                 <Grid item md={5} lg={5}>
                     <Typography variant="body1" className={classes.heading} align="left" >Division</Typography>
                     <Divider style={{ marginBottom: 10 }} />
-                    <Typography variant="body2">General Administration </Typography>
+                    <Typography variant="body2">{divisionName}</Typography>
                     <br />
-                    <Typography variant="body1" className={classes.heading}>Head of Division</Typography>
+                    <Typography variant="body1" className={classes.heading}>{appD.user.roleName}</Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <Grid container>
                         <Grid item xs={2}>
-                            <Avatar alt="Remy Sharp" src={user} className={classes.bigAvatar} />
+                            <Avatar alt="Remy Sharp" src={user} className={classes.smallAvatar} />
                         </Grid>
                         <Grid item xs={10} style={{ marginTop: "15px" }}>
-                            <Typography variant="body2" align="left">A.T. Pathirana</Typography>
+                            <Typography variant="body2" align="left">{appD.user.first_name + " " + appD.user.last_name}</Typography>
                         </Grid>
                     </Grid>
                     <br />
@@ -157,7 +194,7 @@ export default function DivisionOverview() {
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}></Grid>
                 <Grid item md={5} lg={5}>
-                    <Typography variant="body1" className={classes.heading}>Current Employees </Typography>
+                    <Typography variant="body1" className={classes.heading}>Employee Details</Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <div style={{ width: 400, marginBottom: "10px" }}>
                         <Autocomplete
@@ -175,16 +212,30 @@ export default function DivisionOverview() {
                             onChange={(e, v) => setSelectedEmployee(v)}
                         />
                     </div>
-                    <Container className={classes.tasks}>
-                        <Grid container >
-                            <Grid item xs={2}>
-                                <Avatar alt="Remy Sharp" src={user} className={classes.smallAvatar} />
+                    <br/><br/>
+                    {selectedEmployee ? 
+                    <Grid item>
+                        <Box className={classes.paper}>
+                            <Avatar alt="Profile picture" src={user} className={classes.bigAvatar} />
+                            <Link href="#" variant="body1" style={{ marginBottom: "5px" }}>
+                                Update Photo
+                            </Link>
+                            <Grid container style={{ paddingTop: "10px", paddingLeft: "10px", marginLeft: "0" }}>
+                                <Grid item md={5}>
+                                    <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Name: </Typography>
+                                    <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Email:</Typography>
+                                    <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Contact Number:</Typography>
+                                    <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Address:</Typography>
+                                </Grid>
+                                <Grid item md={6}>
+                                    <Typography variant="body1" className={classes.text}>{selectedEmployee.first_name+" "+selectedEmployee.last_name}</Typography>
+                                    <Typography variant="body1" className={classes.text}>{selectedEmployee.email}</Typography>
+                                    <Typography variant="body1" className={classes.text}>{selectedEmployee.contact_number}</Typography>
+                                    <Typography variant="body1" className={classes.text}>{selectedEmployee.address}</Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={10} style={{ marginTop: "10px" }}>
-                                <Typography variant="body2" align="left">A.T. Pathirana</Typography>
-                            </Grid>
-                        </Grid>
-                    </Container>
+                        </Box >
+                    </Grid> : <></>}
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}>
                 </Grid>
