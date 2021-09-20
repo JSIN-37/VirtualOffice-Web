@@ -100,10 +100,29 @@ export default function DivisionOverview() {
     const [appD] = useContext(AppData);
     const [divisionEmployees, setDivisionEmployees] = useState([]);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [divisionName, setDivisionName] = useState('');
 
     useEffect(() => {
+        getMyData();
         getDivisionEmployees();
-    }, [divisionEmployees])
+    }, [])
+
+    //get my details
+    const getMyData = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${appD.token}` },
+        };
+        axios
+            .get(`${window.backendURL}/user/whoami`, config)
+            .then((res) => {
+                let data = res.data;
+             //   console.log(data);
+                setDivisionName(data.division_name);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     //get employee list if the division that HOD belongs to
     const getDivisionEmployees = () => {
@@ -114,7 +133,7 @@ export default function DivisionOverview() {
             .get(`${window.backendURL}/user/division-users`, config)
             .then((res) => {
                 let data = res.data;
-                setDivisionEmployees(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
+                setDivisionEmployees(data);
             })
             .catch(error => {
                 console.log(error);
@@ -126,7 +145,7 @@ export default function DivisionOverview() {
                 <Grid item md={5} lg={5}>
                     <Typography variant="body1" className={classes.heading} align="left" >Division</Typography>
                     <Divider style={{ marginBottom: 10 }} />
-                    <Typography variant="body2">General Administration</Typography>
+                    <Typography variant="body2">{divisionName}</Typography>
                     <br />
                     <Typography variant="body1" className={classes.heading}>{appD.user.roleName}</Typography>
                     <Divider style={{ marginBottom: 10 }} />
