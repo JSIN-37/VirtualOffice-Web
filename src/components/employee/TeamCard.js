@@ -15,6 +15,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -57,9 +59,11 @@ const employees = [
 
 export default function TeamCard({ team, handleDelete }) {
     const classes = useStyles()
-    const [openView, setOpenView] = React.useState(false);
+    const [openAddMembers, setOpenAddMembers] = React.useState(false);
+    const [openAddTask, setOpenAddTask] = React.useState(false);
     const handleClose = () => {
-        setOpenView(false);
+        setOpenAddMembers(false);
+        setOpenAddTask(false);
     };
 
     return (
@@ -97,8 +101,16 @@ export default function TeamCard({ team, handleDelete }) {
                         color="primary"
                         size="small"
                         style={{ marginLeft: '8px' }}
+                        startIcon={<FormatListBulletedIcon />}
+                        onClick={() => setOpenAddTask(true)}>
+                        Add Task
+                    </Button>
+                    <Button variant="outlined"
+                        color="primary"
+                        size="small"
+                        style={{ marginLeft: '8px' }}
                         startIcon={<PersonAddIcon />}
-                        onClick={() => setOpenView(true)}>
+                        onClick={() => setOpenAddMembers(true)}>
                         Add Members
                     </Button>
                     <IconButton color="secondary" onClick={() => handleDelete(team.id)}>
@@ -106,7 +118,7 @@ export default function TeamCard({ team, handleDelete }) {
                     </IconButton>
                 </CardContent>
             </Card>
-            <Dialog onClose={handleClose} open={openView} fullWidth maxWidth={'sm'}  >
+            <Dialog onClose={handleClose} open={openAddMembers} fullWidth maxWidth={'sm'}  >
                 <DialogTitle id="simple-dialog-title">{team.name}
                     <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
                         <CloseIcon />
@@ -157,6 +169,26 @@ export default function TeamCard({ team, handleDelete }) {
                     </Grid>
                     <Button color="primary" variant="contained" startIcon={<PersonAddIcon />} className={classes.button}>
                         Add Members
+                    </Button>
+                </Container>
+            </Dialog>
+
+            <Dialog onClose={handleClose} open={openAddTask} fullWidth maxWidth={'sm'}  >
+                <DialogTitle id="simple-dialog-title">Add a Task
+                    <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <Container align="center" justifycontent="center" className={classes.dialog}>
+
+                    <Grid container justifyContent="center" align="center" className={classes.field}>
+                        <Grid item>
+
+                        </Grid>
+
+                    </Grid>
+                    <Button color="primary" variant="contained" startIcon={<PostAddRoundedIcon />} className={classes.button}>
+                        Add Task
                     </Button>
                 </Container>
             </Dialog>
