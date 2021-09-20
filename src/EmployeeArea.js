@@ -11,6 +11,7 @@ import LogIn from "./components/employee/LogIn";
 import React, { useState, useEffect, useRef } from "react";
 
 import { AppData } from "./App";
+import { DocSign } from "./DocSign";
 
 //exporting taskDB and setTaskDB using Context - consumed by Dashboard and Tasks components.
 export const MyTaskUtils = React.createContext();
@@ -66,6 +67,9 @@ const EmployeeArea = () => {
           </Route>
           <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route exact path="/temp-docsign">
+            <DocSign />
           </Route>
           <Route exact path="/logout">
             <LogOut />
