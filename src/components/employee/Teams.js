@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Tabs from "@material-ui/core/Tabs";
@@ -8,7 +8,7 @@ import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import TeamOverview from "./TeamOverview";
 import AddTeam from "./AddTeam";
 import ViewTeam from "./ViewTeam";
-
+const LOCAL_STORAGE_KEY_TEAMTASKS = 'VO-TEAM-TASKS'
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
@@ -46,6 +46,25 @@ export default function TeamHeader() {
     const TabPanel = ({ children, index, value }) => {
         return <>{value === index && <>{children}</>}</>;
     };
+
+    //set teamTasks to the team tasks saved to local storage
+  const [teamTasks, setTeamTasks] = useState(()=>{
+    const teamTasksJSON = localStorage.getItem(LOCAL_STORAGE_KEY_TEAMTASKS)
+    if(teamTasksJSON === null){
+      return []
+    }else{
+      return JSON.parse(teamTasksJSON)
+    }
+  })
+
+  function addTaskTeamVersion(task){
+    setTeamTasks([...teamTasks, task])
+  }
+
+  //write changes to teamTasks to local storage
+  useEffect(()=>{
+    localStorage.setItem(LOCAL_STORAGE_KEY_TEAMTASKS, JSON.stringify(teamTasks))
+  }, [teamTasks])
     return (
         <Grid container spacing={4}>
             <AppBar
@@ -76,13 +95,13 @@ export default function TeamHeader() {
                 </Toolbar>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TeamOverview />
+                <TeamOverview addTaskTeamVersion={addTaskTeamVersion} teamTasks={teamTasks} />
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <AddTeam />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <ViewTeam />
+                <ViewTeam teamTasks={teamTasks}/>
             </TabPanel>
         </Grid>
     );

@@ -4,17 +4,15 @@ import Container from '@material-ui/core/Grid'
 import Grid from '@material-ui/core/Grid'
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Avatar from "@material-ui/core/Avatar";
-import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import user from "../../resources/emp_user.svg";
+import TeamTaskCard from "./team-task-stuff/TeamTaskCard";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         flexDirection: "row",
         minWidth: "100px",
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
     },
     form: {
         display: "flex",
@@ -84,7 +82,7 @@ const top100Films = [
     { title: '12 Angry Men', year: 1957 }
 ]
 
-export default function ViewTeam() {
+export default function ViewTeam({teamTasks}) {
     const classes = useStyles();
 
     return (
@@ -109,18 +107,9 @@ export default function ViewTeam() {
                     <Typography variant="body1" className={classes.heading}>Projects/ Tasks  </Typography>
                     <Divider style={{ marginBottom: 10 }} />
                     <Container className={classes.tasks}>
-                        <Paper elevation={0} className={classes.task}>
-                            <AddBoxRoundedIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Add task</Typography>
-                        </Paper>
-                        <Paper elevation={0} className={classes.task}>
-                            <AssignmentIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Meeting with Establishment</Typography>
-                        </Paper>
-                        <Paper elevation={0} className={classes.task}>
-                            <AssignmentIcon className={classes.icon} color="primary" />
-                            <Typography variant="body2">Oversee the process</Typography>
-                        </Paper>
+                        {teamTasks.map((task)=>{
+                            return <TeamTaskCard task={task} />
+                        })}
                     </Container>
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}></Grid>
