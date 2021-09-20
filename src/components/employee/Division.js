@@ -20,8 +20,11 @@ import ChatModule from './chat/ChatModule';
 import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles((theme) => ({
+    rootroot:{
+        display: 'flex'
+    },
     root: {
-        width: "100%",
+        width: "50%",
         boxSizing: "border-box",
     },
     apptitle: {
@@ -79,14 +82,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     chatContainer : {
-        marginTop : '20px',
+        width: "50%",
+        boxSizing: "border-box",
         backgroundColor : '#E3E6F5',
-        height : '60vh'
     },
 
-    chatContainerBox : {
-        height : '50vh'
-    }
 }));
 
 const top100Films = [
@@ -100,6 +100,8 @@ const top100Films = [
 export default function Division() {
     const classes = useStyles();
     return (
+        <>
+        <Container className={classes.rootroot}>
         <Container className={classes.root}>
             <Grid container spacing={4}>
                 <AppBar
@@ -204,16 +206,17 @@ export default function Division() {
                             </Grid>
                         </Grid>
                     </Container>
-                    <Container className={classes.chatContainer}>
-                        <Box className={classes.chatContainerBox}>
-                            <ChatModule />
-                        </Box>
-                    </Container>
+                   
                 </Grid>
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}>
                 </Grid>
                 
             </Grid >
         </Container>
+         <Container className={classes.chatContainer}>
+             <ChatModule />
+         </Container>
+        </Container>
+     </>
     );
 }
