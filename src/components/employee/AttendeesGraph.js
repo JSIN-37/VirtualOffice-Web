@@ -13,18 +13,18 @@ export default function AttendeesGraph({ month, year }) {
     const state = {
         labels: smallMonths.includes(month) ? labelSet1 : (
             bigMonths.includes(month) ? labelSet2 : (
-                ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0) ? labelSet3 : labelSet4)
+                ((year % 4 == 0) && (year % 100 !== 0)) || (year % 400 == 0) ? labelSet3 : labelSet4)
         ),
         datasets: [
             {
-                label: "Present",
-                data: Array.from({ length: 20 }, () => Math.floor(Math.random() * 10)),
-                borderColor: "rgba(40, 180, 99 ,1)"
+                label: "Absent",
+                data: Array.from({ length: 20 }, () => Math.floor(Math.random() * 3)),
+                borderColor: "rgba(236, 112, 99 ,1)"
             },
             {
-                label: "Absent",
-                data: Array.from({ length: 20 }, () => Math.floor(Math.random() * 5)),
-                borderColor: "rgba(236, 112, 99 ,1)"
+                label: "Present",
+                data: Array.from({ length: 20 }, () => Math.floor(Math.random() * 20)),
+                borderColor: "rgba(40, 180, 99 ,1)"
             }
         ]
     };
