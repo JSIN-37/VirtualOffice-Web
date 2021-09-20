@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import EmailCard from "./EmailCard";
 
 import { AppData } from "../../../App";
+import EmailComposeModal from "./EmailComposeModal";
 
 const useStyles = makeStyles((theme) => ({
   emailContainer: {
@@ -96,6 +97,26 @@ export default function EmailModule(props) {
     });
   }
 
+  function sendEmail(headers, message, callBack){
+    var email = ''
+
+    for(var header in headers){
+      email += header += ": "+headers[header]+"\r\n";
+    }
+    email += "\r\n" + message;
+
+    var sendRequest = window.gapi.client.gmail.users.messages.send({
+      'userId': 'me',
+      'resource': {
+        'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+      }
+    });
+
+    return sendRequest.execute(callBack)
+
+  }
+
+
   useEffect(()=>{
     if(isGoogleSignedIn){
       listMail()
@@ -139,6 +160,7 @@ export default function EmailModule(props) {
     })
   }
 
+
   function updateSignInStatus(status){
     if(status){
       listMail()
@@ -155,7 +177,14 @@ export default function EmailModule(props) {
 
   function handleSignOutClick() {
     auth2Instance.signOut();
+
   }
+
+  //for sending email
+  const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
   return (
     <Card variant="outlined" elevation={1} className={classes.emailContainer}>
@@ -163,6 +192,7 @@ export default function EmailModule(props) {
         <Grid item>
           <Typography variant="h6" className={classes.title}>
             Emails
+            {isGoogleSignedIn && <Button onClick={handleOpen}>Compose Mail</Button>}
           </Typography>
         </Grid>
         <Grid item>
@@ -173,7 +203,7 @@ export default function EmailModule(props) {
             >
             </div>
           )}
-          {isGoogleSignedIn && (
+          {/* {isGoogleSignedIn && (
             <Button
               variant="outlined"
               style={{ marginBottom: "15px" }}
@@ -182,7 +212,7 @@ export default function EmailModule(props) {
             >
               Sign Out
             </Button>
-          )}
+          )} */}
         </Grid>
       </Grid>
       <Grid container justifyContent="center" spacing={0}>
@@ -198,6 +228,9 @@ export default function EmailModule(props) {
           )}
         </Grid>
       </Grid>
+
+      <EmailComposeModal open={open} setOpen={setOpen} sendEmail={sendEmail}/>
+
     </Card>
   );
 }
