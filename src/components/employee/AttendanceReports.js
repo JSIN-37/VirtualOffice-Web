@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react";
-import { Container, Card, Typography } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import AttendeesGraph from "./AttendeesGraph";
 import { Grid } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { TextField } from "@material-ui/core";
 
-const months = [ 
+const months = [
     {
         id: 0,
         value: "January"
@@ -61,6 +61,11 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         height: "100%",
     },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+    },
     card: {
         margin: theme.spacing(1),
         padding: theme.spacing(2),
@@ -86,40 +91,40 @@ export default function AttendanceReports() {
             <Typography variant="h6" className={classes.title}>
                 Monthly Attendance
             </Typography>
-            <br/>
+            <br />
 
             <Grid container direction="row">
-            <Grid item style={{ padding: "0 18px 18px" }}>
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    style={{width: 300}}
-                    defaultValue={2020}
-                    options={years}
-                    renderInput={(params) => <TextField {...params} label="Year" />}
-                    getOptionLabel={(option) => `${option}` }
-                    onChange={(e,v) => setYear(v)}
-                />
-            </Grid>
                 <Grid item style={{ padding: "0 18px 18px" }}>
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo2"
-                    style={{width: 300}}
-                    defaultValue={{ id:8, value: "September"}}
-                    options={months}
-                    renderInput={(params) => <TextField {...params} label="Month" />}
-                    getOptionLabel={(option) => option.value }
-                    onChange={(e,v) => setMonth(v.id)}
-                />
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        style={{ width: 300 }}
+                        defaultValue={2020}
+                        options={years}
+                        renderInput={(params) => <TextField {...params} label="Year" />}
+                        getOptionLabel={(option) => `${option}`}
+                        onChange={(e, v) => setYear(v)}
+                    />
+                </Grid>
+                <Grid item style={{ padding: "0 18px 18px" }}>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo2"
+                        style={{ width: 300 }}
+                        defaultValue={{ id: 8, value: "September" }}
+                        options={months}
+                        renderInput={(params) => <TextField {...params} label="Month" />}
+                        getOptionLabel={(option) => option.value}
+                        onChange={(e, v) => setMonth(v.id)}
+                    />
+                </Grid>
+                <br /><br />
             </Grid>
-            <br/><br/>
-            </Grid>
-            
-            <Card elevation={0} spacing={4}>
+
+            <Container className={classes.container}>
                 <AttendeesGraph month={month} year={year} />
-            </Card>
-            
+            </Container>
+
         </Container>
     );
 }
