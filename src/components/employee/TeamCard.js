@@ -16,7 +16,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
 import TempAddTask from './task-management-module/TempAddTask'
 const useStyles = makeStyles((theme) => {
     return {
@@ -40,8 +39,7 @@ const useStyles = makeStyles((theme) => {
         },
         dialog: {
             padding: "0px 20px",
-            marginBottom : 20
-            
+            marginBottom: 30,
         },
         listItem: {
             margin: "5px 10px",
@@ -184,11 +182,9 @@ export default function TeamCard({ team, handleDelete, addTaskTeamVersion }) {
                 <Container align="center" justifycontent="center" className={classes.dialog}>
                     <Grid container justifyContent="center" align="center" className={classes.field}>
                         <Grid item xs={12}>
-                           <TempAddTask addTaskTeamVersion={addTaskTeamVersion}  teamName={team.name}/>             
+                            <TempAddTask addTaskTeamVersion={addTaskTeamVersion} teamName={team.name} />
                         </Grid>
-
                     </Grid>
-
                 </Container>
             </Dialog>
         </div >

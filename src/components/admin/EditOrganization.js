@@ -161,12 +161,10 @@ export default function EditOrganization({ appD }) {
                         />
                         <FormControlLabel style={{ marginTop: "10px" }}
                             control={<Checkbox color="primary" name="agreement" />}
-                            label={<Typography className={classes.agreement}>As Admin you will be reponsible for the personal data of
+                            label={<Typography align="left" className={classes.agreement}>As Admin you will be reponsible for the personal data of
                                 people in your organization as well as the data
-                                managemnet requests they submit to you.</Typography>}
+                                managemnet requests they submit to you. <Link to="/">Learn more.</Link></Typography>}
                         />
-                        <Link to="/"><Typography className={classes.agreement} >Learn more.</Typography></Link>
-
                         <Button
                             type="submit"
                             color="primary"
