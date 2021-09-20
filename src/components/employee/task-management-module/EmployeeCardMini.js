@@ -46,7 +46,9 @@ export default function EmployeeCardMini(props) {
 
   return (
     <Card className={`${classes.card} ${employee.selected? classes.selected : null}`}>
-      <Typography>{employee.name}</Typography>
+      <Typography>{employee.first_name} {employee.last_name}</Typography>
+      <Typography>{employee.email}</Typography>
+      <Typography>{employee.contact_number}</Typography>
       {assign && (
         <Grid container justifyContent='flex-end'>
           <Button

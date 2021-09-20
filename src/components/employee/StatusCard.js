@@ -61,7 +61,7 @@ export default function StatusCard() {
         .get(`${window.backendURL}/user/checkcheckin`, config)
         .then((res) => {
             let data = res.data;
-            console.log(data);
+            //console.log('StatusCard.js -> setting time?',data);
             setTodayData(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
         })
         .catch (error => {

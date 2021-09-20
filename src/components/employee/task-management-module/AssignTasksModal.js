@@ -53,7 +53,7 @@ export default function AssignTasksModal(props) {
   //For autocomplete search thing
   const employeeProps = {
     options: props.unassignedWorkers,
-    getOptionLabel: (option) => option.name,
+    getOptionLabel: (option) => option.first_name,
   };
 
   const handleClose = () => {

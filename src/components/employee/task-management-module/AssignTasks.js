@@ -5,8 +5,6 @@ import React, { useContext } from 'react';
 import AssignTasksMiddlePane from './AssignTaskMiddlePane';
 import AssignEmployeesPane from './AssignEmployeesPane';
 import AssignTaskDrafts from './AssignTaskDrafts';
-
-import { employees } from './employees';
 import { TaskManagementData } from '../Tasks';
 
 
@@ -24,12 +22,12 @@ export default function Assign() {
   const classes = useStyles();
 
   //get data context values
-  const { assignedTasksDB, setAssignedTasksDB, draftsDB, setDraftsDB, resume, setResume } =
+  const { assignedTasksDB, setAssignedTasksDB, draftsDB, setDraftsDB, resume, setResume, employees } =
     useContext(TaskManagementData);
 
   //need to see list of employees when adding a task as well
   const employeeDB = employees;
-
+  console.log("empDB", employeeDB, employees)
   //to resume editing a draft
   
   

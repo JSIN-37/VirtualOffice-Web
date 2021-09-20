@@ -103,6 +103,8 @@ export default function LogIn() {
         let data = res.data;
         // Token should be avail. if successful
         if (data.token) {
+          console.log("RESPONSE FROM LOGIN", data)
+          console.log("TOKEN", data.token)
           let tmpCreds = {
             token: `${data.token}`,
             isAdmin: false,
@@ -122,7 +124,7 @@ export default function LogIn() {
                 token: data.token,
                 isAdmin: false,
                 keys: allKeys,
-                roleName: data.roleName,
+                roleName: data.userData.roleName,
               }); // Need to set it this way to ask React to re-render
             });
         } else {

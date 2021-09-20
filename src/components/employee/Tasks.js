@@ -1,4 +1,4 @@
-import React, { useState , useEffect, useRef} from 'react'
+import React, { useState , useEffect, useRef, useContext} from 'react'
 import Grid from '@material-ui/core/Grid'
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Tabs from '@material-ui/core/Tabs';
@@ -10,6 +10,7 @@ import MyTasks from "./task-management-module/MyTasks";
 import InspectTasks from "./task-management-module/InspectTasks";
 import AssignTasks from "./task-management-module/AssignTasks";
 import TaskReports from "./task-management-module/TaskReports";
+import { AppData } from '../../App';
 
 export const TaskManagementData = React.createContext();
 const LOCAL_STORAGE_ASSIGNED_TASKS_KEY = 'vo-material.assigned_tasks_array';
@@ -43,8 +44,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Tasks() {
-    console.log("RENDER TASK MANAGEMENT MODULE ROOT - TASKS.JS - ")
+export default function Tasks(props) {
+
+    const [appD] = React.useContext(AppData);
+    const isHOD = (appD.roleName === 'Head of Division')
+    console.log("isHOd", isHOD)
+
+    console.log("RENDER TASK MANAGEMENT MODULE ROOT - TASKS.JS - ", props, appD)
+    const employees = props.employees
     const classes = useStyles();
     const writeT = useRef(false)
     const writeD = useRef(false)
@@ -73,7 +80,8 @@ export default function Tasks() {
     draftsDB,
     setDraftsDB,
     resume,
-    setResume
+    setResume,
+    employees
   };
 
 
@@ -124,9 +132,9 @@ export default function Tasks() {
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }}>
                         <Tab label="My Tasks" className={classes.tab} />
-                        <Tab label="Inspect" className={classes.tab} />
-                        <Tab label="Assign" className={classes.tab} />
-                        <Tab label="Reports" className={classes.tab} />
+                        {isHOD && <Tab label="Inspect" className={classes.tab} />}
+                        {isHOD && <Tab label="Assign" className={classes.tab} />}
+                        {isHOD && <Tab label="Reports" className={classes.tab} />}
                     </Tabs>
                 </Toolbar>
             </AppBar>
@@ -135,7 +143,7 @@ export default function Tasks() {
                 <MyTasks />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <InspectTasks />
+                {<InspectTasks />}
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <AssignTasks />

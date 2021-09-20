@@ -9,8 +9,8 @@ import Profile from "./components/Profile";
 import LogOut from "./components/LogOut";
 import LogIn from "./components/employee/LogIn";
 import React, { useState, useEffect, useRef } from "react";
-
 import { AppData } from "./App";
+import axios from 'axios'
 
 //exporting taskDB and setTaskDB using Context - consumed by Dashboard and Tasks components.
 export const MyTaskUtils = React.createContext();
@@ -38,9 +38,25 @@ const EmployeeArea = () => {
     console.log("wrote to taskDB -> My Tasks");
   }, [taskDB]);
 
-  const MyTaskUtilsValues = { taskDB, setTaskDB };
-  //End of stuff used for task management
+  //fetch employees list to pass down to tasks
+  const [employees, setEmployees] = useState()
+  const config = {headers : { Authorization : ` Bearer ${appD.token}`}}
 
+  if(!employees){
+    axios.get(`${window.backendURL}/user/division-users`, config)
+  .then((result) => {
+    console.log("FETCHED EMPLOYEES", result.data)
+    console.log("typod of result.data", typeof(JSON.stringify(result.data)))
+    console.log("PARSE attempt", JSON.parse(JSON.stringify(result.data)))
+    setEmployees(JSON.parse(JSON.stringify(result.data)))
+  })
+  .catch((err)=>{console.log("Error fetching employees", err)})
+  }
+    
+
+  const MyTaskUtilsValues = { taskDB, setTaskDB, employees };
+  //End of stuff used for task management
+  console.log('Employee Area app.;d', appD)
   if (appD.token && !appD.isAdmin) {
     return (
       <Router basename="/employee">
@@ -58,7 +74,7 @@ const EmployeeArea = () => {
           </Route>
           <Route exact path="/tasks">
             <MyTaskUtils.Provider value={MyTaskUtilsValues}>
-              <Tasks />
+              <Tasks employees={employees} />
             </MyTaskUtils.Provider>
           </Route>
           <Route exact path="/attendance">

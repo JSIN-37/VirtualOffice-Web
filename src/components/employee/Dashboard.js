@@ -45,9 +45,10 @@ export default function Dashboard() {
             .then((data) => setEmps(data));
     }, []);
 
-    const [isGoogleSignedIn, setIsGoogleSignedIn] = useState((old)=> old ? old : false)
+    const [isGoogleSignedIn, setIsGoogleSignedIn] = useState(false)
     const isGapiLoaded  = useRef(false)
     const [auth2Instance, setAuth2Instance] = useState(null)
+    
 
 
 
