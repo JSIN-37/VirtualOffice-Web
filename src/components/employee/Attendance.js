@@ -9,7 +9,6 @@ import AttendanceReports from "./AttendanceReports";
 import Absentees from "./Absentees";
 import Attendees from "./Attendees";
 import AttendanceOverview from "./AttendanceOverview";
-import AttendanceTable from "./AttendanceTable";
 import MyAttendance from "./MyAttendance";
 
 const useStyles = makeStyles((theme) => ({
@@ -81,7 +80,6 @@ export default function DivisionHeader() {
             </AppBar>
             <TabPanel value={value} index={0}>
                 <AttendanceOverview />
-                <AttendanceTable />
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Attendees />
