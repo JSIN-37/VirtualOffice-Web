@@ -61,31 +61,31 @@ const tiers = [
         title: 'Task Management',
         img: task,
         alt: "task management",
-        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
+        description: "Employees can be assigned tasks by their managers and they can be tracked. The users can log activities categorized as tasks to be done, tasks in progress, and completed tasks."
     },
     {
         title: 'File Management',
         img: fileMgmt,
         alt: "file management",
-        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
+        description: "Connecting an employee’s preferred cloud storage service (Google Drive, Dropbox, OneDrive, etc.) and managing office documents through VirtualOffice. "
     },
     {
         title: 'Document Authentication',
         img: doc,
         alt: "document authentication",
-        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
+        description: "Enable the employees to have a method to simply deal with signing documents, hosting them on their storage service, and managing permissions to them."
     },
     {
         title: 'Mobile app',
         img: mobile,
         alt: "mobile app",
-        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
+        description: "VirtualOffice mobile applications may not include all the features available in the web and desktop platforms, but it will consist of the most critical/necessary features."
     },
     {
         title: 'Admin Panel',
         img: admin,
         alt: "admin panel",
-        description: "Store the start and finish times of a working day and how much time they spend working, and on breaks. Also, statuses of the employee during the day are saved."
+        description: "System administration; setting up and managing all the configuration aspects of the system. This includes user, role, organizational policy, and hierarchy management."
     },
 ];
 

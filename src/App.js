@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 
 // Backend endpoint - set to live for now
 window.backendURL = "http://vo.zx-software.com:3040/api/v1"; // Define without trailing '/'
+// window.backendURL = "https://localhost:3030/api/v1/docs";
 
 export const AppData = React.createContext();
 
