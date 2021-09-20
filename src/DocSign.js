@@ -73,13 +73,14 @@ export const DocSign = () => {
             config
           ) //get the ids of all the divisions
           .then((res) => {
+            alert("Document was sent to employees to be signed!");
             console.log(res.data);
           })
           .catch((err) => {
             console.log(err.request);
             console.log(err.response);
           });
-      }, 5000);
+      }, 1000);
     }
   }, [docID, appD.keys.DOC_SIGN_KEY]);
   return (
