@@ -1,10 +1,12 @@
 import { AppData } from "../../App";
 import { Button } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import { Input, Container } from "@material-ui/core";
 import { EmployeeSelect } from "../EmployeeSelect";
+import { Alert } from '@material-ui/lab';
+import Snackbar from "@material-ui/core/Snackbar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export const DocSign = () => {
     const classes = useStyles();
     const [appD] = React.useContext(AppData);
+    const [success, setSuccess] = useState(false);
     const [docID, setDocID] = React.useState("");
     const [fileSel, setFileSel] = React.useState("");
     const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -91,7 +94,8 @@ export const DocSign = () => {
                         config
                     ) //get the ids of all the divisions
                     .then((res) => {
-                        alert("Document was sent to employees to be signed!");
+                        //alert("Document was sent to employees to be signed!");
+                        setSuccess(true);
                         console.log(res.data);
                     })
                     .catch((err) => {
@@ -101,9 +105,30 @@ export const DocSign = () => {
             }, 1000);
         }
     }, [docID, appD.keys.DOC_SIGN_KEY]);
+
+    const handleClose = () => {
+        setSuccess(false);
+    };
+
+    function Success() {
+        if (success) {
+            return (
+                <Snackbar
+                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                    open={Success}
+                    onClose={handleClose}
+                    autoHideDuration={4000} >
+                    <Alert severity="success">Document was sent to employees to be signed!</Alert>
+                </Snackbar>
+            );
+        }
+        return "";
+    }
+
     return (
         <>
             <Container className={classes.root}>
+                <Success />
                 <Input
                     className={classes.field}
                     type="file"
