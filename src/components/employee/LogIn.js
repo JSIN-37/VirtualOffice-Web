@@ -106,6 +106,7 @@ export default function LogIn() {
           let tmpCreds = {
             token: `${data.token}`,
             isAdmin: false,
+            user: data.userData,
           };
           localStorage.setItem("credentials", JSON.stringify(tmpCreds));
           // Get all keys and store them in appD
@@ -122,7 +123,7 @@ export default function LogIn() {
                 token: data.token,
                 isAdmin: false,
                 keys: allKeys,
-                roleName: data.roleName,
+                user: data.userData,
               }); // Need to set it this way to ask React to re-render
             });
         } else {

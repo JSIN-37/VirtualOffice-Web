@@ -85,13 +85,13 @@ export default function Tasks() {
     return (
         <TaskDB.Provider value={taskDataContextValues}>
             <Grid container className={classes.paneContainer}>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <MyTasksPane tasks={taskDB} handleTaskChange={handleTaskChange} />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <InspectTasksPane />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <TaskReportsPane addTask={addTask} />
                 </Grid>
             </Grid>

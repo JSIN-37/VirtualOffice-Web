@@ -135,9 +135,6 @@ export default function Layout({ children }) {
                             className={classes.bigAvatar}
                         />
                         <Typography color="initial" className={classes.info}>
-                            John Doe
-                        </Typography>
-                        <Typography color="initial" className={classes.info}>
                             System Administrator
                         </Typography>
                     </Box>
