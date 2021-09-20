@@ -11,6 +11,9 @@ import DashboardHeader from "./DashboardHeader";
 import useFetch from "../../hooks/useFetch";
 import EmailModule from './email-module/EmailModule'
 import FileShare from "./file-sharing-module/FileShare";
+import { DocSign } from "./DocSign";
+import gdrive from "../../resources/gdrive.png";
+import pandadoc from "../../resources/pandadoc.png";
 // import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';startIcon={<PersonAddIcon />}
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +33,16 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "left",
         paddingLeft: "20px",
     },
+    pic: {
+        width: theme.spacing(4),
+        height: theme.spacing(4),
+    },
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        flexGrow: 1,
+    },
 }));
 
 export default function Dashboard() {
@@ -45,8 +58,8 @@ export default function Dashboard() {
             .then((data) => setEmps(data));
     }, []);
 
-    const [isGoogleSignedIn, setIsGoogleSignedIn] = useState((old)=> old ? old : false)
-    const isGapiLoaded  = useRef(false)
+    const [isGoogleSignedIn, setIsGoogleSignedIn] = useState((old) => old ? old : false)
+    const isGapiLoaded = useRef(false)
     const [auth2Instance, setAuth2Instance] = useState(null)
 
 
@@ -94,16 +107,36 @@ export default function Dashboard() {
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
-                            <EmailModule isGoogleSignedIn={isGoogleSignedIn} setIsGoogleSignedIn={setIsGoogleSignedIn} isGapiLoaded={isGapiLoaded} auth2Instance={auth2Instance} setAuth2Instance={setAuth2Instance}/>
+                            <EmailModule isGoogleSignedIn={isGoogleSignedIn} setIsGoogleSignedIn={setIsGoogleSignedIn} isGapiLoaded={isGapiLoaded} auth2Instance={auth2Instance} setAuth2Instance={setAuth2Instance} />
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} md={5}>
                     <Card variant="outlined" elevation={1} className={classes.card}>
-                        <Typography variant="h6" className={classes.title}>
-                            File Sharing
+                        <Grid container spacing={3} style={{ marginTop: "5px" }}>
+                            <Grid item xs={5} className={classes.container}>
+                                <Typography variant="h6" className={classes.title}>
+                                    File Sharing
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={1} className={classes.container}>
+                                <img src={gdrive} alt="gdrive" className={classes.pic} />
+                            </Grid>
+                            <Grid item xs={5} className={classes.container}>
+                                <FileShare isGoogleSignedIn={isGoogleSignedIn} auth2Instance={auth2Instance} />
+                            </Grid>
+                        </Grid>
+                        <Typography variant="h6" className={classes.title} style={{ marginTop: "20px" }}>
+                            Document Signing
                         </Typography>
-                        <FileShare isGoogleSignedIn={isGoogleSignedIn} auth2Instance={auth2Instance}/>
+                        <Grid container spacing={0} justifyContent="center" align="center">
+                            <Grid item md={1} className={classes.container} style={{ marginTop: "20px" }}>
+                                <img src={pandadoc} alt="pandadoc" className={classes.pic} />
+                            </Grid>
+                            <Grid item md={9} className={classes.container}>
+                                <DocSign />
+                            </Grid>
+                        </Grid>
                     </Card>
                     <Card variant="outlined" elevation={1} className={classes.card}>
                         <Typography variant="h6" className={classes.title}>
