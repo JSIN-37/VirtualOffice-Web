@@ -6,6 +6,7 @@ import EmployeeArea from "./EmployeeArea";
 import AdminArea from "./AdminArea";
 import SetUpOrganization from "./components/admin/SetUpOrganization"
 import NotFound from "./components/NotFound";
+import './App.css';
 
 // Backend endpoint - set to live for now
 window.backendURL = "http://vo.zx-software.com:3040/api/v1"; // Define without trailing '/'
