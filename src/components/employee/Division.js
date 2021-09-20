@@ -17,7 +17,6 @@ import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import user from "../../resources/emp_user.svg";
 import ChatModule from './chat/ChatModule';
-import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles((theme) => ({
     rootroot:{
@@ -211,7 +210,7 @@ export default function Division() {
                 <Grid item md={1} lg={1} style={{ paddingRight: 8 }}>
                 </Grid>
                 
-            </Grid >
+            </Grid > 
         </Container>
          <Container className={classes.chatContainer}>
              <ChatModule />
