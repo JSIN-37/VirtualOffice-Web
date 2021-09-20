@@ -68,7 +68,7 @@ export default function EmployeeOverview(appD) {
                 Invite Employee
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Invite Empoyees of your organization</DialogTitle>
+                <DialogTitle id="form-dialog-title">Invite Employees of your organization</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
 

@@ -37,6 +37,13 @@ const useStyles = makeStyles({
         textAlign: 'right',
         fontWeight: '400',
     },
+    data2: {
+        fontSize: '17px',
+        color: '#3F51B4',
+        textAlign: 'left',
+        fontWeight: '400',
+        marginLeft: 100
+    },
 });
 
 function DivionCard({ divData }) {
@@ -74,9 +81,6 @@ function DivionCard({ divData }) {
                 <Grid container style={{ padding: '8px' }}>
                     <Grid item xs={6}>
                         <Typography variant="body1" className={classes.info}>
-                            Description:
-                        </Typography>
-                        <Typography variant="body1" className={classes.info}>
                             Head of Division:
                         </Typography>
                         <Typography variant="body1" className={classes.info}>
@@ -85,11 +89,11 @@ function DivionCard({ divData }) {
                         <Typography variant="body1" className={classes.info}>
                             Employees:
                         </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography variant="body1" pb={1} className={classes.data}>
-                            {divData.description}
+                        <Typography variant="body1" className={classes.info}>
+                            Description:
                         </Typography>
+                    </Grid>
+                    <Grid item xs={6}>                        
                         <Typography variant="body1" pb={1} className={classes.data}>
                             {divData.hod_id}
                         </Typography>
@@ -98,8 +102,11 @@ function DivionCard({ divData }) {
                         </Typography>
                         <Typography variant="body1" pb={1} className={classes.data}>
                             {divData.employee_count}
-                        </Typography>
+                        </Typography>                        
                     </Grid>
+                    <Typography variant="body1" pb={1} className={classes.data2}>
+                            {divData.description}
+                    </Typography>
                 </Grid>
             </CardContent>
         </Card>
