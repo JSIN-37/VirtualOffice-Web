@@ -4,6 +4,7 @@ import { Container } from "@material-ui/core";
 import TeamCard from "./TeamCard";
 
 import { AppData } from "../../App";
+import TeamTaskCard from "./team-task-stuff/TeamTaskCard";
 
 export default function TeamOverview() {
   const [appD] = React.useContext(AppData);
@@ -32,6 +33,11 @@ export default function TeamOverview() {
 
   }, [appD]);
 
+  const [teamTasks, setTeamTasks] = useState([])
+  function addTaskTeamVersion(task){
+    setTeamTasks([...teamTasks, task])
+  }
+
   const handleDelete = async (id) => {
     const config = {
       headers: { Authorization: `Bearer ${appD.token}` },
@@ -47,9 +53,16 @@ export default function TeamOverview() {
       <Grid container spacing={3} ml={2}>
         {teams.map((team) => (
           <Grid item xs={12} sm={6} md={4} key={team.id}>
-            <TeamCard team={team} handleDelete={handleDelete} />
+            <TeamCard team={team} handleDelete={handleDelete} addTaskTeamVersion={addTaskTeamVersion} />
           </Grid>
         ))}
+      </Grid>
+
+      <Grid container spacing={3} ml={2}>
+        {teamTasks.map((task)=>{
+          console.log("TEAM TASKS ARR" , task)
+          return <TeamTaskCard task={task} />
+        })}
       </Grid>
     </Container>
   );

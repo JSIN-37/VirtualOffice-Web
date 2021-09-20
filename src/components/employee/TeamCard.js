@@ -17,7 +17,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
-
+import TempAddTask from './task-management-module/TempAddTask'
 const useStyles = makeStyles((theme) => {
     return {
         title: {
@@ -40,6 +40,8 @@ const useStyles = makeStyles((theme) => {
         },
         dialog: {
             padding: "0px 20px",
+            marginBottom : 20
+            
         },
         listItem: {
             margin: "5px 10px",
@@ -57,7 +59,7 @@ const employees = [
     { empName: 'K. L. Perera' },
 ]
 
-export default function TeamCard({ team, handleDelete }) {
+export default function TeamCard({ team, handleDelete, addTaskTeamVersion }) {
     const classes = useStyles()
     const [openAddMembers, setOpenAddMembers] = React.useState(false);
     const [openAddTask, setOpenAddTask] = React.useState(false);
@@ -180,16 +182,13 @@ export default function TeamCard({ team, handleDelete }) {
                     </IconButton>
                 </DialogTitle>
                 <Container align="center" justifycontent="center" className={classes.dialog}>
-
                     <Grid container justifyContent="center" align="center" className={classes.field}>
-                        <Grid item>
-
+                        <Grid item xs={12}>
+                           <TempAddTask addTaskTeamVersion={addTaskTeamVersion}  teamName={team.name}/>             
                         </Grid>
 
                     </Grid>
-                    <Button color="primary" variant="contained" startIcon={<PostAddRoundedIcon />} className={classes.button}>
-                        Add Task
-                    </Button>
+
                 </Container>
             </Dialog>
         </div >
