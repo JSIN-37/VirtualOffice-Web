@@ -362,8 +362,7 @@ export default function AttendanceOverview(props) {
                 </Grid>
 
             </Grid>
-            <ExportData csvData={rows} fileName={`attendance-report${selectedDate}`} />
-
+            <ExportData csvData={rows} fileName={`attendance-report-${selectedDate}`} />
         </>
     );
 }

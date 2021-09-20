@@ -82,7 +82,7 @@ export default function DivisionHeader() {
             <TabPanel value={value} index={1}>
                 <Attendees />
             </TabPanel>
-            <TabPanel value={value} index={3}>
+            <TabPanel value={value} index={2}>
                 <AttendanceReports />
             </TabPanel>
         </Grid>
