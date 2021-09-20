@@ -59,8 +59,10 @@ export default function EmailModule(props) {
         window.gapi.client.gmail.users.messages
       .list({
         userId: "me",
+        labelIds : 'INBOX'
       })
       .then(function (response) {
+        console.log("GAPI EMAIL GET RESP", response)
         const msg = JSON.parse(JSON.stringify(response));
         const objectArray = msg.result.messages;
         //console.log("RESPONSE FROM GMAIL = ", msg.result.messages)
