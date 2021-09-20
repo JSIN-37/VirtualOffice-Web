@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Container from '@material-ui/core/Grid'
 import Grid from '@material-ui/core/Grid'
 import { Typography } from "@material-ui/core";
@@ -15,6 +15,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import user from "../../resources/emp_user.svg";
+import axios from 'axios';
+import { AppData } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,6 +83,25 @@ const top100Films = [
 
 export default function DivisionOverview() {
     const classes = useStyles();
+    const [appD] = useContext(AppData);
+    const [divisionEmployees, setDivisionEmployees] = useState([]);
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+    //get employee list if the division that HOD belongs to
+    const getDivisionEmployees = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${appD.token}` },
+        };
+        axios
+            .get(`${window.backendURL}/user/division-users`, config)
+            .then((res) => {
+                let data = res.data;
+                setDivisionEmployees(data); //data should include check-in time, check-out time, if the person has already done a check-in/check-out today
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
     return (
         <Container className={classes.root}>
             <Grid container className={classes.detailsContainer}>
@@ -140,26 +161,18 @@ export default function DivisionOverview() {
                     <Divider style={{ marginBottom: 10 }} />
                     <div style={{ width: 400, marginBottom: "10px" }}>
                         <Autocomplete
-                            freeSolo
-                            disableClearable
-                            options={top100Films.map((option) => option.title)}
-                            renderInput={(params) => (
+                            disablePortal
+                            id="combo-box-demo"
+                            style={{ width: 300 }}
+                            options={divisionEmployees}
+                            renderInput={(params) =>
                                 <TextField
                                     {...params}
-                                    label="Search input"
-                                    margin="normal"
-                                    variant="outlined"
-                                    InputProps={{
-                                        ...params.InputProps, type: 'search', startAdornment: (
-                                            <InputAdornment position="start">
-                                                <IconButton>
-                                                    <SearchIcon />
-                                                </IconButton>
-                                            </InputAdornment>
-                                        )
-                                    }}
-                                />
-                            )}
+                                    label="Employee"
+                                //variant="outlined"//margin: "10px 0"
+                                />}
+                            getOptionLabel={(option) => `${option.first_name} ${option.last_name}`}
+                            onChange={(e, v) => setSelectedEmployee(v)}
                         />
                     </div>
                     <Container className={classes.tasks}>

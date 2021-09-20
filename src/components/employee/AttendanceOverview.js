@@ -417,15 +417,18 @@ export default function AttendanceOverview(props) {
                         ? "Half Day"
                         : "-"}
                     </StyledTableCell>
-                    {row.location_offset ? (
+                    {row.location_offset === 1 ? 
                       <StyledTableCell align="left" style={{ color: "red" }}>
                         Mismatch
                       </StyledTableCell>
-                    ) : (
+                     : row.location_offset === 0 ?
                       <StyledTableCell align="left" style={{ color: "green" }}>
                         Success
                       </StyledTableCell>
-                    )}
+                    : <StyledTableCell align="left" style={{ color: "green" }}>
+                        -
+                    </StyledTableCell>
+                    }
                     <StyledTableCell align="left">
                       {row.start_time
                         ? getDurationString(row.end_time - row.start_time)
