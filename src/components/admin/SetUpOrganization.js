@@ -1,193 +1,87 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
-import Card from '@material-ui/core/Card';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-//import OfficeImage from '../../../resources/logo_big.png';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
-import { Typography } from '@material-ui/core';
-import { useState } from "react";
+import Card from '@material-ui/core/Card';
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import logo from "../../resources/logo_big.png";
+import SetUpOrganizationDetails from "./SetUpOrganizationDetails"
+import { Link as RouterLink } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function SetUpOrganization() {
+const useStyles = makeStyles({
+    root: {
+        width: "100%",
+        height: "90vh",
+        display: "flex",
+    },
+    card: {
+        borderRadius: 20,
+        textAlign: "center",
+        padding: 30,
+        boxShadow: "0 8px 30px -12px rgba(0,0,0,0.3)",
+        overflow: "hidden",
+        maxWidth: "450px"
+    },
+    media: {
+        margin: "20px auto",
+        width: "24%",
+        height: 50,
+        position: "relative",
+        zIndex: 1,
+    },
+    title: {
+        fontWeight: 400,
+        fontSize: 24,
+        margin: "10px auto",
+    },
+    textField: {
+        width: 360,
+    },
+    button: {
+        margin: "20px 0 10px",
+    },
+});
 
-  // const classes = useStyles();
-  const [fname, setFname] = useState(``);
-  const [lname, setLname] = useState(``);
-  const [orgname, setOrgname] = useState(``);
-  const [country, setCountry] = useState(``);
 
-  const setUpOrgAttempt = async (fname, lname, orgname, country) => { //add choose file and check box to post
-    var axios = require("axios");
-    axios
-      .post(`${window.backendURL}/setup-organization`, {
-        fname: fname,
-        lname: lname,
-        orgname:orgname,
-        country: country,
-  })
-};
-  
-  return (
-    <Grid
-    container
-    spacing={0}
-    direction="column"
-    alignItems="center"
-    justifyContent="center"
-    style={{ minHeight: '100vh' }}
-    >
-  
-    <Grid item xs={6}>
-      <Card             
-            style={{ width: '40rem',
-            borderRadius:'2rem',
-            height:'40rem',
-            justifyContent: 'center',
-            alignContent: 'center',
-            padding: '30px',
-            border:'1',
-    }}   
-      >
-      
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '20vh' }}
-      >
+export default function SetUpOrganization() {
+    const classes = useStyles();
+    return (
+        <Router basename="/setup">
+            <Route exact path="/">
+                <Grid
+                    className={classes.root}
+                    container
+                    spacing={0}
+                    align="center"
+                    justifyContent="center"
+                    direction="column"
+                >
+                    <Grid item>
+                        <Card className={classes.card}>
+                            <CardMedia className={classes.media} image={logo} title="logo" />
+                            <Typography variant="h5" className={classes.title} gutterBottom>
+                                Welcome to VirtualOffice
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Enter an email address. This will be used to set up your organization.
+                            </Typography>
 
-        <Grid item xs={3}>
-        {/* <img src={OfficeImage} className="VO-logo" alt="logo" /> */}
-        </Grid>   
-      </Grid> 
- 
-      <br/>
-
-      <Grid container spacing={24}>
-       <Grid  item xs={12}>
-    
-      <TextField
-          required
-          className="Text-field-org"
-          id="filled-required"
-          label="First Name"
-          placeholder="D.S."
-          style={{ margin: 2}}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          onChange={(e) => setFname(e.target.value)}
-        />
-        
-        <TextField
-          required
-          id="filled-required"
-          label="Last Name"
-          placeholder="Perera"
-          style={{ margin: 2}}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          onChange={(e) => setLname(e.target.value)}
-        />
-        </Grid>
-        </Grid>
-          <br/>
-        <TextField
-          className="Text-field-org"
-          id="filled-full-width"
-          label ="Organization"
-          style={{ margin: 2}}
-          placeholder="Senior Assistant Registrar"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          onChange={(e) => setOrgname(e.target.value)}
-        />
-        <br/>
-        <br/>
-          <form style={{ margin: 2}}>
-          <Typography>
-          Logo
-          </Typography>
-             
-
-          <Button 
-          size="small"
-          variant="contained" 
-          style={{ margin:2}}
-          >
-            Choose File
-          </Button>
-          </form>
-
-          <br/>
-          <TextField
-            className="Text-field"
-            style={{ margin: 4}}
-            id="filled-required"
-            label="Country/Region"
-            placeholder="Country/Region"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-
-      <br/>
-      <br/>
-        <Typography style={{ margin: 2}}>
-        As Admin you will be reponsible for the personal data of 
-        people in your organization as well as the data 
-        managemnet requests they submit to you. <br/>Learn more.
-        </Typography>
-      {/*Hyperlink the LEARN MORE AND TERMS AND SERVICES */}
-      <br/>
-      <Checkbox
-        defaultChecked
-        style={{ margin: 2}}
-        color="primary"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
-      <small >
-      I agree to the terms and services
-      </small>
-
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems= "center"
-        justifyContent="center"
-        style={{ minHeight: '20vh' }}
-      >
-
-       <Button 
-          variant="contained" 
-          component={Link}
-          to="/organization"
-          color="primary" 
-          style={{ margin: 4}}  
-          onClick={(e) => {
-            // e.preventDefault();
-            setUpOrgAttempt(fname, lname, orgname, country);
-          }}
-       >
-        Set up Organization
-        </Button>
-        </Grid>
-
-      </Card>
-    </Grid>      
-   </Grid>
-  );
+                            <form noValidate autoComplete="off">
+                                <TextField id="email" className={classes.textField} label="Email Address" />
+                            </form>
+                            <Button disableElevation variant="contained" color="primary" className={classes.button} component={RouterLink} to="/details">
+                                Next
+                            </Button>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Route>
+            <Route exact path="/details">
+                <SetUpOrganizationDetails />
+            </Route>
+        </Router>
+    )
 }
-
-export default SetUpOrganization;
