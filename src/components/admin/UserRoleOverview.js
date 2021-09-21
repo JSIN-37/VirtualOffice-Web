@@ -1,68 +1,31 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-//import { makeStyles } from "@material-ui/core/styles";
-import UserRoleCards from "./UserRoleCard";
+import Card from "@material-ui/core/Card";
 import { useState, useEffect } from "react";
 
-
-/*const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    display: "flex",
-  },
-  apptitle: {
-    padding: theme.spacing(2), //16px
-    fontWeight: 500,
-    textDecoration: "none",
-  },
-  appspace: {
-    padding: theme.spacing(2),//16px
-    fontWeight: 500,
-    color: "#E3E6F5"
-  },
-  appbaricon: {
-    marginLeft: "240px",
-  },
-  appbar: {
-    background: "#E3E6F5",
-    height: 58,
-  },
-  tab: {
-    color: "#3F51B4",
-    textTransform: "none",
-    fontSize: "16px",
-  },
-}));*/
+import { AppData } from "../../App.js";
 
 export default function UserRoleOverview() {
-//  const classes = useStyles();
-  const [userRoles, setUserRoles] = useState([]);
+  const [roles, setRoles] = useState([]);
+  const [appD] = React.useContext(AppData);
 
-  
-        useEffect(() => {
-        getUserRoles();
-      }, [])
+  useEffect(() => {
+    var axios = require("axios");
+    const config = { headers: { Authorization: `Bearer ${appD.token}` } };
+    axios.get(`${window.backendURL}/admin/user-roles`, config).then((res) => {
+      const teamData = res.data;
+      setRoles(teamData);
+    });
+  }, [appD.token]);
 
-      const getUserRoles = () => {
-        var axios = require('axios');
-        axios.get(`${window.backendURL}/admin/get-getUserRole`) //get the ids of all the divisions
-          .then(res => {
-            const userRoleIds = res.data;
-            setUserRoles(userRoleIds);
-        })
-      };
+  let teamList = roles.map((team, index) => {
+    return (
+      <Card variant="outlined" elevation={1} style={{ borderRadius: "10px" }}>
+        <h1>{team.name}</h1>
+        <p>{team.description}</p>
+        <p>Current employees: {Math.floor(Math.random() * 20)}</p>
+      </Card>
+    );
+  });
 
-    let userRoleList=userRoles.map((userRole,index)=>{
-      return (<Grid key={index} item xs={4}>
-                <UserRoleCards userRoleId={userRole} />
-              </Grid>)
-    })
-  return (
-        <Grid container spacing={1}>
-      <Grid container item xs={12} spacing={3} >
-        {userRoleList}
-        
-      </Grid>
-   </Grid>
-  );
+  return <div>{teamList}</div>;
 }

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import heroimg from '../resources/home_hero-img.png';
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     HeroSection: {
@@ -45,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomeHero() {
     const classes = useStyles();
     return (
+
         <Grid container justifyContent="center" alignItems="center" className={classes.container}>
             <Grid item xs={12} sm={12} md={11}>
                 <Paper elevation={0} className={classes.HeroSection} style={{ backgroundImage: { heroimg } }}>
@@ -59,7 +61,7 @@ export default function HomeHero() {
                                     A specialized system that facilitates the level of collaboration analogous to an office environment is a timely requirement for many organizations. VirtualOffice is focusing on the telecommuting of the administrative staff and the non-academic staff of the university. The primary users of the system are desk workers, their managers, and the public to a certain extent. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
                                 </Typography>
                                 <br />
-                                <Button disableElevation variant="contained" color="primary" className={classes.button}>
+                                <Button disableElevation variant="contained" color="primary" className={classes.button} component={RouterLink} to="/setup">
                                     Sign Up
                                 </Button>
                                 <Button style={{ texttransform: "none" }} variant="outlined" color="primary" className={classes.button}>

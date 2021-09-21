@@ -85,7 +85,7 @@ const tiers = [
         title: 'Admin Panel',
         img: admin,
         alt: "admin panel",
-        description: "System administration; setting up and managing all the configuration aspects of the system. This includes user, role, organizational policy, and hierarchy management."
+        description: "Admin Panel sets up and manage all the configuration aspects of the system. This includes user, role, organizational policy, and hierarchy management."
     },
 ];
 
