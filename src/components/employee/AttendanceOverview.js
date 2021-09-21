@@ -395,7 +395,7 @@ export default function AttendanceOverview(props) {
                       {row.end_time ? getTimeString(row.end_time) : "-"}
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {row.start_location ? (
+                      {row.end_location ? (
                         <Link
                           color="primary"
                           href={row.end_location}
@@ -412,7 +412,7 @@ export default function AttendanceOverview(props) {
                     </StyledTableCell>
                     <StyledTableCell align="left">
                       {row.full_half == "N"
-                        ? "Short Leave"
+                        ? "Invalid"
                         : row.full_half == "H"
                         ? "Half Day"
                         : "-"}
@@ -421,7 +421,7 @@ export default function AttendanceOverview(props) {
                       <StyledTableCell align="left" style={{ color: "red" }}>
                         Mismatch
                       </StyledTableCell>
-                     : row.location_offset === 0 ?
+                     :row.end_time && row.location_offset === 0 ?
                       <StyledTableCell align="left" style={{ color: "green" }}>
                         Success
                       </StyledTableCell>
@@ -430,7 +430,7 @@ export default function AttendanceOverview(props) {
                     </StyledTableCell>
                     }
                     <StyledTableCell align="left">
-                      {row.start_time
+                      {row.end_time
                         ? getDurationString(row.end_time - row.start_time)
                         : "-"}
                     </StyledTableCell>
