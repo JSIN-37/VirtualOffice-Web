@@ -42,6 +42,8 @@ const useStyles = makeStyles({
         fontSize: '15px',
         color: '#3F51B4',
         fontWeight: '400',
+        tetextAlign: 'justify',
+        marginLeft: 100
     },
 
 });
@@ -110,8 +112,8 @@ function DivionCard({ divData }) {
                             {divData.employee_count}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} justify="flex-end">
-                        <Typography variant="body2" align="right" pb={1} className={classes.data2}>
+                    <Grid item xs={12} >
+                        <Typography variant="body2"  >
                             <ShowMoreText className={classes.data2} lines={3} more={"Show More"} less={"Show Less"} onClick={onClick} expanded={expand}>
                                 {divData.description}
                             </ShowMoreText>
