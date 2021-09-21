@@ -14,7 +14,7 @@ import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { useHistory, useLocation } from "react-router";
 import logo from "../../resources/logo.png";
-import user from "../../resources/emp_user.svg";
+import user from "../../resources/user.svg";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
