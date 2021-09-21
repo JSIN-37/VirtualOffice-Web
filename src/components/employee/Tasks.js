@@ -137,7 +137,7 @@ export default function Tasks() {
                         <Tab label="My Tasks" className={classes.tab} />
                         {isHeadOfDivision && <Tab label="Inspect" className={classes.tab} />}
                         {isHeadOfDivision && <Tab label="Assign" className={classes.tab} />}
-                        {isHeadOfDivision && <Tab label="Reports" className={classes.tab} />}
+                        {false && <Tab label="Reports" className={classes.tab} />}
                     </Tabs>
                 </Toolbar>
             </AppBar>
