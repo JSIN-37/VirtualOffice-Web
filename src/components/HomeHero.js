@@ -58,7 +58,7 @@ export default function HomeHero() {
                                     VirtualOffice
                                 </Typography>
                                 <Typography style={{ fontSize: "18px" }} color="inherit" paragraph>
-                                    A specialized system that facilitates the level of collaboration analogous to an office environment is a timely requirement for many organizations. VirtualOffice is focusing on the telecommuting of the administrative staff and the non-academic staff of the university. The primary users of the system are desk workers, their managers, and the public to a certain extent. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
+                                A specialized system focusing on the telecommuting of the administrative staff and the non-academic staff of the university. The primary users of the system are desk workers, their managers, and the public to a certain extent. 
                                 </Typography>
                                 <br />
                                 <Button disableElevation variant="contained" color="primary" className={classes.button} component={RouterLink} to="/setup">
