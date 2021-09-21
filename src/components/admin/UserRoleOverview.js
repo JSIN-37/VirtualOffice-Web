@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import { useState, useEffect } from "react";
-
+import { Typography, } from '@material-ui/core';
 import { AppData } from "../../App.js";
+import { Grid } from '@material-ui/core';
 
 export default function UserRoleOverview() {
   const [roles, setRoles] = useState([]);
@@ -19,11 +20,13 @@ export default function UserRoleOverview() {
 
   let teamList = roles.map((team, index) => {
     return (
-      <Card variant="outlined" elevation={1} style={{ borderRadius: "10px" }}>
-        <h1>{team.name}</h1>
-        <p>{team.description}</p>
-        <p>Current employees: {Math.floor(Math.random() * 20)}</p>
+      <Grid >
+      <Card variant="outlined" elevation={1} style={{ borderRadius: "10px" }} style={{ margin: "20px 0" }}>
+        <h3>{team.name}</h3>
+        <Typography>{team.description}</Typography>
+        <Typography>Current employees: {Math.floor(Math.random() * 20)}</Typography>
       </Card>
+      </Grid>
     );
   });
 
