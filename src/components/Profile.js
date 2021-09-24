@@ -244,9 +244,9 @@ export default function Profile() {
                                 <Typography variant="body1" style={{ fontWeight: 500 }} className={classes.text}>Department:</Typography>
                             </Grid>
                             <Grid item md={6}>
-                                <Typography variant="body1" className={classes.text}>A.T. Pathirana </Typography>
-                                <Typography variant="body1" className={classes.text}>pathirana@gmail.com </Typography>
-                                <Typography variant="body1" className={classes.text}>Head of Division </Typography>
+                                <Typography variant="body1" className={classes.text}>{appD.user.first_name + ' ' + appD.user.last_name}</Typography>
+                                <Typography variant="body1" className={classes.text}>{appD.user.email}</Typography>
+                                <Typography variant="body1" className={classes.text}>{appD.user.roleName}</Typography>
                                 <Typography variant="body1" className={classes.text}>General Administration </Typography>
                             </Grid>
                         </Grid>

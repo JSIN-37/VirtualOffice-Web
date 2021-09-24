@@ -82,7 +82,7 @@ export default function Layout({ children }) {
   const history = useHistory();
   const location = useLocation();
   const [value, setValue] = React.useState(2);
-
+  const isHeadOfDivision = appD.user.roleName ==='Head of Division'
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -149,7 +149,9 @@ export default function Layout({ children }) {
           <Divider></Divider>
         </div>
         <List>
-          {menuItems.map((item) => (
+          {menuItems.map((item) => {
+            if(!isHeadOfDivision && item.text==='Attendance') return
+            return (
             <ListItem
               button
               key={item.text}
@@ -160,8 +162,8 @@ export default function Layout({ children }) {
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
-            </ListItem>
-          ))}
+            </ListItem>)
+          })}
         </List>
         <div className={classes.bottomPush}>
           <img src={logo} alt="Logo" className={classes.logo} />

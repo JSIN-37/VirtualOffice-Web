@@ -71,7 +71,6 @@ export default function DivisionHeader() {
                     </Typography>
                     <Tabs value={value} onChange={handleTabs} classes={{ indicator: classes.indicator }} >
                         <Tab label="Overview" className={classes.tab} />
-                        <Tab label="Active Attendees" className={classes.tab} />
                         <Tab label="Reports" className={classes.tab} />
                     </Tabs>
                 </Toolbar>
@@ -79,10 +78,8 @@ export default function DivisionHeader() {
             <TabPanel value={value} index={0}>
                 <AttendanceOverview />
             </TabPanel>
+
             <TabPanel value={value} index={1}>
-                <Attendees />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
                 <AttendanceReports />
             </TabPanel>
         </Grid>

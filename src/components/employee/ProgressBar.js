@@ -82,7 +82,7 @@ export default function ProgressBar({ data }) {
 
     return (
         <div className={classes.root}>
-            <LinearProgressWithLabel value={bar} color={progressColor}/>
+            <LinearProgressWithLabel value={bar}/>
         </div>
     );
 }
